@@ -1,3 +1,4 @@
+const { fontFamily } = require("tailwindcss/defaultTheme");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: [
@@ -9,7 +10,15 @@ module.exports = {
         "./src/**/*.{js,ts,jsx,tsx}",
     ],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: {
+                "lilita-one": ["var(--font-lilita-one)", ...fontFamily.sans],
+                "source-sans-pro": [
+                    "var(--font-source-sans-pro)",
+                    ...fontFamily.sans,
+                ],
+            },
+        },
     },
     plugins: [require("@tailwindcss/forms")],
 };
