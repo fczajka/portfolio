@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import Header from "@/components/Header/Header";
 import { sourceSansPro } from "@/public/fonts";
 
 export default function Home() {
