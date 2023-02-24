@@ -1,6 +1,6 @@
 import { lilitaOne } from "@/public/fonts";
 import Image from "next/image";
-import Hero from "@/public/images/hero.png";
+import { landing } from "@/public/content";
 
 export default function Header() {
     return (
@@ -10,14 +10,14 @@ export default function Header() {
                     <h1
                         className={`text-3xl text-center tracking-wider ${lilitaOne.variable} font-lilita-one sm:text-4xl md:text-5xl lg:text-left lg:text-7xl`}
                     >
-                        Hi, my name is Franciszek!
+                        {landing.h1}
                     </h1>
                     <p className="hidden text-xl mt-4 lg:block">
-                        I am creative web developer from Poznań, Poland.
+                        {landing.paragraph}
                     </p>
                 </div>
                 <div className="lg:basis-1/2 max-w-md lg:max-w-xl lg:mx-auto">
-                    <Image src={Hero} alt="Hero image"></Image>
+                    <Image src={landing.image} alt="Hero image"></Image>
                 </div>
             </div>
         </section>
