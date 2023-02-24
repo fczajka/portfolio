@@ -1,3 +1,4 @@
+import Contact from "@/components/Contact/Contact";
 import Header from "@/components/Header/Header";
 import Landing from "@/components/Landing/Landing";
 import Separator from "@/components/Landing/Separator";
@@ -11,9 +12,12 @@ export default function Home() {
             className={`bg-zinc-50 ${sourceSansPro.variable} font-source-sans-pro`}
         >
             <Header />
-            <Landing />
-            <Separator />
-            <MyWork />
+            <div className="max-w-1920 mx-auto">
+                <Landing />
+                <Separator />
+                <MyWork />
+                <Contact />
+            </div>
             <MobileNavbar />
         </main>
     );

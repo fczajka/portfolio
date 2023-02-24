@@ -21,6 +21,9 @@ module.exports = {
                     ...fontFamily.sans,
                 ],
             },
+            maxWidth: {
+                1920: "1920px",
+            },
         },
     },
     plugins: [require("@tailwindcss/forms")],

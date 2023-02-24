@@ -1,5 +1,5 @@
 import { AiOutlineArrowUp, AiFillPhone } from "react-icons/ai";
-import { BiCodeAlt } from "react-icons/bi";
+import { BiCodeAlt, BiLinkExternal } from "react-icons/bi";
 import { BsFillPersonFill } from "react-icons/bs";
 import { HiMenuAlt3 } from "react-icons/hi";
 
@@ -48,3 +48,19 @@ export const mobileNavbar = [
     { text: "Contact me", href: "#", icon: AiFillPhone, type: "link" },
     { text: "MENU", href: "#", icon: HiMenuAlt3, type: "button" },
 ];
+
+export const contact = {
+    h3: "Write to me!",
+    form: [
+        { label: "Name:", htmlFor: "name", type: "text" },
+        { label: "E - mali:", htmlFor: "email", type: "text" },
+        { label: "Message:", htmlFor: "message", type: null },
+    ],
+    button: { text: "Send message!" },
+    links: [
+        { text: "123 456 789", href: "#", icon: BiLinkExternal },
+        { text: "example@mail.com", href: "#", icon: BiLinkExternal },
+        { text: "www.linkedin.com/in/me", href: "#", icon: BiLinkExternal },
+        { text: "www.github.com/me", href: "#", icon: BiLinkExternal },
+    ],
+};
