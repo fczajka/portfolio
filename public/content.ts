@@ -16,10 +16,29 @@ export const header = {
 };
 
 export const landing = {
-    h1: "Hi, my name is Franciszek!",
+    h1: "Hi, my name is Franciszek",
     paragraph: "I am creative web developer from Poznań, Poland.",
     image: Hero,
     letters: ["S", "C", "R", "O", "L", "L"],
+};
+
+export const myWork = {
+    h2: "Let's work together",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
+    projects: [
+        {
+            name: "Food and Nutrients",
+            desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
+        },
+        {
+            name: "Szczesliwy Puszek",
+            desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
+        },
+        {
+            name: "Lorem Ipsum",
+            desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
+        },
+    ],
 };
 
 export const mobileNavbar = [

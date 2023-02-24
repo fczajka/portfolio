@@ -19,7 +19,7 @@ export default function Header() {
                     <Image src={image} alt="Hero image"></Image>
                 </div>
             </div>
-            <div className="absolute flex flex-col items-center left-1/2 -translate-x-1/2 -bottom-12 sm:-bottom-16 md:-bottom-24 lg:left-1/4 lg:-bottom-28">
+            <div className="absolute flex flex-col items-center left-1/2 -translate-x-1/2 -bottom-12 sm:-bottom-16 md:-bottom-24 lg:left-1/4 lg:-translate-x-1/4 lg:-bottom-28">
                 <div className="mb-4 tracking-wider text-sm md:text-base">
                     {letters.map((letter) => (
                         <span key="letter">{letter}</span>
