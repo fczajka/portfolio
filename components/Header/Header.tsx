@@ -5,7 +5,7 @@ import { header } from "@/public/content";
 export default function Header() {
     const { menu, links } = header;
     return (
-        <header className="hidden w-full h-16 shadow-md shadow-zinc-200 lg:flex">
+        <header className="fixed hidden w-full h-16 shadow-md shadow-zinc-200 lg:flex">
             <div className="flex basis-1/2 pl-12 items-center h-full">
                 <button
                     className={`text-xl ${lilitaOne.variable} font-lilita-one tracking-wider`}
@@ -17,7 +17,7 @@ export default function Header() {
                 <ul className="flex items-center h-full">
                     {links.map((link) => (
                         <li key={link.text} className="basis-1/4 text-center">
-                            <Link href="#">{link.text}</Link>
+                            <Link href={link.href}>{link.text}</Link>
                         </li>
                     ))}
                 </ul>
