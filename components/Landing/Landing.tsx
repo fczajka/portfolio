@@ -3,22 +3,29 @@ import Image from "next/image";
 import { landing } from "@/public/content";
 
 export default function Header() {
+    const { h1, paragraph, image, letters } = landing;
     return (
-        <section className="w-full h-screen pt-20 px-4 lg:pt-0 lg:px-12">
+        <section className="w-full h-screen pt-4 px-4 lg:pt-0 lg:px-12">
             <div className="w-full h-full flex flex-col-reverse max-w-7xl mx-auto items-center lg:flex-row">
-                <div className="basis-full lg:basis-1/2">
+                <div className="basis-2/5 lg:basis-1/2">
                     <h1
                         className={`text-3xl text-center tracking-wider ${lilitaOne.variable} font-lilita-one sm:text-4xl md:text-5xl lg:text-left lg:text-7xl`}
                     >
-                        {landing.h1}
+                        {h1}
                     </h1>
-                    <p className="hidden text-xl mt-4 lg:block">
-                        {landing.paragraph}
-                    </p>
+                    <p className="hidden text-xl mt-4 lg:block">{paragraph}</p>
                 </div>
-                <div className="lg:basis-1/2 max-w-md lg:max-w-xl lg:mx-auto">
-                    <Image src={landing.image} alt="Hero image"></Image>
+                <div className="basis-3/5 lg:basis-1/2 flex items-end max-w-md lg:max-w-xl lg:mx-auto">
+                    <Image src={image} alt="Hero image"></Image>
                 </div>
+            </div>
+            <div className="absolute flex flex-col items-center left-1/2 -translate-x-1/2 -bottom-12 md:-bottom-24 lg:left-1/4 lg:-bottom-28">
+                <div className="mb-4 tracking-wider text-sm md:text-base">
+                    {letters.map((letter) => (
+                        <span key="letter">{letter}</span>
+                    ))}
+                </div>
+                <div className="w-0.5 h-24 bg-zinc-200 md:h-44 lg:h-56"></div>
             </div>
         </section>
     );

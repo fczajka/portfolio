@@ -14,4 +14,5 @@ export const landing = {
     h1: "Hi, my name is Franciszek!",
     paragraph: "I am creative web developer from Poznań, Poland.",
     image: Hero,
+    letters: ["S", "C", "R", "O", "L", "L"],
 };

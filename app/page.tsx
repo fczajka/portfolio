@@ -1,5 +1,6 @@
 import Header from "@/components/Header/Header";
 import Landing from "@/components/Landing/Landing";
+import Separator from "@/components/Landing/Separator";
 import { sourceSansPro } from "@/public/fonts";
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
         >
             <Header />
             <Landing />
+            <Separator />
         </main>
     );
 }
