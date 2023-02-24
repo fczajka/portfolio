@@ -11,6 +11,9 @@ module.exports = {
     ],
     theme: {
         extend: {
+            boxShadow: {
+                "mobile-navbar": "0 -5px 6px 0px rgb(228, 228, 231, 1)",
+            },
             fontFamily: {
                 "lilita-one": ["var(--font-lilita-one)", ...fontFamily.sans],
                 "source-sans-pro": [
