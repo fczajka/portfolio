@@ -5,7 +5,7 @@ import React from "react";
 import Form from "./Form";
 
 export default function Contact() {
-    const { h3, form, button, links } = contact;
+    const { h3, links } = contact;
     return (
         <section className="w-full px-4 py-16 lg:px-12">
             <div className="mx-auto max-w-7xl">
