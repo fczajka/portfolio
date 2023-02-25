@@ -1,5 +1,4 @@
 import { mobileNavbar } from "@/public/content";
-import Link from "next/link";
 
 export default function MobileNavbar() {
     return (

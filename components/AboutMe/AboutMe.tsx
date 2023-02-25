@@ -40,7 +40,7 @@ export default function AboutMe() {
                         {foods.map((food) => (
                             <div
                                 key={food.alt}
-                                className="basis-72 max-w-sm mx-auto mt-4 first:my-0 lg:my-0"
+                                className="basis-72 max-w-sm mx-auto mt-4 first:my-0 lg:my-2 lg:first:my-2"
                             >
                                 <Image
                                     src={food.image}

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { lilitaOne } from "@/public/fonts";
 import { header } from "@/public/content";
 
