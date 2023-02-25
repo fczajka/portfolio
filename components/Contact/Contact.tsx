@@ -7,7 +7,7 @@ import Form from "./Form";
 export default function Contact() {
     const { h3, links } = contact;
     return (
-        <section className="w-full px-4 py-16 lg:px-12">
+        <section id="contact-me" className="w-full px-4 py-16 lg:px-12">
             <div className="mx-auto max-w-7xl">
                 <div className="w-full lg:w-1/2">
                     <h3

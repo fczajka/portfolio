@@ -6,7 +6,7 @@ export default function MyWork() {
     const { h2, desc, projects } = myWork;
 
     return (
-        <section className="w-full pt-16 px-4 lg:pt-16 lg:px-12">
+        <section id="my-work" className="w-full pt-16 px-4 lg:pt-16 lg:px-12">
             <div className="mx-auto max-w-7xl">
                 <div className="w-full sm:w-4/5 md:w-3/5 lg:w-2/5">
                     <h2

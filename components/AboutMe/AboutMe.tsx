@@ -6,7 +6,7 @@ export default function AboutMe() {
     const { h2, h3, firstParagraph, secondParagraph, foods } = aboutMe;
 
     return (
-        <section className="w-full px-4 lg:px-12 lg:pt-2 lg:pb-6">
+        <section id="about-me" className="w-full px-4 lg:px-12 lg:pt-2 lg:pb-6">
             <div className="w-full flex flex-col max-w-7xl mx-auto items-center">
                 <div>
                     <div className="w-full sm:w-4/5 md:w-3/5 xl:w-2/5">

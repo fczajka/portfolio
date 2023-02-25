@@ -9,10 +9,10 @@ import Pizza from "@/public/images/pizza.jpg";
 export const header = {
     menu: "MENU",
     links: [
-        { text: "To the top", href: "/" },
-        { text: "My work", href: "/" },
-        { text: "About me", href: "/" },
-        { text: "Contact me", href: "/" },
+        { text: "To the top", href: "#" },
+        { text: "My work", href: "#my-work" },
+        { text: "About me", href: "#about-me" },
+        { text: "Contact me", href: "#contact-me" },
     ],
 };
 
@@ -74,8 +74,18 @@ export const contact = {
 
 export const mobileNavbar = [
     { text: "To the top", href: "#", icon: AiOutlineArrowUp, type: "link" },
-    { text: "My work", href: "#", icon: BiCodeAlt, type: "link" },
-    { text: "About me", href: "#", icon: BsFillPersonFill, type: "link" },
-    { text: "Contact me", href: "#", icon: AiFillPhone, type: "link" },
+    { text: "My work", href: "#my-work", icon: BiCodeAlt, type: "link" },
+    {
+        text: "About me",
+        href: "#about-me",
+        icon: BsFillPersonFill,
+        type: "link",
+    },
+    {
+        text: "Contact me",
+        href: "#contact-me",
+        icon: AiFillPhone,
+        type: "link",
+    },
     { text: "MENU", href: "#", icon: HiMenuAlt3, type: "button" },
 ];
