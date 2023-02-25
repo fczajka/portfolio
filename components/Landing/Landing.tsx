@@ -5,7 +5,7 @@ import { landing } from "@/public/content";
 export default function Header() {
     const { h1, paragraph, image, letters } = landing;
     return (
-        <section className="w-full h-screen pt-4 px-4 lg:pt-0 lg:px-12">
+        <section className="w-full h-screen relative pt-4 px-4 lg:pt-0 lg:px-12">
             <div className="w-full h-full flex flex-col-reverse max-w-7xl mx-auto items-center lg:flex-row">
                 <div className="basis-2/5 lg:basis-1/2">
                     <h1
