@@ -17,7 +17,7 @@ export default function Header() {
                 <ul className="flex items-center h-full">
                     {links.map((link) => (
                         <li key={link.text} className="basis-1/4 text-center">
-                            <Link href={link.href}>{link.text}</Link>
+                            <a href={link.href}>{link.text}</a>
                         </li>
                     ))}
                 </ul>

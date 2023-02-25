@@ -10,13 +10,13 @@ export default function MobileNavbar() {
                         key={link.text}
                         className="basis-1/5 flex justify-center items-center"
                     >
-                        <Link
+                        <a
                             href={link.href}
                             className="flex flex-col items-center text-xs min-[420px]:text-sm"
                         >
                             <link.icon />
                             {link.text}
-                        </Link>
+                        </a>
                     </li>
                 ))}
             </ul>
