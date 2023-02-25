@@ -1,4 +1,10 @@
-import { AiOutlineArrowUp, AiFillPhone } from "react-icons/ai";
+import {
+    AiOutlineArrowUp,
+    AiFillPhone,
+    AiFillLinkedin,
+    AiFillMail,
+    AiFillGithub,
+} from "react-icons/ai";
 import { BiCodeAlt, BiLinkExternal } from "react-icons/bi";
 import { BsFillPersonFill } from "react-icons/bs";
 import { HiMenuAlt3 } from "react-icons/hi";
@@ -7,12 +13,45 @@ import Hero from "@/public/images/hero.png";
 import Pizza from "@/public/images/pizza.jpg";
 
 export const header = {
-    menu: "MENU",
     links: [
         { text: "To the top", href: "#" },
         { text: "My work", href: "#my-work" },
         { text: "About me", href: "#about-me" },
         { text: "Contact me", href: "#contact-me" },
+    ],
+};
+
+export const menu = {
+    buttons: [
+        { text: "MENU", aria: "Open menu" },
+        { text: "CLOSE", aria: "Close menu" },
+    ],
+    icons: [
+        { icon: AiFillLinkedin, key: "Linkedin", href: "#" },
+        { icon: AiFillMail, key: "Mail", href: "#" },
+        { icon: AiFillGithub, key: "Github", href: "#" },
+    ],
+    links: [
+        {
+            text: "TOP",
+            href: "#",
+            desc: "Back to the top.",
+        },
+        {
+            text: "WORK",
+            href: "#my-work",
+            desc: "Take a look at my work.",
+        },
+        {
+            text: "ABOUT",
+            href: "#about-me",
+            desc: "A little about me.",
+        },
+        {
+            text: "CONTACT",
+            href: "#contact-me",
+            desc: "Contact me!",
+        },
     ],
 };
 
@@ -72,20 +111,31 @@ export const contact = {
     ],
 };
 
-export const mobileNavbar = [
-    { text: "To the top", href: "#", icon: AiOutlineArrowUp, type: "link" },
-    { text: "My work", href: "#my-work", icon: BiCodeAlt, type: "link" },
-    {
-        text: "About me",
-        href: "#about-me",
-        icon: BsFillPersonFill,
-        type: "link",
-    },
-    {
-        text: "Contact me",
-        href: "#contact-me",
-        icon: AiFillPhone,
-        type: "link",
-    },
-    { text: "MENU", href: "#", icon: HiMenuAlt3, type: "button" },
-];
+export const mobileNavbar = {
+    links: [
+        { text: "To the top", href: "#", icon: AiOutlineArrowUp, type: "link" },
+        { text: "My work", href: "#my-work", icon: BiCodeAlt, type: "link" },
+        {
+            text: "About me",
+            href: "#about-me",
+            icon: BsFillPersonFill,
+            type: "link",
+        },
+        {
+            text: "Contact me",
+            href: "#contact-me",
+            icon: AiFillPhone,
+            type: "link",
+        },
+    ],
+    buttons: [
+        {
+            text: "Menu",
+            aria: "Open menu",
+        },
+        {
+            text: "Close",
+            aria: "Close menu",
+        },
+    ],
+};
