@@ -25,7 +25,7 @@ export default function Header() {
                         <span key="letter">{letter}</span>
                     ))}
                 </div>
-                <div className="w-0.5 h-28 bg-zinc-200 sm:h-40 md:h-60 lg:h-56"></div>
+                <div className="w-0.5 h-28 bg-zinc-200 min-[420px]:h-32 sm:h-40 md:h-60 lg:h-56"></div>
             </div>
         </section>
     );

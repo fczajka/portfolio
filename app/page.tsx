@@ -1,3 +1,4 @@
+import AboutMe from "@/components/AboutMe/AboutMe";
 import Contact from "@/components/Contact/Contact";
 import Header from "@/components/Header/Header";
 import Landing from "@/components/Landing/Landing";
@@ -16,6 +17,7 @@ export default function Home() {
                 <Landing />
                 <Separator />
                 <MyWork />
+                <AboutMe />
                 <Contact />
             </div>
             <MobileNavbar />
