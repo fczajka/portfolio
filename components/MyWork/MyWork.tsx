@@ -26,7 +26,10 @@ export default function MyWork() {
                         <Project
                             key={project.name}
                             name={project.name}
-                            desc={project.desc}
+                            shortDesc={project.shortDesc}
+                            longDesc={project.longDesc}
+                            image={project.image}
+                            links={project.links}
                         />
                     ))}
                 </div>
