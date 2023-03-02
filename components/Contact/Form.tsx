@@ -37,7 +37,7 @@ export default function Form() {
             ))}
             <button
                 type="button"
-                className={`bg-blue-300 rounded-md my-6 p-4 ${lilitaOne.variable} font-lilita-one tracking-wider text-lg`}
+                className={`bg-blue-300 rounded-md my-6 p-4 ${lilitaOne.variable} font-lilita-one tracking-wider text-lg hover:animate-button-background motion-reduce:animate-none`}
             >
                 {button.text}
             </button>

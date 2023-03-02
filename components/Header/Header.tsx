@@ -18,18 +18,20 @@ export default function Header() {
     return (
         <>
             <header className="fixed hidden w-full h-16 bg-zinc-50 shadow-md shadow-zinc-200 z-30 lg:flex lg:justify-between">
-                <div className="flex basis-1/2 h-full pl-12 items-center overflow-y-hidden">
-                    {buttons.map((button, index) => (
-                        <button
-                            key={button.text}
-                            onClick={() => setIsOpen(!isOpen)}
-                            aria-label={button.aria}
-                            type="button"
-                            className={`text-xl ${lilitaOne.variable} font-lilita-one tracking-wider ${buttonsStyles[index]}`}
-                        >
-                            {button.text}
-                        </button>
-                    ))}
+                <div className="flex basis-1/2 h-full pl-10 items-center">
+                    <div className="relative overflow-y-hidden pr-2">
+                        {buttons.map((button, index) => (
+                            <button
+                                key={button.text}
+                                onClick={() => setIsOpen(!isOpen)}
+                                aria-label={button.aria}
+                                type="button"
+                                className={`text-xl pl-2 transition-all ${lilitaOne.variable} font-lilita-one tracking-wider ${buttonsStyles[index]} hover:pl-1.5 hover:tracking-widest motion-reduce:transition-none`}
+                            >
+                                {button.text}
+                            </button>
+                        ))}
+                    </div>
                 </div>
                 <nav className="basis-1/2 max-w-5xl">
                     <ul className="flex items-center h-full">
@@ -38,7 +40,12 @@ export default function Header() {
                                 key={link.text}
                                 className="basis-1/4 text-center"
                             >
-                                <a href={link.href}>{link.text}</a>
+                                <a
+                                    href={link.href}
+                                    className="relative inline-block after:[content:''] after:absolute after:w-full after:scale-x-0 after:h-px after:bottom-0 after:left-0 after:bg-zinc-900 after:origin-bottom-right after:[transition:transform_0.25s_ease-out] hover:after:scale-x-100 hover:after:origin-bottom-left hover:after:motion-reduce:scale-x-0 hover:motion-reduce:underline"
+                                >
+                                    {link.text}
+                                </a>
                             </li>
                         ))}
                     </ul>

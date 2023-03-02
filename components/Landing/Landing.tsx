@@ -4,6 +4,16 @@ import { landing } from "@/public/content";
 
 export default function Header() {
     const { h1, paragraph, image, letters } = landing;
+
+    const delays = [
+        "[animation-delay:2.3s]",
+        "[animation-delay:2.4s]",
+        "[animation-delay:2.5s]",
+        "[animation-delay:2.6s]",
+        "[animation-delay:2.7s]",
+        "[animation-delay:2.8s]",
+    ];
+
     return (
         <section className="w-full h-screen relative pt-4 px-4 lg:pt-0 lg:px-12">
             <div className="w-full h-full flex flex-col-reverse max-w-7xl mx-auto items-center lg:flex-row">
@@ -20,9 +30,14 @@ export default function Header() {
                 </div>
             </div>
             <div className="absolute flex flex-col items-center left-1/2 -translate-x-1/2 -bottom-12 sm:-bottom-16 md:-bottom-24 lg:left-1/4 lg:-translate-x-1/4 lg:-bottom-28">
-                <div className="mb-4 tracking-wider text-sm md:text-base">
-                    {letters.map((letter) => (
-                        <span key="letter">{letter}</span>
+                <div className="relative flex mb-4 tracking-wider text-sm md:text-base">
+                    {letters.map((letter, index) => (
+                        <span
+                            key={index}
+                            className={`animate-jump ${delays[index]} motion-reduce:animate-none`}
+                        >
+                            {letter}
+                        </span>
                     ))}
                 </div>
                 <div className="w-0.5 h-28 bg-zinc-200 min-[420px]:h-32 sm:h-40 md:h-60 lg:h-56"></div>

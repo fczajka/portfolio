@@ -42,7 +42,7 @@ export default function MobileNavbar() {
                                         onClick={() => setIsOpen(!isOpen)}
                                         aria-label={button.aria}
                                         type="button"
-                                        className={buttonsStyles[index]}
+                                        className={`transition-all ${buttonsStyles[index]}`}
                                     >
                                         {button.text}
                                     </button>

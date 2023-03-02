@@ -10,7 +10,7 @@ import { sourceSansPro } from "@/public/fonts";
 export default function Home() {
     return (
         <main
-            className={`bg-zinc-50 ${sourceSansPro.variable} font-source-sans-pro`}
+            className={`bg-zinc-50 text-zinc-900 ${sourceSansPro.variable} font-source-sans-pro`}
         >
             <Header />
             <div className="max-w-1920 mx-auto">

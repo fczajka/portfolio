@@ -74,8 +74,8 @@ export const myWork = {
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
             image: Pizza,
             links: [
-                { text: "Live version", href: "github.com" },
-                { text: "Code on Github", href: "github.com" },
+                { text: "Live version", href: "https://github.com/" },
+                { text: "Code on Github", href: "https://github.com/" },
             ],
         },
         {
@@ -86,8 +86,8 @@ export const myWork = {
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
             image: Pizza,
             links: [
-                { text: "Live version", href: "github.com" },
-                { text: "Code on Github", href: "github.com" },
+                { text: "Live version", href: "https://github.com/" },
+                { text: "Code on Github", href: "https://github.com/" },
             ],
         },
         {
@@ -98,8 +98,8 @@ export const myWork = {
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
             image: Pizza,
             links: [
-                { text: "Live version", href: "github.com" },
-                { text: "Code on Github", href: "github.com" },
+                { text: "Live version", href: "https://github.com/" },
+                { text: "Code on Github", href: "https://github.com/" },
             ],
         },
     ],
