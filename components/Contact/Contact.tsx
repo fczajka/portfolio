@@ -1,36 +1,40 @@
+"use client";
+
 import { contact } from "@/public/content";
 import { lilitaOne } from "@/public/fonts";
+import useElementOnScreen from "@/public/hooks/useElementOnScreen";
 import React from "react";
 import Form from "./Form";
+import Links from "./Links";
 
 export default function Contact() {
-    const { h3, links } = contact;
+    const [containerRef, isVisible] = useElementOnScreen({
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.4,
+    });
+    const { h3, links, form, button } = contact;
     return (
-        <section id="contact-me" className="w-full px-4 py-16 lg:px-12">
+        <section
+            ref={containerRef}
+            id="contact-me"
+            className="w-full px-4 py-16 lg:px-12"
+        >
             <div className="mx-auto max-w-7xl">
                 <div className="w-full lg:w-1/2">
                     <h3
-                        className={`text-center text-2xl ${lilitaOne.variable} font-lilita-one top-0 sm:text-3xl lg:text-4xl`}
+                        className={`text-center text-2xl ${
+                            lilitaOne.variable
+                        } font-lilita-one opacity-0 ${
+                            isVisible ? "animate-show-down-up" : ""
+                        } motion-reduce:animate-none motion-reduce:opacity-100 top-0 sm:text-3xl lg:text-4xl`}
                     >
                         {h3}
                     </h3>
                 </div>
                 <div className="flex flex-col pt-20 lg:flex-row">
-                    <Form />
-                    <div className="basis-full sm:px-32 md:px-44 lg:px-24">
-                        <ul>
-                            {links.map((link) => (
-                                <li key={link.text} className="my-6">
-                                    <a
-                                        href={link.href}
-                                        className="flex relative items-center max-w-fit after:[content:''] after:absolute after:w-full after:scale-x-0 after:h-px after:bottom-0 after:left-0 after:bg-zinc-900 after:origin-bottom-right after:[transition:transform_0.25s_ease-out] hover:after:scale-x-100 hover:after:origin-bottom-left hover:after:motion-reduce:scale-x-0 hover:motion-reduce:underline"
-                                    >
-                                        {link.text} <link.icon />
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    <Form form={form} button={button} isVisible={isVisible} />
+                    <Links links={links} isVisible={isVisible} />
                 </div>
             </div>
         </section>

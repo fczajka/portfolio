@@ -12,14 +12,14 @@ module.exports = {
     theme: {
         extend: {
             animation: {
-                "button-background":
-                    "1.2s ease-in-out infinite button-background",
                 "fade-in": "0.3s ease-in-out 1 both fade-in",
-                jump: "jump 15s ease-in-out infinite",
+                jump: "15s ease-in-out infinite jump",
+                line: "0.8s ease-in-out 1 both line",
                 photo: "1s ease-out 1 both photo",
                 "show-menu-mobile": "1s ease-in-out 1 show-menu-mobile",
                 "show-menu-desktop": "1s ease-in-out 1 show-menu-desktop",
-                show: "0.3s ease-out 1 both show-up",
+                "show-up-down": "0.3s ease-out 1 both show-up-down",
+                "show-down-up": "0.3s ease-out 1 both show-down-up",
                 "show-project-details":
                     "0.3s ease-in-out 0.3s 1 both show-up-project-details",
                 "slide-in-left": "0.3s ease-in-out 1 both slide-in-left",
@@ -38,17 +38,6 @@ module.exports = {
                 ],
             },
             keyframes: {
-                "button-background": {
-                    "0%": {
-                        boxShadow: "0px 0px #e4e4e7",
-                    },
-                    "50%": {
-                        boxShadow: "4px 6px #e4e4e7",
-                    },
-                    "100%": {
-                        boxShadow: "0px 0px #e4e4e7",
-                    },
-                },
                 "fade-in": {
                     "0%": {
                         opacity: 0,
@@ -82,11 +71,24 @@ module.exports = {
                         translate: "0px 0px",
                     },
                 },
+                line: {
+                    "0%": {
+                        opacity: 1,
+                        transform: "scale(1, 0)",
+                    },
+                    "100%": {
+                        opacity: 1,
+                        transform: "scale(1, 1)",
+                    },
+                },
                 photo: {
                     "0%": {
                         opacity: 0,
                         translate: "0px -100%",
                         transform: "scale(0.9, 1.1)",
+                    },
+                    "20%": {
+                        transform: "scale(1, 1)",
                     },
                     "25%": {
                         translate: "0px 100px",
@@ -123,7 +125,17 @@ module.exports = {
                         clipPath: "circle(1000px at 50% 50%);",
                     },
                 },
-                "show-up": {
+                "show-down-up": {
+                    "0%": {
+                        opacity: 0,
+                        translate: "0px 4px",
+                    },
+                    "100%": {
+                        opacity: 1,
+                        translate: "0px 0px",
+                    },
+                },
+                "show-up-down": {
                     "0%": {
                         opacity: 0,
                         translate: "0px -4px",

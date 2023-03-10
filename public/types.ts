@@ -1,5 +1,6 @@
 import { StaticImageData } from "next/image";
 import { Dispatch, SetStateAction } from "react";
+import { IconType } from "react-icons";
 
 export type ProjectProps = {
     name: string;
@@ -10,6 +11,7 @@ export type ProjectProps = {
         text: string;
         href: string;
     }[];
+    animationDelay: string;
 };
 
 export type MenuProps = {
@@ -27,4 +29,61 @@ export type ProjectDetailsProps = {
         text: string;
         href: string;
     }[];
+};
+
+export type customHookOptions = {
+    root: HTMLDivElement | null;
+    rootMargin: string;
+    threshold: number;
+};
+
+export type TextAndImageProps = {
+    h1: string;
+    paragraph: string;
+    image: StaticImageData;
+};
+
+export type ScrollProps = {
+    letters: string[];
+};
+
+export type PanelProps = {
+    headline: string;
+    desc: string;
+};
+
+export type FoodsProps = {
+    foods: {
+        name: string;
+        image: StaticImageData;
+        alt: string;
+    }[];
+};
+
+export type LinksProps = {
+    links: {
+        text: string;
+        href: string;
+        icon: IconType;
+    }[];
+    isVisible: boolean;
+};
+
+export type FormProps = {
+    form: (
+        | {
+              label: string;
+              htmlFor: string;
+              type: string;
+          }
+        | {
+              label: string;
+              htmlFor: string;
+              type: null;
+          }
+    )[];
+    button: {
+        text: string;
+    };
+    isVisible: boolean;
 };

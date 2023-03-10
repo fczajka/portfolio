@@ -4,6 +4,7 @@ import { useState } from "react";
 import { lilitaOne } from "@/public/fonts";
 import { ProjectProps } from "@/public/types";
 import ProjectDetails from "./ProjectDetails";
+import useElementOnScreen from "@/public/hooks/useElementOnScreen";
 
 export default function Project({
     name,
@@ -11,11 +12,22 @@ export default function Project({
     longDesc,
     image,
     links,
+    animationDelay,
 }: ProjectProps) {
+    const [containerRef, isVisible] = useElementOnScreen({
+        root: null,
+        rootMargin: "0px",
+        threshold: 1.0,
+    });
     const [isOpen, setIsOpen] = useState(false);
     return (
         <>
-            <div className="relative basis-1/3 max-w-sm mx-auto my-6 px-6 py-6 shadow-lg shadow-zinc-200 rounded-lg lg:m-0 lg:max-w-[300px] xl:max-w-[340px] hover:scale-105 transition-all motion-reduce:transition-none">
+            <div
+                ref={containerRef}
+                className={`relative basis-1/3 max-w-sm mx-auto my-6 px-6 py-6 shadow-lg shadow-zinc-200 rounded-lg opacity-0 ${
+                    isVisible ? "animate-show-down-up" : ""
+                } ${animationDelay} motion-reduce:animate-none motion-reduce:opacity-100 lg:m-0 lg:max-w-[300px] xl:max-w-[340px]`}
+            >
                 <h3
                     className={`text-lg ${lilitaOne.variable} font-lilita-one sm:text-xl md:text-2xl lg:text-3xl`}
                 >

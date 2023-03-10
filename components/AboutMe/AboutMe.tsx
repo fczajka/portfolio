@@ -1,6 +1,7 @@
 import { aboutMe } from "@/public/content";
-import { lilitaOne } from "@/public/fonts";
-import Image from "next/image";
+import Panel from "../UI/Panel";
+import Foods from "./Foods";
+import SubPanel from "./SubPanel";
 
 export default function AboutMe() {
     const { h2, h3, firstParagraph, secondParagraph, foods } = aboutMe;
@@ -12,47 +13,13 @@ export default function AboutMe() {
         >
             <div className="w-full flex flex-col max-w-7xl mx-auto items-center">
                 <div>
-                    <div className="w-full sm:w-4/5 md:w-3/5 xl:w-2/5">
-                        <h2
-                            className={`text-xl ${lilitaOne.variable} font-lilita-one sm:text-2xl md:text-3xl lg:text-5xl`}
-                        >
-                            {h2}
-                        </h2>
-                        <p className="text-sm mt-4 text-justify leading-relaxed sm:text-base lg:text-lg">
-                            {firstParagraph}
-                        </p>
-                    </div>
+                    <Panel headline={h2} desc={firstParagraph} />
                 </div>
                 <div className="w-full flex flex-col mt-16">
                     <div>
-                        <div className="sm:w-4/5 md:w-3/5 xl:w-2/5">
-                            <h3
-                                className={`text-lg ${lilitaOne.variable} font-lilita-one sm:text-xl md:text-2xl lg:text-4xl`}
-                            >
-                                {h3}
-                            </h3>
-                            <p className="text-sm mt-4 text-justify leading-relaxed sm:text-base lg:text-lg">
-                                {secondParagraph}
-                            </p>
-                        </div>
+                        <SubPanel headline={h3} desc={secondParagraph} />
                     </div>
-                    <div className="flex flex-col justify-between mt-4 lg:flex-row">
-                        {foods.map((food) => (
-                            <div
-                                key={food.alt}
-                                className="basis-72 max-w-sm mx-auto mt-4 first:my-0 lg:my-2 lg:first:my-2 lg:first:ml-0 lg:last:mr-0 lg:basis-1/3 lg:max-w-[300px] xl:max-w-[340px]"
-                            >
-                                <Image
-                                    src={food.image}
-                                    alt={food.alt}
-                                    className="rounded-lg"
-                                />
-                                <h4 className="text-center text-sm lg:text-base">
-                                    {food.name}
-                                </h4>
-                            </div>
-                        ))}
-                    </div>
+                    <Foods foods={foods} />
                 </div>
             </div>
         </section>

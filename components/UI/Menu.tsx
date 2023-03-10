@@ -39,7 +39,7 @@ export default function Menu({ isOpen, setIsOpen }: MenuProps) {
                 {links.map((link, index) => (
                     <li
                         key={link.text}
-                        className={`flex flex-col items-start justify-between my-16 animate-show ${linksDelays[index]} motion-reduce:animate-none sm:flex-row sm:items-end`}
+                        className={`flex flex-col items-start justify-between my-16 animate-show-up-down ${linksDelays[index]} motion-reduce:animate-none sm:flex-row sm:items-end`}
                     >
                         <a
                             href={link.href}
