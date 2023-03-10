@@ -60,6 +60,15 @@ export type FoodsProps = {
     }[];
 };
 
+export type FoodProps = {
+    food: {
+        name: string;
+        image: StaticImageData;
+        alt: string;
+    };
+    delay: string;
+};
+
 export type LinksProps = {
     links: {
         text: string;

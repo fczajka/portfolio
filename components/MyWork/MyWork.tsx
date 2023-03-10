@@ -5,6 +5,12 @@ import Project from "./Project";
 export default function MyWork() {
     const { h2, desc, projects } = myWork;
 
+    const delays = [
+        "[animation-delay:0.2s]",
+        "[animation-delay:0.4s]",
+        "[animation-delay:0.6s]",
+    ];
+
     return (
         <section
             id="my-work"
@@ -21,7 +27,7 @@ export default function MyWork() {
                             longDesc={project.longDesc}
                             image={project.image}
                             links={project.links}
-                            animationDelay={`[animation-delay:0.${index * 2}s]`}
+                            animationDelay={delays[index]}
                         />
                     ))}
                 </div>
