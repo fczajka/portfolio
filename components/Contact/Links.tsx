@@ -1,5 +1,3 @@
-"use client";
-
 import { LinksProps } from "@/public/types";
 import React from "react";
 
