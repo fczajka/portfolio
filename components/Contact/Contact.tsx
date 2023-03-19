@@ -17,7 +17,7 @@ export default function Contact() {
     const { h3, links, form, button } = contact;
     return (
         <SectionWrapper id="contact-me">
-            <div ref={containerRef} className="mx-auto max-w-7xl">
+            <div ref={containerRef} className="mx-auto max-section">
                 <div className="w-full lg:w-1/2">
                     <h3
                         className={`text-center text-2xl ${

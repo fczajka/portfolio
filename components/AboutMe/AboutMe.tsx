@@ -9,7 +9,7 @@ export default function AboutMe() {
 
     return (
         <SectionWrapper id="about-me">
-            <div className="w-full flex flex-col max-w-7xl mx-auto items-center">
+            <div className="w-full flex flex-col max-section mx-auto items-center">
                 <div>
                     <Panel headline={h2} desc={firstParagraph} />
                 </div>
