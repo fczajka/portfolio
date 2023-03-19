@@ -17,7 +17,7 @@ export default function Header() {
 
     return (
         <>
-            <header className="fixed hidden w-full h-16 bg-zinc-50 shadow-md shadow-zinc-200 z-30 lg:flex lg:justify-between">
+            <header className="fixed hidden w-full h-16 bg-zinc-50 border-b-2 border-zinc-200 z-30 lg:flex lg:justify-between">
                 <div className="flex basis-1/2 h-full pl-10 items-center">
                     <div className="relative overflow-y-hidden pr-2">
                         {buttons.map((button, index) => (

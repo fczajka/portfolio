@@ -16,7 +16,7 @@ export default function MobileNavbar() {
 
     return (
         <>
-            <nav className="fixed w-full bottom-0 bg-zinc-50 h-12 shadow-mobile-navbar z-30 min-[420px]:h-16 lg:hidden">
+            <nav className="fixed w-full bottom-0 bg-zinc-50 h-12 border-t-2 border-zinc-200 z-30 min-[420px]:h-16 lg:hidden">
                 <ul className="flex h-full">
                     {links.map((link) => (
                         <li
