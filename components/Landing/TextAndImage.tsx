@@ -19,7 +19,7 @@ export default function TextAndImage({
     return (
         <div
             ref={containerRef}
-            className="w-full h-full flex flex-col-reverse max-section mx-auto items-center lg:flex-row"
+            className="w-full h-full flex flex-col-reverse max-w-section mx-auto items-center lg:flex-row"
         >
             <div className="basis-2/5 lg:basis-1/2">
                 <h1
