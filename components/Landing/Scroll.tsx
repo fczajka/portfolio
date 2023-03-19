@@ -7,7 +7,7 @@ export default function Scroll({ letters }: ScrollProps) {
     const [containerRef, isVisible] = useElementOnScreen({
         root: null,
         rootMargin: "0px",
-        threshold: 0.4,
+        threshold: 0.1,
     });
 
     const delays = [
@@ -35,9 +35,9 @@ export default function Scroll({ letters }: ScrollProps) {
                 ))}
             </div>
             <div
-                className={`w-0.5 h-28 bg-blue-200 opacity-0 ${
+                className={`w-0.5 h-32 bg-blue-200 opacity-0 ${
                     isVisible ? "animate-line" : ""
-                } [transform-origin:bottom] [animation-delay:1.7s] motion-reduce:animate-none motion-reduce:opacity-100 min-[420px]:h-32 sm:h-40 md:h-60 lg:h-72`}
+                } [transform-origin:bottom] [animation-delay:1.7s] motion-reduce:animate-none motion-reduce:opacity-100 min-[360px]:h-44 sm:h-48 md:h-60 lg:h-72`}
             ></div>
         </div>
     );

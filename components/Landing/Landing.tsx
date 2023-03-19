@@ -7,7 +7,7 @@ export default function Header() {
     const { h1, paragraph, image, letters } = landing;
 
     return (
-        <SectionWrapper id="landing" uniqueStyle="h-screen relative">
+        <SectionWrapper id="landing" uniqueStyle="h-screen relative pt-0">
             <TextAndImage h1={h1} paragraph={paragraph} image={image} />
             <Scroll letters={letters} />
         </SectionWrapper>
