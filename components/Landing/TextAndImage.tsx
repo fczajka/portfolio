@@ -46,6 +46,7 @@ export default function TextAndImage({
                     className={`opacity-0 [animation-delay:0.5s] lg:[animation-delay:0.9s] motion-reduce:animate-none motion-reduce:opacity-100 ${
                         isVisible ? "animate-photo" : ""
                     }`}
+                    priority
                 ></Image>
             </div>
         </div>
