@@ -1,4 +1,5 @@
 import { landing } from "@/public/content";
+import SectionWrapper from "../UI/SectionWrapper";
 import Scroll from "./Scroll";
 import TextAndImage from "./TextAndImage";
 
@@ -6,9 +7,9 @@ export default function Header() {
     const { h1, paragraph, image, letters } = landing;
 
     return (
-        <section className="w-full h-screen relative pt-4 px-4  lg:pt-0 lg:px-12">
+        <SectionWrapper id="landing" uniqueStyle="h-screen relative">
             <TextAndImage h1={h1} paragraph={paragraph} image={image} />
             <Scroll letters={letters} />
-        </section>
+        </SectionWrapper>
     );
 }

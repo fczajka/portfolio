@@ -1,5 +1,6 @@
 import { myWork } from "@/public/content";
 import Panel from "../UI/Panel";
+import SectionWrapper from "../UI/SectionWrapper";
 import Project from "./Project";
 
 export default function MyWork() {
@@ -12,10 +13,7 @@ export default function MyWork() {
     ];
 
     return (
-        <section
-            id="my-work"
-            className="w-full my-16 px-4 lg:my-0 lg:pt-20 lg:px-12"
-        >
+        <SectionWrapper id="my-work">
             <div className="mx-auto max-w-7xl">
                 <Panel headline={h2} desc={desc} />
                 <div className="w-full flex flex-col items-strech my-16 lg:mt-20 lg:flex-row lg:justify-between">
@@ -32,6 +30,6 @@ export default function MyWork() {
                     ))}
                 </div>
             </div>
-        </section>
+        </SectionWrapper>
     );
 }
