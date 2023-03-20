@@ -16,7 +16,7 @@ export default function ProjectDetails({
             <div className="basis-full mx-4 p-6 bg-zinc-50 rounded-lg shadow-lg shadow-zinc-800 max-w-sm animate-show-project-details motion-reduce:animate-none lg:max-w-3xl lg:basis-3/5 lg:mx-0">
                 <div className="flex justify-between items-center">
                     <h3
-                        className={`text-lg ${lilitaOne.variable} font-lilita-one animate-slide-in-left [animation-delay:0.5s] motion-reduce:animate-none sm:text-xl md:text-2xl lg:text-3xl`}
+                        className={`${lilitaOne.variable} font-lilita-one animate-slide-in-left [animation-delay:0.5s] motion-reduce:animate-none`}
                     >
                         {name}
                     </h3>
@@ -29,7 +29,7 @@ export default function ProjectDetails({
                 </div>
                 <div className="flex flex-col mt-5 lg:flex-row">
                     <div className="basis-1/2">
-                        <p className="text-justify text-sm leading-relaxed animate-fade-in [animation-delay:1s] motion-reduce:animate-none sm:text-base lg:lg:mr-2">
+                        <p className="text-justify animate-fade-in [animation-delay:1s] motion-reduce:animate-none lg:lg:mr-2">
                             {longDesc}
                         </p>
                     </div>

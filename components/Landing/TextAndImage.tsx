@@ -23,11 +23,9 @@ export default function TextAndImage({
         >
             <div className="basis-2/5 lg:basis-1/2">
                 <h1
-                    className={`text-3xl text-center tracking-wider ${
+                    className={`font-lilita-one opacity-0 [animation-delay:0.1s] motion-reduce:animate-none motion-reduce:opacity-100 ${
                         lilitaOne.variable
-                    } font-lilita-one opacity-0 [animation-delay:0.1s] motion-reduce:animate-none motion-reduce:opacity-100 ${
-                        isVisible ? "animate-show-down-up" : ""
-                    } sm:text-4xl md:text-5xl lg:text-left lg:text-7xl`}
+                    }  ${isVisible ? "animate-show-down-up" : ""}`}
                 >
                     {h1}
                 </h1>

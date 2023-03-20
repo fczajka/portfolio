@@ -24,18 +24,14 @@ export default function Project({
         <>
             <div
                 ref={containerRef}
-                className={`relative basis-1/3 max-w-sm mx-auto my-6 px-6 py-6 shadow-lg shadow-zinc-200 rounded-lg opacity-0 ${
+                className={`relative basis-1/3 max-w-sm mx-auto my-6 px-6 py-6 shadow-project-note shadow-zinc-400 rounded-lg opacity-0 ${
                     isVisible ? "animate-show-down-up" : ""
                 } ${animationDelay} motion-reduce:animate-none motion-reduce:opacity-100 lg:m-0 lg:max-w-[300px] xl:max-w-[340px]`}
             >
-                <h3
-                    className={`text-lg ${lilitaOne.variable} font-lilita-one sm:text-xl md:text-2xl lg:text-3xl`}
-                >
+                <h3 className={`${lilitaOne.variable} font-lilita-one`}>
                     {name}
                 </h3>
-                <p className="text-justify text-sm my-4 mb-12 leading-relaxed sm:text-base">
-                    {shortDesc}
-                </p>
+                <p className="text-justify my-4 mb-12">{shortDesc}</p>
                 <button
                     onClick={() => setIsOpen(!isOpen)}
                     aria-label={`Check details of ${name}`}

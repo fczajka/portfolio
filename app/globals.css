@@ -7,3 +7,30 @@
     padding: 0;
     margin: 0;
 }
+
+@layer base {
+    header {
+        @apply fixed bg-zinc-50 w-full h-16 border-b-2 border-zinc-200 z-30;
+    }
+    h1 {
+        @apply text-3xl text-center tracking-wider sm:text-4xl md:text-5xl lg:text-left lg:text-7xl;
+    }
+    h2 {
+        @apply text-xl sm:text-2xl md:text-3xl lg:text-5xl;
+    }
+    h3 {
+        @apply text-lg sm:text-xl md:text-2xl lg:text-3xl;
+    }
+    h4 {
+        @apply text-center text-sm lg:text-base;
+    }
+    main {
+        @apply bg-zinc-50 text-zinc-900;
+    }
+    p {
+        @apply text-sm leading-relaxed sm:text-base;
+    }
+    section {
+        @apply w-full px-4 py-12 lg:px-12;
+    }
+}

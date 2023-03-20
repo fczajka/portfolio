@@ -96,9 +96,3 @@ export type FormProps = {
     };
     isVisible: boolean;
 };
-
-export type SectionWrapperProps = {
-    id: string;
-    uniqueStyle?: string;
-    children: JSX.Element | JSX.Element[];
-};

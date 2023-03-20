@@ -1,6 +1,5 @@
 import { aboutMe } from "@/public/content";
 import Panel from "../UI/Panel";
-import SectionWrapper from "../UI/SectionWrapper";
 import Foods from "./Foods";
 import SubPanel from "./SubPanel";
 
@@ -8,7 +7,7 @@ export default function AboutMe() {
     const { h2, h3, firstParagraph, secondParagraph, foods } = aboutMe;
 
     return (
-        <SectionWrapper id="about-me">
+        <section id="about-me">
             <div className="w-full flex flex-col max-w-section mx-auto items-center">
                 <div>
                     <Panel headline={h2} desc={firstParagraph} />
@@ -20,6 +19,6 @@ export default function AboutMe() {
                     <Foods foods={foods} />
                 </div>
             </div>
-        </SectionWrapper>
+        </section>
     );
 }
