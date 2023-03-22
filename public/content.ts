@@ -7,10 +7,10 @@ import {
 } from "react-icons/ai";
 import { BiCodeAlt, BiLinkExternal } from "react-icons/bi";
 import { BsFillPersonFill } from "react-icons/bs";
-import { HiMenuAlt3 } from "react-icons/hi";
 
 import Hero from "@/public/images/hero.png";
 import Pizza from "@/public/images/pizza.jpg";
+import Creme from "@/public/images/creme.jpg";
 
 export const header = {
     links: [
@@ -115,8 +115,8 @@ export const aboutMe = {
         "Outside of work i like to spend as much time as I can cooking or baking. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
     foods: [
         { name: "Pizza", image: Pizza, alt: "Pizza" },
-        { name: "Crème Caramel", image: Pizza, alt: "Crème Caramel" },
-        { name: "Panna Cotta", image: Pizza, alt: "Panna Cotta" },
+        { name: "Crème Caramel", image: Creme, alt: "Crème Caramel" },
+        { name: "Panna Cotta", image: Creme, alt: "Panna Cotta" },
     ],
 };
 
