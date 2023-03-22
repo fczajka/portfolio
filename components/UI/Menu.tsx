@@ -35,25 +35,27 @@ export default function Menu({ isOpen, setIsOpen }: MenuProps) {
                     ))}
                 </ul>
             </div>
-            <ul className="w-full sm:w-3/5 lg:w-1/2 xl:w-2/5 2xl:w-1/3">
-                {links.map((link, index) => (
-                    <li
-                        key={link.text}
-                        className={`flex flex-col items-start justify-between my-16 animate-show-up-down ${linksDelays[index]} motion-reduce:animate-none sm:flex-row sm:items-end`}
-                    >
-                        <a
-                            href={link.href}
-                            onClick={() => setIsOpen(!isOpen)}
-                            className={`text-xl sm:text-3xl lg:text-6xl ${lilitaOne.variable} font-lilita-one`}
+            <div className="w-full h-full py-8 pb-24 lg:py-16">
+                <ul className="w-full h-full flex flex-col justify-between max-h-96 sm:w-3/5 lg:w-1/2 lg:max-h-112 xl:w-2/5 2xl:w-1/3">
+                    {links.map((link, index) => (
+                        <li
+                            key={link.text}
+                            className={`flex flex-col items-start justify-between animate-show-up-down ${linksDelays[index]} motion-reduce:animate-none sm:flex-row sm:items-end`}
                         >
-                            {link.text}
-                        </a>
-                        <p className="text-sm sm:text-base lg:text-lg">
-                            {link.desc}
-                        </p>
-                    </li>
-                ))}
-            </ul>
+                            <a
+                                href={link.href}
+                                onClick={() => setIsOpen(!isOpen)}
+                                className={`text-xl sm:text-3xl lg:text-6xl ${lilitaOne.variable} font-lilita-one`}
+                            >
+                                {link.text}
+                            </a>
+                            <p className="text-sm sm:text-base lg:text-lg">
+                                {link.desc}
+                            </p>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 }

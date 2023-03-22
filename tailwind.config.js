@@ -209,6 +209,9 @@ module.exports = {
                     },
                 },
             },
+            maxHeight: {
+                112: "28rem",
+            },
             maxWidth: {
                 section: "80rem",
                 1920: "1920px",
