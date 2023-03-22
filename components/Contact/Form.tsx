@@ -33,7 +33,7 @@ export default function Form({ form, button, isVisible }: FormProps) {
                         <input
                             type={section.type}
                             name={section.htmlFor}
-                            className={`rounded-md border-0 bg-blue-200 opacity-0 ${
+                            className={`rounded-xl border-0 bg-blue-200 opacity-0 ${
                                 isVisible ? "animate-show-down-up" : ""
                             } motion-reduce:animate-none motion-reduce:opacity-100 ${
                                 delays[index]
@@ -41,7 +41,7 @@ export default function Form({ form, button, isVisible }: FormProps) {
                         ></input>
                     ) : (
                         <textarea
-                            className={`resize-none rounded-md border-0 bg-blue-200 opacity-0 ${
+                            className={`resize-none rounded-xl border-0 bg-blue-200 opacity-0 ${
                                 isVisible ? "animate-show-down-up" : ""
                             } motion-reduce:animate-none motion-reduce:opacity-100 ${
                                 delays[index]
@@ -56,7 +56,7 @@ export default function Form({ form, button, isVisible }: FormProps) {
             ))}
             <button
                 type="button"
-                className={`bg-blue-300 rounded-md my-6 p-4 ${
+                className={`bg-blue-300 rounded-xl my-6 p-4 ${
                     lilitaOne.variable
                 } font-lilita-one opacity-0 ${
                     isVisible ? "animate-show-down-up" : ""

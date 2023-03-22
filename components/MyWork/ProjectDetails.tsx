@@ -13,7 +13,7 @@ export default function ProjectDetails({
 }: ProjectDetailsProps) {
     return (
         <div className="fixed w-full flex justify-center items-center h-screen top-0 left-0 bg-zinc-800 bg-opacity-90 z-40 animate-fade-in motion-reduce:animate-none">
-            <div className="basis-full mx-4 p-6 bg-zinc-50 rounded-lg shadow-lg shadow-zinc-800 max-w-sm animate-show-project-details motion-reduce:animate-none lg:max-w-3xl lg:basis-3/5 lg:mx-0">
+            <div className="basis-full mx-4 p-6 bg-zinc-50 rounded-xl shadow-lg shadow-zinc-800 max-w-sm animate-show-project-details motion-reduce:animate-none lg:max-w-3xl lg:basis-3/5 lg:mx-0">
                 <div className="flex justify-between items-center">
                     <h3
                         className={`${lilitaOne.variable} font-lilita-one animate-slide-in-left [animation-delay:0.5s] motion-reduce:animate-none`}
@@ -37,7 +37,7 @@ export default function ProjectDetails({
                         <Image
                             src={image}
                             alt="pizza"
-                            className="rounded-lg h-24 object-cover animate-fade-in [animation-delay:0.8s] motion-reduce:animate-none min-[400px]:h-full"
+                            className="rounded-xl h-24 object-cover animate-fade-in [animation-delay:0.8s] motion-reduce:animate-none min-[400px]:h-full"
                         />
                     </div>
                 </div>
@@ -48,7 +48,7 @@ export default function ProjectDetails({
                             href={link.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={`text-sm px-4 py-2 rounded-lg bg-blue-200 ${lilitaOne.variable} font-lilita-one hover:animate-button-background hover:motion-reduce:animate-none hover:motion-reduce:[boxShadow:4px_6px_#e4e4e7] sm:text-base`}
+                            className={`text-sm px-4 py-2 rounded-full bg-blue-200 ${lilitaOne.variable} font-lilita-one hover:animate-button-background hover:motion-reduce:animate-none hover:motion-reduce:[boxShadow:4px_6px_#e4e4e7] sm:text-base`}
                         >
                             {link.text}
                         </a>
