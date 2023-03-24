@@ -12,6 +12,9 @@ import Hero from "@/public/images/hero.png";
 import Pizza from "@/public/images/pizza.jpg";
 import Creme from "@/public/images/creme.jpg";
 
+import foodAndNutrients from "@/public/images/foodandnutrients.gif";
+import szczesliwyPuszek from "@/public/images/szczesliwypuszek.gif";
+
 export const header = {
     links: [
         { text: "To the top", href: "#" },
@@ -72,7 +75,7 @@ export const myWork = {
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
             longDesc:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
-            image: Pizza,
+            image: foodAndNutrients,
             links: [
                 { text: "Live version", href: "https://github.com/" },
                 { text: "Code on Github", href: "https://github.com/" },
@@ -84,7 +87,7 @@ export const myWork = {
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
             longDesc:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
-            image: Pizza,
+            image: szczesliwyPuszek,
             links: [
                 { text: "Live version", href: "https://github.com/" },
                 { text: "Code on Github", href: "https://github.com/" },
