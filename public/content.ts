@@ -77,8 +77,14 @@ export const myWork = {
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
             image: foodAndNutrients,
             links: [
-                { text: "Live version", href: "https://github.com/" },
-                { text: "Code on Github", href: "https://github.com/" },
+                {
+                    text: "Live version",
+                    href: "https://foodandnutrients.info/",
+                },
+                {
+                    text: "Code on Github",
+                    href: "https://github.com/fczajka/fan-reactjs/",
+                },
             ],
         },
         {
@@ -89,8 +95,14 @@ export const myWork = {
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
             image: szczesliwyPuszek,
             links: [
-                { text: "Live version", href: "https://github.com/" },
-                { text: "Code on Github", href: "https://github.com/" },
+                {
+                    text: "Live version",
+                    href: "https://www.szczesliwy-puszek.pl/",
+                },
+                {
+                    text: "Code on Github",
+                    href: "https://github.com/fczajka/szczesliwy-puszek-nextjs/",
+                },
             ],
         },
         {
