@@ -11,6 +11,7 @@ import { BsFillPersonFill } from "react-icons/bs";
 import Hero from "@/public/images/hero.png";
 import Pizza from "@/public/images/pizza.jpg";
 import Creme from "@/public/images/creme.jpg";
+import Beef from "@/public/images/beef.jpg";
 
 import foodAndNutrients from "@/public/images/foodandnutrients.gif";
 import szczesliwyPuszek from "@/public/images/szczesliwypuszek.gif";
@@ -131,7 +132,7 @@ export const aboutMe = {
     foods: [
         { name: "Pizza", image: Pizza, alt: "Pizza" },
         { name: "Crème Caramel", image: Creme, alt: "Crème Caramel" },
-        { name: "Panna Cotta", image: Creme, alt: "Panna Cotta" },
+        { name: "Beef", image: Beef, alt: "Beef" },
     ],
 };
 

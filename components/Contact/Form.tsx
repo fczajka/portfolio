@@ -37,7 +37,7 @@ export default function Form({ form, button, isVisible }: FormProps) {
                                 isVisible ? "animate-show-down-up" : ""
                             } motion-reduce:animate-none motion-reduce:opacity-100 ${
                                 delays[index]
-                            }`}
+                            } transition-all focus:bg-blue-300`}
                         ></input>
                     ) : (
                         <textarea
@@ -45,7 +45,7 @@ export default function Form({ form, button, isVisible }: FormProps) {
                                 isVisible ? "animate-show-down-up" : ""
                             } motion-reduce:animate-none motion-reduce:opacity-100 ${
                                 delays[index]
-                            }`}
+                            } transition-all focus:bg-blue-300`}
                             name={section.htmlFor}
                             rows={3}
                             cols={30}
@@ -56,11 +56,11 @@ export default function Form({ form, button, isVisible }: FormProps) {
             ))}
             <button
                 type="button"
-                className={`bg-blue-300 rounded-xl my-6 p-4 ${
+                className={`bg-blue-200 rounded-xl my-6 p-4 ${
                     lilitaOne.variable
                 } font-lilita-one opacity-0 ${
                     isVisible ? "animate-show-down-up" : ""
-                } [animation-delay:0.8s] motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:transition-none tracking-wider text-lg transition-all duration-300 hover:bg-blue-400`}
+                } [animation-delay:0.8s] motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:transition-none tracking-wider text-lg transition-all duration-300 hover:bg-blue-300 hover:shadow-custom focus:bg-blue-300`}
             >
                 {button.text}
             </button>
