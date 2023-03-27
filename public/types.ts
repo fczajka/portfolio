@@ -74,6 +74,7 @@ export type LinksProps = {
         text: string;
         href: string;
         icon: IconType;
+        type: string;
     }[];
     isVisible: boolean;
 };

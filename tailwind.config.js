@@ -16,8 +16,8 @@ module.exports = {
                 jump: "15s ease-in-out infinite jump",
                 line: "0.8s ease-in-out 1 both line",
                 photo: "1s ease-out 1 both photo",
-                "show-menu-mobile": "1s ease-in-out 1 show-menu-mobile",
-                "show-menu-desktop": "1s ease-in-out 1 show-menu-desktop",
+                "show-menu-mobile": "0.7s ease-in-out 1 show-menu-mobile",
+                "show-menu-desktop": "0.7s ease-in-out 1 show-menu-desktop",
                 "show-up-down": "0.3s ease-out 1 both show-up-down",
                 "show-down-up": "0.3s ease-out 1 both show-down-up",
                 "show-project-details":

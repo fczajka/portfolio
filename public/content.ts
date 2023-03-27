@@ -31,9 +31,24 @@ export const menu = {
         { text: "CLOSE", aria: "Close menu" },
     ],
     icons: [
-        { icon: AiFillLinkedin, key: "Linkedin", href: "#" },
-        { icon: AiFillMail, key: "Mail", href: "#" },
-        { icon: AiFillGithub, key: "Github", href: "#" },
+        {
+            icon: AiFillMail,
+            key: "Mail",
+            href: "franekczajkaa@gmail.com",
+            type: "mail",
+        },
+        {
+            icon: AiFillGithub,
+            key: "Github",
+            href: "https://github.com/fczajka",
+            type: "link",
+        },
+        {
+            icon: AiFillLinkedin,
+            key: "Linkedin",
+            href: "https://www.linkedin.com/in/franciszek-czajka/",
+            type: "link",
+        },
     ],
     links: [
         {
@@ -68,14 +83,14 @@ export const landing = {
 
 export const myWork = {
     h2: "Let's work together",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
+    desc: "My focus on building fast and aesthetically pleasing projects allows me to deliver engaging and compelling user experiences, while also ensuring that my solutions are both functional and efficient.",
     projects: [
         {
             name: "Food and Nutrients",
             shortDesc:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
+                "Food and Nutrients is a user-friendly web application that provides comprehensive nutrition information for any food and features a convenient meal calculator for tracking nutritional intake.",
             longDesc:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
+                "The development of this web based application was possible through the integration of the highly reliable Food Data Central API. As an official website of the United States government, the Food Data Central API guarantees that all nutritional information retrieved through this application is of the highest quality and accuracy. In order to create a seamless and user-friendly experience, this project was built using a technologies such as ReactJS, TypeScript, Tailwind, and Redux Toolkit.",
             image: foodAndNutrients,
             links: [
                 {
@@ -91,9 +106,9 @@ export const myWork = {
         {
             name: "Szczesliwy Puszek",
             shortDesc:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
+                "Szczesliwy Puszek is a portfolio website that has been specifically designed to showcase the work of newly emerged Samoyed dog breeders.",
             longDesc:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
+                "The primary objective of this project was to develop a highly functional and aesthetically pleasing website that provides a seamless user experience. To achieve this objective, the website was developed using NextJS in combination with technologies such as Tailwind, EmailJS, and React Toastify. This platform offers the owners a powerful and versatile tool for showcasing their dogs and services.",
             image: szczesliwyPuszek,
             links: [
                 {
@@ -124,11 +139,10 @@ export const myWork = {
 export const aboutMe = {
     h2: "Get to know me!",
     firstParagraph:
-        "I'm a developer, maker and problem solver. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa ad quaerat dolore numquam rem perferendis fugit vitae, voluptatem nulla, incidunt ea. Aliquid totam non vero magni perspiciatis nihil necessitatibus esse.",
-
+        "I'm a developer, maker and problem solver. When I'm not crafting code, I find joy in playing football or experimenting with new recipes and techniques in the kitchen.",
     h3: "Cooking",
     secondParagraph:
-        "Outside of work i like to spend as much time as I can cooking or baking. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        "From savory meals to sweet treats, my culinary interests are broad, though I tend to lean torward recipes that feature sugar or chocolate.",
     foods: [
         { name: "Pizza", image: Pizza, alt: "Pizza" },
         { name: "Crème Caramel", image: Creme, alt: "Crème Caramel" },
@@ -145,9 +159,24 @@ export const contact = {
     ],
     button: { text: "Send message!" },
     links: [
-        { text: "example@mail.com", href: "#", icon: BiLinkExternal },
-        { text: "www.linkedin.com/in/me", href: "#", icon: BiLinkExternal },
-        { text: "www.github.com/me", href: "#", icon: BiLinkExternal },
+        {
+            text: "franekczajkaa@gmail.com",
+            href: "franekczajkaa@gmail.com",
+            icon: AiFillMail,
+            type: "mail",
+        },
+        {
+            text: "https://github.com/fczajka",
+            href: "https://github.com/fczajka",
+            icon: AiFillGithub,
+            type: "link",
+        },
+        {
+            text: "https://www.linkedin.com/in/franciszek-czajka/",
+            href: "https://www.linkedin.com/in/franciszek-czajka/",
+            icon: AiFillLinkedin,
+            type: "link",
+        },
     ],
 };
 

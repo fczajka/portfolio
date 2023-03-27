@@ -8,15 +8,15 @@ export default function AboutMe() {
 
     return (
         <section id="about-me">
-            <div className="w-full flex flex-col max-w-section mx-auto items-center">
-                <div>
-                    <Panel headline={h2} desc={firstParagraph} />
-                </div>
-                <div className="w-full flex flex-col mt-16">
-                    <div>
-                        <SubPanel headline={h3} desc={secondParagraph} />
+            <div className="max-w-section mx-auto">
+                <Panel headline={h2} desc={firstParagraph} />
+                <div className="w-full flex flex-col items-center">
+                    <div className="w-full flex flex-col mt-16">
+                        <div>
+                            <SubPanel headline={h3} desc={secondParagraph} />
+                        </div>
+                        <Foods foods={foods} />
                     </div>
-                    <Foods foods={foods} />
                 </div>
             </div>
         </section>
