@@ -34,6 +34,6 @@ html {
         @apply text-sm leading-relaxed sm:text-base;
     }
     section {
-        @apply w-full px-4 pt-20 pb-4 lg:px-12;
+        @apply w-full px-4 py-12 lg:pt-20 lg:pb-4 lg:px-12;
     }
 }
