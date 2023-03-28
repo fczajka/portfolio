@@ -22,7 +22,7 @@ export default function MyWork() {
                             name={project.name}
                             shortDesc={project.shortDesc}
                             longDesc={project.longDesc}
-                            image={project.image}
+                            images={project.images}
                             links={project.links}
                             animationDelay={delays[index]}
                         />

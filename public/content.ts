@@ -13,8 +13,12 @@ import Pizza from "@/public/images/pizza.jpg";
 import Creme from "@/public/images/creme.jpg";
 import Beef from "@/public/images/beef.jpg";
 
-import foodAndNutrients from "@/public/images/foodandnutrients.gif";
-import szczesliwyPuszek from "@/public/images/szczesliwypuszek.gif";
+import FoodAndNutrientsLanding from "@/public/images/foodAndNutrientsLanding.png";
+import FoodAndNutrientsSearch from "@/public/images/foodAndNutrientsSearch.png";
+import FoodAndNutrientsDetails from "@/public/images/foodAndNutrientsDetails.png";
+import SzczesliwyPuszekLanding from "@/public/images/szczesliwyPuszekLanding.png";
+import SzczesliwyPuszekWhyUs from "@/public/images/szczesliwyPuszekWhyUs.png";
+import SzczesliwyPuszekContact from "@/public/images/szczesliwyPuszekContact.png";
 
 export const header = {
     links: [
@@ -91,7 +95,17 @@ export const myWork = {
                 "Food and Nutrients is a user-friendly web application that provides comprehensive nutrition information for any food and features a convenient meal calculator for tracking nutritional intake.",
             longDesc:
                 "The development of this web based application was possible through the integration of the highly reliable Food Data Central API. As an official website of the United States government, the Food Data Central API guarantees that all nutritional information retrieved through this application is of the highest quality and accuracy. In order to create a seamless and user-friendly experience, this project was built using a technologies such as ReactJS, TypeScript, Tailwind, and Redux Toolkit.",
-            image: foodAndNutrients,
+            images: [
+                {
+                    image: FoodAndNutrientsLanding,
+                    alt: "Landing page of Food and Nutrients",
+                },
+                { image: FoodAndNutrientsSearch, alt: "Filled search input" },
+                {
+                    image: FoodAndNutrientsDetails,
+                    alt: "Details page of Food and Nutrients",
+                },
+            ],
             links: [
                 {
                     text: "Live version",
@@ -109,7 +123,20 @@ export const myWork = {
                 "Szczesliwy Puszek is a portfolio website that has been specifically designed to showcase the work of newly emerged Samoyed dog breeders.",
             longDesc:
                 "The primary objective of this project was to develop a highly functional and aesthetically pleasing website that provides a seamless user experience. To achieve this objective, the website was developed using NextJS in combination with technologies such as Tailwind, EmailJS, and React Toastify. This platform offers the owners a powerful and versatile tool for showcasing their dogs and services.",
-            image: szczesliwyPuszek,
+            images: [
+                {
+                    image: SzczesliwyPuszekLanding,
+                    alt: "Landing page of Szczesliwy Puszek",
+                },
+                {
+                    image: SzczesliwyPuszekWhyUs,
+                    alt: "Why Us section of Szczesliwy Puszek",
+                },
+                {
+                    image: SzczesliwyPuszekContact,
+                    alt: "Contact section of Szczesliwy Puszek",
+                },
+            ],
             links: [
                 {
                     text: "Live version",
@@ -127,7 +154,11 @@ export const myWork = {
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
             longDesc:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
-            image: Pizza,
+            images: [
+                { image: Pizza, alt: "Pizza" },
+                { image: Creme, alt: "Creme" },
+                { image: Beef, alt: "Beef" },
+            ],
             links: [
                 { text: "Live version", href: "https://github.com/" },
                 { text: "Code on Github", href: "https://github.com/" },

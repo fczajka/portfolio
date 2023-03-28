@@ -31,7 +31,7 @@ html {
         @apply bg-zinc-50 text-zinc-900;
     }
     p {
-        @apply text-sm leading-relaxed sm:text-base;
+        @apply text-xs leading-relaxed sm:text-base min-[400px]:text-sm;
     }
     section {
         @apply w-full px-4 py-12 lg:pt-20 lg:pb-4 lg:px-12;

@@ -6,7 +6,7 @@ export type ProjectProps = {
     name: string;
     shortDesc: string;
     longDesc: string;
-    image: StaticImageData;
+    images: MyWorkPhotos;
     links: {
         text: string;
         href: string;
@@ -24,7 +24,7 @@ export type ProjectDetailsProps = {
     setIsOpen: Dispatch<SetStateAction<boolean>>;
     name: string;
     longDesc: string;
-    image: StaticImageData;
+    images: MyWorkPhotos;
     links: {
         text: string;
         href: string;
@@ -97,3 +97,19 @@ export type FormProps = {
     };
     isVisible: boolean;
 };
+
+export type MyWorkPhotos = {
+    image: StaticImageData;
+    alt: string;
+}[];
+
+export type SliderProps = { images: MyWorkPhotos };
+
+export type ImagesProps = { images: MyWorkPhotos; currentIndex: number };
+
+export type ButtonsProps = {
+    currentIndex: number;
+    setCurrentIndex: Dispatch<SetStateAction<number>>;
+};
+
+export type IndicatorsProps = { indexes: number[]; currentIndex: number };
