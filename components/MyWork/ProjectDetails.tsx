@@ -33,7 +33,7 @@ export default function ProjectDetails({
                             {longDesc}
                         </p>
                     </div>
-                    <div className="basis-1/2 mx-auto lg:ml-3">
+                    <div className="basis-1/2 mx-auto mt-4 lg:mt-0 lg:ml-3">
                         <Slider images={images} />
                     </div>
                 </div>
