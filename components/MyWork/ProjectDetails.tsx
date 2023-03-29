@@ -12,7 +12,7 @@ export default function ProjectDetails({
     links,
 }: ProjectDetailsProps) {
     return (
-        <div className="fixed w-full flex justify-center items-center h-screen top-0 left-0 bg-zinc-800 bg-opacity-90 z-40 animate-fade-in motion-reduce:animate-none">
+        <div className="fixed w-full flex justify-center items-center h-screen top-0 left-0 bg-zinc-800 bg-opacity-90 z-40 animate-fade-in touch-none motion-reduce:animate-none">
             <div className="basis-full mx-4 p-4 bg-zinc-50 rounded-xl shadow-lg shadow-zinc-800 max-w-sm animate-show-project-details motion-reduce:animate-none sm:p-6 lg:max-w-3xl lg:basis-3/5 lg:mx-0">
                 <div className="flex justify-between items-center">
                     <h3

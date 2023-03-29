@@ -1,8 +1,17 @@
+"use client";
+
 import { lilitaOne } from "@/public/fonts";
+import useElementOnScreen from "@/public/hooks/useElementOnScreen";
 import { FormProps } from "@/public/types";
 import React from "react";
 
-export default function Form({ form, button, isVisible }: FormProps) {
+export default function Form({ form, button }: FormProps) {
+    const [containerRef, isVisible] = useElementOnScreen({
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.3,
+    });
+
     const delays = [
         "[animation-delay:0.2s]",
         "[animation-delay:0.4s]",
@@ -11,6 +20,7 @@ export default function Form({ form, button, isVisible }: FormProps) {
 
     return (
         <form
+            ref={containerRef}
             action="post"
             className="flex flex-col basis-full sm:px-32 md:px-44 lg:px-24"
         >

@@ -76,7 +76,6 @@ export type LinksProps = {
         icon: IconType;
         type: string;
     }[];
-    isVisible: boolean;
 };
 
 export type FormProps = {
@@ -95,7 +94,6 @@ export type FormProps = {
     button: {
         text: string;
     };
-    isVisible: boolean;
 };
 
 export type MyWorkPhotos = {

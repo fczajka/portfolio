@@ -11,14 +11,15 @@ export default function Contact() {
     const [containerRef, isVisible] = useElementOnScreen({
         root: null,
         rootMargin: "0px",
-        threshold: 0.6,
+        threshold: 1.0,
     });
     const { h3, links, form, button } = contact;
     return (
         <section id="contact-me">
-            <div ref={containerRef} className="mx-auto max-w-section">
+            <div className="mx-auto max-w-section">
                 <div className="w-full lg:w-1/2">
                     <h3
+                        ref={containerRef}
                         className={`text-center ${
                             lilitaOne.variable
                         } font-lilita-one opacity-0 ${
@@ -29,8 +30,8 @@ export default function Contact() {
                     </h3>
                 </div>
                 <div className="flex flex-col pt-20 lg:flex-row">
-                    <Form form={form} button={button} isVisible={isVisible} />
-                    <Links links={links} isVisible={isVisible} />
+                    <Form form={form} button={button} />
+                    <Links links={links} />
                 </div>
             </div>
         </section>

@@ -19,7 +19,7 @@ export default function Menu({ isOpen, setIsOpen }: MenuProps) {
     ];
 
     return (
-        <div className="fixed w-full h-screen top-0 pt-16 bg-zinc-50 z-10 px-12 animate-show-menu-mobile motion-reduce:animate-none lg:pt-32 lg:animate-show-menu-desktop lg:motion-reduce:animate-none">
+        <div className="fixed w-full h-screen top-0 pt-16 bg-zinc-50 z-10 px-12 animate-show-menu-mobile touch-none motion-reduce:animate-none lg:pt-32 lg:animate-show-menu-desktop lg:motion-reduce:animate-none">
             <div className="flex items-center">
                 <div className="w-24 h-1 bg-blue-200 animate-slide-in-bar [animation-delay:0.6s] motion-reduce:animate-none"></div>
                 <ul className="flex flex-row">
