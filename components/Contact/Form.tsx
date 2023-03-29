@@ -1,7 +1,7 @@
 "use client";
 
 import { lilitaOne } from "@/public/fonts";
-import useElementOnScreen from "@/public/hooks/useElementOnScreen";
+import useElementOnScreen from "@/hooks/useElementOnScreen";
 import { FormProps } from "@/public/types";
 import React from "react";
 

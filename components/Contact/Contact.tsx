@@ -2,7 +2,7 @@
 
 import { contact } from "@/public/content";
 import { lilitaOne } from "@/public/fonts";
-import useElementOnScreen from "@/public/hooks/useElementOnScreen";
+import useElementOnScreen from "@/hooks/useElementOnScreen";
 import React from "react";
 import Form from "./Form";
 import Links from "./Links";

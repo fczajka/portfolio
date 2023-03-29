@@ -1,4 +1,4 @@
-import useElementOnScreen from "@/public/hooks/useElementOnScreen";
+import useElementOnScreen from "@/hooks/useElementOnScreen";
 import { LinksProps } from "@/public/types";
 import React from "react";
 

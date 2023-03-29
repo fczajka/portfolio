@@ -2,7 +2,7 @@
 
 import { lilitaOne } from "@/public/fonts";
 import Image from "next/image";
-import useElementOnScreen from "@/public/hooks/useElementOnScreen";
+import useElementOnScreen from "@/hooks/useElementOnScreen";
 import { TextAndImageProps } from "@/public/types";
 
 export default function TextAndImage({

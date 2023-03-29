@@ -1,6 +1,6 @@
 "use client";
 
-import useElementOnScreen from "@/public/hooks/useElementOnScreen";
+import useElementOnScreen from "@/hooks/useElementOnScreen";
 import { FoodProps } from "@/public/types";
 import Image from "next/image";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, MutableRefObject } from "react";
-import { customHookOptions } from "../types";
+import { customHookOptions } from "../public/types";
 
 export default function useElementOnScreen(options: customHookOptions) {
     const containerRef = useRef(null);

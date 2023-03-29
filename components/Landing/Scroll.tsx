@@ -1,6 +1,6 @@
 "use client";
 
-import useElementOnScreen from "@/public/hooks/useElementOnScreen";
+import useElementOnScreen from "@/hooks/useElementOnScreen";
 import { ScrollProps } from "@/public/types";
 
 export default function Scroll({ letters }: ScrollProps) {

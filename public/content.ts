@@ -8,17 +8,17 @@ import {
 import { BiCodeAlt, BiLinkExternal } from "react-icons/bi";
 import { BsFillPersonFill } from "react-icons/bs";
 
-import Hero from "@/public/images/hero.png";
-import Pizza from "@/public/images/pizza.jpg";
-import Creme from "@/public/images/creme.jpg";
-import Beef from "@/public/images/beef.jpg";
+import Hero from "@/public/images/compressed/hero.webp";
+import Pizza from "@/public/images/compressed/pizza.webp";
+import Creme from "@/public/images/compressed/creme.webp";
+import Beef from "@/public/images/compressed/beef.webp";
 
-import FoodAndNutrientsLanding from "@/public/images/foodAndNutrientsLanding.png";
-import FoodAndNutrientsSearch from "@/public/images/foodAndNutrientsSearch.png";
-import FoodAndNutrientsDetails from "@/public/images/foodAndNutrientsDetails.png";
-import SzczesliwyPuszekLanding from "@/public/images/szczesliwyPuszekLanding.png";
-import SzczesliwyPuszekWhyUs from "@/public/images/szczesliwyPuszekWhyUs.png";
-import SzczesliwyPuszekContact from "@/public/images/szczesliwyPuszekContact.png";
+import FoodAndNutrientsLanding from "@/public/images/compressed/foodAndNutrientsLanding.webp";
+import FoodAndNutrientsSearch from "@/public/images/compressed/foodAndNutrientsSearch.webp";
+import FoodAndNutrientsDetails from "@/public/images/compressed/foodAndNutrientsDetails.webp";
+import SzczesliwyPuszekLanding from "@/public/images/compressed/szczesliwyPuszekLanding.webp";
+import SzczesliwyPuszekWhyUs from "@/public/images/compressed/szczesliwyPuszekWhyUs.webp";
+import SzczesliwyPuszekContact from "@/public/images/compressed/szczesliwyPuszekContact.webp";
 
 export const header = {
     links: [

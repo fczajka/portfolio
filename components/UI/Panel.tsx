@@ -1,7 +1,7 @@
 "use client";
 
 import { lilitaOne } from "@/public/fonts";
-import useElementOnScreen from "@/public/hooks/useElementOnScreen";
+import useElementOnScreen from "@/hooks/useElementOnScreen";
 import { PanelProps } from "@/public/types";
 
 export default function Panel({ headline, desc }: PanelProps) {

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { lilitaOne } from "@/public/fonts";
 import { ProjectProps } from "@/public/types";
 import ProjectDetails from "./ProjectDetails";
-import useElementOnScreen from "@/public/hooks/useElementOnScreen";
+import useElementOnScreen from "@/hooks/useElementOnScreen";
 
 export default function Project({
     name,
