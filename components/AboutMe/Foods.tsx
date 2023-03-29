@@ -3,9 +3,9 @@ import Food from "./Food";
 
 export default function Foods({ foods }: FoodsProps) {
     const delays = [
-        "[animation-delay:0.2s]",
-        "[animation-delay:0.4s]",
-        "[animation-delay:0.6s]",
+        "lg:[animation-delay:0.2s]",
+        "lg:[animation-delay:0.4s]",
+        "lg:[animation-delay:0.6s]",
     ];
 
     return (
