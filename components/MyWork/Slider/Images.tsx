@@ -4,7 +4,7 @@ import { ImagesProps } from "@/public/types";
 export default function Images({ images, currentIndex }: ImagesProps) {
     return (
         <div
-            className="flex transition-all duration-300"
+            className="flex transition-all duration-300 w-full"
             style={{
                 transform: `translate(-${currentIndex * 100}%, 0%)`,
             }}

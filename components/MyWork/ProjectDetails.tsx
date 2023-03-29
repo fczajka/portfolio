@@ -22,7 +22,7 @@ export default function ProjectDetails({
                     </h3>
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="text-xl rounded-full animate-slide-in-right [animation-delay:0.5s] motion-reduce:animate-none sm:text-2xl lg:text-3xl"
+                        className="text-xl rounded-full animate-slide-in-right [animation-delay:0.5s] motion-reduce:animate-none sm:text-3xl"
                     >
                         <AiFillCloseCircle />
                     </button>
