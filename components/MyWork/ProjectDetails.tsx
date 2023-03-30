@@ -12,9 +12,9 @@ export default function ProjectDetails({
     links,
 }: ProjectDetailsProps) {
     return (
-        <div className="fixed w-full flex justify-center items-center h-screen top-0 left-0 bg-zinc-800 bg-opacity-90 z-40 animate-fade-in touch-none motion-reduce:animate-none">
-            <div className="basis-full mx-4 p-4 bg-zinc-50 rounded-xl shadow-lg shadow-zinc-800 max-w-sm animate-show-project-details motion-reduce:animate-none sm:p-6 lg:max-w-3xl lg:basis-3/5 lg:mx-0">
-                <div className="flex justify-between items-center">
+        <div className="fixed top-0 left-0 w-full h-screen flex justify-center items-center p-4 bg-zinc-800 bg-opacity-90 z-40 animate-fade-in touch-none motion-reduce:animate-none">
+            <div className="basis-full h-full bg-zinc-50 p-4 flex flex-col rounded-xl shadow-lg shadow-zinc-800 max-w-sm max-h-1.5xl animate-show-project-details motion-reduce:animate-none sm:p-6 sm:max-h-3xl lg:h-min lg:max-w-3xl">
+                <div className="flex justify-between">
                     <h3
                         className={`${lilitaOne.variable} font-lilita-one animate-slide-in-left [animation-delay:0.5s] motion-reduce:animate-none`}
                     >
@@ -27,17 +27,17 @@ export default function ProjectDetails({
                         <AiFillCloseCircle />
                     </button>
                 </div>
-                <div className="flex flex-col my-4 lg:flex-row sm:my-6">
-                    <div className="basis-1/2">
-                        <p className="text-justify animate-fade-in [animation-delay:1s] motion-reduce:animate-none lg:mr-3">
+                <div className="flex flex-col items-stretch my-4 h-full lg:flex-row sm:my-6">
+                    <div className="mb-2 sm:mb-3 lg:basis-1/2 lg:mb-0 lg:mr-3">
+                        <p className="text-justify animate-fade-in [animation-delay:1s] motion-reduce:animate-none">
                             {longDesc}
                         </p>
                     </div>
-                    <div className="basis-1/2 mx-auto mt-4 lg:mt-0 lg:ml-3">
+                    <div className="mt-2 grow rounded-xl sm:mt-3 lg:basis-1/2 lg:mt-0 lg:ml-3 lg:h-88">
                         <Slider images={images} />
                     </div>
                 </div>
-                <div className="w-full flex justify-between items-center">
+                <div className="flex justify-between items-center">
                     {links.map((link) => (
                         <a
                             key={link.text}

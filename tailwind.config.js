@@ -37,6 +37,9 @@ module.exports = {
                     ...fontFamily.sans,
                 ],
             },
+            height: {
+                88: "22rem",
+            },
             keyframes: {
                 "fade-in": {
                     "0%": {
@@ -211,6 +214,9 @@ module.exports = {
             },
             maxHeight: {
                 112: "28rem",
+                128: "32rem",
+                "1.5xl": "39rem",
+                "3xl": "48rem",
             },
             maxWidth: {
                 section: "80rem",

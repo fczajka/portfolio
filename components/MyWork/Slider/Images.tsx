@@ -4,18 +4,20 @@ import { ImagesProps } from "@/public/types";
 export default function Images({ images, currentIndex }: ImagesProps) {
     return (
         <div
-            className="flex transition-all duration-300 w-full"
+            className="relative w-[300%] h-full flex transition-all duration-300"
             style={{
-                transform: `translate(-${currentIndex * 100}%, 0%)`,
+                transform: `translate(-${(currentIndex * 100) / 3}%, 0%)`,
             }}
         >
             {images.map((image) => (
-                <Image
-                    key={image.alt}
-                    src={image.image}
-                    alt={image.alt}
-                    className="rounded-xl object-cover w-full"
-                />
+                <div key={image.alt} className="relative w-full h-full">
+                    <Image
+                        src={image.image}
+                        alt={image.alt}
+                        className="rounded-xl object-cover w-full h-full object-top"
+                        fill
+                    />
+                </div>
             ))}
         </div>
     );

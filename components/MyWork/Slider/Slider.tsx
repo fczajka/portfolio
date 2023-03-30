@@ -19,8 +19,8 @@ export default function Slider({ images }: SliderProps) {
     }, [currentIndex, images.length]);
 
     return (
-        <div className="w-full h-full overflow-x-hidden overflow-y-hidden rounded-xl animate-fade-in [animation-delay:0.8s] motion-reduce:animate-none">
-            <div className="relative h-24 min-[360px]:h-full">
+        <div className="w-full h-full rounded-xl shadow-custom shadow-zinc-400 overflow-x-hidden animate-fade-in [animation-delay:0.8s] motion-reduce:animate-none">
+            <div className="relative w-full h-full">
                 <Images images={images} currentIndex={currentIndex} />
                 <Buttons
                     currentIndex={currentIndex}
