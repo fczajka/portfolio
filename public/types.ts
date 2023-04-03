@@ -31,7 +31,7 @@ export type ProjectDetailsProps = {
     }[];
 };
 
-export type customHookOptions = {
+export type UseElementOnScreenProps = {
     root: HTMLDivElement | null;
     rootMargin: string;
     threshold: number;
@@ -79,18 +79,7 @@ export type LinksProps = {
 };
 
 export type FormProps = {
-    form: (
-        | {
-              label: string;
-              htmlFor: string;
-              type: string;
-          }
-        | {
-              label: string;
-              htmlFor: string;
-              type: null;
-          }
-    )[];
+    form: Form;
     button: {
         text: string;
     };
@@ -111,3 +100,22 @@ export type ButtonsProps = {
 };
 
 export type IndicatorsProps = { indexes: number[]; currentIndex: number };
+
+export type FormValidationProps = {
+    name: string | null;
+    message: string | null;
+    mail: string | null;
+};
+
+export type FormValidationReturn = [string, { message: string }];
+
+export type InputsAndLabelsProps = {
+    form: Form;
+    isVisible: boolean;
+};
+
+export type Form = {
+    label: string;
+    htmlFor: string;
+    type: string | null;
+}[];

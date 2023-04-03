@@ -184,7 +184,7 @@ export const aboutMe = {
 export const contact = {
     h3: "Write to me!",
     form: [
-        { label: "Name:", htmlFor: "name", type: "text" },
+        { label: "Name:", htmlFor: "senderName", type: "text" },
         { label: "E - mail:", htmlFor: "email", type: "text" },
         { label: "Message:", htmlFor: "message", type: null },
     ],

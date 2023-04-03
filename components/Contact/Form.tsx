@@ -3,77 +3,59 @@
 import { lilitaOne } from "@/public/fonts";
 import useElementOnScreen from "@/hooks/useElementOnScreen";
 import { FormProps } from "@/public/types";
-import React from "react";
+import React, { MutableRefObject, useRef } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { sendMail } from "@/helpers/form";
+import InputsAndLabels from "./InputsAndLabels";
 
 export default function Form({ form, button }: FormProps) {
+    const formRef: MutableRefObject<HTMLFormElement | null> = useRef(null);
     const [containerRef, isVisible] = useElementOnScreen({
         root: null,
         rootMargin: "0px",
         threshold: 0.3,
     });
 
-    const delays = [
-        "[animation-delay:0.2s]",
-        "[animation-delay:0.4s]",
-        "[animation-delay:0.6s]",
-    ];
+    const handleForm = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        sendMail(e, formRef.current);
+    };
 
     return (
-        <form
+        <div
             ref={containerRef}
-            action="post"
-            className="flex flex-col basis-full sm:px-32 md:px-44 lg:px-24"
+            className="basis-full sm:px-32 md:px-44 lg:px-24"
         >
-            {form.map((section, index) => (
-                <React.Fragment key={section.label}>
-                    <label
-                        key={section.label}
-                        htmlFor={section.htmlFor}
-                        className={`mb-1 mt-6 ${
-                            lilitaOne.variable
-                        } font-lilita-one text-lg opacity-0 ${
-                            isVisible ? "animate-show-down-up" : ""
-                        } motion-reduce:animate-none motion-reduce:opacity-100 ${
-                            delays[index]
-                        } first:mt-0`}
-                    >
-                        {section.label}
-                    </label>
-                    {section.type ? (
-                        <input
-                            type={section.type}
-                            name={section.htmlFor}
-                            className={`rounded-xl border-0 bg-blue-200 opacity-0 ${
-                                isVisible ? "animate-show-down-up" : ""
-                            } motion-reduce:animate-none motion-reduce:opacity-100 ${
-                                delays[index]
-                            } transition-all focus:bg-blue-300`}
-                        ></input>
-                    ) : (
-                        <textarea
-                            className={`resize-none rounded-xl border-0 bg-blue-200 opacity-0 ${
-                                isVisible ? "animate-show-down-up" : ""
-                            } motion-reduce:animate-none motion-reduce:opacity-100 ${
-                                delays[index]
-                            } transition-all focus:bg-blue-300`}
-                            name={section.htmlFor}
-                            rows={3}
-                            cols={30}
-                            wrap="soft"
-                        ></textarea>
-                    )}
-                </React.Fragment>
-            ))}
-            <button
-                type="button"
-                className={`bg-blue-200 rounded-xl my-6 p-4 ${
-                    lilitaOne.variable
-                } font-lilita-one opacity-0 ${
-                    isVisible ? "animate-show-down-up" : ""
-                } [animation-delay:0.8s] motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:transition-none tracking-wider text-lg transition-all duration-300 hover:bg-blue-300 hover:shadow-custom focus:bg-blue-300`}
+            <form
+                action="post"
+                onSubmit={handleForm}
+                ref={formRef}
+                className="flex flex-col"
             >
-                {button.text}
-            </button>
-        </form>
+                <InputsAndLabels form={form} isVisible={isVisible} />
+                <button
+                    type="submit"
+                    className={`bg-blue-200 rounded-xl my-6 p-4 ${
+                        lilitaOne.variable
+                    } font-lilita-one opacity-0 tracking-wider text-lg transition-all duration-300 shadow-zinc-400 shadow-custom ${
+                        isVisible ? "animate-show-down-up" : ""
+                    } [animation-delay:0.8s] motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:transition-none hover:bg-blue-300 focus:bg-blue-300`}
+                >
+                    {button.text}
+                </button>
+            </form>
+            <ToastContainer
+                autoClose={1800}
+                hideProgressBar={true}
+                newestOnTop={true}
+                closeButton={false}
+                position="bottom-center"
+                toastClassName={() =>
+                    `bg-blue-200 text-xs leading-relaxed sm:text-base min-[400px]:text-sm text-zinc-900 p-4 mb-4 cursor-pointer min-[481px]:rounded-xl min-[481px]:shadow-custom min-[481px]:shadow-zinc-400 last:mb-12 last:min-[400px]:mb-16 lg:last:mb-4`
+                }
+                bodyClassName={() => "flex"}
+            />
+        </div>
     );
 }

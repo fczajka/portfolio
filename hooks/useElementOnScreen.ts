@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect, useRef, MutableRefObject } from "react";
-import { customHookOptions } from "../public/types";
+import { UseElementOnScreenProps } from "../public/types";
 
-export default function useElementOnScreen(options: customHookOptions) {
+export default function useElementOnScreen(options: UseElementOnScreenProps) {
     const containerRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
 
@@ -31,5 +31,8 @@ export default function useElementOnScreen(options: customHookOptions) {
         };
     }, [containerRef, options]);
 
-    return [containerRef, isVisible] as [MutableRefObject<null>, boolean];
+    return [containerRef, isVisible] as [
+        MutableRefObject<HTMLDivElement | null>,
+        boolean
+    ];
 }

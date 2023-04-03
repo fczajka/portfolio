@@ -16,7 +16,7 @@ export default function MobileNavbar() {
 
     return (
         <>
-            <nav className="fixed w-full bottom-0 bg-zinc-50 h-12 border-t-2 border-zinc-200 z-30 min-[420px]:h-16 lg:hidden">
+            <nav className="fixed w-full bottom-0 bg-zinc-50 h-12 border-t-2 border-zinc-200 z-30 min-[400px]:h-16 lg:hidden">
                 <ul className="flex h-full">
                     {links.map((link) => (
                         <li
@@ -25,7 +25,7 @@ export default function MobileNavbar() {
                         >
                             <a
                                 href={link.href}
-                                className="flex flex-col items-center text-xs min-[420px]:text-sm"
+                                className="flex flex-col items-center text-xs min-[400px]:text-sm"
                             >
                                 <link.icon />
                                 {link.text}
@@ -33,7 +33,7 @@ export default function MobileNavbar() {
                         </li>
                     ))}
                     <li className="basis-1/5">
-                        <div className="flex h-full flex-col justify-center items-center text-xs min-[420px]:text-sm">
+                        <div className="flex h-full flex-col justify-center items-center text-xs min-[400px]:text-sm">
                             <HiMenuAlt3 />
                             <div className="overflow-y-hidden flex flex-col">
                                 {buttons.map((button, index) => (
