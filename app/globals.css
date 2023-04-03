@@ -31,6 +31,6 @@
         @apply text-xs leading-relaxed sm:text-base min-[400px]:text-sm;
     }
     section {
-        @apply w-full px-4 py-6 lg:pt-20 lg:pb-4 lg:px-12;
+        @apply w-full px-4 py-6 last:pb-16 lg:pt-20 lg:pb-4 lg:last:pb-4 lg:px-12;
     }
 }
