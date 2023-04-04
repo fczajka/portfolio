@@ -11,12 +11,12 @@ export default function Scroll({ letters }: ScrollProps) {
     });
 
     const delays = [
+        "[animation-delay:2.6s]",
+        "[animation-delay:2.7s]",
         "[animation-delay:2.8s]",
         "[animation-delay:2.9s]",
         "[animation-delay:3.0s]",
         "[animation-delay:3.1s]",
-        "[animation-delay:3.2s]",
-        "[animation-delay:3.3s]",
     ];
 
     return (
@@ -24,7 +24,7 @@ export default function Scroll({ letters }: ScrollProps) {
             ref={containerRef}
             className="absolute flex flex-col items-center left-1/2 -translate-x-1/2 -bottom-12 sm:-bottom-16 md:-bottom-24 lg:left-1/4 lg:-translate-x-1/4 lg:-bottom-28"
         >
-            <div className="relative flex mb-4 tracking-wider animate-fade-in [animation-delay:2.0s] motion-reduce:animate-none text-sm md:text-base">
+            <div className="relative flex mb-4 tracking-wider animate-fade-in [animation-delay:1.8s] motion-reduce:animate-none text-sm md:text-base">
                 {letters.map((letter, index) => (
                     <span
                         key={index}
@@ -37,7 +37,7 @@ export default function Scroll({ letters }: ScrollProps) {
             <div
                 className={`w-0.5 h-32 bg-blue-200 opacity-0 ${
                     isVisible ? "animate-line" : ""
-                } [transform-origin:bottom] [animation-delay:1.7s] motion-reduce:animate-none motion-reduce:opacity-100 min-[360px]:h-44 sm:h-48 md:h-60 lg:h-72`}
+                } [transform-origin:bottom] [animation-delay:1.5s] motion-reduce:animate-none motion-reduce:opacity-100 min-[360px]:h-44 sm:h-48 md:h-60 lg:h-72`}
             ></div>
         </div>
     );
