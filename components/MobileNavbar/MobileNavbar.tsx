@@ -21,7 +21,7 @@ export default function MobileNavbar() {
                     {links.map((link) => (
                         <li
                             key={link.text}
-                            className="basis-1/4 flex justify-center items-center"
+                            className="basis-1/5 flex justify-center items-center"
                         >
                             <a
                                 href={link.href}
