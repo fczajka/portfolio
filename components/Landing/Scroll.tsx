@@ -24,7 +24,7 @@ export default function Scroll({ letters }: ScrollProps) {
             ref={containerRef}
             className="absolute flex flex-col items-center left-1/2 -translate-x-1/2 -bottom-12 sm:-bottom-16 md:-bottom-24 lg:left-1/4 lg:-translate-x-1/4 lg:-bottom-28"
         >
-            <div className="relative flex mb-4 tracking-wider animate-fade-in [animation-delay:1.8s] motion-reduce:animate-none text-sm md:text-base">
+            <div className="relative flex mb-4 tracking-wider animate-fade-in [animation-delay:1.6s] motion-reduce:animate-none text-sm md:text-base">
                 {letters.map((letter, index) => (
                     <span
                         key={index}
@@ -37,7 +37,7 @@ export default function Scroll({ letters }: ScrollProps) {
             <div
                 className={`w-0.5 h-32 bg-blue-200 opacity-0 ${
                     isVisible ? "animate-line" : ""
-                } [transform-origin:bottom] [animation-delay:1.5s] motion-reduce:animate-none motion-reduce:opacity-100 min-[360px]:h-44 sm:h-48 md:h-60 lg:h-72`}
+                } [transform-origin:bottom] [animation-delay:1.5s] motion-reduce:animate-none motion-reduce:opacity-100 min-[360px]:h-44 sm:h-48 md:h-60 lg:h-96`}
             ></div>
         </div>
     );
