@@ -44,7 +44,7 @@ export default function ProjectDetails({
                             href={link.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={`text-sm px-4 py-2 rounded-full bg-blue-200 ${lilitaOne.variable} font-lilita-one transition-all hover:shadow-custom hover:bg-blue-300 focus:bg-blue-300 motion-reduce:transition-none sm:text-base`}
+                            className={`text-sm px-4 py-2 rounded-full bg-blue-200 ${lilitaOne.variable} font-lilita-one transition-all shadow-custom shadow-zinc-400 hover:bg-blue-300 focus:bg-blue-300 motion-reduce:transition-none sm:text-base`}
                         >
                             {link.text}
                         </a>

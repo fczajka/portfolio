@@ -35,7 +35,7 @@ export default function Project({
                 <button
                     onClick={() => setIsOpen(!isOpen)}
                     aria-label={`Check details of ${name}`}
-                    className={`absolute right-6 bottom-6 bg-blue-200 text-right px-4 py-2 rounded-full ${lilitaOne.variable} font-lilita-one transition-all hover:shadow-custom hover:bg-blue-300 focus:bg-blue-300 motion-reduce:transition-none`}
+                    className={`absolute right-6 bottom-6 bg-blue-200 text-right px-4 py-2 rounded-full ${lilitaOne.variable} font-lilita-one transition-all shadow-custom shadow-zinc-400 hover:bg-blue-300 focus:bg-blue-300 motion-reduce:transition-none`}
                 >
                     Read more
                 </button>
