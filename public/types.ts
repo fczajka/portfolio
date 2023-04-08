@@ -108,9 +108,9 @@ export type ButtonsProps = {
 export type IndicatorsProps = { indexes: number[]; currentIndex: number };
 
 export type FormValidationProps = {
-    name: string | null;
-    message: string | null;
-    mail: string | null;
+    name?: string;
+    message?: string;
+    mail?: string;
 };
 
 export type FormValidationReturn = [string, { message: string }];
@@ -130,7 +130,7 @@ export type ButtonProps = {
     text: string;
     callback?: () => void;
     aria?: string;
-    type: "button" | "link";
+    type: string;
     href?: string;
     style?: string;
 };

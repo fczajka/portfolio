@@ -37,7 +37,7 @@ export default function Scroll({ letters }: ScrollProps) {
             <div
                 className={`w-0.5 h-32 bg-blue-200 opacity-0 ${
                     isVisible ? "animate-line" : ""
-                } [transform-origin:bottom] [animation-delay:1.5s] motion-reduce:animate-none motion-reduce:opacity-100 min-[360px]:h-44 sm:h-48 md:h-60 lg:h-96`}
+                } [transform-origin:bottom] [animation-delay:1.5s] motion-reduce:animate-none motion-reduce:opacity-100 min-[360px]:h-44 sm:h-48 md:h-60 lg:h-72`}
             ></div>
         </div>
     );

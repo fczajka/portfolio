@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { BsDot } from "react-icons/bs";
 import { SliderProps } from "@/public/types";
 import Images from "./Images";
 import Buttons from "./Buttons";

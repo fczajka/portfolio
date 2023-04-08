@@ -35,11 +35,11 @@ export default function Project({
                 </h3>
                 <p className="text-justify my-4 mb-16">{shortDesc}</p>
                 <Button
-                    text={"Read more"}
+                    text={buttonInfo.text}
                     callback={() => setIsOpen(!isOpen)}
                     aria={`Check details of ${name}`}
-                    type={"button"}
-                    style={`absolute right-6 bottom-6`}
+                    type={buttonInfo.type}
+                    style={buttonInfo.style}
                 />
             </div>
             {isOpen ? (
