@@ -31,6 +31,7 @@ export default function InputsAndLabels({
                     {section.type ? (
                         <input
                             type={section.type}
+                            id={section.htmlFor}
                             name={section.htmlFor}
                             className={`rounded-xl border-0 bg-blue-200 opacity-0 ${
                                 isVisible ? "animate-show-down-up" : ""
@@ -40,12 +41,13 @@ export default function InputsAndLabels({
                         ></input>
                     ) : (
                         <textarea
+                            id={section.htmlFor}
+                            name={section.htmlFor}
                             className={`resize-none rounded-xl border-0 bg-blue-200 opacity-0 ${
                                 isVisible ? "animate-show-down-up" : ""
                             } motion-reduce:animate-none motion-reduce:opacity-100 ${
                                 delays[index]
                             } transition-all focus:bg-blue-300`}
-                            name={section.htmlFor}
                             rows={3}
                             cols={30}
                             wrap="soft"
