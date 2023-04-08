@@ -1,3 +1,5 @@
+import Header from "@/components/Header/Header";
+import MobileNavbar from "@/components/MobileNavbar/MobileNavbar";
 import "./globals.css";
 
 export default function RootLayout({
@@ -8,7 +10,11 @@ export default function RootLayout({
     return (
         <html lang="en" className="scroll-smooth motion-reduce:scroll-auto">
             <head />
-            <body>{children}</body>
+            <body>
+                <Header />
+                {children}
+                <MobileNavbar />
+            </body>
         </html>
     );
 }

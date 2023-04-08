@@ -2,7 +2,7 @@ import { landing } from "@/public/content";
 import Scroll from "./Scroll";
 import TextAndImage from "./TextAndImage";
 
-export default function Header() {
+export default function Landing() {
     const { h1, paragraph, image, letters } = landing;
 
     return (
