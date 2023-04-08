@@ -14,9 +14,9 @@ export type ProjectProps = {
     animationDelay: string;
     buttonInfo: {
         text: string;
-        aria: string;
+        aria?: string;
         type: string;
-        style: string;
+        style?: string;
     };
 };
 

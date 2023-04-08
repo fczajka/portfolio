@@ -120,7 +120,6 @@ export const myWork = {
                 text: "Read more",
                 aria: "Check the details of Food and Nutrients",
                 type: "button",
-                style: "absolute right-6 bottom-6",
             },
         },
         {
@@ -155,9 +154,8 @@ export const myWork = {
             ],
             buttonInfo: {
                 text: "Read more",
-                aria: "Check the details of Food and Nutrients",
+                aria: "Check the details of Szczesliwy Puszek",
                 type: "button",
-                style: "absolute right-6 bottom-6",
             },
         },
         {
@@ -179,7 +177,6 @@ export const myWork = {
                 text: "Read more",
                 aria: "Check the details of Food and Nutrients",
                 type: "button",
-                style: "absolute right-6 bottom-6",
             },
         },
     ],
