@@ -10,7 +10,7 @@
 
 @layer base {
     header {
-        @apply fixed bg-zinc-50 w-full h-16 border-b-2 border-zinc-200 z-30;
+        @apply fixed bg-zinc-50 w-full h-16 z-30 shadow-sm shadow-zinc-400;
     }
     h1 {
         @apply text-3xl text-center tracking-wider sm:text-4xl md:text-5xl lg:text-left lg:text-7xl;
