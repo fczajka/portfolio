@@ -1,6 +1,7 @@
 import { lilitaOne } from "@/public/fonts";
 import { ProjectDetailsProps } from "@/public/types";
 import { AiFillCloseCircle } from "react-icons/ai";
+import Button from "../UI/Button";
 import Slider from "./Slider/Slider";
 
 export default function ProjectDetails({
@@ -22,6 +23,7 @@ export default function ProjectDetails({
                     </h3>
                     <button
                         onClick={() => setIsOpen(!isOpen)}
+                        aria-label={`Close details of ${name}`}
                         className="text-xl rounded-full animate-slide-in-right [animation-delay:0.5s] motion-reduce:animate-none sm:text-3xl"
                     >
                         <AiFillCloseCircle />
@@ -39,15 +41,12 @@ export default function ProjectDetails({
                 </div>
                 <div className="flex justify-between items-center">
                     {links.map((link) => (
-                        <a
+                        <Button
                             key={link.text}
+                            text={link.text}
+                            type="link"
                             href={link.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`text-sm px-4 py-2 rounded-full bg-blue-200 ${lilitaOne.variable} font-lilita-one transition-all shadow-custom shadow-zinc-400 hover:bg-blue-300 focus:bg-blue-300 motion-reduce:transition-none sm:text-base`}
-                        >
-                            {link.text}
-                        </a>
+                        />
                     ))}
                 </div>
             </div>

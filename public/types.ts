@@ -12,6 +12,12 @@ export type ProjectProps = {
         href: string;
     }[];
     animationDelay: string;
+    buttonInfo: {
+        text: string;
+        aria: string;
+        type: string;
+        style: string;
+    };
 };
 
 export type MenuProps = {
@@ -119,3 +125,12 @@ export type Form = {
     htmlFor: string;
     type: string | null;
 }[];
+
+export type ButtonProps = {
+    text: string;
+    callback?: () => void;
+    aria?: string;
+    type: "button" | "link";
+    href?: string;
+    style?: string;
+};

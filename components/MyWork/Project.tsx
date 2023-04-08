@@ -5,6 +5,7 @@ import { lilitaOne } from "@/public/fonts";
 import { ProjectProps } from "@/public/types";
 import ProjectDetails from "./ProjectDetails";
 import useElementOnScreen from "@/hooks/useElementOnScreen";
+import Button from "../UI/Button";
 
 export default function Project({
     name,
@@ -13,6 +14,7 @@ export default function Project({
     images,
     links,
     animationDelay,
+    buttonInfo,
 }: ProjectProps) {
     const [containerRef, isVisible] = useElementOnScreen({
         root: null,
@@ -32,13 +34,13 @@ export default function Project({
                     {name}
                 </h3>
                 <p className="text-justify my-4 mb-16">{shortDesc}</p>
-                <button
-                    onClick={() => setIsOpen(!isOpen)}
-                    aria-label={`Check details of ${name}`}
-                    className={`absolute right-6 bottom-6 bg-blue-200 text-right px-4 py-2 rounded-full ${lilitaOne.variable} font-lilita-one transition-all shadow-custom shadow-zinc-400 hover:bg-blue-300 focus:bg-blue-300 motion-reduce:transition-none`}
-                >
-                    Read more
-                </button>
+                <Button
+                    text={"Read more"}
+                    callback={() => setIsOpen(!isOpen)}
+                    aria={`Check details of ${name}`}
+                    type={"button"}
+                    style={`absolute right-6 bottom-6`}
+                />
             </div>
             {isOpen ? (
                 <ProjectDetails

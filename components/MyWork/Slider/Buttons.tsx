@@ -1,4 +1,4 @@
-import { BsArrowLeftShort, BsArrowRightShort, BsDot } from "react-icons/bs";
+import { BsArrowLeftShort, BsArrowRightShort } from "react-icons/bs";
 import { ButtonsProps } from "@/public/types";
 
 export default function Buttons({
@@ -9,6 +9,7 @@ export default function Buttons({
         <div className="absolute flex w-full top-1/2 -translate-y-1/2 justify-between text-xl sm:text-3xl p-4">
             <button
                 className="rounded-full"
+                aria-label="Press to change to the next"
                 onClick={() => setCurrentIndex(currentIndex - 1)}
             >
                 {
@@ -17,6 +18,7 @@ export default function Buttons({
             </button>
             <button
                 className="rounded-full"
+                aria-label="Press to change to the next"
                 onClick={() => setCurrentIndex(currentIndex + 1)}
             >
                 {

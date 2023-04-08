@@ -36,6 +36,7 @@ export default function Form({ form, button }: FormProps) {
                 <InputsAndLabels form={form} isVisible={isVisible} />
                 <button
                     type="submit"
+                    aria-label="Submit form"
                     className={`bg-blue-200 rounded-xl my-6 p-4 ${
                         lilitaOne.variable
                     } font-lilita-one opacity-0 tracking-wider text-lg transition-all duration-300 shadow-zinc-400 shadow-custom ${

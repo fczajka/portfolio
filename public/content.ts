@@ -116,6 +116,12 @@ export const myWork = {
                     href: "https://github.com/fczajka/fan-reactjs/",
                 },
             ],
+            buttonInfo: {
+                text: "Read more",
+                aria: "Check the details of Food and Nutrients",
+                type: "button",
+                style: "absolute right-6 bottom-6",
+            },
         },
         {
             name: "Szczesliwy Puszek",
@@ -147,6 +153,12 @@ export const myWork = {
                     href: "https://github.com/fczajka/szczesliwy-puszek-nextjs/",
                 },
             ],
+            buttonInfo: {
+                text: "Read more",
+                aria: "Check the details of Food and Nutrients",
+                type: "button",
+                style: "absolute right-6 bottom-6",
+            },
         },
         {
             name: "Lorem Ipsum",
@@ -163,6 +175,12 @@ export const myWork = {
                 { text: "Live version", href: "https://github.com/" },
                 { text: "Code on Github", href: "https://github.com/" },
             ],
+            buttonInfo: {
+                text: "Read more",
+                aria: "Check the details of Food and Nutrients",
+                type: "button",
+                style: "absolute right-6 bottom-6",
+            },
         },
     ],
 };

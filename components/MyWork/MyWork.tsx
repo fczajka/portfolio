@@ -25,6 +25,7 @@ export default function MyWork() {
                             images={project.images}
                             links={project.links}
                             animationDelay={delays[index]}
+                            buttonInfo={project.buttonInfo}
                         />
                     ))}
                 </div>
