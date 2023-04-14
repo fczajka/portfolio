@@ -4,7 +4,7 @@ import { ImagesProps } from "@/public/types";
 export default function Images({ images, currentIndex }: ImagesProps) {
     return (
         <div
-            className="relative w-[300%] h-full flex transition-all duration-300"
+            className="relative w-[300%] h-full flex transition-all duration-300 motion-reduce:transition-none"
             style={{
                 transform: `translate(-${(currentIndex * 100) / 3}%, 0%)`,
             }}
