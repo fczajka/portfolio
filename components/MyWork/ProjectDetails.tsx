@@ -1,4 +1,4 @@
-import { lilitaOne } from "@/public/fonts";
+import { headlineFont } from "@/public/fonts";
 import { ProjectDetailsProps } from "@/public/types";
 import { AiFillCloseCircle } from "react-icons/ai";
 import Button from "../UI/Button";
@@ -17,7 +17,7 @@ export default function ProjectDetails({
             <div className="basis-full h-full bg-zinc-50 p-4 flex flex-col rounded-xl shadow-lg shadow-zinc-800 max-w-sm max-h-1.5xl animate-show-project-details motion-reduce:animate-none sm:p-6 sm:max-h-3xl lg:h-min lg:max-w-3xl">
                 <div className="flex justify-between">
                     <h3
-                        className={`${lilitaOne.variable} font-lilita-one animate-slide-in-left [animation-delay:0.5s] motion-reduce:animate-none`}
+                        className={`${headlineFont.variable} font-headline animate-slide-in-left [animation-delay:0.5s] motion-reduce:animate-none`}
                     >
                         {name}
                     </h3>

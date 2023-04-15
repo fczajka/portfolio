@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { lilitaOne } from "@/public/fonts";
+import { headlineFont } from "@/public/fonts";
 import { header, menu } from "@/public/content";
 import Menu from "../UI/Menu";
 
@@ -26,7 +26,7 @@ export default function Header() {
                                 onClick={() => setIsOpen(!isOpen)}
                                 aria-label={button.aria}
                                 type="button"
-                                className={`text-xl pl-2 transition-all ${lilitaOne.variable} font-lilita-one tracking-wider ${buttonsStyles[index]} hover:pl-1.5 hover:tracking-widest motion-reduce:transition-none`}
+                                className={`text-xl pl-2 transition-all ${headlineFont.variable} font-headline tracking-wider ${buttonsStyles[index]} hover:pl-1.5 hover:tracking-widest motion-reduce:transition-none`}
                             >
                                 {button.text}
                             </button>

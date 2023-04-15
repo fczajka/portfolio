@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { lilitaOne } from "@/public/fonts";
+import { headlineFont } from "@/public/fonts";
 import { ProjectProps } from "@/public/types";
 import ProjectDetails from "./ProjectDetails";
 import useElementOnScreen from "@/hooks/useElementOnScreen";
@@ -31,7 +31,7 @@ export default function Project({
                 } ${animationDelay} motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:transition-none lg:m-0 lg:max-w-[300px] xl:max-w-[340px]`}
             >
                 <div className="basis-3/4">
-                    <h3 className={`${lilitaOne.variable} font-lilita-one`}>
+                    <h3 className={`${headlineFont.variable} font-headline`}>
                         {name}
                     </h3>
                     <p className="text-justify my-4">{shortDesc}</p>

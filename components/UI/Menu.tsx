@@ -1,5 +1,5 @@
 import { menu } from "@/public/content";
-import { lilitaOne } from "@/public/fonts";
+import { headlineFont } from "@/public/fonts";
 import { MenuProps } from "@/public/types";
 
 export default function Menu({ isOpen, setIsOpen }: MenuProps) {
@@ -55,7 +55,7 @@ export default function Menu({ isOpen, setIsOpen }: MenuProps) {
                             <a
                                 href={link.href}
                                 onClick={() => setIsOpen(!isOpen)}
-                                className={`text-xl sm:text-3xl lg:text-6xl ${lilitaOne.variable} font-lilita-one`}
+                                className={`text-xl sm:text-3xl lg:text-6xl ${headlineFont.variable} font-headline`}
                             >
                                 {link.text}
                             </a>

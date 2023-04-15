@@ -1,6 +1,6 @@
 "use client";
 
-import { lilitaOne } from "@/public/fonts";
+import { headlineFont } from "@/public/fonts";
 import Image from "next/image";
 import useElementOnScreen from "@/hooks/useElementOnScreen";
 import { TextAndImageProps } from "@/public/types";
@@ -23,9 +23,9 @@ export default function TextAndImage({
         >
             <div className="basis-2/5 lg:basis-1/2">
                 <h1
-                    className={`font-lilita-one opacity-0 [animation-delay:0.1s] motion-reduce:animate-none motion-reduce:opacity-100 ${
-                        lilitaOne.variable
-                    }  ${isVisible ? "animate-show-down-up" : ""}`}
+                    className={`opacity-0 [animation-delay:0.1s] motion-reduce:animate-none motion-reduce:opacity-100 ${
+                        headlineFont.variable
+                    } font-headline ${isVisible ? "animate-show-down-up" : ""}`}
                 >
                     {h1}
                 </h1>

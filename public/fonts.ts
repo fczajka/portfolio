@@ -1,15 +1,15 @@
 import { Lilita_One, Source_Sans_Pro } from "@next/font/google";
 
-export const lilitaOne = Lilita_One({
+export const headlineFont = Lilita_One({
     weight: "400",
     subsets: ["latin"],
-    variable: "--font-lilita-one",
+    variable: "--font-headline",
     display: "swap",
 });
 
-export const sourceSansPro = Source_Sans_Pro({
+export const defaultFont = Source_Sans_Pro({
     weight: "400",
     subsets: ["latin"],
-    variable: "--font-source-sans-pro",
+    variable: "--font-default",
     display: "swap",
 });

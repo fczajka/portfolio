@@ -31,11 +31,8 @@ module.exports = {
                 "mobile-navbar": "0 -5px 6px 0px rgb(228, 228, 231, 1)",
             },
             fontFamily: {
-                "lilita-one": ["var(--font-lilita-one)", ...fontFamily.sans],
-                "source-sans-pro": [
-                    "var(--font-source-sans-pro)",
-                    ...fontFamily.sans,
-                ],
+                headline: ["var(--font-headline)", ...fontFamily.sans],
+                default: ["var(--font-default)", ...fontFamily.sans],
             },
             height: {
                 88: "22rem",

@@ -1,6 +1,6 @@
 "use client";
 
-import { lilitaOne } from "@/public/fonts";
+import { headlineFont } from "@/public/fonts";
 import useElementOnScreen from "@/hooks/useElementOnScreen";
 import { FormProps } from "@/public/types";
 import React, { MutableRefObject, useRef } from "react";
@@ -38,8 +38,8 @@ export default function Form({ form, button }: FormProps) {
                     type="submit"
                     aria-label="Submit form"
                     className={`bg-blue-200 rounded-xl my-6 p-4 ${
-                        lilitaOne.variable
-                    } font-lilita-one opacity-0 tracking-wider text-lg transition-all duration-300 shadow-zinc-400 shadow-custom ${
+                        headlineFont.variable
+                    } font-headline opacity-0 tracking-wider text-lg transition-all duration-300 shadow-zinc-400 shadow-custom ${
                         isVisible ? "animate-show-down-up" : ""
                     } [animation-delay:0.8s] motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:transition-none hover:bg-blue-300 focus:bg-blue-300`}
                 >

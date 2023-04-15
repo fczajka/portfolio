@@ -1,7 +1,7 @@
 "use client";
 
 import { contact } from "@/public/content";
-import { lilitaOne } from "@/public/fonts";
+import { headlineFont } from "@/public/fonts";
 import useElementOnScreen from "@/hooks/useElementOnScreen";
 import React from "react";
 import Form from "./Form";
@@ -21,8 +21,8 @@ export default function Contact() {
                     <h3
                         ref={containerRef}
                         className={`text-center ${
-                            lilitaOne.variable
-                        } font-lilita-one opacity-0 ${
+                            headlineFont.variable
+                        } font-headline opacity-0 ${
                             isVisible ? "animate-show-down-up" : ""
                         } motion-reduce:animate-none motion-reduce:opacity-100 top-0`}
                     >

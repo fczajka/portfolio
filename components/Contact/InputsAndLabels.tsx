@@ -1,4 +1,4 @@
-import { lilitaOne } from "@/public/fonts";
+import { headlineFont } from "@/public/fonts";
 import { InputsAndLabelsProps } from "@/public/types";
 import React from "react";
 
@@ -19,8 +19,8 @@ export default function InputsAndLabels({
                         key={section.label}
                         htmlFor={section.htmlFor}
                         className={`mb-1 mt-6 ${
-                            lilitaOne.variable
-                        } font-lilita-one text-lg opacity-0 ${
+                            headlineFont.variable
+                        } font-headline text-lg opacity-0 ${
                             isVisible ? "animate-show-down-up" : ""
                         } motion-reduce:animate-none motion-reduce:opacity-100 ${
                             delays[index]

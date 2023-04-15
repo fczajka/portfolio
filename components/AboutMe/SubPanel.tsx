@@ -1,6 +1,6 @@
 "use client";
 
-import { lilitaOne } from "@/public/fonts";
+import { headlineFont } from "@/public/fonts";
 import useElementOnScreen from "@/hooks/useElementOnScreen";
 import { PanelProps } from "@/public/types";
 
@@ -13,7 +13,7 @@ export default function SubPanel({ headline, desc }: PanelProps) {
     return (
         <div ref={containerRef} className="w-full sm:w-4/5 md:w-3/5 xl:w-2/5">
             <h3
-                className={`${lilitaOne.variable} font-lilita-one opacity-0 ${
+                className={`${headlineFont.variable} font-headline opacity-0 ${
                     isVisible ? "animate-show-down-up" : ""
                 } motion-reduce:animate-none motion-reduce:opacity-100`}
             >
