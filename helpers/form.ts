@@ -6,32 +6,57 @@ export function validateForm(values: FormValidationProps) {
     let { name, message, mail } = values;
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (name && message && mail) {
-        name = name.trim();
-        message = message.trim();
-        mail = mail.trim();
-        if (name && message && mail) {
-            if (emailPattern.test(mail)) {
-                return [
-                    "success",
-                    { message: "Everything went well!" },
-                ] as FormValidationReturn;
-            } else {
-                return [
-                    "error",
-                    { message: "The email address is incorrect." },
-                ] as FormValidationReturn;
-            }
-        } else {
-            return [
-                "error",
-                { message: "The form is missing required data." },
-            ] as FormValidationReturn;
-        }
+    if (!name) {
+        return [
+            "error",
+            { message: "Missing form data!" },
+        ] as FormValidationReturn;
+    }
+    if (!message) {
+        return [
+            "error",
+            { message: "Missing form data!!" },
+        ] as FormValidationReturn;
+    }
+    if (!mail) {
+        return [
+            "error",
+            { message: "Missing form data!" },
+        ] as FormValidationReturn;
+    }
+
+    name = name.trim();
+    message = message.trim();
+    mail = mail.trim();
+
+    if (!name) {
+        return [
+            "error",
+            { message: "Missing form data!" },
+        ] as FormValidationReturn;
+    }
+    if (!message) {
+        return [
+            "error",
+            { message: "Missing form data!" },
+        ] as FormValidationReturn;
+    }
+    if (!mail) {
+        return [
+            "error",
+            { message: "Missing form data!" },
+        ] as FormValidationReturn;
+    }
+
+    if (emailPattern.test(mail)) {
+        return [
+            "success",
+            { message: "Everything went well!" },
+        ] as FormValidationReturn;
     } else {
         return [
             "error",
-            { message: "The form is missing required data." },
+            { message: "The email address is incorrect." },
         ] as FormValidationReturn;
     }
 }
@@ -61,29 +86,35 @@ export function sender(
     form: HTMLFormElement | null
 ) {
     if (form) {
-        if (
-            process.env.SERVICE_ID &&
-            process.env.TEMPLATE_ID &&
-            process.env.TEMPLATE_ID
-        ) {
-            const sendMail = emailjs
-                .sendForm(
-                    process.env.SERVICE_ID,
-                    process.env.TEMPLATE_ID,
-                    form,
-                    process.env.PUBLIC_KEY
-                )
-                .then(
-                    () => {
-                        (e.target as HTMLFormElement).reset();
-                    },
-                    () => {}
-                );
-            toast.promise(sendMail, {
-                pending: "Sending message!",
-                success: "Message sent successfully!",
-                error: "Message was not sent!",
-            });
+        if (!process.env.SERVICE_ID) {
+            toast.error("Something went wrong!");
+            return;
         }
+        if (!process.env.TEMPLATE_ID) {
+            toast.error("Something went wrong!");
+            return;
+        }
+        if (!process.env.PUBLIC_KEY) {
+            toast.error("Something went wrong!");
+            return;
+        }
+        const sendMail = emailjs
+            .sendForm(
+                process.env.SERVICE_ID,
+                process.env.TEMPLATE_ID,
+                form,
+                process.env.PUBLIC_KEY
+            )
+            .then(
+                () => {
+                    (e.target as HTMLFormElement).reset();
+                },
+                () => {}
+            );
+        toast.promise(sendMail, {
+            pending: "Sending message!",
+            success: "Message sent successfully!",
+            error: "Message was not sent!",
+        });
     }
 }
