@@ -52,7 +52,7 @@ export default function MobileNavbar() {
                     </li>
                 </ul>
             </nav>
-            {isOpen ? <Menu isOpen={isOpen} setIsOpen={setIsOpen} /> : ""}
+            {isOpen && <Menu isOpen={isOpen} setIsOpen={setIsOpen} />}
         </>
     );
 }

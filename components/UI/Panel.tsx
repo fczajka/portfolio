@@ -16,13 +16,13 @@ export default function Panel({ headline, desc }: PanelProps) {
             <h2
                 className={`opacity-0 motion-reduce:animate-none motion-reduce:opacity-100 ${
                     headlineFont.variable
-                } font-headline ${isVisible ? "animate-show-down-up" : ""}`}
+                } font-headline ${isVisible && "animate-show-down-up"}`}
             >
                 {headline}
             </h2>
             <p
                 className={`mt-4 text-justify opacity-0 ${
-                    isVisible ? "animate-show-down-up" : ""
+                    isVisible && "animate-show-down-up"
                 } [animation-delay:0.2s] motion-reduce:animate-none motion-reduce:opacity-100 lg:text-lg`}
             >
                 {desc}

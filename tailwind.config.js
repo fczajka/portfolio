@@ -25,10 +25,22 @@ module.exports = {
                 "slide-in-left": "0.3s ease-in-out 1 both slide-in-left",
                 "slide-in-right": "0.3s ease-in-out 1 both slide-in-right",
                 "slide-in-bar": "0.3s ease-in-out 1 both slide-in-bar",
-                text: "0.3s ease-in-out 1 both text",
             },
             boxShadow: {
                 "mobile-navbar": "0 -5px 6px 0px rgb(228, 228, 231, 1)",
+            },
+            colors: {
+                "primary-50": "#eff6ff",
+                "primary-100": "#dbeafe",
+                "primary-200": "#bfdbfe",
+                "primary-300": "#93c5fd",
+                "primary-400": "#60a5fa",
+                "primary-500": "#3b82f6",
+                "primary-600": "#2563eb",
+                "primary-700": "#1d4ed8",
+                "primary-800": "#1e40af",
+                "primary-900": "#1e3a8a",
+                "primary-950": "#172554",
             },
             fontFamily: {
                 headline: ["var(--font-headline)", ...fontFamily.sans],
@@ -220,7 +232,7 @@ module.exports = {
                 1920: "1920px",
             },
             boxShadow: {
-                custom: "0 2px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);",
+                custom: "0px 2px 6px 0px rgba(148, 163, 184, 1);",
             },
         },
     },

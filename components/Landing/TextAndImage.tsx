@@ -25,13 +25,13 @@ export default function TextAndImage({
                 <h1
                     className={`opacity-0 [animation-delay:0.1s] motion-reduce:animate-none motion-reduce:opacity-100 ${
                         headlineFont.variable
-                    } font-headline ${isVisible ? "animate-show-down-up" : ""}`}
+                    } font-headline ${isVisible && "animate-show-down-up"}`}
                 >
                     {h1}
                 </h1>
                 <p
                     className={`hidden text-xl mt-4 opacity-0 [animation-delay:0.5s] motion-reduce:animate-none motion-reduce:opacity-100 ${
-                        isVisible ? "animate-show-down-up" : ""
+                        isVisible && "animate-show-down-up"
                     } lg:block`}
                 >
                     {paragraph}
@@ -42,7 +42,7 @@ export default function TextAndImage({
                     src={image}
                     alt="Hero image"
                     className={`opacity-0 [animation-delay:0.5s] lg:[animation-delay:0.9s] motion-reduce:animate-none motion-reduce:opacity-100 ${
-                        isVisible ? "animate-photo" : ""
+                        isVisible && "animate-photo"
                     }`}
                     priority
                 />

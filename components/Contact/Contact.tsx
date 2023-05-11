@@ -23,13 +23,13 @@ export default function Contact() {
                         className={`text-center ${
                             headlineFont.variable
                         } font-headline opacity-0 ${
-                            isVisible ? "animate-show-down-up" : ""
+                            isVisible && "animate-show-down-up"
                         } motion-reduce:animate-none motion-reduce:opacity-100 top-0`}
                     >
                         {h3}
                     </h3>
                 </div>
-                <div className="flex flex-col pt-20 lg:flex-row">
+                <div className="flex flex-col mt-8 lg:mt-20 lg:flex-row">
                     <Form form={form} button={button} />
                     <Links links={links} />
                 </div>

@@ -51,7 +51,7 @@ export default function Header() {
                     </ul>
                 </nav>
             </header>
-            {isOpen ? <Menu isOpen={isOpen} setIsOpen={setIsOpen} /> : ""}
+            {isOpen && <Menu isOpen={isOpen} setIsOpen={setIsOpen} />}
         </>
     );
 }

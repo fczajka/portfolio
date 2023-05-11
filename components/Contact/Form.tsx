@@ -37,11 +37,11 @@ export default function Form({ form, button }: FormProps) {
                 <button
                     type="submit"
                     aria-label="Submit form"
-                    className={`bg-blue-200 rounded-xl my-6 p-4 ${
+                    className={`bg-primary-200 rounded-xl my-6 p-4 ${
                         headlineFont.variable
                     } font-headline opacity-0 tracking-wider text-lg transition-all duration-300 shadow-zinc-400 shadow-custom ${
-                        isVisible ? "animate-show-down-up" : ""
-                    } [animation-delay:0.8s] motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:transition-none hover:bg-blue-300 focus:bg-blue-300`}
+                        isVisible && "animate-show-down-up"
+                    } [animation-delay:0.8s] motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:transition-none hover:bg-primary-300 focus:bg-primary-300`}
                 >
                     {button.text}
                 </button>
@@ -53,7 +53,7 @@ export default function Form({ form, button }: FormProps) {
                 closeButton={false}
                 position="bottom-center"
                 toastClassName={() =>
-                    "bg-blue-200 text-xs leading-relaxed sm:text-base min-[400px]:text-sm text-zinc-900 p-4 mb-4 cursor-pointer min-[481px]:rounded-xl min-[481px]:shadow-custom min-[481px]:shadow-zinc-400 last:mb-12 last:min-[400px]:mb-16 lg:last:mb-4"
+                    "bg-primary-200 text-xs leading-relaxed sm:text-base min-[400px]:text-sm text-zinc-900 p-4 mb-4 cursor-pointer min-[481px]:rounded-xl min-[481px]:shadow-custom min-[481px]:shadow-zinc-400 last:mb-12 last:min-[400px]:mb-16 lg:last:mb-4"
                 }
                 bodyClassName={() => "flex"}
             />

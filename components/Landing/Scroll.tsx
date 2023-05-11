@@ -35,8 +35,8 @@ export default function Scroll({ letters }: ScrollProps) {
                 ))}
             </div>
             <div
-                className={`w-0.5 h-full bg-blue-200 opacity-0 ${
-                    isVisible ? "animate-line" : ""
+                className={`w-0.5 h-full bg-primary-200 opacity-0 ${
+                    isVisible && "animate-line"
                 } [transform-origin:bottom] [animation-delay:1.5s] motion-reduce:animate-none motion-reduce:opacity-100`}
             ></div>
         </div>
