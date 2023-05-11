@@ -5,7 +5,7 @@ import {
     AiFillMail,
     AiFillGithub,
 } from "react-icons/ai";
-import { BiCodeAlt, BiLinkExternal } from "react-icons/bi";
+import { BiCodeAlt } from "react-icons/bi";
 import { BsFillPersonFill } from "react-icons/bs";
 
 import Hero from "@/public/images/compressed/hero.webp";

@@ -48,12 +48,12 @@ export default function Form({ form, button }: FormProps) {
             </form>
             <ToastContainer
                 autoClose={1800}
-                hideProgressBar={true}
-                newestOnTop={true}
+                hideProgressBar
+                newestOnTop
                 closeButton={false}
                 position="bottom-center"
                 toastClassName={() =>
-                    `bg-blue-200 text-xs leading-relaxed sm:text-base min-[400px]:text-sm text-zinc-900 p-4 mb-4 cursor-pointer min-[481px]:rounded-xl min-[481px]:shadow-custom min-[481px]:shadow-zinc-400 last:mb-12 last:min-[400px]:mb-16 lg:last:mb-4`
+                    "bg-blue-200 text-xs leading-relaxed sm:text-base min-[400px]:text-sm text-zinc-900 p-4 mb-4 cursor-pointer min-[481px]:rounded-xl min-[481px]:shadow-custom min-[481px]:shadow-zinc-400 last:mb-12 last:min-[400px]:mb-16 lg:last:mb-4"
                 }
                 bodyClassName={() => "flex"}
             />

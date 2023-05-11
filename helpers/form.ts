@@ -105,12 +105,9 @@ export function sender(
                 form,
                 process.env.PUBLIC_KEY
             )
-            .then(
-                () => {
-                    (e.target as HTMLFormElement).reset();
-                },
-                () => {}
-            );
+            .then(() => {
+                (e.target as HTMLFormElement).reset();
+            });
         toast.promise(sendMail, {
             pending: "Sending message!",
             success: "Message sent successfully!",

@@ -38,7 +38,7 @@ export default function InputsAndLabels({
                             } motion-reduce:animate-none motion-reduce:opacity-100 ${
                                 delays[index]
                             } transition-all focus:bg-blue-300`}
-                        ></input>
+                        />
                     ) : (
                         <textarea
                             id={section.htmlFor}
@@ -51,7 +51,7 @@ export default function InputsAndLabels({
                             rows={3}
                             cols={30}
                             wrap="soft"
-                        ></textarea>
+                        />
                     )}
                 </React.Fragment>
             ))}
