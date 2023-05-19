@@ -14,7 +14,7 @@ export default function Images({ images, currentIndex }: ImagesProps) {
                     <Image
                         src={image.image}
                         alt={image.alt}
-                        className="rounded-xl object-cover w-full h-full object-top"
+                        className="object-cover w-full h-full object-top"
                         placeholder="blur"
                         fill
                         sizes="(max-width: 360px) 360px,

@@ -14,7 +14,7 @@ export default function ProjectDetails({
 }: ProjectDetailsProps) {
     return (
         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center p-4 bg-zinc-800 bg-opacity-90 z-40 animate-fade-in touch-none motion-reduce:animate-none">
-            <div className="basis-full h-full bg-zinc-50 p-4 flex flex-col rounded-xl shadow-lg shadow-zinc-800 max-w-sm max-h-1.5xl animate-show-project-details motion-reduce:animate-none sm:p-6 sm:max-h-3xl lg:h-min lg:max-w-3xl">
+            <div className="basis-full h-full bg-zinc-50 p-4 flex flex-col rounded-primary shadow-lg shadow-zinc-800 max-w-sm max-h-1.5xl animate-show-project-details motion-reduce:animate-none sm:p-6 sm:max-h-3xl lg:h-min lg:max-w-3xl">
                 <div className="flex justify-between">
                     <h3
                         className={`${headlineFont.variable} font-headline animate-slide-in-left [animation-delay:0.5s] motion-reduce:animate-none`}
@@ -35,7 +35,7 @@ export default function ProjectDetails({
                             {longDesc}
                         </p>
                     </div>
-                    <div className="mt-2 grow rounded-xl sm:mt-3 lg:basis-1/2 lg:mt-0 lg:ml-3 lg:h-88">
+                    <div className="mt-2 grow rounded-primary sm:mt-3 lg:basis-1/2 lg:mt-0 lg:ml-3 lg:h-88">
                         <Slider images={images} />
                     </div>
                 </div>

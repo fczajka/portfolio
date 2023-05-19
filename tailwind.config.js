@@ -26,8 +26,12 @@ module.exports = {
                 "slide-in-right": "0.3s ease-in-out 1 both slide-in-right",
                 "slide-in-bar": "0.3s ease-in-out 1 both slide-in-bar",
             },
+            borderRadius: {
+                primary: "1.5rem",
+            },
             boxShadow: {
                 "mobile-navbar": "0 -5px 6px 0px rgb(228, 228, 231, 1)",
+                custom: "0px 2px 6px 0px rgba(148, 163, 184, 1);",
             },
             colors: {
                 "primary-50": "#eff6ff",
@@ -230,9 +234,6 @@ module.exports = {
             maxWidth: {
                 section: "80rem",
                 1920: "1920px",
-            },
-            boxShadow: {
-                custom: "0px 2px 6px 0px rgba(148, 163, 184, 1);",
             },
         },
     },
