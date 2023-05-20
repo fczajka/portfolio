@@ -1,6 +1,11 @@
 import emailjs from "@emailjs/browser";
+import { MutableRefObject } from "react";
 import { toast } from "react-toastify";
-import { FormValidationProps, FormValidationReturn } from "../public/types";
+import {
+    FormValidationProps,
+    FormValidationReturn,
+    SetStateActionBoolean,
+} from "../public/types";
 
 export function validateForm(values: FormValidationProps) {
     let { name, message, mail } = values;
@@ -113,5 +118,26 @@ export function sender(
             success: "Message sent successfully!",
             error: "Message was not sent!",
         });
+    }
+}
+
+export function closeDetailsOnESC(
+    event: KeyboardEvent,
+    setIsOpen: SetStateActionBoolean,
+    isOpen: boolean
+) {
+    if (event.key === "Escape") {
+        setIsOpen(!isOpen);
+    }
+}
+
+export function closeDetailsOnClick(
+    event: MouseEvent,
+    setIsOpen: SetStateActionBoolean,
+    isOpen: boolean,
+    elRef: MutableRefObject<HTMLDivElement | null>
+) {
+    if (elRef.current && !elRef.current.contains(event.target as Node)) {
+        setIsOpen(!isOpen);
     }
 }

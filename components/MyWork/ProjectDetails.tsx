@@ -1,5 +1,7 @@
+import { closeDetailsOnClick, closeDetailsOnESC } from "@/helpers/helpers";
 import { headlineFont } from "@/public/fonts";
-import { ProjectDetailsProps } from "@/public/types";
+import { MutableRef, ProjectDetailsProps } from "@/public/types";
+import { ChangeEvent, ReactNode, useEffect, useRef } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 import Button from "../UI/Button";
 import Slider from "./Slider/Slider";
@@ -12,9 +14,29 @@ export default function ProjectDetails({
     images,
     links,
 }: ProjectDetailsProps) {
+    const elRef: MutableRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        function handleEscape(event: KeyboardEvent) {
+            closeDetailsOnESC(event, setIsOpen, isOpen);
+        }
+        function handleCloseClick(event: MouseEvent) {
+            closeDetailsOnClick(event, setIsOpen, isOpen, elRef);
+        }
+
+        document.addEventListener("keyup", handleEscape);
+        document.addEventListener("click", handleCloseClick);
+        return () => {
+            document.addEventListener("keyup", handleEscape);
+            document.removeEventListener("click", handleCloseClick);
+        };
+    });
     return (
         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center p-4 bg-zinc-800 bg-opacity-90 z-40 animate-fade-in touch-none motion-reduce:animate-none">
-            <div className="basis-full h-full bg-zinc-50 p-4 flex flex-col rounded-primary shadow-lg shadow-zinc-800 max-w-sm max-h-1.5xl animate-show-project-details motion-reduce:animate-none sm:p-6 sm:max-h-3xl lg:h-min lg:max-w-3xl">
+            <div
+                ref={elRef}
+                className="basis-full h-full bg-zinc-50 p-4 flex flex-col rounded-primary shadow-lg shadow-zinc-800 max-w-sm max-h-1.5xl animate-show-project-details motion-reduce:animate-none sm:p-6 sm:max-h-3xl lg:h-min lg:max-w-3xl"
+            >
                 <div className="flex justify-between">
                     <h3
                         className={`${headlineFont.variable} font-headline animate-slide-in-left [animation-delay:0.5s] motion-reduce:animate-none`}

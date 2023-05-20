@@ -6,7 +6,7 @@ import { FormProps } from "@/public/types";
 import React, { MutableRefObject, useRef } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { sendMail } from "@/helpers/form";
+import { sendMail } from "@/helpers/helpers";
 import InputsAndLabels from "./InputsAndLabels";
 
 export default function Form({ form, button }: FormProps) {

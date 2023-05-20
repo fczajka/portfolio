@@ -1,5 +1,5 @@
 import { StaticImageData } from "next/image";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, MutableRefObject, SetStateAction } from "react";
 import { IconType } from "react-icons";
 
 export type ProjectProps = {
@@ -134,3 +134,9 @@ export type ButtonProps = {
     href?: string;
     style?: string;
 };
+
+export type MutableRef = MutableRefObject<HTMLDivElement | null>;
+
+export type SetStateActionBoolean = (
+    value: React.SetStateAction<boolean>
+) => void;
