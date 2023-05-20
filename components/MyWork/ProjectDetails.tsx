@@ -1,7 +1,7 @@
 import { closeDetailsOnClick, closeDetailsOnESC } from "@/helpers/helpers";
 import { headlineFont } from "@/public/fonts";
 import { MutableRef, ProjectDetailsProps } from "@/public/types";
-import { ChangeEvent, ReactNode, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 import Button from "../UI/Button";
 import Slider from "./Slider/Slider";
