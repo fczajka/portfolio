@@ -77,11 +77,17 @@ export type FoodProps = {
 
 export type LinksProps = {
     links: {
-        text: string;
         href: string;
         icon: IconType;
         type: string;
     }[];
+};
+
+export type LinkProps = {
+    href: string;
+    icon: IconType;
+    type: string;
+    delay: string;
 };
 
 export type FormProps = {

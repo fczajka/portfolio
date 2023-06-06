@@ -206,19 +206,16 @@ export const contact = {
     button: { text: "Send message!" },
     links: [
         {
-            text: "franekczajkaa@gmail.com",
             href: "franekczajkaa@gmail.com",
             icon: AiFillMail,
             type: "mail",
         },
         {
-            text: "https://github.com/fczajka",
             href: "https://github.com/fczajka",
             icon: AiFillGithub,
             type: "link",
         },
         {
-            text: "https://www.linkedin.com/in/franciszek-czajka/",
             href: "https://www.linkedin.com/in/franciszek-czajka/",
             icon: AiFillLinkedin,
             type: "link",
