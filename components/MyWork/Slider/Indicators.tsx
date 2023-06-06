@@ -8,9 +8,9 @@ export default function Indicators({ indexes, currentIndex }: IndicatorsProps) {
                 {indexes.map((index) => (
                     <li
                         key={index}
-                        className={`${
+                        className={`transition-all ${
                             currentIndex === index
-                                ? "opacity-100"
+                                ? "opacity-100 scale-125"
                                 : "opacity-60"
                         }`}
                     >
