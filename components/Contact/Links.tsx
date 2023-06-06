@@ -1,13 +1,12 @@
 import useElementOnScreen from "@/hooks/useElementOnScreen";
 import { LinksProps } from "@/public/types";
-import React from "react";
 import Link from "./Link";
 
 export default function Links({ links }: LinksProps) {
     const [containerRef, isVisible] = useElementOnScreen({
         root: null,
         rootMargin: "0px",
-        threshold: 0.3,
+        threshold: 1.0,
     });
 
     const delays = [
@@ -20,7 +19,7 @@ export default function Links({ links }: LinksProps) {
             ref={containerRef}
             className="basis-full sm:px-32 md:px-44 lg:px-24"
         >
-            <ul className={isVisible ? "block" : "hidden"}>
+            <ul>
                 {links.map((link, index) => (
                     <Link
                         key={link.href}
@@ -28,6 +27,7 @@ export default function Links({ links }: LinksProps) {
                         icon={link.icon}
                         type={link.type}
                         delay={delays[index]}
+                        isVisible={isVisible}
                     ></Link>
                 ))}
             </ul>

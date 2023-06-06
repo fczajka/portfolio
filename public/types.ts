@@ -88,6 +88,13 @@ export type LinkProps = {
     icon: IconType;
     type: string;
     delay: string;
+    isVisible: boolean;
+};
+
+export type MobileNavbarLinkProps = {
+    text: string;
+    href: string;
+    icon: IconType;
 };
 
 export type FormProps = {

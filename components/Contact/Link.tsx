@@ -1,11 +1,19 @@
 import { LinkProps } from "@/public/types";
 import React from "react";
 
-export default function Link({ href, icon: Icon, type, delay }: LinkProps) {
+export default function Link({
+    href,
+    icon: Icon,
+    type,
+    delay,
+    isVisible,
+}: LinkProps) {
     return (
         <li
             key={href}
-            className={`my-6 opacity-0 text-xs min-[400px]:text-sm sm:text-base animate-show-down-up motion-reduce:animate-none motion-reduce:opacity-100 ${delay}`}
+            className={`my-6 opacity-0 text-xs min-[400px]:text-sm sm:text-base ${
+                isVisible ? "animate-show-down-up" : ""
+            }  motion-reduce:animate-none motion-reduce:opacity-100 ${delay}`}
         >
             <a
                 href={type === "link" ? href : `mailto:${href}`}

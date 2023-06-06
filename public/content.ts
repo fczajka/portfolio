@@ -1,12 +1,6 @@
-import {
-    AiOutlineArrowUp,
-    AiFillPhone,
-    AiFillLinkedin,
-    AiFillMail,
-    AiFillGithub,
-} from "react-icons/ai";
+import { AiFillLinkedin, AiFillMail, AiFillGithub } from "react-icons/ai";
+import { MdArrowUpward, MdPerson, MdPhoneEnabled } from "react-icons/md";
 import { BiCodeAlt } from "react-icons/bi";
-import { BsFillPersonFill } from "react-icons/bs";
 
 import Hero from "@/public/images/compressed/hero.webp";
 import Pizza from "@/public/images/compressed/pizza.webp";
@@ -225,19 +219,17 @@ export const contact = {
 
 export const mobileNavbar = {
     links: [
-        { text: "To the top", href: "#", icon: AiOutlineArrowUp, type: "link" },
-        { text: "My work", href: "#my-work", icon: BiCodeAlt, type: "link" },
+        { text: "To the top", href: "#", icon: MdArrowUpward },
+        { text: "My work", href: "#my-work", icon: BiCodeAlt },
         {
             text: "About me",
             href: "#about-me",
-            icon: BsFillPersonFill,
-            type: "link",
+            icon: MdPerson,
         },
         {
             text: "Contact me",
             href: "#contact-me",
-            icon: AiFillPhone,
-            type: "link",
+            icon: MdPhoneEnabled,
         },
     ],
     buttons: [
