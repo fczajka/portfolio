@@ -30,7 +30,7 @@ export default function TextAndImage({
                     {h1}
                 </h1>
                 <p
-                    className={`hidden text-xl mt-4 opacity-0 [animation-delay:0.5s] motion-reduce:animate-none motion-reduce:opacity-100 ${
+                    className={`hidden text-xl mt-4 opacity-0 [animation-delay:0.3s] motion-reduce:animate-none motion-reduce:opacity-100 ${
                         isVisible && "animate-show-down-up"
                     } lg:block`}
                 >
@@ -41,7 +41,7 @@ export default function TextAndImage({
                 <Image
                     src={image}
                     alt="Hero image"
-                    className={`opacity-0 [animation-delay:0.5s] lg:[animation-delay:0.9s] motion-reduce:animate-none motion-reduce:opacity-100 ${
+                    className={`opacity-0 [animation-delay:0.5s] motion-reduce:animate-none motion-reduce:opacity-100 ${
                         isVisible && "animate-photo"
                     }`}
                     priority
