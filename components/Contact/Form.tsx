@@ -41,7 +41,7 @@ export default function Form({ form, button }: FormProps) {
                         headlineFont.variable
                     } font-headline opacity-0 tracking-wider text-lg transition-all duration-300 shadow-zinc-300 shadow-custom ${
                         isVisible && "animate-show-down-up"
-                    } [animation-delay:0.8s] motion-reduce:animate-none motion-reduce:opacity-200 motion-reduce:transition-none hover:bg-primary-300 focus:bg-primary-300`}
+                    } [animation-delay:0.8s] motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:transition-none hover:bg-primary-300 focus:bg-primary-300`}
                 >
                     {button.text}
                 </button>

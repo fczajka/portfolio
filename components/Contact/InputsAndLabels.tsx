@@ -14,17 +14,18 @@ export default function InputsAndLabels({
     return (
         <>
             {form.map((section, index) => (
-                <React.Fragment key={section.label}>
+                <div
+                    className={`flex flex-col opacity-0 mt-6 first:mt-0 ${
+                        isVisible ? "animate-show-down-up" : ""
+                    } ${
+                        delays[index]
+                    } motion-reduce:animate-none motion-reduce:opacity-100`}
+                    key={section.label}
+                >
                     <label
                         key={section.label}
                         htmlFor={section.htmlFor}
-                        className={`mb-1 mt-6 ${
-                            headlineFont.variable
-                        } font-headline text-lg opacity-0 ${
-                            isVisible ? "animate-show-down-up" : ""
-                        } motion-reduce:animate-none motion-reduce:opacity-200 ${
-                            delays[index]
-                        } first:mt-0`}
+                        className={`mb-1 ${headlineFont.variable} font-headline text-lg`}
                     >
                         {section.label}
                     </label>
@@ -33,27 +34,19 @@ export default function InputsAndLabels({
                             type={section.type}
                             id={section.htmlFor}
                             name={section.htmlFor}
-                            className={`rounded-xl border-0 bg-primary-200 opacity-0 ${
-                                isVisible && "animate-show-down-up"
-                            } motion-reduce:animate-none motion-reduce:transition-none motion-reduce:opacity-200 ${
-                                delays[index]
-                            } transition-all focus:ring-1 focus:ring-primary-900 hover:bg-primary-300 focus:bg-primary-300 outline-none`}
+                            className={`rounded-xl border-0 bg-primary-200 transition-all motion-reduce:transition-none focus:ring-1 focus:ring-primary-900 hover:bg-primary-300 focus:bg-primary-300 outline-none`}
                         />
                     ) : (
                         <textarea
                             id={section.htmlFor}
                             name={section.htmlFor}
-                            className={`resize-none rounded-xl border-0 bg-primary-200 opacity-0 ${
-                                isVisible && "animate-show-down-up"
-                            } motion-reduce:animate-none motion-reduce:transition-none motion-reduce:opacity-200 ${
-                                delays[index]
-                            } transition-all focus:ring-1 focus:ring-primary-900 hover:bg-primary-300 focus:bg-primary-300 outline-none`}
+                            className={`resize-none rounded-xl border-0 bg-primary-200 transition-all motion-reduce:transition-none focus:ring-1 focus:ring-primary-900 hover:bg-primary-300 focus:bg-primary-300 outline-none`}
                             rows={3}
                             cols={30}
                             wrap="soft"
                         ></textarea>
                     )}
-                </React.Fragment>
+                </div>
             ))}
         </>
     );
