@@ -121,12 +121,12 @@ export type ButtonsProps = {
 export type IndicatorsProps = { indexes: number[]; currentIndex: number };
 
 export type FormValidationProps = {
-    name?: string;
-    message?: string;
-    mail?: string;
+    name: string;
+    message: string;
+    mail: string;
 };
 
-export type FormValidationReturn = [string, { message: string }];
+export type FormValidationReturn = { status: string; message: string };
 
 export type InputsAndLabelsProps = {
     form: Form;

@@ -5,65 +5,47 @@ import {
     FormValidationProps,
     FormValidationReturn,
     SetStateActionBoolean,
-} from "../public/types";
+} from "@/public/types";
 
-export function validateForm(values: FormValidationProps) {
+export function validateForm(
+    values: FormValidationProps
+): FormValidationReturn {
     let { name, message, mail } = values;
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!name) {
-        return [
-            "error",
-            { message: "Missing form data!" },
-        ] as FormValidationReturn;
-    }
-    if (!message) {
-        return [
-            "error",
-            { message: "Missing form data!!" },
-        ] as FormValidationReturn;
-    }
-    if (!mail) {
-        return [
-            "error",
-            { message: "Missing form data!" },
-        ] as FormValidationReturn;
-    }
 
     name = name.trim();
     message = message.trim();
     mail = mail.trim();
 
     if (!name) {
-        return [
-            "error",
-            { message: "Missing form data!" },
-        ] as FormValidationReturn;
+        return {
+            status: "error",
+            message: "Missing form data!",
+        };
     }
     if (!message) {
-        return [
-            "error",
-            { message: "Missing form data!" },
-        ] as FormValidationReturn;
+        return {
+            status: "error",
+            message: "Missing form data!",
+        };
     }
     if (!mail) {
-        return [
-            "error",
-            { message: "Missing form data!" },
-        ] as FormValidationReturn;
+        return {
+            status: "error",
+            message: "Missing form data!",
+        };
+    }
+    if (!emailPattern.test(mail)) {
+        return {
+            status: "error",
+            message: "The email address is incorrect.",
+        };
     }
 
-    if (emailPattern.test(mail)) {
-        return [
-            "success",
-            { message: "Everything went well!" },
-        ] as FormValidationReturn;
-    } else {
-        return [
-            "error",
-            { message: "The email address is incorrect." },
-        ] as FormValidationReturn;
-    }
+    return {
+        status: "success",
+        message: "Everything went well!",
+    };
 }
 
 export function sendMail(
@@ -77,10 +59,10 @@ export function sendMail(
             message: form.message.value,
         });
         if (validatedForm) {
-            if (validatedForm[0] === "success") {
+            if (validatedForm.status === "success") {
                 sender(e, form);
-            } else if (validatedForm[0] === "error") {
-                toast.error(validatedForm[1].message);
+            } else if (validatedForm.status === "error") {
+                toast.error(validatedForm.message);
             }
         }
     }
