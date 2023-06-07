@@ -26,9 +26,9 @@ export default function Project({
         <>
             <div
                 ref={containerRef}
-                className={`flex flex-col basis-1/3 max-w-sm mx-auto my-6 p-4 shadow-custom shadow-zinc-400 rounded-primary opacity-0 transition-all hover:scale-105 hover:opacity-100 hover:[animation-fill-mode:backwards] sm:p-6 ${
+                className={`flex flex-col basis-1/3 max-w-sm mx-auto my-4 p-4 shadow-custom shadow-zinc-400 rounded-primary opacity-0 transition-all hover:scale-105 hover:opacity-100 hover:[animation-fill-mode:backwards] ${
                     isVisible && "animate-show-down-up"
-                } ${animationDelay} motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:transition-none lg:m-0 lg:max-w-[300px] xl:max-w-[340px]`}
+                } ${animationDelay} motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:transition-none sm:p-6 lg:m-0 lg:first:m-0 lg:last:m-0 lg:max-w-[300px] xl:max-w-[340px]`}
             >
                 <div className="basis-3/4">
                     <h3 className={`${headlineFont.variable} font-headline`}>

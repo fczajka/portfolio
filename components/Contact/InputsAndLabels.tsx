@@ -22,7 +22,7 @@ export default function InputsAndLabels({
                             headlineFont.variable
                         } font-headline text-lg opacity-0 ${
                             isVisible ? "animate-show-down-up" : ""
-                        } motion-reduce:animate-none motion-reduce:opacity-100 ${
+                        } motion-reduce:animate-none motion-reduce:opacity-200 ${
                             delays[index]
                         } first:mt-0`}
                     >
@@ -35,9 +35,9 @@ export default function InputsAndLabels({
                             name={section.htmlFor}
                             className={`rounded-xl border-0 bg-primary-200 opacity-0 ${
                                 isVisible && "animate-show-down-up"
-                            } motion-reduce:animate-none motion-reduce:transition-none motion-reduce:opacity-100 ${
+                            } motion-reduce:animate-none motion-reduce:transition-none motion-reduce:opacity-200 ${
                                 delays[index]
-                            } transition-all hover:bg-primary-300 focus:bg-primary-300`}
+                            } transition-all focus:ring-1 focus:ring-primary-900 hover:bg-primary-300 focus:bg-primary-300 outline-none`}
                         />
                     ) : (
                         <textarea
@@ -45,9 +45,9 @@ export default function InputsAndLabels({
                             name={section.htmlFor}
                             className={`resize-none rounded-xl border-0 bg-primary-200 opacity-0 ${
                                 isVisible && "animate-show-down-up"
-                            } motion-reduce:animate-none motion-reduce:transition-none motion-reduce:opacity-100 ${
+                            } motion-reduce:animate-none motion-reduce:transition-none motion-reduce:opacity-200 ${
                                 delays[index]
-                            } transition-all hover:bg-primary-300 focus:bg-primary-300`}
+                            } transition-all focus:ring-1 focus:ring-primary-900 hover:bg-primary-300 focus:bg-primary-300 outline-none`}
                             rows={3}
                             cols={30}
                             wrap="soft"

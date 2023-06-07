@@ -12,9 +12,7 @@ export default function AboutMe() {
                 <Panel headline={h2} desc={firstParagraph} />
                 <div className="w-full flex flex-col items-center">
                     <div className="w-full flex flex-col mt-8 lg:mt-16">
-                        <div>
-                            <SubPanel headline={h3} desc={secondParagraph} />
-                        </div>
+                        <SubPanel headline={h3} desc={secondParagraph} />
                         <Foods foods={foods} />
                     </div>
                 </div>
