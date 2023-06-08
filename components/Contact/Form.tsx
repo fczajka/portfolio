@@ -7,7 +7,7 @@ import React, { MutableRefObject, useRef } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { sendMail } from "@/helpers/helpers";
-import InputsAndLabels from "./InputsAndLabels";
+import InputsAndLabels from "./Fields";
 
 export default function Form({ form, button }: FormProps) {
     const formRef: MutableRefObject<HTMLFormElement | null> = useRef(null);

@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-}
-
 @layer base {
     header {
         @apply fixed bg-zinc-50 w-full h-16 z-30 shadow-custom shadow-zinc-400;
