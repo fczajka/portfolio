@@ -7,7 +7,7 @@ import React, { MutableRefObject, useRef } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { sendMail } from "@/helpers/helpers";
-import InputsAndLabels from "./Fields";
+import Fields from "./Fields";
 
 export default function Form({ form, button }: FormProps) {
     const formRef: MutableRefObject<HTMLFormElement | null> = useRef(null);
@@ -33,7 +33,7 @@ export default function Form({ form, button }: FormProps) {
                 ref={formRef}
                 className="flex flex-col"
             >
-                <InputsAndLabels form={form} isVisible={isVisible} />
+                <Fields form={form} isVisible={isVisible} />
                 <button
                     type="submit"
                     aria-label="Submit form"
