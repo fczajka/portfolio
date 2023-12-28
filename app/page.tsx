@@ -6,15 +6,15 @@ import MyWork from "@/components/MyWork/MyWork";
 import { defaultFont } from "@/public/fonts";
 
 export default function Home() {
-    return (
-        <main className={`${defaultFont.variable} font-default`}>
-            <div className="max-w-1920 mx-auto">
-                <Landing />
-                <Separator />
-                <MyWork />
-                <AboutMe />
-                <Contact />
-            </div>
-        </main>
-    );
+  return (
+    <main className={`${defaultFont.variable} font-default`}>
+      <div className="max-w-1920 mx-auto">
+        <Landing />
+        <Separator />
+        <MyWork />
+        <AboutMe />
+        <Contact />
+      </div>
+    </main>
+  );
 }
