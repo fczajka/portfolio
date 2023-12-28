@@ -104,22 +104,25 @@ export function sender(
 }
 
 export function closeDetailsOnESC(
-  event: KeyboardEvent,
-  setIsOpen: SetStateActionBoolean,
   isOpen: boolean,
+  setIsOpen: SetStateActionBoolean,
+  wantsToSee: boolean,
+  setWantsToClose: SetStateActionBoolean,
 ) {
-  if (event.key === "Escape") {
+  setWantsToClose(!wantsToSee);
+  setTimeout(() => {
     setIsOpen(!isOpen);
-  }
+  }, 300);
 }
 
 export function closeDetailsOnClick(
-  event: MouseEvent,
-  setIsOpen: SetStateActionBoolean,
   isOpen: boolean,
-  elRef: MutableRefObject<HTMLDivElement | null>,
+  setIsOpen: SetStateActionBoolean,
+  wantsToSee: boolean,
+  setWantsToClose: SetStateActionBoolean,
 ) {
-  if (elRef.current && !elRef.current.contains(event.target as Node)) {
+  setWantsToClose(!wantsToSee);
+  setTimeout(() => {
     setIsOpen(!isOpen);
-  }
+  }, 300);
 }

@@ -2,7 +2,7 @@ import { menu } from "@/public/content";
 import { headlineFont } from "@/public/fonts";
 import { MenuProps } from "@/public/types";
 
-export default function Menu({ isOpen, setIsOpen }: MenuProps) {
+export default function Menu({ wantsToSee, handleMenu }: MenuProps) {
   const { icons, links } = menu;
 
   const iconsDelays = [
@@ -18,8 +18,16 @@ export default function Menu({ isOpen, setIsOpen }: MenuProps) {
     "[animation-delay:2.1s]",
   ];
 
+  console.log(wantsToSee);
+
   return (
-    <div className="fixed w-full h-screen top-0 pt-16 bg-zinc-50 z-10 px-12 animate-show-menu-mobile touch-none motion-reduce:animate-none lg:pt-32 lg:animate-show-menu-desktop lg:motion-reduce:animate-none">
+    <div
+      className={`fixed w-full h-screen top-0 pt-16 bg-zinc-50 z-10 px-12 touch-none lg:pt-32 ${
+        wantsToSee
+          ? "animate-show-menu-mobile lg:animate-show-menu-desktop"
+          : "animate-hide-menu-mobile lg:animate-hide-menu-desktop"
+      } motion-reduce:animate-none`}
+    >
       <div className="flex items-center">
         <div className="w-24 h-1 bg-primary-200 animate-slide-in-bar [animation-delay:0.6s] motion-reduce:animate-none"></div>
         <ul className="flex flex-row">
@@ -50,7 +58,7 @@ export default function Menu({ isOpen, setIsOpen }: MenuProps) {
             >
               <a
                 href={link.href}
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={handleMenu}
                 className={`text-xl sm:text-3xl lg:text-6xl ${headlineFont.variable} font-headline`}
               >
                 {link.text}

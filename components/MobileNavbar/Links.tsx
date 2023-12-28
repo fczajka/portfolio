@@ -1,9 +1,9 @@
 import { mobileNavbar } from "@/public/content";
-import { MenuProps } from "@/public/types";
+import { MenuProps, MobileMenuProps } from "@/public/types";
 import Link from "./Link";
 import MenuButton from "./MenuButton";
 
-export default function Links({ isOpen, setIsOpen }: MenuProps) {
+export default function Links({ isOpen, handleMenu }: MobileMenuProps) {
   const { links } = mobileNavbar;
 
   return (
@@ -16,7 +16,7 @@ export default function Links({ isOpen, setIsOpen }: MenuProps) {
           icon={link.icon}
         />
       ))}
-      <MenuButton isOpen={isOpen} setIsOpen={setIsOpen} />
+      <MenuButton isOpen={isOpen} handleMenu={handleMenu} />
     </ul>
   );
 }

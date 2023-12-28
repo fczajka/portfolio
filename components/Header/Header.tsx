@@ -7,6 +7,7 @@ import Menu from "../UI/Menu";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [wantsToSee, setWantsToSee] = useState(false);
   const { links } = header;
   const { buttons } = menu;
 
@@ -14,6 +15,17 @@ export default function Header() {
     `absolute ${isOpen ? "-translate-y-10" : "-translate-y-0"}`,
     `${isOpen ? "-translate-y-0" : "-translate-y-10"}`,
   ];
+
+  const handleMenu = () => {
+    setWantsToSee(!wantsToSee);
+    if (isOpen) {
+      setTimeout(() => {
+        setIsOpen(!isOpen);
+      }, 700);
+    } else {
+      setIsOpen(!isOpen);
+    }
+  };
 
   return (
     <>
@@ -23,7 +35,7 @@ export default function Header() {
             {buttons.map((button, index) => (
               <button
                 key={button.text}
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={handleMenu}
                 aria-label={button.aria}
                 type="button"
                 className={`text-xl pl-2 transition-all ${headlineFont.variable} font-headline tracking-wider ${buttonsStyles[index]} hover:pl-1.5 hover:tracking-widest motion-reduce:transition-none`}
@@ -48,7 +60,7 @@ export default function Header() {
           </ul>
         </nav>
       </header>
-      {isOpen && <Menu isOpen={isOpen} setIsOpen={setIsOpen} />}
+      {isOpen && <Menu wantsToSee={wantsToSee} handleMenu={handleMenu} />}
     </>
   );
 }

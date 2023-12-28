@@ -1,7 +1,9 @@
+"use client";
+
 import { closeDetailsOnClick, closeDetailsOnESC } from "@/helpers/helpers";
 import { headlineFont } from "@/public/fonts";
 import { MutableRef, ProjectDetailsProps } from "@/public/types";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 import Button from "../UI/Button";
 import Slider from "./Slider/Slider";
@@ -14,28 +16,49 @@ export default function ProjectDetails({
   images,
   links,
 }: ProjectDetailsProps) {
-  const elRef: MutableRef = useRef<HTMLDivElement | null>(null);
+  const elRef: MutableRef = useRef<HTMLDivElement>(null);
+  const [wantsToClose, setWantsToClose] = useState(false);
+
+  const handleClose = () => {
+    setWantsToClose(!wantsToClose);
+    setTimeout(() => {
+      setIsOpen(!isOpen);
+    }, 300);
+  };
 
   useEffect(() => {
     function handleEscape(event: KeyboardEvent) {
-      closeDetailsOnESC(event, setIsOpen, isOpen);
+      if (event.key !== "Escape") return;
+      closeDetailsOnESC(isOpen, setIsOpen, wantsToClose, setWantsToClose);
     }
+
     function handleCloseClick(event: MouseEvent) {
-      closeDetailsOnClick(event, setIsOpen, isOpen, elRef);
+      if (elRef.current && elRef.current.contains(event.target as Node)) return;
+
+      closeDetailsOnClick(isOpen, setIsOpen, wantsToClose, setWantsToClose);
     }
 
     document.addEventListener("keyup", handleEscape);
     document.addEventListener("click", handleCloseClick);
     return () => {
-      document.addEventListener("keyup", handleEscape);
+      document.removeEventListener("keyup", handleEscape);
       document.removeEventListener("click", handleCloseClick);
     };
   });
+
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center p-4 bg-zinc-800 bg-opacity-90 z-40 animate-fade-in touch-none motion-reduce:animate-none">
+    <div
+      className={`fixed top-0 left-0 w-full h-full flex justify-center items-center p-4 bg-zinc-800 bg-opacity-90 z-40 touch-none ${
+        wantsToClose ? "animate-fade-out" : " animate-fade-in"
+      } motion-reduce:animate-none`}
+    >
       <div
         ref={elRef}
-        className="basis-full h-full bg-zinc-50 p-4 flex flex-col rounded-primary shadow-lg shadow-zinc-800 max-w-sm max-h-1.5xl animate-show-project-details motion-reduce:animate-none sm:p-6 sm:max-h-3xl lg:h-min lg:max-w-3xl"
+        className={`basis-full h-full bg-zinc-50 p-4 flex flex-col rounded-primary shadow-lg shadow-zinc-800 max-w-sm max-h-1.5xl ${
+          wantsToClose
+            ? "animate-slide-down-project-details-mobile lg:animate-slide-down-project-details-desktop"
+            : "animate-show-project-details"
+        } motion-reduce:animate-none sm:p-6 sm:max-h-3xl lg:h-min lg:max-w-3xl`}
       >
         <div className="flex justify-between">
           <h3
@@ -44,7 +67,7 @@ export default function ProjectDetails({
             {name}
           </h3>
           <button
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={handleClose}
             aria-label={`Close details of ${name}`}
             className="text-xl rounded-full animate-slide-in-right [animation-delay:0.5s] motion-reduce:animate-none sm:text-3xl"
           >
