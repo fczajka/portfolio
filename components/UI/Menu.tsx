@@ -18,8 +18,6 @@ export default function Menu({ wantsToSee, handleMenu }: MenuProps) {
     "[animation-delay:2.1s]",
   ];
 
-  console.log(wantsToSee);
-
   return (
     <div
       className={`fixed w-full h-screen top-0 pt-16 bg-zinc-50 z-10 px-12 touch-none lg:pt-32 ${
