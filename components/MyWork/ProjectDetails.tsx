@@ -21,9 +21,14 @@ export default function ProjectDetails({
 
   const handleClose = () => {
     setWantsToClose(!wantsToClose);
-    setTimeout(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    console.log(prefersReducedMotion);
+    if (prefersReducedMotion) {
       setIsOpen(!isOpen);
-    }, 300);
+      return;
+    }
   };
 
   useEffect(() => {

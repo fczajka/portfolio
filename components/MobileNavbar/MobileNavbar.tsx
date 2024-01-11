@@ -10,12 +10,13 @@ export default function MobileNavbar() {
 
   const handleMenu = () => {
     setWantsToSee(!wantsToSee);
-    if (isOpen) {
-      setTimeout(() => {
-        setIsOpen(!isOpen);
-      }, 700);
-    } else {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    console.log(prefersReducedMotion);
+    if (prefersReducedMotion) {
       setIsOpen(!isOpen);
+      return;
     }
   };
 

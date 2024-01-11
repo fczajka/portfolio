@@ -4,11 +4,9 @@ import { useState } from "react";
 import { headlineFont } from "@/public/fonts";
 import { header, menu } from "@/public/content";
 import Menu from "../UI/Menu";
-import { useTheme } from "next-themes";
 import ToggleTheme from "../UI/ToggleTheme";
 
 export default function Header() {
-  const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [wantsToSee, setWantsToSee] = useState(false);
   const { links } = header;
@@ -18,14 +16,16 @@ export default function Header() {
     `absolute ${isOpen ? "-translate-y-10" : "-translate-y-0"}`,
     `${isOpen ? "-translate-y-0" : "-translate-y-10"}`,
   ];
+
   const handleMenu = () => {
     setWantsToSee(!wantsToSee);
-    if (isOpen) {
-      setTimeout(() => {
-        setIsOpen(!isOpen);
-      }, 700);
-    } else {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    console.log(prefersReducedMotion);
+    if (prefersReducedMotion) {
       setIsOpen(!isOpen);
+      return;
     }
   };
 

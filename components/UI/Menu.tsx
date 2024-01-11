@@ -19,13 +19,17 @@ export default function Menu({ wantsToSee, handleMenu }: MenuProps) {
     "[animation-delay:2.2s]",
   ];
 
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+
   return (
     <div
       className={`fixed w-full h-screen top-0 pt-16 bg-zinc-50 z-10 px-12 touch-none lg:pt-32 ${
         wantsToSee
           ? "animate-show-menu-mobile lg:animate-show-menu-desktop"
           : "animate-hide-menu-mobile lg:animate-hide-menu-desktop"
-      } dark:bg-dark-primary-bg dark:text-zinc-200 motion-reduce:animate-none`}
+      } dark:bg-dark-primary-bg dark:text-zinc-200 motion-reduce:animate-none dark:motion-reduce:animate-none`}
     >
       <div className="flex items-center">
         <div className="w-24 h-1 bg-primary-200 animate-slide-in-bar [animation-delay:0.6s] motion-reduce:animate-none"></div>

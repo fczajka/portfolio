@@ -110,6 +110,14 @@ export function closeDetailsOnESC(
   setWantsToClose: SetStateActionBoolean,
 ) {
   setWantsToClose(!wantsToSee);
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  console.log(prefersReducedMotion);
+  if (prefersReducedMotion) {
+    setIsOpen(!isOpen);
+    return;
+  }
   setTimeout(() => {
     setIsOpen(!isOpen);
   }, 300);
@@ -122,6 +130,14 @@ export function closeDetailsOnClick(
   setWantsToClose: SetStateActionBoolean,
 ) {
   setWantsToClose(!wantsToSee);
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  console.log(prefersReducedMotion);
+  if (prefersReducedMotion) {
+    setIsOpen(!isOpen);
+    return;
+  }
   setTimeout(() => {
     setIsOpen(!isOpen);
   }, 300);
