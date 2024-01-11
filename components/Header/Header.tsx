@@ -23,9 +23,16 @@ export default function Header() {
       "(prefers-reduced-motion: reduce)",
     ).matches;
     console.log(prefersReducedMotion);
-    if (prefersReducedMotion) {
+    if (prefersReducedMotion && isOpen) {
       setIsOpen(!isOpen);
       return;
+    }
+    if (isOpen) {
+      setTimeout(() => {
+        setIsOpen(!isOpen);
+      }, 700);
+    } else {
+      setIsOpen(!isOpen);
     }
   };
 

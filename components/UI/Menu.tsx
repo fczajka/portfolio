@@ -29,11 +29,11 @@ export default function Menu({ wantsToSee, handleMenu }: MenuProps) {
         wantsToSee
           ? "animate-show-menu-mobile lg:animate-show-menu-desktop"
           : "animate-hide-menu-mobile lg:animate-hide-menu-desktop"
-      } dark:bg-dark-primary-bg dark:text-zinc-200 motion-reduce:animate-none dark:motion-reduce:animate-none`}
+      } dark:bg-dark-primary-bg dark:text-zinc-200 motion-reduce:animate-none lg:motion-reduce:animate-none`}
     >
       <div className="flex items-center">
         <div className="w-24 h-1 bg-primary-200 animate-slide-in-bar [animation-delay:0.6s] motion-reduce:animate-none"></div>
-        <ul className="flex flex-row">
+        <ul className="flex flex-row items-center">
           {icons.map((icon, index) => (
             <li
               key={icon.key}

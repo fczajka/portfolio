@@ -20,7 +20,7 @@ export default function ToggleTheme(props: { style?: string }) {
           id="toggle"
           checked={theme === "light" ? true : false}
           onChange={handleTheme}
-          className="toggle-switch absolute top-0 left-0 z-20 opacity-0"
+          className="toggle-switch absolute top-0 left-0 w-0 h-0 opacity-0 z-20"
           type="checkbox"
         />
         <div className="sun-moon absolute left-0 inline-block w-6 h-6 m-1 bg-zinc-300 rounded-full transtion-all duration-500 border-[0.125rem] bordre-[#dee2c6] z-20">
