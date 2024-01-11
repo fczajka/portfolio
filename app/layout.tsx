@@ -1,5 +1,8 @@
+"use client";
+
 import Header from "@/components/Header/Header";
 import MobileNavbar from "@/components/MobileNavbar/MobileNavbar";
+import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
 export default function RootLayout({
@@ -11,9 +14,11 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth motion-reduce:scroll-auto">
       <head />
       <body>
-        <Header />
-        {children}
-        <MobileNavbar />
+        <ThemeProvider attribute="class" disableTransitionOnChange>
+          <Header />
+          {children}
+          <MobileNavbar />
+        </ThemeProvider>
       </body>
     </html>
   );

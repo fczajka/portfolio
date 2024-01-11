@@ -4,8 +4,11 @@ import { useState } from "react";
 import { headlineFont } from "@/public/fonts";
 import { header, menu } from "@/public/content";
 import Menu from "../UI/Menu";
+import { useTheme } from "next-themes";
+import ToggleTheme from "../UI/ToggleTheme";
 
 export default function Header() {
+  const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [wantsToSee, setWantsToSee] = useState(false);
   const { links } = header;
@@ -15,7 +18,6 @@ export default function Header() {
     `absolute ${isOpen ? "-translate-y-10" : "-translate-y-0"}`,
     `${isOpen ? "-translate-y-0" : "-translate-y-10"}`,
   ];
-
   const handleMenu = () => {
     setWantsToSee(!wantsToSee);
     if (isOpen) {
@@ -48,15 +50,18 @@ export default function Header() {
         <nav className="basis-1/2 max-w-5xl">
           <ul className="flex items-center h-full">
             {links.map((link) => (
-              <li key={link.text} className="basis-1/4 text-center">
+              <li key={link.text} className="basis-1/5 text-center">
                 <a
                   href={link.href}
-                  className="relative inline-block after:[content:''] after:absolute after:w-full after:scale-x-0 after:h-px after:bottom-0 after:left-0 after:bg-zinc-900 after:origin-bottom-right after:[transition:transform_0.25s_ease-out] hover:after:scale-x-100 hover:after:origin-bottom-left hover:after:motion-reduce:scale-x-0 hover:motion-reduce:underline"
+                  className="relative inline-block after:[content:''] after:absolute after:w-full after:scale-x-0 after:h-px after:bottom-0 after:left-0 after:bg-zinc-900 after:origin-bottom-right after:[transition:transform_0.25s_ease-out] hover:after:scale-x-100 hover:after:origin-bottom-left hover:after:motion-reduce:scale-x-0 hover:motion-reduce:underline dark:after:bg-zinc-500"
                 >
                   {link.text}
                 </a>
               </li>
             ))}
+            <li className="basis-1/5">
+              <ToggleTheme />
+            </li>
           </ul>
         </nav>
       </header>

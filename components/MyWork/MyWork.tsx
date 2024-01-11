@@ -1,6 +1,6 @@
 import { myWork } from "@/public/content";
 import Panel from "../UI/Panel";
-import Project from "./Project";
+import Project from "./Card";
 
 export default function MyWork() {
   const { h2, desc, projects } = myWork;

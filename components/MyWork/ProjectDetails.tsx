@@ -54,7 +54,7 @@ export default function ProjectDetails({
     >
       <div
         ref={elRef}
-        className={`basis-full h-full bg-zinc-50 p-4 flex flex-col rounded-primary shadow-lg shadow-zinc-800 max-w-sm max-h-1.5xl ${
+        className={`basis-full h-full bg-zinc-50 p-4 flex flex-col rounded-primary shadow-lg shadow-zinc-800 max-w-sm max-h-1.5xl dark:bg-dark-secondary-bg dark:text-zinc-200 ${
           wantsToClose
             ? "animate-slide-down-project-details-mobile lg:animate-slide-down-project-details-desktop"
             : "animate-show-project-details"

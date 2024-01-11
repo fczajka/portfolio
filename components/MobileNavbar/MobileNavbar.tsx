@@ -21,7 +21,7 @@ export default function MobileNavbar() {
 
   return (
     <>
-      <nav className="fixed w-full bottom-0 bg-zinc-50 shadow-custom shadow-zinc-400 h-12 z-30 min-[400px]:h-16 lg:hidden">
+      <nav className="fixed w-full bottom-0 bg-zinc-50 shadow-custom shadow-zinc-400 h-12 z-30 dark:bg-dark-secondary-bg dark:shadow-none dark:text-zinc-200 min-[400px]:h-16 lg:hidden">
         <Links isOpen={isOpen} handleMenu={handleMenu} />
       </nav>
       {isOpen && <Menu wantsToSee={wantsToSee} handleMenu={handleMenu} />}

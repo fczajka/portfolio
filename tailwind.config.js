@@ -16,6 +16,7 @@ module.exports = {
         "fade-in": "0.3s ease-in-out 1 both fade-in",
         "fade-out": "0.3s ease-in-out 1 both fade-out",
         jump: "15s ease-in-out infinite jump",
+        "jump-dark": "15s ease-in-out infinite jump-dark",
         line: "0.8s ease-in-out 1 both line",
         photo: "1s ease-out 1 both photo",
         "show-menu-desktop": "0.7s ease-in-out 1 both show-menu-desktop",
@@ -54,6 +55,9 @@ module.exports = {
         "primary-800": "#1e40af",
         "primary-900": "#1e3a8a",
         "primary-950": "#172554",
+        "dark-primary-bg": "#1f1f1f",
+        "dark-secondary-bg": "#28292a",
+        "dark-tertiary-bg": "#2d2f31",
       },
       fontFamily: {
         headline: ["var(--font-headline)", ...fontFamily.sans],
@@ -61,6 +65,7 @@ module.exports = {
       },
       height: {
         88: "22rem",
+        switch: "2rem",
       },
       keyframes: {
         "fade-in": {
@@ -82,7 +87,7 @@ module.exports = {
         jump: {
           "0%": {
             translate: "0px 0px",
-            color: "black",
+            color: "#18181b",
           },
           "2.5%": {
             translate: "0px -10px",
@@ -90,7 +95,7 @@ module.exports = {
           },
           "5%": {
             translate: "0px 0px",
-            color: "black",
+            color: "#18181b",
           },
           "7.5%": {
             translate: "0px -10px",
@@ -99,6 +104,31 @@ module.exports = {
           "10%": {
             translate: "0px 0px",
             color: "black",
+          },
+          "100%": {
+            translate: "0px 0px",
+          },
+        },
+        "jump-dark": {
+          "0%": {
+            translate: "0px 0px",
+            color: "#e4e4e7",
+          },
+          "2.5%": {
+            translate: "0px -10px",
+            color: "#3f3f46",
+          },
+          "5%": {
+            translate: "0px 0px",
+            color: "#e4e4e7",
+          },
+          "7.5%": {
+            translate: "0px -10px",
+            color: "#3f3f46",
+          },
+          "10%": {
+            translate: "0px 0px",
+            color: "#e4e4e7",
           },
           "100%": {
             translate: "0px 0px",
@@ -273,6 +303,9 @@ module.exports = {
             translate: "0px 0px",
           },
         },
+      },
+      width: {
+        switch: "3.75rem",
       },
       maxHeight: {
         112: "28rem",

@@ -1,6 +1,7 @@
 import { menu } from "@/public/content";
 import { headlineFont } from "@/public/fonts";
 import { MenuProps } from "@/public/types";
+import ToggleTheme from "./ToggleTheme";
 
 export default function Menu({ wantsToSee, handleMenu }: MenuProps) {
   const { icons, links } = menu;
@@ -12,10 +13,10 @@ export default function Menu({ wantsToSee, handleMenu }: MenuProps) {
   ];
 
   const linksDelays = [
-    "[animation-delay:1.2s]",
-    "[animation-delay:1.5s]",
-    "[animation-delay:1.8s]",
-    "[animation-delay:2.1s]",
+    "[animation-delay:1.3s]",
+    "[animation-delay:1.6s]",
+    "[animation-delay:1.9s]",
+    "[animation-delay:2.2s]",
   ];
 
   return (
@@ -24,7 +25,7 @@ export default function Menu({ wantsToSee, handleMenu }: MenuProps) {
         wantsToSee
           ? "animate-show-menu-mobile lg:animate-show-menu-desktop"
           : "animate-hide-menu-mobile lg:animate-hide-menu-desktop"
-      } motion-reduce:animate-none`}
+      } dark:bg-dark-primary-bg dark:text-zinc-200 motion-reduce:animate-none`}
     >
       <div className="flex items-center">
         <div className="w-24 h-1 bg-primary-200 animate-slide-in-bar [animation-delay:0.6s] motion-reduce:animate-none"></div>
@@ -45,6 +46,9 @@ export default function Menu({ wantsToSee, handleMenu }: MenuProps) {
               )}
             </li>
           ))}
+          <li>
+            <ToggleTheme style="animate-slide-in-right [animation-delay:1s] motion-reduce:animate-none lg:hidden" />
+          </li>
         </ul>
       </div>
       <div className="w-full h-full py-8 pb-24 lg:py-16">
