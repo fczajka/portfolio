@@ -14,7 +14,11 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth motion-reduce:scroll-auto">
       <head />
       <body>
-        <ThemeProvider attribute="class" disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
           <Header />
           {children}
           <MobileNavbar />

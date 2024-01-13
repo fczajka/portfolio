@@ -3,6 +3,7 @@ import { MdArrowUpward, MdPerson, MdPhoneEnabled } from "react-icons/md";
 import { BiCodeAlt } from "react-icons/bi";
 
 import Hero from "@/public/images/compressed/hero.webp";
+import HeroDark from "@/public/images/compressed/heroDark.webp";
 import Pizza from "@/public/images/compressed/pizza.webp";
 import Creme from "@/public/images/compressed/creme.webp";
 import Beef from "@/public/images/compressed/beef.webp";
@@ -76,6 +77,7 @@ export const landing = {
   h1: "Hi, my name is Franciszek",
   paragraph: "I am creative web developer from Poznań, Poland.",
   image: Hero,
+  imageDark: HeroDark,
   letters: ["S", "C", "R", "O", "L", "L"],
 };
 

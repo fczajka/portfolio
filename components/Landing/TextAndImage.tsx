@@ -4,17 +4,30 @@ import { headlineFont } from "@/public/fonts";
 import Image from "next/image";
 import useElementOnScreen from "@/hooks/useElementOnScreen";
 import { TextAndImageProps } from "@/public/types";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 export default function TextAndImage({
   h1,
   paragraph,
   image,
+  imageDark,
 }: TextAndImageProps) {
+  const [mounted, setMounted] = useState(false);
+  const { theme } = useTheme();
   const [containerRef, isVisible] = useElementOnScreen({
     root: null,
     rootMargin: "0px",
     threshold: 0.85,
   });
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <div
@@ -39,7 +52,7 @@ export default function TextAndImage({
       </div>
       <div className="basis-3/5 lg:basis-1/2 flex items-end max-w-md lg:max-w-xl lg:mx-auto">
         <Image
-          src={image}
+          src={theme === "light" ? image : imageDark}
           alt="Hero image"
           className={`opacity-0 [animation-delay:0.5s] motion-reduce:animate-none motion-reduce:opacity-100 ${
             isVisible && "animate-photo"
