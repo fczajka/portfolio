@@ -24,11 +24,13 @@ export default function ProjectDetails({
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    console.log(prefersReducedMotion);
     if (prefersReducedMotion) {
       setIsOpen(!isOpen);
       return;
     }
+    setTimeout(() => {
+      setIsOpen(!isOpen);
+    }, 300);
   };
 
   useEffect(() => {

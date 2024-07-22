@@ -36,7 +36,7 @@ module.exports = {
           "0.3s ease-in-out 1 both slide-down-project-details-mobile",
       },
       borderRadius: {
-        primary: "1.5rem",
+        primary: "2.6rem",
       },
       boxShadow: {
         "mobile-navbar": "0 -5px 6px 0px rgb(228, 228, 231, 1)",
