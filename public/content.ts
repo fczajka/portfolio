@@ -105,7 +105,7 @@ export const myWork = {
       links: [
         {
           text: "Live version",
-          href: "https://foodandnutrients.info/",
+          href: "https://fan-reactjs.vercel.app/",
         },
         {
           text: "Code on Github",
@@ -141,7 +141,7 @@ export const myWork = {
       links: [
         {
           text: "Live version",
-          href: "https://www.szczesliwy-puszek.pl/",
+          href: "https://szczesliwy-puszek.vercel.app/",
         },
         {
           text: "Code on Github",
