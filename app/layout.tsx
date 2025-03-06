@@ -3,13 +3,10 @@
 import Header from "@/components/Header/Header";
 import MobileNavbar from "@/components/MobileNavbar/MobileNavbar";
 import { ThemeProvider } from "next-themes";
+import { ReactNode } from "react";
 import "./globals.css";
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className="scroll-smooth motion-reduce:scroll-auto">
       <head />

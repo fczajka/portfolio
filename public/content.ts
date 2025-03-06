@@ -14,6 +14,9 @@ import FoodAndNutrientsDetails from "@/public/images/compressed/foodAndNutrients
 import SzczesliwyPuszekLanding from "@/public/images/compressed/szczesliwyPuszekLanding.webp";
 import SzczesliwyPuszekWhyUs from "@/public/images/compressed/szczesliwyPuszekWhyUs.webp";
 import SzczesliwyPuszekContact from "@/public/images/compressed/szczesliwyPuszekContact.webp";
+import KnowlaWebMain from "@/public/images/compressed/knowlaWebMain.webp";
+import KnowlaWebPlanet from "@/public/images/compressed/knowlaWebPlanet.webp";
+import KnowlaWebSearch from "@/public/images/compressed/knowlaWebSearch.webp";
 
 export const header = {
   links: [
@@ -104,10 +107,12 @@ export const myWork = {
       ],
       links: [
         {
+          disabled: false,
           text: "Live version",
           href: "https://fan-reactjs.vercel.app/",
         },
         {
+          disabled: false,
           text: "Code on Github",
           href: "https://github.com/fczajka/fan-reactjs/",
         },
@@ -140,10 +145,12 @@ export const myWork = {
       ],
       links: [
         {
+          disabled: false,
           text: "Live version",
           href: "https://szczesliwy-puszek.vercel.app/",
         },
         {
+          disabled: false,
           text: "Code on Github",
           href: "https://github.com/fczajka/szczesliwy-puszek-nextjs/",
         },
@@ -155,23 +162,31 @@ export const myWork = {
       },
     },
     {
-      name: "Lorem Ipsum",
+      name: "Knowla - Web",
       shortDesc:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
+        "Knowla - Web is an interactive platform that supports children with disabilities through game-based learning. Using multimedia and gamification, it boosts cognitive skills, creativity, and problem-solving.",
       longDesc:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem maxime molestiae sunt possimus iusto. Quibusdam dolorum, tempora cumque vero inventore odio non ex amet temporibus fuga expedita. Minima, quas sunt.",
+        "The goal of this project was to develop a fully functional and high-performance web platform that replicates the capabilities of Knoocker's desktop application. Built from the ground up using Next.js, TypeScript, Prisma, and Tailwind, this website delivers a seamless and intuitive user experience. As the only developer for most of the time, I was responsible for the development process, ensuring feature parity with the desktop application.",
       images: [
-        { image: Pizza, alt: "Pizza" },
-        { image: Creme, alt: "Creme" },
-        { image: Beef, alt: "Beef" },
+        { image: KnowlaWebMain, alt: "Main view of Knowla Web" },
+        { image: KnowlaWebPlanet, alt: "Planet view of Knowla Web" },
+        { image: KnowlaWebSearch, alt: "Search view of Knowla Web" },
       ],
       links: [
-        { text: "Live version", href: "https://github.com/" },
-        { text: "Code on Github", href: "https://github.com/" },
+        {
+          disabled: true,
+          text: "Live version",
+          href: "",
+        },
+        {
+          disabled: true,
+          text: "Code on Github",
+          href: "",
+        },
       ],
       buttonInfo: {
         text: "Read more",
-        aria: "Check the details of Food and Nutrients",
+        aria: "Check the details of Knowla Web",
         type: "button",
       },
     },

@@ -82,24 +82,26 @@ export default function ProjectDetails({
           </button>
         </div>
         <div className="flex flex-col items-stretch my-4 h-full lg:flex-row sm:my-6">
-          <div className="mb-2 sm:mb-3 lg:basis-1/2 lg:mb-0 lg:mr-3">
+          <div className="mb-2 sm:mb-3 basis-1/3 lg:basis-1/2 lg:mb-0 lg:mr-3">
             <p className="text-justify animate-fade-in [animation-delay:1s] motion-reduce:animate-none">
               {longDesc}
             </p>
           </div>
-          <div className="mt-2 grow rounded-primary sm:mt-3 lg:basis-1/2 lg:mt-0 lg:ml-3 lg:h-88">
+          <div className="mt-2 grow rounded-primary basis-2/3 sm:mt-3 lg:basis-1/2 lg:mt-0 lg:ml-3 lg:h-88">
             <Slider images={images} />
           </div>
         </div>
         <div className="flex justify-between items-center">
-          {links.map((link) => (
-            <Button
-              key={link.text}
-              text={link.text}
-              type="link"
-              href={link.href}
-            />
-          ))}
+          {links &&
+            links.map((link) => (
+              <Button
+                key={link.text}
+                text={link.text}
+                href={link.href}
+                type="link"
+                disabled={link.disabled}
+              />
+            ))}
         </div>
       </div>
     </div>

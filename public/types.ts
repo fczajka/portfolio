@@ -44,6 +44,7 @@ export type ProjectDetailsProps = {
   links: {
     text: string;
     href: string;
+    disabled?: boolean;
   }[];
 };
 
@@ -157,6 +158,7 @@ export type ButtonProps = {
   type: string;
   href?: string;
   style?: string;
+  disabled?: boolean;
 };
 
 export type MutableRef = MutableRefObject<HTMLDivElement | null>;
