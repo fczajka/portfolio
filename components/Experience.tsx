@@ -1,6 +1,6 @@
 "use client";
 
-import { ScrollControls, Scroll, Text, Float, Environment, ContactShadows } from "@react-three/drei";
+import { ScrollControls, Scroll, Text, Float, Environment, ContactShadows, MeshDistortMaterial } from "@react-three/drei";
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import { useThree } from "@react-three/fiber";
 import SkyBackground from "./3d/SkyBackground";
@@ -31,7 +31,8 @@ function FloatingElement({
 export default function Experience() {
   const { viewport } = useThree();
   const isMobile = viewport.width < 5;
-  const scaleFactor = isMobile ? 0.7 : 1;
+  // Reduce scaleFactor slightly as islands are bigger now
+  const scaleFactor = isMobile ? 0.6 : 0.8;
 
   return (
     <>
@@ -54,85 +55,85 @@ export default function Experience() {
         {/* 3D Content Layer */}
         <Scroll>
           {/* SECTION 1: HERO (Page 0) */}
-          <group position={[0, -1, 0]}>
-            <FloatIsland scale={0.9 * scaleFactor}>
+          <group position={[0, -2, 0]}> {/* Lowered slightly to center bigger island */}
+            <FloatIsland scale={scaleFactor}>
                {/* Avatar tracks mouse now */}
-              <Avatar scale={0.8} position={[0, -0.2, 0]} />
-              <Sparkles count={30} scale={3} color="#ffffff" />
+              <Avatar scale={1.2} position={[0, -0.2, 0]} /> {/* Bigger avatar */}
+              <Sparkles count={50} scale={6} color="#ffffff" />
             </FloatIsland>
-            <Cloud position={isMobile ? [-1.5, 2, -5] : [-3, 2, -5]} scale={0.5 * scaleFactor} />
-            <Cloud position={isMobile ? [1.5, 3, -4] : [3, 3, -4]} scale={0.5 * scaleFactor} />
+            <Cloud position={isMobile ? [-2.5, 3, -5] : [-5, 3, -5]} scale={0.8 * scaleFactor} />
+            <Cloud position={isMobile ? [2.5, 4, -4] : [5, 4, -4]} scale={0.8 * scaleFactor} />
 
-            <ContactShadows position={[0, -1.4, 0]} opacity={0.4} scale={10} blur={2.5} far={4} />
+            <ContactShadows position={[0, -2.5, 0]} opacity={0.4} scale={15} blur={3} far={10} />
           </group>
 
           {/* SECTION 2: ABOUT (Page 1) */}
-          <group position={[0, -viewport.height - 1.5, 0]}>
-            <FloatIsland scale={0.9 * scaleFactor} color="#f0abfc" bottomColor="#a21caf">
+          <group position={[0, -viewport.height - 2, 0]}>
+            <FloatIsland scale={scaleFactor} color="#f0abfc" bottomColor="#a21caf">
               <FloatingElement>
-                <mesh position={[-1.2 * scaleFactor, 1, 0.5]}>
-                  <boxGeometry args={[0.7, 0.7, 0.7].map(s => s * scaleFactor) as [number, number, number]} />
+                <mesh position={[-1.5, 1, 0.5]}>
+                  <boxGeometry args={[1, 1, 1]} />
                   <MeshDistortMaterial color="#f97316" speed={2} distort={0.2} />
                 </mesh>
               </FloatingElement>
               <FloatingElement speed={2} delay={0.2}>
-                <mesh position={[1.2 * scaleFactor, 1.5, -0.5]}>
-                  <sphereGeometry args={[0.4 * scaleFactor]} />
+                <mesh position={[1.5, 1.5, -0.5]}>
+                  <sphereGeometry args={[0.6]} />
                   <meshStandardMaterial color="#ef4444" roughness={0.2} metalness={0.5} />
                 </mesh>
               </FloatingElement>
               <FloatingElement speed={1.5} delay={0.4}>
-                 <mesh position={[0, 2 * scaleFactor, 0]}>
-                    <torusGeometry args={[0.3 * scaleFactor, 0.1 * scaleFactor, 16, 32]} />
+                 <mesh position={[0, 2.5, 0]}>
+                    <torusGeometry args={[0.5, 0.2, 16, 32]} />
                     <meshStandardMaterial color="#eab308" emissive="#eab308" emissiveIntensity={2} toneMapped={false} />
                  </mesh>
               </FloatingElement>
-              <Sparkles count={20} scale={4} color="#f0abfc" />
+              <Sparkles count={40} scale={6} color="#f0abfc" />
             </FloatIsland>
-            <ContactShadows position={[0, -1.4, 0]} opacity={0.4} scale={10} blur={2.5} far={4} />
+            <ContactShadows position={[0, -2.5, 0]} opacity={0.4} scale={15} blur={3} far={10} />
           </group>
 
           {/* SECTION 3: WORK (Page 2) */}
-          <group position={[0, -viewport.height * 2 - 1.5, 0]}>
-            <FloatIsland scale={0.9 * scaleFactor} color="#93c5fd" bottomColor="#1e40af">
+          <group position={[0, -viewport.height * 2 - 2, 0]}>
+            <FloatIsland scale={scaleFactor} color="#93c5fd" bottomColor="#1e40af">
               <FloatingElement>
-                <mesh position={[-1.2 * scaleFactor, 1.5, 0.5]}>
-                  <boxGeometry args={[1, 0.7, 0.1].map(s => s * scaleFactor) as [number, number, number]} />
+                <mesh position={[-1.5, 1.5, 0.5]}>
+                  <boxGeometry args={[1.2, 0.8, 0.2]} />
                   <meshStandardMaterial color="#0f172a" />
                 </mesh>
               </FloatingElement>
               <FloatingElement speed={1.5} delay={1}>
-                <mesh position={[1.2 * scaleFactor, 1.2, 0.5]}>
-                  <boxGeometry args={[1, 0.7, 0.1].map(s => s * scaleFactor) as [number, number, number]} />
+                <mesh position={[1.5, 1.2, 0.5]}>
+                  <boxGeometry args={[1.2, 0.8, 0.2]} />
                   <meshStandardMaterial color="#0f172a" />
                 </mesh>
               </FloatingElement>
               <FloatingElement speed={1.2} delay={0.5}>
-                <mesh position={[0, 2 * scaleFactor, -0.5]}>
-                  <boxGeometry args={[1.5, 1, 0.1].map(s => s * scaleFactor) as [number, number, number]} />
+                <mesh position={[0, 2.5, -0.5]}>
+                  <boxGeometry args={[2, 1.2, 0.2]} />
                   <meshStandardMaterial color="#0f172a" />
                 </mesh>
               </FloatingElement>
-              <Sparkles count={20} scale={4} color="#93c5fd" />
+              <Sparkles count={40} scale={6} color="#93c5fd" />
             </FloatIsland>
-            <ContactShadows position={[0, -1.4, 0]} opacity={0.4} scale={10} blur={2.5} far={4} />
+            <ContactShadows position={[0, -2.5, 0]} opacity={0.4} scale={15} blur={3} far={10} />
           </group>
 
           {/* SECTION 4: CONTACT (Page 3) */}
-          <group position={[0, -viewport.height * 3 - 1.5, 0]}>
-            <FloatIsland scale={0.9 * scaleFactor} color="#86efac" bottomColor="#15803d">
-              <mesh position={[0, 0.5, 0]}>
-                <cylinderGeometry args={[0.05, 0.05, 2].map(s => s * scaleFactor) as [number, number, number]} />
+          <group position={[0, -viewport.height * 3 - 2, 0]}>
+            <FloatIsland scale={scaleFactor} color="#86efac" bottomColor="#15803d">
+              <mesh position={[0, 1, 0]}>
+                <cylinderGeometry args={[0.1, 0.1, 2]} />
                 <meshStandardMaterial color="#475569" />
               </mesh>
-              <mesh position={[0, 1.5, 0]}>
-                <boxGeometry args={[0.6, 0.4, 0.8].map(s => s * scaleFactor) as [number, number, number]} />
+              <mesh position={[0, 2.2, 0]}>
+                <boxGeometry args={[1, 0.6, 1.2]} />
                 <meshStandardMaterial color="#ef4444" />
               </mesh>
-              <Sparkles count={30} scale={3} color="#86efac" />
+              <Sparkles count={50} scale={6} color="#86efac" />
             </FloatIsland>
-            <Cloud position={isMobile ? [1.5, 3, -3] : [2, 3, -3]} scale={0.6 * scaleFactor} />
-            <ContactShadows position={[0, -1.4, 0]} opacity={0.4} scale={10} blur={2.5} far={4} />
+            <Cloud position={isMobile ? [2, 3, -3] : [4, 4, -3]} scale={0.8 * scaleFactor} />
+            <ContactShadows position={[0, -2.5, 0]} opacity={0.4} scale={15} blur={3} far={10} />
           </group>
         </Scroll>
 
@@ -142,6 +143,3 @@ export default function Experience() {
     </>
   );
 }
-
-// Need to import this separately as it was missing in the file
-import { MeshDistortMaterial } from "@react-three/drei";
