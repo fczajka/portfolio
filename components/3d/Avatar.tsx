@@ -2,36 +2,70 @@
 
 import React, { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Group, Vector3 } from "three";
+import { Group } from "three";
+import * as THREE from "three";
 
-export default function Avatar(props: any) {
+export default function Avatar({ animation = "Idle", ...props }: any) {
   const innerGroup = useRef<Group>(null);
   const headGroup = useRef<Group>(null);
   const leftArm = useRef<Group>(null);
   const rightArm = useRef<Group>(null);
+  const leftLeg = useRef<Group>(null);
+  const rightLeg = useRef<Group>(null);
 
   useFrame((state) => {
-    // Idle Animation: Float up/down
-    if (innerGroup.current) {
-      innerGroup.current.position.y = Math.sin(state.clock.elapsedTime * 2) * 0.05;
-    }
+    const t = state.clock.elapsedTime;
 
-    // Look at mouse (clamped)
+    // Look at mouse (clamped) - Always active
     if (headGroup.current) {
       const targetX = (state.mouse.x * 1);
-      const targetY = (state.mouse.y * 0.5) + 1.6;
+      // const targetY = (state.mouse.y * 0.5) + 1.6;
       const currentRotationY = headGroup.current.rotation.y;
       const currentRotationX = headGroup.current.rotation.x;
 
-      // Smooth interpolation for head
       headGroup.current.rotation.y = THREE.MathUtils.lerp(currentRotationY, targetX, 0.1);
       headGroup.current.rotation.x = THREE.MathUtils.lerp(currentRotationX, -state.mouse.y * 0.5, 0.1);
     }
 
-    // Arm Sway
-    if (leftArm.current && rightArm.current) {
-        leftArm.current.rotation.z = -0.5 + Math.sin(state.clock.elapsedTime * 3) * 0.1;
-        rightArm.current.rotation.z = 0.5 - Math.sin(state.clock.elapsedTime * 3) * 0.1;
+    if (animation === "Walking") {
+        const speed = 10;
+        // Legs
+        if(leftLeg.current) leftLeg.current.rotation.x = Math.sin(t * speed) * 0.5;
+        if(rightLeg.current) rightLeg.current.rotation.x = Math.sin(t * speed + Math.PI) * 0.5;
+
+        // Arms (Opposite to legs)
+        if(leftArm.current) {
+            leftArm.current.rotation.x = Math.sin(t * speed + Math.PI) * 0.5;
+            leftArm.current.rotation.z = -0.1; // Tuck in slightly
+        }
+        if(rightArm.current) {
+            rightArm.current.rotation.x = Math.sin(t * speed) * 0.5;
+            rightArm.current.rotation.z = 0.1;
+        }
+
+        // Bobbing
+        if (innerGroup.current) {
+            innerGroup.current.position.y = Math.sin(t * speed * 2) * 0.05;
+        }
+
+    } else {
+        // Idle Animation
+        if (innerGroup.current) {
+          innerGroup.current.position.y = Math.sin(t * 2) * 0.05;
+        }
+
+        // Arm Sway
+        if (leftArm.current && rightArm.current) {
+            leftArm.current.rotation.z = -0.5 + Math.sin(t * 3) * 0.1;
+            rightArm.current.rotation.z = 0.5 - Math.sin(t * 3) * 0.1;
+            // Reset walking rotation
+            leftArm.current.rotation.x = THREE.MathUtils.lerp(leftArm.current.rotation.x, 0, 0.1);
+            rightArm.current.rotation.x = THREE.MathUtils.lerp(rightArm.current.rotation.x, 0, 0.1);
+        }
+
+        // Reset Legs
+        if(leftLeg.current) leftLeg.current.rotation.x = THREE.MathUtils.lerp(leftLeg.current.rotation.x, 0, 0.1);
+        if(rightLeg.current) rightLeg.current.rotation.x = THREE.MathUtils.lerp(rightLeg.current.rotation.x, 0, 0.1);
     }
   });
 
@@ -40,19 +74,14 @@ export default function Avatar(props: any) {
       <group ref={innerGroup}>
         {/* Head Group */}
         <group ref={headGroup} position={[0, 1.45, 0]}>
-          {/* Head Shape */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[0.5, 0.55, 0.5]} />
             <meshStandardMaterial color="#ffccaa" />
           </mesh>
-
-          {/* Hair / Cap */}
           <mesh position={[0, 0.3, 0]} castShadow>
              <boxGeometry args={[0.55, 0.15, 0.55]} />
              <meshStandardMaterial color="#333" />
           </mesh>
-
-          {/* Eyes */}
           <mesh position={[0.12, 0.05, 0.26]}>
             <sphereGeometry args={[0.04]} />
             <meshStandardMaterial color="black" />
@@ -61,8 +90,6 @@ export default function Avatar(props: any) {
             <sphereGeometry args={[0.04]} />
             <meshStandardMaterial color="black" />
           </mesh>
-
-          {/* Smile */}
           <mesh position={[0, -0.1, 0.26]} rotation={[0,0,Math.PI]}>
              <torusGeometry args={[0.08, 0.02, 16, 16, Math.PI]} />
              <meshBasicMaterial color="black" />
@@ -75,7 +102,7 @@ export default function Avatar(props: any) {
           <meshStandardMaterial color="#3b82f6" />
         </mesh>
 
-        {/* Laptop/Logo on Shirt */}
+        {/* Logo */}
         <mesh position={[0, 0.9, 0.16]}>
            <planeGeometry args={[0.2, 0.2]} />
            <meshBasicMaterial color="white" />
@@ -87,7 +114,6 @@ export default function Avatar(props: any) {
                 <boxGeometry args={[0.15, 0.6, 0.15]} />
                 <meshStandardMaterial color="#3b82f6" />
             </mesh>
-            {/* Hand */}
             <mesh position={[0, -0.65, 0]}>
                 <sphereGeometry args={[0.1]} />
                 <meshStandardMaterial color="#ffccaa" />
@@ -99,10 +125,24 @@ export default function Avatar(props: any) {
                 <boxGeometry args={[0.15, 0.6, 0.15]} />
                 <meshStandardMaterial color="#3b82f6" />
             </mesh>
-             {/* Hand */}
             <mesh position={[0, -0.65, 0]}>
                 <sphereGeometry args={[0.1]} />
                 <meshStandardMaterial color="#ffccaa" />
+            </mesh>
+        </group>
+
+        {/* Legs - New addition */}
+        <group ref={leftLeg} position={[0.15, 0.3, 0]}>
+            <mesh position={[0, -0.3, 0]} castShadow>
+                <boxGeometry args={[0.15, 0.6, 0.15]} />
+                <meshStandardMaterial color="#1e3a8a" /> {/* Darker blue pants */}
+            </mesh>
+        </group>
+
+        <group ref={rightLeg} position={[-0.15, 0.3, 0]}>
+             <mesh position={[0, -0.3, 0]} castShadow>
+                <boxGeometry args={[0.15, 0.6, 0.15]} />
+                <meshStandardMaterial color="#1e3a8a" />
             </mesh>
         </group>
 
@@ -110,5 +150,3 @@ export default function Avatar(props: any) {
     </group>
   );
 }
-
-import * as THREE from "three";
