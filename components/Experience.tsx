@@ -36,14 +36,14 @@ export default function Experience() {
   return (
     <>
       {/* Lighting & Environment */}
-      <ambientLight intensity={1} />
-      <Environment preset="sunset" blur={1} />
-      <directionalLight position={[10, 20, 10]} intensity={1} castShadow />
+      <ambientLight intensity={0.5} />
+      <Environment preset="sunset" blur={1} background={false} />
+      <directionalLight position={[5, 10, 5]} intensity={0.8} castShadow />
 
       {/* Post Processing */}
       <EffectComposer disableNormalPass>
-        <Bloom luminanceThreshold={1} mipmapBlur intensity={1.5} />
-        <Vignette eskil={false} offset={0.1} darkness={0.5} />
+        <Bloom luminanceThreshold={1.2} mipmapBlur intensity={0.5} radius={0.5} />
+        <Vignette eskil={false} offset={0.1} darkness={0.4} />
       </EffectComposer>
 
       <SkyBackground />

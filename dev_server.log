@@ -10,11 +10,11 @@
   ▲ Next.js 13.5.6
   - Local:        http://localhost:3000
 
- ✓ Ready in 2.9s
+ ✓ Ready in 2.8s
  ○ Compiling /page ...
 Browserslist: caniuse-lite is outdated. Please run:
   npx update-browserslist-db@latest
   Why you should do it regularly: https://github.com/browserslist/update-db#readme
- ✓ Compiled /page in 21s (2656 modules)
- ✓ Compiled in 3.1s (1288 modules)
+ ✓ Compiled /page in 19.2s (2656 modules)
+ ✓ Compiled in 3.6s (1288 modules)
 [?25h
