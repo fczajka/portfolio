@@ -1,0 +1,20 @@
+
+> portfolio@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+ ⚠ Invalid next.config.js options detected:
+ ⚠     "env.SERVICE_ID" is missing, expected string
+ ⚠     "env.TEMPLATE_ID" is missing, expected string
+ ⚠     "env.PUBLIC_KEY" is missing, expected string
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+  ▲ Next.js 13.5.6
+  - Local:        http://localhost:3001
+
+ ✓ Ready in 2.1s
+ ○ Compiling /page ...
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+ ✓ Compiled /page in 6.6s (2658 modules)
+ ✓ Compiled in 1778ms (1289 modules)
