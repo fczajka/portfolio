@@ -3,7 +3,7 @@ import { BsDot } from "react-icons/bs";
 
 export default function Indicators({ indexes, currentIndex }: IndicatorsProps) {
   return (
-    <div className="absolute w-full bottom-1">
+    <div className="w-full pt-1">
       <ul className="flex justify-center text-3xl dark:text-zinc-900">
         {indexes.map((index) => (
           <li

@@ -2,9 +2,12 @@ import { StaticImageData } from "next/image";
 import { Dispatch, MutableRefObject, SetStateAction } from "react";
 import { IconType } from "react-icons";
 
+export type ImageFormat = "3:4" | "1:1";
+
 export type ProjectProps = {
   name: string;
   shortDesc: string;
+  techStack: string[];
   longDesc: string;
   images: MyWorkPhotos;
   links: {
@@ -18,6 +21,8 @@ export type ProjectProps = {
     type: string;
     style?: string;
   };
+  logo: StaticImageData;
+  imagesInFormat: ImageFormat;
 };
 
 export type MenuProps = {
@@ -40,12 +45,14 @@ export type ProjectDetailsProps = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   name: string;
   longDesc: string;
+  techStack: string[];
   images: MyWorkPhotos;
   links: {
     text: string;
     href: string;
     disabled?: boolean;
   }[];
+  imagesInFormat: ImageFormat;
 };
 
 export type UseElementOnScreenProps = {
@@ -121,9 +128,9 @@ export type MyWorkPhotos = {
   alt: string;
 }[];
 
-export type SliderProps = { images: MyWorkPhotos };
+export type SliderProps = { images: MyWorkPhotos; imagesInFormat: ImageFormat };
 
-export type ImagesProps = { images: MyWorkPhotos; currentIndex: number };
+export type ImagesProps = { images: MyWorkPhotos; currentIndex: number; imagesInFormat: ImageFormat };
 
 export type ButtonsProps = {
   currentIndex: number;

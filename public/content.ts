@@ -8,15 +8,23 @@ import Pizza from "@/public/images/compressed/pizza.webp";
 import Creme from "@/public/images/compressed/creme.webp";
 import Beef from "@/public/images/compressed/beef.webp";
 
-import FoodAndNutrientsLanding from "@/public/images/compressed/foodAndNutrientsLanding.webp";
-import FoodAndNutrientsSearch from "@/public/images/compressed/foodAndNutrientsSearch.webp";
-import FoodAndNutrientsDetails from "@/public/images/compressed/foodAndNutrientsDetails.webp";
-import SzczesliwyPuszekLanding from "@/public/images/compressed/szczesliwyPuszekLanding.webp";
-import SzczesliwyPuszekWhyUs from "@/public/images/compressed/szczesliwyPuszekWhyUs.webp";
-import SzczesliwyPuszekContact from "@/public/images/compressed/szczesliwyPuszekContact.webp";
+import KipprHomeDark from "@/public/images/compressed/kipprHomeDark.webp";
+import KipprHomeLight from "@/public/images/compressed/kipprHomeLight.webp";
+import KipprPantryScreen from "@/public/images/compressed/kipprPantryScreen.webp";
+import KipprRecipes from "@/public/images/compressed/kipprRecipes.webp";
+import KipprGeneratedRecipe from "@/public/images/compressed/kipprGeneratedRecipe.webp";
+import KipprShoppingList from "@/public/images/compressed/kipprShoppingList.webp";
+import StorisHomeScreen from "@/public/images/compressed/storisHomeScreen.webp";
+import StorisLibraryDark from "@/public/images/compressed/storisLibraryDark.webp";
+import StorisLibraryLight from "@/public/images/compressed/storisLibraryLight.webp";
+import StorisReadingScreen from "@/public/images/compressed/storisReadingScreen.webp";
+import StorisTextSettings from "@/public/images/compressed/storisTextSettings.webp";
 import KnowlaWebMain from "@/public/images/compressed/knowlaWebMain.webp";
 import KnowlaWebPlanet from "@/public/images/compressed/knowlaWebPlanet.webp";
 import KnowlaWebSearch from "@/public/images/compressed/knowlaWebSearch.webp";
+import KipprLogo from "@/public/images/compressed/kippr_logo.webp";
+import StorisLogo from "@/public/images/compressed/storis_logo.webp";
+import KnoockerLogo from "@/public/images/compressed/knoocker_logo.webp";
 
 export const header = {
   links: [
@@ -89,30 +97,48 @@ export const myWork = {
   desc: "My focus on building fast and aesthetically pleasing projects allows me to deliver engaging and compelling user experiences, while also ensuring that my solutions are both functional and efficient.",
   projects: [
     {
-      name: "Food and Nutrients",
+      name: "Kippr",
       shortDesc:
-        "Food and Nutrients is a user-friendly web application that provides comprehensive nutrition information for any food and features a convenient meal calculator for tracking nutritional intake.",
+        "Kippr is an offline-first pantry tracker and inventory mobile application. It helps you easily manage your kitchen stock, reduce food waste, save money, and organize your groceries right from your phone.",
+      techStack: ["Flutter", "PowerSync", "SQLite", "Supabase", "Riverpod"],
       longDesc:
-        "The development of this web based application was possible through the integration of the highly reliable Food Data Central API. As an official website of the United States government, the Food Data Central API guarantees that all nutritional information retrieved through this application is of the highest quality and accuracy. In order to create a seamless and user-friendly experience, this project was built using a technologies such as ReactJS, TypeScript, Tailwind, and Redux Toolkit.",
+        "Kippr is an offline-first pantry tracking mobile application engineered with Flutter. Built on a local-first architecture using PowerSync, SQLite, and Supabase, it ensures flawless offline utility with real-time cloud synchronization. The app maximizes user efficiency by integrating Mobile Scanner, Google MLKit OCR, and the OpenFoodFacts API for smart barcode and receipt scanning. State management is handled via Riverpod, while local data uses Hive CE. Complete with RevenueCat monetization, automated expiry alerts, and Firebase analytics, Kippr delivers a scalable, production-ready SaaS product.",
       images: [
         {
-          image: FoodAndNutrientsLanding,
-          alt: "Landing page of Food and Nutrients",
+          image: KipprHomeDark,
+          alt: "Home screen of Kippr in dark mode",
         },
-        { image: FoodAndNutrientsSearch, alt: "Filled search input" },
+        { image: KipprHomeLight, alt: "Home screen of Kippr in light mode" },
         {
-          image: FoodAndNutrientsDetails,
-          alt: "Details page of Food and Nutrients",
+          image: KipprPantryScreen,
+          alt: "Pantry screen of Kippr",
+        },
+        {
+          image: KipprRecipes,
+          alt: "Recipes screen of Kippr",
+        },
+        {
+          image: KipprGeneratedRecipe,
+          alt: "Generated recipe screen of Kippr",
+        },
+        {
+          image: KipprShoppingList,
+          alt: "Shopping list screen of Kippr",
         },
       ],
       links: [
         {
           disabled: false,
-          text: "Live version",
-          href: "https://fan-reactjs.vercel.app/",
+          text: "Google Play",
+          href: "https://play.google.com/store/apps/details?id=com.lapwingsoftware.kippr",
         },
         {
           disabled: false,
+          text: "App Store",
+          href: "https://apps.apple.com/pl/app/kippr-pantry-tracker/id6761077705",
+        },
+        {
+          disabled: true,
           text: "Code on Github",
           href: "https://github.com/fczajka/fan-reactjs/",
         },
@@ -122,35 +148,57 @@ export const myWork = {
         aria: "Check the details of Food and Nutrients",
         type: "button",
       },
+      logo: KipprLogo,
+      imagesInFormat: "3:4" as const,
     },
     {
-      name: "Szczesliwy Puszek",
+      name: "Storis",
       shortDesc:
-        "Szczesliwy Puszek is a portfolio website that has been specifically designed to showcase the work of newly emerged Samoyed dog breeders.",
+        "Storis is a mobile platform transforming interactive storytelling via edge AI. It leverages on-device machine learning to trigger dynamic, real-time audio soundscapes as a user reads aloud.",
+      techStack: [
+        "Flutter",
+        "Sherpa ONNX",
+        "Supabase",
+        "Riverpod",
+        "RevenueCat",
+      ],
       longDesc:
-        "The primary objective of this project was to develop a highly functional and aesthetically pleasing website that provides a seamless user experience. To achieve this objective, the website was developed using NextJS in combination with technologies such as Tailwind, EmailJS, and React Toastify. This platform offers the owners a powerful and versatile tool for showcasing their dogs and services.",
+        "Storis is an interactive mobile platform transforming digital storytelling via Flutter. I used the Sherpa ONNX engine for edge AI alongside record and audioplayers, it triggers real-time audio soundscapes as a user reads aloud. Designed for scale, the architecture pairs Riverpod for state management with Supabase for cloud data and seamless Google/Apple authentication. With RevenueCat integration for subscription monetization, Envied for asset security, and SharedPreferences caching, Storis stands as a production-ready SaaS product at the intersection of AI and edutainment.",
       images: [
         {
-          image: SzczesliwyPuszekLanding,
-          alt: "Landing page of Szczesliwy Puszek",
+          image: StorisHomeScreen,
+          alt: "Home screen of Storis",
         },
         {
-          image: SzczesliwyPuszekWhyUs,
-          alt: "Why Us section of Szczesliwy Puszek",
+          image: StorisLibraryDark,
+          alt: "Library screen of Storis in dark mode",
         },
         {
-          image: SzczesliwyPuszekContact,
-          alt: "Contact section of Szczesliwy Puszek",
+          image: StorisLibraryLight,
+          alt: "Library screen of Storis in light mode",
+        },
+        {
+          image: StorisReadingScreen,
+          alt: "Reading screen of Storis",
+        },
+        {
+          image: StorisTextSettings,
+          alt: "Text settings screen of Storis",
         },
       ],
       links: [
         {
-          disabled: false,
-          text: "Live version",
-          href: "https://szczesliwy-puszek.vercel.app/",
+          disabled: true,
+          text: "Google Play",
+          href: "",
         },
         {
           disabled: false,
+          text: "App Store",
+          href: "https://apps.apple.com/us/app/storis-bedtime-stories/id6773403059",
+        },
+        {
+          disabled: true,
           text: "Code on Github",
           href: "https://github.com/fczajka/szczesliwy-puszek-nextjs/",
         },
@@ -160,11 +208,14 @@ export const myWork = {
         aria: "Check the details of Szczesliwy Puszek",
         type: "button",
       },
+      logo: StorisLogo,
+      imagesInFormat: "3:4" as const,
     },
     {
       name: "Knowla - Web",
       shortDesc:
         "Knowla - Web is an interactive platform that supports children with disabilities through game-based learning. Using multimedia and gamification, it boosts cognitive skills, creativity, and problem-solving.",
+      techStack: ["Next.js", "TypeScript", "Prisma", "Tailwind CSS"],
       longDesc:
         "The goal of this project was to develop a fully functional and high-performance web platform that replicates the capabilities of Knoocker's desktop application. Built from the ground up using Next.js, TypeScript, Prisma, and Tailwind, this website delivers a seamless and intuitive user experience. As the only developer for most of the time, I was responsible for the development process, ensuring feature parity with the desktop application.",
       images: [
@@ -189,6 +240,8 @@ export const myWork = {
         aria: "Check the details of Knowla Web",
         type: "button",
       },
+      logo: KnoockerLogo,
+      imagesInFormat: "1:1" as const,
     },
   ],
 };

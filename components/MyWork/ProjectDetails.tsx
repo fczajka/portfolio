@@ -5,16 +5,19 @@ import { headlineFont } from "@/public/fonts";
 import { MutableRef, ProjectDetailsProps } from "@/public/types";
 import { useEffect, useRef, useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
-import Button from "../UI/Button";
+import ProjectLinks from "./ProjectLinks";
 import Slider from "./Slider/Slider";
+import TechStackPills from "./TechStackPills";
 
 export default function ProjectDetails({
   isOpen,
   setIsOpen,
   name,
   longDesc,
+  techStack,
   images,
   links,
+  imagesInFormat,
 }: ProjectDetailsProps) {
   const elRef: MutableRef = useRef<HTMLDivElement>(null);
   const [wantsToClose, setWantsToClose] = useState(false);
@@ -61,11 +64,11 @@ export default function ProjectDetails({
     >
       <div
         ref={elRef}
-        className={`basis-full h-full bg-zinc-50 p-4 flex flex-col rounded-primary shadow-lg shadow-zinc-800 max-w-sm max-h-1.5xl dark:bg-dark-secondary-bg dark:text-zinc-200 ${
+        className={`basis-full h-full bg-zinc-50 p-4 flex flex-col rounded-primary shadow-lg shadow-zinc-800 max-w-sm max-h-2xl dark:bg-dark-secondary-bg dark:text-zinc-200 ${
           wantsToClose
             ? "animate-slide-down-project-details-mobile lg:animate-slide-down-project-details-desktop"
             : "animate-show-project-details"
-        } motion-reduce:animate-none sm:p-6 sm:max-h-3xl lg:h-min lg:max-w-3xl`}
+        } motion-reduce:animate-none sm:p-6 sm:max-h-4xl lg:h-min lg:max-w-3xl xl:max-w-4xl`}
       >
         <div className="flex justify-between">
           <h3
@@ -81,28 +84,26 @@ export default function ProjectDetails({
             <AiFillCloseCircle />
           </button>
         </div>
-        <div className="flex flex-col items-stretch my-4 h-full lg:flex-row sm:my-6">
-          <div className="mb-2 sm:mb-3 basis-1/3 lg:basis-1/2 lg:mb-0 lg:mr-3">
+        <div className="flex flex-col items-stretch my-4 h-full lg:flex-row sm:mt-6 sm:mb-2">
+          <div
+            className={`mb-2 sm:mb-3 basis-1/3 ${
+              imagesInFormat === "3:4" ? "lg:basis-[60%]" : "lg:basis-1/2"
+            } lg:mb-0 lg:mr-3`}
+          >
             <p className="text-justify animate-fade-in [animation-delay:1s] motion-reduce:animate-none">
               {longDesc}
             </p>
+            <TechStackPills techStack={techStack} />
           </div>
-          <div className="mt-2 grow rounded-primary basis-2/3 sm:mt-3 lg:basis-1/2 lg:mt-0 lg:ml-3 lg:h-88">
-            <Slider images={images} />
+          <div
+            className={`mt-2 grow rounded-primary sm:mt-3 lg:mt-0 lg:ml-3 basis-2/3 ${
+              imagesInFormat === "3:4" ? "lg:basis-[40%]" : "lg:basis-1/2"
+            }`}
+          >
+            <Slider images={images} imagesInFormat={imagesInFormat} />
           </div>
         </div>
-        <div className="flex justify-between items-center">
-          {links &&
-            links.map((link) => (
-              <Button
-                key={link.text}
-                text={link.text}
-                href={link.href}
-                type="link"
-                disabled={link.disabled}
-              />
-            ))}
-        </div>
+        <ProjectLinks links={links} />
       </div>
     </div>
   );
