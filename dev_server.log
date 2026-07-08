@@ -1,0 +1,26 @@
+
+> portfolio@0.1.0 dev
+> next dev
+
+ ⚠ Invalid next.config.js options detected:
+ ⚠     "env.SERVICE_ID" is missing, expected string
+ ⚠     "env.TEMPLATE_ID" is missing, expected string
+ ⚠     "env.PUBLIC_KEY" is missing, expected string
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+  ▲ Next.js 13.5.6
+  - Local:        http://localhost:3000
+
+ ✓ Ready in 2.8s
+ ○ Compiling /page ...
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+ ✓ Compiled /page in 13.3s (2656 modules)
+ ✓ Compiled in 3.6s (1288 modules)
+ ✓ Compiled in 9.6s (1288 modules)
+ ✓ Compiled in 7.7s (2658 modules)
+ ✓ Compiled in 1060ms (2658 modules)
+ ✓ Compiled in 2.2s (2658 modules)
+ ✓ Compiled /not-found in 1821ms (2649 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/app/.next/cache/webpack/client-development/4.pack.gz_' -> '/app/.next/cache/webpack/client-development/4.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/app/.next/cache/webpack/server-development/3.pack.gz_' -> '/app/.next/cache/webpack/server-development/3.pack.gz'

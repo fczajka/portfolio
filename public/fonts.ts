@@ -1,15 +1,12 @@
-import { Lilita_One, Source_Sans_3 } from "next/font/google";
-
-export const headlineFont = Lilita_One({
-  weight: "400",
-  subsets: ["latin"],
+// Mock font objects to avoid fetching from Google Fonts in CI/Sandbox
+export const headlineFont = {
   variable: "--font-headline",
-  display: "swap",
-});
+  className: "font-headline",
+  style: { fontFamily: "sans-serif" },
+};
 
-export const defaultFont = Source_Sans_3({
-  weight: "400",
-  subsets: ["latin"],
+export const defaultFont = {
   variable: "--font-default",
-  display: "swap",
-});
+  className: "font-default",
+  style: { fontFamily: "sans-serif" },
+};
