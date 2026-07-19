@@ -2,22 +2,10 @@ import { menu } from "@/public/content";
 import { headlineFont } from "@/public/fonts";
 import { MenuProps } from "@/public/types";
 import ToggleTheme from "./ToggleTheme";
+import { iconsDelays, linksDelays } from "./constants";
 
 export default function Menu({ wantsToSee, handleMenu }: MenuProps) {
   const { icons, links } = menu;
-
-  const iconsDelays = [
-    "[animation-delay:0.7s]",
-    "[animation-delay:0.8s]",
-    "[animation-delay:0.9s]",
-  ];
-
-  const linksDelays = [
-    "[animation-delay:1.3s]",
-    "[animation-delay:1.6s]",
-    "[animation-delay:1.9s]",
-    "[animation-delay:2.2s]",
-  ];
 
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",

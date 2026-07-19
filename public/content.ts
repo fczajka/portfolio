@@ -89,7 +89,14 @@ export const landing = {
   paragraph: "I am creative web developer from Poznań, Poland.",
   image: Hero,
   imageDark: HeroDark,
-  letters: ["S", "C", "R", "O", "L", "L"],
+  letters: [
+    { id: "0", letter: "S" },
+    { id: "1", letter: "C" },
+    { id: "2", letter: "R" },
+    { id: "3", letter: "O" },
+    { id: "4", letter: "L" },
+    { id: "5", letter: "L" },
+  ],
 };
 
 export const myWork = {

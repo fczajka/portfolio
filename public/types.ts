@@ -68,10 +68,6 @@ export type TextAndImageProps = {
   imageDark: StaticImageData;
 };
 
-export type ScrollProps = {
-  letters: string[];
-};
-
 export type PanelProps = {
   headline: string;
   desc: string;
@@ -130,7 +126,11 @@ export type MyWorkPhotos = {
 
 export type SliderProps = { images: MyWorkPhotos; imagesInFormat: ImageFormat };
 
-export type ImagesProps = { images: MyWorkPhotos; currentIndex: number; imagesInFormat: ImageFormat };
+export type ImagesProps = {
+  images: MyWorkPhotos;
+  currentIndex: number;
+  imagesInFormat: ImageFormat;
+};
 
 export type ButtonsProps = {
   currentIndex: number;

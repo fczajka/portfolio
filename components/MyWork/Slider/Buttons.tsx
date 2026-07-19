@@ -8,6 +8,7 @@ export default function Buttons({
   return (
     <div className="absolute flex w-full top-1/2 -translate-y-1/2 justify-between text-2xl sm:text-3xl">
       <button
+        type="button"
         className="rounded-full"
         aria-label="Press to change to the next"
         onClick={() => setCurrentIndex(currentIndex - 1)}
@@ -17,6 +18,7 @@ export default function Buttons({
         }
       </button>
       <button
+        type="button"
         className="rounded-full"
         aria-label="Press to change to the next"
         onClick={() => setCurrentIndex(currentIndex + 1)}

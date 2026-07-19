@@ -1,15 +1,10 @@
 import { myWork } from "@/public/content";
 import Panel from "../UI/Panel";
 import Project from "./Card";
+import { delays } from "./constants";
 
 export default function MyWork() {
   const { h2, desc, projects } = myWork;
-
-  const delays = [
-    "lg:[animation-delay:0.2s]",
-    "lg:[animation-delay:0.4s]",
-    "lg:[animation-delay:0.6s]",
-  ];
 
   return (
     <section id="my-work">

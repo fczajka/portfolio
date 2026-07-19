@@ -1,13 +1,9 @@
 import { headlineFont } from "@/public/fonts";
 import { InputsAndLabelsProps } from "@/public/types";
 import React from "react";
+import { delays } from "./constants";
 
 export default function Fields({ form, isVisible }: InputsAndLabelsProps) {
-  const delays = [
-    "[animation-delay:0.2s]",
-    "[animation-delay:0.4s]",
-    "[animation-delay:0.6s]",
-  ];
   return (
     <>
       {form.map((section, index) => (

@@ -1,6 +1,7 @@
 import useElementOnScreen from "@/hooks/useElementOnScreen";
 import { LinksProps } from "@/public/types";
 import Link from "./Link";
+import { delays } from "./constants";
 
 export default function Links({ links }: LinksProps) {
   const [containerRef, isVisible] = useElementOnScreen({
@@ -9,11 +10,6 @@ export default function Links({ links }: LinksProps) {
     threshold: 0.4,
   });
 
-  const delays = [
-    "[animation-delay:0.2s]",
-    "[animation-delay:0.4s]",
-    "[animation-delay:0.6s]",
-  ];
   return (
     <div ref={containerRef} className="basis-full sm:px-32 md:px-44 lg:px-24">
       <ul>

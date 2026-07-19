@@ -12,7 +12,11 @@ export default function ToggleTheme(props: { style?: string }) {
     <div
       className={`block switch relative overflow-hidden w-switch h-switch mx-auto my-0 ${props.style}`}
     >
-      <label htmlFor="toggle" className="cursor-pointer">
+      <label
+        htmlFor="toggle"
+        className="cursor-pointer"
+        aria-label="Toggle theme"
+      >
         <input
           id="toggle"
           checked={theme === "light" ? true : false}

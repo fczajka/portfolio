@@ -14,6 +14,7 @@ export default function Button({
   return type === "button" && callback ? (
     <button
       onClick={() => callback()}
+      type="button"
       aria-label={aria}
       className={`${style} text-sm px-4 py-2 rounded-full bg-primary-200 ${headlineFont.variable} font-headline transition-all dark:text-zinc-900 hover:bg-primary-300 focus:bg-primary-300 motion-reduce:transition-none`}
     >

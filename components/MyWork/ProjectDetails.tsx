@@ -77,6 +77,7 @@ export default function ProjectDetails({
             {name}
           </h3>
           <button
+            type="button"
             onClick={handleClose}
             aria-label={`Close details of ${name}`}
             className="text-xl rounded-full animate-slide-in-right [animation-delay:0.5s] motion-reduce:animate-none sm:text-3xl"
