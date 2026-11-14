@@ -1,8 +1,7 @@
 {
   "extends": [
     "next/core-web-vitals",
-    "next/typescript",
-    "plugin:react-doctor/recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
   ],
   "ignorePatterns": [
@@ -15,6 +14,12 @@
     "components/ui/**"
   ],
   "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-unused-vars": [
       "error",
