@@ -72,8 +72,6 @@ export type TextAndImageProps = {
   h1: string;
   paragraph: string;
   ctas: HeroCta[];
-  image: StaticImageData;
-  imageDark: StaticImageData;
 };
 
 export type PanelProps = {

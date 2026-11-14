@@ -2,8 +2,6 @@ import { AiFillLinkedin, AiFillMail, AiFillGithub } from "react-icons/ai";
 import { MdArrowUpward, MdPerson, MdPhoneEnabled } from "react-icons/md";
 import { BiCodeAlt } from "react-icons/bi";
 
-import Hero from "@/public/images/compressed/hero.webp";
-import HeroDark from "@/public/images/compressed/heroDark.webp";
 import Pizza from "@/public/images/compressed/pizza.webp";
 import Creme from "@/public/images/compressed/creme.webp";
 import Beef from "@/public/images/compressed/beef.webp";
@@ -102,8 +100,6 @@ export const landing = {
     { text: "View my work", href: "#my-work", variant: "primary" as const },
     { text: "Contact me", href: "#contact-me", variant: "secondary" as const },
   ],
-  image: Hero,
-  imageDark: HeroDark,
   letters: [
     { id: "0", letter: "S" },
     { id: "1", letter: "C" },

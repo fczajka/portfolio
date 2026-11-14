@@ -18,7 +18,6 @@ module.exports = {
         jump: "15s ease-in-out infinite jump",
         "jump-dark": "15s ease-in-out infinite jump-dark",
         line: "0.8s ease-in-out 1 both line",
-        photo: "1s ease-out 1 both photo",
         "show-menu-desktop": "0.7s ease-in-out 1 both show-menu-desktop",
         "hide-menu-desktop": "0.7s ease-in-out 1 both hide-menu-desktop",
         "show-menu-mobile": "0.7s ease-in-out 1 show-menu-mobile",
@@ -138,34 +137,6 @@ module.exports = {
           },
           "100%": {
             opacity: 1,
-            transform: "scale(1, 1)",
-          },
-        },
-        photo: {
-          "0%": {
-            opacity: 0,
-            translate: "0px -100%",
-            transform: "scale(0.9, 1.1)",
-          },
-          "20%": {
-            transform: "scale(1, 1)",
-          },
-          "25%": {
-            translate: "0px 100px",
-            transform: "scale(1.06, 0.86)",
-          },
-          "50%": {
-            opacity: 1,
-            translate: "0px -50px",
-            transform: "scale(0.95, 1.15)",
-          },
-          "75%": {
-            translate: "0px 10px",
-            transform: "scale(1.02, 0.98)",
-          },
-          "100%": {
-            opacity: 1,
-            translate: "0px 0px",
             transform: "scale(1, 1)",
           },
         },

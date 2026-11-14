@@ -75,3 +75,184 @@
   border: 0.125rem solid #78c1d5;
   background: linear-gradient(to right, #78c1d5 0%, #bbe7f5 100%);
 }
+
+@keyframes hero-draw {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 1.04;
+  }
+  4% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes hero-fill-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translate(0px, 0px);
+  }
+  50% {
+    transform: translate(0px, -7px);
+  }
+}
+
+@keyframes hero-aura {
+  0%,
+  100% {
+    transform: scale(0.97);
+    opacity: 0.72;
+  }
+  50% {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+}
+
+@keyframes hero-blink-open {
+  0%,
+  42%,
+  45%,
+  90%,
+  93%,
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  43.5%,
+  91.5% {
+    transform: scaleY(0.06);
+    opacity: 0;
+  }
+}
+
+@keyframes hero-blink-lid {
+  0%,
+  42%,
+  45%,
+  90%,
+  93%,
+  100% {
+    opacity: 0;
+  }
+  43.5%,
+  91.5% {
+    opacity: 1;
+  }
+}
+
+.hero-stroke {
+  stroke-dasharray: 1.04;
+  stroke-dashoffset: 1.04;
+  opacity: 0;
+}
+
+.hero-stroke-active {
+  animation: hero-draw var(--draw-duration, 0.65s)
+    cubic-bezier(0.22, 1, 0.36, 1) var(--draw-delay, 0.1s) 1 both;
+}
+
+.hero-fill {
+  opacity: 0;
+}
+
+.hero-fill-active {
+  animation: hero-fill-in 0.55s ease-out var(--fill-delay, 0.65s) 1 both;
+}
+
+.hero-float-active {
+  animation: hero-float 6s ease-in-out 1.1s infinite;
+}
+
+.hero-aura-active {
+  transform-origin: 251px 245px;
+  animation: hero-aura 7s ease-in-out infinite;
+}
+
+.hero-blink-open-active {
+  animation: hero-blink-open 7.6s ease-in-out 2.1s infinite;
+}
+
+.hero-blink-lid {
+  opacity: 0;
+}
+
+.hero-blink-lid-active {
+  animation: hero-blink-lid 7.6s ease-in-out 2.1s infinite;
+}
+
+.hero-layer-torso {
+  transform: translate(calc(var(--px, 0) * 2px), calc(var(--py, 0) * 1.5px));
+  will-change: transform;
+}
+
+.hero-layer-head {
+  transform-origin: 251px 358px;
+  transform: translate(calc(var(--px, 0) * 4.5px), calc(var(--py, 0) * 3.5px))
+    rotate(calc(var(--px, 0) * 1.6deg));
+  will-change: transform;
+}
+
+.hero-layer-features {
+  transform: translate(calc(var(--px, 0) * 2.5px), calc(var(--py, 0) * 2px));
+  will-change: transform;
+}
+
+.hero-pupil {
+  transform: translate(calc(var(--px, 0) * 2.8px), calc(var(--py, 0) * 1.8px));
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-stroke,
+  .hero-stroke-active {
+    animation: none;
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+
+  .hero-fill,
+  .hero-fill-active {
+    animation: none;
+    opacity: 1;
+  }
+
+  .hero-float-active,
+  .hero-aura-active,
+  .hero-blink-open-active,
+  .hero-blink-lid-active {
+    animation: none;
+  }
+
+  .hero-blink-open,
+  .hero-blink-open-active {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-blink-lid,
+  .hero-blink-lid-active {
+    opacity: 0;
+  }
+
+  .hero-layer-torso,
+  .hero-layer-head,
+  .hero-layer-features,
+  .hero-pupil {
+    transform: none;
+    will-change: auto;
+  }
+}

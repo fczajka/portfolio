@@ -1,21 +1,19 @@
 "use client";
 
 import { headlineFont } from "@/lib/fonts";
-import Image from "next/image";
 import useElementOnScreen from "@/hooks/useElementOnScreen";
 import type { TextAndImageProps } from "@/types";
+import HeroPortrait from "./HeroPortrait";
 
 export default function TextAndImage({
   h1,
   paragraph,
   ctas,
-  image,
-  imageDark,
 }: TextAndImageProps) {
   const [containerRef, isVisible] = useElementOnScreen({
     root: null,
     rootMargin: "0px",
-    threshold: 0.3,
+    threshold: 0.2,
   });
 
   const revealClass = isVisible ? "animate-show-down-up" : "";
@@ -56,23 +54,8 @@ export default function TextAndImage({
           ))}
         </div>
       </div>
-      <div className="basis-auto lg:basis-1/2 flex items-end max-w-xs sm:max-w-sm lg:max-w-xl lg:mx-auto">
-        <Image
-          src={image}
-          alt="Hero illustration in light mode"
-          className={`dark:hidden opacity-0 [animation-delay:0.5s] motion-reduce:animate-none motion-reduce:opacity-100 ${
-            isVisible ? "animate-photo" : ""
-          }`}
-          priority
-        />
-        <Image
-          src={imageDark}
-          alt="Hero illustration in dark mode"
-          className={`hidden dark:block opacity-0 [animation-delay:0.5s] motion-reduce:animate-none motion-reduce:opacity-100 ${
-            isVisible ? "animate-photo" : ""
-          }`}
-          priority
-        />
+      <div className="basis-auto lg:basis-1/2 w-full flex items-center justify-center lg:mx-auto">
+        <HeroPortrait isVisible={isVisible} />
       </div>
     </div>
   );
