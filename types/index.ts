@@ -1,0 +1,213 @@
+import type { StaticImageData } from "next/image";
+import type { Dispatch, SetStateAction } from "react";
+import type { IconType } from "react-icons";
+
+export type ImageFormat = "3:4" | "1:1";
+
+export type ProjectCategory = "web" | "mobile";
+
+export type ProjectLink = {
+  text: string;
+  href: string;
+  disabled?: boolean;
+};
+
+export type ProjectProps = {
+  name: string;
+  category: ProjectCategory;
+  platform: string;
+  shortDesc: string;
+  techStack: string[];
+  longDesc: string;
+  images: MyWorkPhotos;
+  links: ProjectLink[];
+  animationDelay: string;
+  buttonInfo: {
+    text: string;
+    aria?: string;
+    type: "button";
+    style?: string;
+  };
+  logo: StaticImageData;
+  imagesInFormat: ImageFormat;
+  onOpen?: () => void;
+};
+
+export type MenuProps = {
+  wantsToSee: boolean;
+  handleMenu: () => void;
+};
+
+export type MobileMenuProps = {
+  isOpen: boolean;
+  handleMenu: () => void;
+};
+
+export type ProjectDetailsProps = {
+  isOpen: boolean;
+  onClose: () => void;
+  name: string;
+  slug: string;
+  platform?: string;
+  longDesc: string;
+  techStack: string[];
+  images: MyWorkPhotos;
+  links: ProjectLink[];
+  imagesInFormat: ImageFormat;
+};
+
+export type UseElementOnScreenProps = {
+  root: HTMLDivElement | null;
+  rootMargin: string;
+  threshold: number;
+};
+
+export type HeroCta = {
+  text: string;
+  href: string;
+  variant: "primary" | "secondary";
+};
+
+export type TextAndImageProps = {
+  h1: string;
+  paragraph: string;
+  ctas: HeroCta[];
+  image: StaticImageData;
+  imageDark: StaticImageData;
+};
+
+export type PanelProps = {
+  headline: string;
+  desc: string;
+};
+
+export type FoodsProps = {
+  foods: {
+    name: string;
+    image: StaticImageData;
+    alt: string;
+  }[];
+};
+
+export type FoodProps = {
+  food: {
+    name: string;
+    image: StaticImageData;
+    alt: string;
+  };
+  delay: string;
+};
+
+export type LinksProps = {
+  links: {
+    href: string;
+    icon: IconType;
+    type: string;
+  }[];
+};
+
+export type LinkProps = {
+  href: string;
+  icon: IconType;
+  type: string;
+  delay: string;
+  isVisible: boolean;
+};
+
+export type MobileNavbarLinkProps = {
+  text: string;
+  href: string;
+  icon: IconType;
+};
+
+export type FormProps = {
+  form: Form;
+  button: {
+    text: string;
+  };
+};
+
+export type MyWorkPhotos = {
+  image: StaticImageData;
+  alt: string;
+}[];
+
+export type SliderProps = {
+  images: MyWorkPhotos;
+  imagesInFormat: ImageFormat;
+  projectName?: string;
+  isLightboxOpen?: boolean;
+  onLightboxChange?: Dispatch<SetStateAction<boolean>>;
+};
+
+export type ImagesProps = {
+  images: MyWorkPhotos;
+  currentIndex: number;
+  imagesInFormat: ImageFormat;
+  onExpand?: () => void;
+};
+
+export type ButtonsProps = {
+  onPrev: () => void;
+  onNext: () => void;
+};
+
+export type IndicatorsProps = {
+  indexes: number[];
+  currentIndex: number;
+  setCurrentIndex: Dispatch<SetStateAction<number>>;
+};
+
+export type FormValidationProps = {
+  name: string;
+  message: string;
+  mail: string;
+};
+
+export type FormValidationReturn = { status: string; message: string };
+
+export type FormFieldName = "senderName" | "email" | "message";
+
+export type FormFieldErrors = Partial<Record<FormFieldName, string>>;
+
+export type ContactPayload = {
+  senderName: string;
+  email: string;
+  message: string;
+  company?: string;
+};
+
+export type InputsAndLabelsProps = {
+  form: Form;
+  isVisible: boolean;
+  errors: FormFieldErrors;
+  onClearError: (field: FormFieldName) => void;
+};
+
+export type Form = {
+  label: string;
+  htmlFor: FormFieldName;
+  type: string | null;
+  autoComplete?: string;
+}[];
+
+type ButtonCommonProps = {
+  text: string;
+  aria?: string;
+  style?: string;
+  disabled?: boolean;
+};
+
+export type ButtonProps = ButtonCommonProps &
+  (
+    | {
+        type: "button";
+        callback: () => void;
+        href?: never;
+      }
+    | {
+        type: "link";
+        href: string;
+        callback?: never;
+      }
+  );
