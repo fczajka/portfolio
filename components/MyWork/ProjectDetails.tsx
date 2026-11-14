@@ -1,109 +1,84 @@
 "use client";
 
-import { closeDetailsOnClick, closeDetailsOnESC } from "@/helpers/helpers";
-import { headlineFont } from "@/public/fonts";
-import { MutableRef, ProjectDetailsProps } from "@/public/types";
-import { useEffect, useRef, useState } from "react";
-import { AiFillCloseCircle } from "react-icons/ai";
+import useDialogAccessibility from "@/hooks/useDialogAccessibility";
+import useModalDismiss from "@/hooks/useModalDismiss";
+import type { ProjectDetailsProps } from "@/types";
+import { useCallback, useRef, useState } from "react";
+import ProjectDetailsBody from "./ProjectDetailsBody";
+import ProjectDetailsHeader from "./ProjectDetailsHeader";
 import ProjectLinks from "./ProjectLinks";
-import Slider from "./Slider/Slider";
-import TechStackPills from "./TechStackPills";
 
+/** Accessible project details modal combining header controls, media slider, and external links. */
 export default function ProjectDetails({
   isOpen,
-  setIsOpen,
+  onClose,
   name,
+  slug,
+  platform,
   longDesc,
   techStack,
   images,
   links,
   imagesInFormat,
 }: ProjectDetailsProps) {
-  const elRef: MutableRef = useRef<HTMLDivElement>(null);
-  const [wantsToClose, setWantsToClose] = useState(false);
+  const elRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
-  const handleClose = () => {
-    setWantsToClose(!wantsToClose);
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (prefersReducedMotion) {
-      setIsOpen(!isOpen);
-      return;
-    }
-    setTimeout(() => {
-      setIsOpen(!isOpen);
-    }, 300);
-  };
+  const handleCloseLightbox = useCallback(() => {
+    setIsLightboxOpen(false);
+  }, []);
 
-  useEffect(() => {
-    function handleEscape(event: KeyboardEvent) {
-      if (event.key !== "Escape") return;
-      closeDetailsOnESC(isOpen, setIsOpen, wantsToClose, setWantsToClose);
-    }
+  const { wantsToClose, triggerClose } = useModalDismiss({
+    containerRef: elRef,
+    onClose,
+    isSuspended: isLightboxOpen,
+    onSuspendedEscape: handleCloseLightbox,
+  });
 
-    function handleCloseClick(event: MouseEvent) {
-      if (elRef.current && elRef.current.contains(event.target as Node)) return;
-
-      closeDetailsOnClick(isOpen, setIsOpen, wantsToClose, setWantsToClose);
-    }
-
-    document.addEventListener("keyup", handleEscape);
-    document.addEventListener("click", handleCloseClick);
-    return () => {
-      document.removeEventListener("keyup", handleEscape);
-      document.removeEventListener("click", handleCloseClick);
-    };
+  useDialogAccessibility({
+    isOpen: isOpen && !wantsToClose,
+    dialogRef: elRef,
+    initialFocusRef: closeButtonRef,
+    trapFocus: !isLightboxOpen,
+    lockScroll: true,
+    restoreFocus: true,
   });
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full h-full flex justify-center items-center p-4 bg-zinc-800 bg-opacity-90 z-40 touch-none ${
-        wantsToClose ? "animate-fade-out" : " animate-fade-in"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="project-details-title"
+      className={`fixed top-0 left-0 w-full h-full flex justify-center items-center p-4 bg-zinc-800 bg-opacity-90 z-40 overflow-y-auto ${
+        wantsToClose ? "animate-fade-out" : "animate-fade-in"
       } motion-reduce:animate-none`}
     >
       <div
         ref={elRef}
-        className={`basis-full h-full bg-zinc-50 p-4 flex flex-col rounded-primary shadow-lg shadow-zinc-800 max-w-sm max-h-2xl dark:bg-dark-secondary-bg dark:text-zinc-200 ${
+        tabIndex={-1}
+        className={`basis-full max-h-[92vh] overflow-y-auto bg-zinc-50 p-4 flex flex-col rounded-primary shadow-lg shadow-zinc-800 max-w-sm outline-none dark:bg-dark-secondary-bg dark:text-zinc-200 ${
           wantsToClose
             ? "animate-slide-down-project-details-mobile lg:animate-slide-down-project-details-desktop"
             : "animate-show-project-details"
-        } motion-reduce:animate-none sm:p-6 sm:max-h-4xl lg:h-min lg:max-w-3xl xl:max-w-4xl`}
+        } motion-reduce:animate-none sm:p-6 lg:h-min lg:max-w-3xl xl:max-w-4xl`}
       >
-        <div className="flex justify-between">
-          <h3
-            className={`${headlineFont.variable} font-headline animate-slide-in-left [animation-delay:0.5s] motion-reduce:animate-none`}
-          >
-            {name}
-          </h3>
-          <button
-            type="button"
-            onClick={handleClose}
-            aria-label={`Close details of ${name}`}
-            className="text-xl rounded-full animate-slide-in-right [animation-delay:0.5s] motion-reduce:animate-none sm:text-3xl"
-          >
-            <AiFillCloseCircle />
-          </button>
-        </div>
-        <div className="flex flex-col items-stretch my-4 h-full lg:flex-row sm:mt-6 sm:mb-2">
-          <div
-            className={`mb-2 sm:mb-3 basis-1/3 ${
-              imagesInFormat === "3:4" ? "lg:basis-[60%]" : "lg:basis-1/2"
-            } lg:mb-0 lg:mr-3`}
-          >
-            <p className="text-justify animate-fade-in [animation-delay:1s] motion-reduce:animate-none">
-              {longDesc}
-            </p>
-            <TechStackPills techStack={techStack} />
-          </div>
-          <div
-            className={`mt-2 grow rounded-primary sm:mt-3 lg:mt-0 lg:ml-3 basis-2/3 ${
-              imagesInFormat === "3:4" ? "lg:basis-[40%]" : "lg:basis-1/2"
-            }`}
-          >
-            <Slider images={images} imagesInFormat={imagesInFormat} />
-          </div>
-        </div>
+        <ProjectDetailsHeader
+          name={name}
+          slug={slug}
+          platform={platform}
+          closeButtonRef={closeButtonRef}
+          onClose={triggerClose}
+        />
+        <ProjectDetailsBody
+          name={name}
+          longDesc={longDesc}
+          techStack={techStack}
+          images={images}
+          imagesInFormat={imagesInFormat}
+          isLightboxOpen={isLightboxOpen}
+          onLightboxChange={setIsLightboxOpen}
+        />
         <ProjectLinks links={links} />
       </div>
     </div>
