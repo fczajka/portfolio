@@ -1,7 +1,7 @@
 "use client";
 
 import useElementOnScreen from "@/hooks/useElementOnScreen";
-import { landing } from "@/public/content";
+import { landing } from "@/data/content";
 import { delays } from "./constants";
 
 export default function Scroll() {
@@ -15,7 +15,7 @@ export default function Scroll() {
   return (
     <div
       ref={containerRef}
-      className="absolute h-1/3 flex flex-col items-center left-1/2 -translate-x-1/2 -bottom-12 sm:-bottom-16 md:-bottom-24 lg:left-1/4 lg:-translate-x-1/4 lg:-bottom-28 lg:h-2/5"
+      className="absolute h-24 sm:h-28 flex flex-col items-center left-1/2 -translate-x-1/2 bottom-2 lg:left-1/4 lg:-translate-x-1/4 lg:-bottom-28 lg:h-2/5"
     >
       <div className="relative flex mb-4 tracking-wider animate-fade-in [animation-delay:1.9s] motion-reduce:animate-none text-sm md:text-base lg:[animation-delay:1.6s]">
         {letters.map((letter) => (

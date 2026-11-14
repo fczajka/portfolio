@@ -1,4 +1,4 @@
-import { aboutMe } from "@/public/content";
+import { aboutMe } from "@/data/content";
 import Panel from "../UI/Panel";
 import Foods from "./Foods";
 import SubPanel from "./SubPanel";

@@ -1,5 +1,5 @@
 import useElementOnScreen from "@/hooks/useElementOnScreen";
-import { LinksProps } from "@/public/types";
+import type { LinksProps } from "@/types";
 import Link from "./Link";
 import { delays } from "./constants";
 
@@ -7,7 +7,7 @@ export default function Links({ links }: LinksProps) {
   const [containerRef, isVisible] = useElementOnScreen({
     root: null,
     rootMargin: "0px",
-    threshold: 0.4,
+    threshold: 0.2,
   });
 
   return (

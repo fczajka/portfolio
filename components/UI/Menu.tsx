@@ -1,45 +1,79 @@
-import { menu } from "@/public/content";
-import { headlineFont } from "@/public/fonts";
-import { MenuProps } from "@/public/types";
+"use client";
+
+import { useEffect, useRef } from "react";
+import useDialogAccessibility from "@/hooks/useDialogAccessibility";
+import { menu } from "@/data/content";
+import { headlineFont } from "@/lib/fonts";
+import type { MenuProps } from "@/types";
 import ToggleTheme from "./ToggleTheme";
 import { iconsDelays, linksDelays } from "./constants";
 
 export default function Menu({ wantsToSee, handleMenu }: MenuProps) {
   const { icons, links } = menu;
+  const menuRef = useRef<HTMLDivElement>(null);
 
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)",
-  ).matches;
+  useDialogAccessibility({
+    isOpen: wantsToSee,
+    dialogRef: menuRef,
+    trapFocus: false,
+    lockScroll: true,
+    restoreFocus: true,
+  });
+
+  useEffect(() => {
+    if (!wantsToSee) return;
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        handleMenu();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [wantsToSee, handleMenu]);
 
   return (
     <div
-      className={`fixed w-full h-screen top-0 pt-16 bg-zinc-50 z-10 px-12 touch-none lg:pt-32 ${
+      ref={menuRef}
+      tabIndex={-1}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Site navigation"
+      className={`fixed w-full h-screen top-0 pt-16 bg-zinc-50 z-10 px-12 overflow-y-auto outline-none lg:pt-32 ${
         wantsToSee
           ? "animate-show-menu-mobile lg:animate-show-menu-desktop"
           : "animate-hide-menu-mobile lg:animate-hide-menu-desktop"
       } dark:bg-dark-primary-bg dark:text-zinc-200 motion-reduce:animate-none lg:motion-reduce:animate-none`}
     >
       <div className="flex items-center">
-        <div className="w-24 h-1 bg-primary-200 animate-slide-in-bar [animation-delay:0.6s] motion-reduce:animate-none"></div>
+        <div className="w-24 h-1 bg-primary-200 animate-show-down-up [animation-delay:0.5s] motion-reduce:animate-none"></div>
         <ul className="flex flex-row items-center">
           {icons.map((icon, index) => (
             <li
               key={icon.key}
-              className={`mx-6 text-xl sm:text-2xl lg:text-3xl animate-slide-in-right ${iconsDelays[index]} motion-reduce:animate-none`}
+              className={`mx-6 text-xl sm:text-2xl lg:text-3xl animate-show-down-up ${iconsDelays[index]} motion-reduce:animate-none`}
             >
               {icon.type === "link" ? (
-                <a target="_blank" rel="noopener noreferrer" href={icon.href}>
-                  <icon.icon />
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={icon.href}
+                  aria-label={icon.label}
+                >
+                  <icon.icon aria-hidden="true" />
                 </a>
               ) : (
-                <a href={`mailto:${icon.href}`}>
-                  <icon.icon />
+                <a href={`mailto:${icon.href}`} aria-label={icon.label}>
+                  <icon.icon aria-hidden="true" />
                 </a>
               )}
             </li>
           ))}
           <li>
-            <ToggleTheme style="animate-slide-in-right [animation-delay:1s] motion-reduce:animate-none lg:hidden" />
+            <ToggleTheme style="animate-show-down-up [animation-delay:1s] motion-reduce:animate-none lg:hidden" />
           </li>
         </ul>
       </div>
@@ -48,7 +82,9 @@ export default function Menu({ wantsToSee, handleMenu }: MenuProps) {
           {links.map((link, index) => (
             <li
               key={link.text}
-              className={`flex flex-col items-start justify-between animate-show-up-down ${linksDelays[index]} motion-reduce:animate-none sm:flex-row sm:items-end`}
+              className={`flex flex-col items-start justify-between animate-show-up-down ${
+                linksDelays[index % linksDelays.length]
+              } motion-reduce:animate-none sm:flex-row sm:items-end`}
             >
               <a
                 href={link.href}

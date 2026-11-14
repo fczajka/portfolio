@@ -27,9 +27,6 @@ module.exports = {
         "show-down-up": "0.3s ease-out 1 both show-down-up",
         "show-project-details":
           "0.3s ease-in-out 0.3s 1 both show-up-project-details",
-        "slide-in-left": "0.3s ease-in-out 1 both slide-in-left",
-        "slide-in-right": "0.3s ease-in-out 1 both slide-in-right",
-        "slide-in-bar": "0.3s ease-in-out 1 both slide-in-bar",
         "slide-down-project-details-desktop":
           "0.3s ease-in-out 1 both slide-down-project-details-desktop",
         "slide-down-project-details-mobile":
@@ -155,7 +152,7 @@ module.exports = {
           },
           "25%": {
             translate: "0px 100px",
-            transform: "scale(1.2, 0.8)",
+            transform: "scale(1.06, 0.86)",
           },
           "50%": {
             opacity: 1,
@@ -230,51 +227,6 @@ module.exports = {
           },
           "100%": {
             opacity: 1,
-          },
-        },
-        "slide-in-right": {
-          "0%": {
-            opacity: 0,
-            translate: "100px 0px",
-          },
-          "60%": {
-            opacity: 0.6,
-            translate: "-10px 0px",
-          },
-          "100%": {
-            opacity: 1,
-            translate: "0px 0px",
-          },
-        },
-        "slide-in-left": {
-          "0%": {
-            opacity: 0,
-            translate: "-100px 0px",
-          },
-          "60%": {
-            opacity: 0.6,
-            translate: "10px 0px",
-          },
-          "100%": {
-            opacity: 1,
-            translate: "0px 0px",
-          },
-        },
-        "slide-in-bar": {
-          "0%": {
-            opacity: 0,
-            transform: "scale(3)",
-            translate: "300px 0px",
-          },
-          "60%": {
-            opacity: 0.6,
-            transform: "scale(1)",
-            translate: "-30px 0px",
-          },
-          "100%": {
-            opacity: 1,
-            transform: "scale(1)",
-            translate: "0px 0px",
           },
         },
         "slide-down-project-details-desktop": {

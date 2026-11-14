@@ -1,4 +1,4 @@
-import { MobileNavbarLinkProps } from "@/public/types";
+import type { MobileNavbarLinkProps } from "@/types";
 
 export default function Link({
   text,

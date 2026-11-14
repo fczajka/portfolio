@@ -1,5 +1,5 @@
-import { mobileNavbar } from "@/public/content";
-import { MenuProps, MobileMenuProps } from "@/public/types";
+import { mobileNavbar } from "@/data/content";
+import type { MobileMenuProps } from "@/types";
 import Link from "./Link";
 import MenuButton from "./MenuButton";
 

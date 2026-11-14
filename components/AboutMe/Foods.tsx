@@ -1,4 +1,4 @@
-import { FoodsProps } from "@/public/types";
+import type { FoodsProps } from "@/types";
 import Food from "./Food";
 import { delays } from "./constants";
 

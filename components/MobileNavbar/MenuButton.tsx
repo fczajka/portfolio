@@ -1,5 +1,5 @@
-import { mobileNavbar } from "@/public/content";
-import { MobileMenuProps } from "@/public/types";
+import { mobileNavbar } from "@/data/content";
+import type { MobileMenuProps } from "@/types";
 import { MdMenu } from "react-icons/md";
 
 export default function MenuButton({ isOpen, handleMenu }: MobileMenuProps) {
@@ -21,7 +21,7 @@ export default function MenuButton({ isOpen, handleMenu }: MobileMenuProps) {
               onClick={handleMenu}
               aria-label={button.aria}
               type="button"
-              className={`transition-all ${buttonsStyles[index]}`}
+              className={`transition-transform ${buttonsStyles[index]}`}
             >
               {button.text}
             </button>

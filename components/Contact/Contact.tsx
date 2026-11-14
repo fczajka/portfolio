@@ -1,9 +1,8 @@
 "use client";
 
-import { contact } from "@/public/content";
-import { headlineFont } from "@/public/fonts";
+import { contact } from "@/data/content";
+import { headlineFont } from "@/lib/fonts";
 import useElementOnScreen from "@/hooks/useElementOnScreen";
-import React from "react";
 import Form from "./Form";
 import Links from "./Links";
 
@@ -11,7 +10,7 @@ export default function Contact() {
   const [containerRef, isVisible] = useElementOnScreen({
     root: null,
     rootMargin: "0px",
-    threshold: 1.0,
+    threshold: 0.2,
   });
   const { h3, links, form, button } = contact;
   return (
@@ -23,7 +22,7 @@ export default function Contact() {
             className={`text-center ${
               headlineFont.variable
             } font-headline opacity-0 ${
-              isVisible && "animate-show-down-up"
+              isVisible ? "animate-show-down-up" : ""
             } motion-reduce:animate-none motion-reduce:opacity-100 top-0`}
           >
             {h3}

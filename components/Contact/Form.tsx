@@ -1,46 +1,107 @@
 "use client";
 
-import { headlineFont } from "@/public/fonts";
+import { headlineFont } from "@/lib/fonts";
 import useElementOnScreen from "@/hooks/useElementOnScreen";
-import { FormProps } from "@/public/types";
-import React, { MutableRefObject, useRef } from "react";
-import { ToastContainer } from "react-toastify";
+import type { FormFieldErrors, FormFieldName, FormProps } from "@/types";
+import React, { type MutableRefObject, useRef, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { sendMail } from "@/helpers/helpers";
+import { sendMail, validateFormFields } from "@/helpers/helpers";
 import Fields from "./Fields";
+
+const FIELD_ORDER: FormFieldName[] = ["senderName", "email", "message"];
 
 export default function Form({ form, button }: FormProps) {
   const formRef: MutableRefObject<HTMLFormElement | null> = useRef(null);
+  const [errors, setErrors] = useState<FormFieldErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [containerRef, isVisible] = useElementOnScreen({
     root: null,
     rootMargin: "0px",
-    threshold: 0.3,
+    threshold: 0.15,
   });
 
-  const handleForm = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleClearError = (field: FormFieldName) => {
+    setErrors((prev) => {
+      if (!prev[field]) return prev;
+      const next = { ...prev };
+      delete next[field];
+      return next;
+    });
+  };
+
+  const handleForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    sendMail(e, formRef.current);
+    if (isSubmitting) return;
+
+    const formEl = formRef.current;
+    if (!formEl) return;
+
+    const nextErrors = validateFormFields({
+      name: formEl.senderName.value,
+      mail: formEl.email.value,
+      message: formEl.message.value,
+    });
+
+    if (Object.keys(nextErrors).length > 0) {
+      setErrors(nextErrors);
+      const firstInvalidField = FIELD_ORDER.find((field) => nextErrors[field]);
+      if (firstInvalidField) {
+        const message = nextErrors[firstInvalidField];
+        if (message) toast.error(message);
+        const element = formEl.elements.namedItem(
+          firstInvalidField,
+        ) as HTMLElement | null;
+        element?.focus();
+      }
+      return;
+    }
+
+    setErrors({});
+    setIsSubmitting(true);
+    try {
+      await sendMail(formEl);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div ref={containerRef} className="basis-full sm:px-32 md:px-44 lg:px-24">
       <form
+        noValidate
         action="post"
         onSubmit={handleForm}
         ref={formRef}
         className="flex flex-col"
       >
-        <Fields form={form} isVisible={isVisible} />
+        <input
+          type="text"
+          name="company"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="hidden"
+        />
+        <Fields
+          form={form}
+          isVisible={isVisible}
+          errors={errors}
+          onClearError={handleClearError}
+        />
         <button
           type="submit"
-          aria-label="Submit form"
+          disabled={isSubmitting}
+          aria-busy={isSubmitting}
+          aria-label={isSubmitting ? "Sending message" : "Submit form"}
           className={`bg-primary-200 rounded-xl my-6 p-4 ${
             headlineFont.variable
           } font-headline opacity-0 tracking-wider text-lg transition-all duration-300 shadow-zinc-400 shadow-custom ${
-            isVisible && "animate-show-down-up"
-          } [animation-delay:0.8s] dark:bg-dark-secondary-bg dark:hover:bg-dark-tertiary-bg dark:focus:bg-dark-tertiary-bg dark:shadow-none dark:focus:ring-2 dark:focus:ring-zinc-500 motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:transition-none hover:bg-primary-300 focus:bg-primary-300`}
+            isVisible ? "animate-show-down-up" : ""
+          } [animation-delay:0.8s] dark:bg-dark-secondary-bg dark:hover:bg-dark-tertiary-bg dark:focus:bg-dark-tertiary-bg dark:shadow-none dark:focus:ring-2 dark:focus:ring-zinc-500 motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:transition-none hover:bg-primary-300 focus:bg-primary-300 disabled:opacity-60 disabled:cursor-not-allowed`}
         >
-          {button.text}
+          {isSubmitting ? "Sending..." : button.text}
         </button>
       </form>
       <ToastContainer

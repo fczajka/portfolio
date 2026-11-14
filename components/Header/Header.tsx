@@ -1,14 +1,21 @@
 "use client";
 
-import { useState } from "react";
-import { headlineFont } from "@/public/fonts";
-import { header, menu } from "@/public/content";
+import { useEffect, useState } from "react";
+import useAnimatedToggle from "@/hooks/useAnimatedToggle";
+import { headlineFont } from "@/lib/fonts";
+import { header, menu } from "@/data/content";
 import Menu from "../UI/Menu";
 import ToggleTheme from "../UI/ToggleTheme";
 
+const SECTION_ANCHORS = [
+  { id: "contact-me", href: "#contact-me" },
+  { id: "about-me", href: "#about-me" },
+  { id: "my-work", href: "#my-work" },
+];
+
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [wantsToSee, setWantsToSee] = useState(false);
+  const { isOpen, wantsToSee, toggle: handleMenu } = useAnimatedToggle(700);
+  const [activeHref, setActiveHref] = useState("#");
   const { links } = header;
   const { buttons } = menu;
 
@@ -17,24 +24,39 @@ export default function Header() {
     `${isOpen ? "-translate-y-0" : "-translate-y-10"}`,
   ];
 
-  const handleMenu = () => {
-    setWantsToSee(!wantsToSee);
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    console.log(prefersReducedMotion);
-    if (prefersReducedMotion && isOpen) {
-      setIsOpen(!isOpen);
-      return;
-    }
-    if (isOpen) {
-      setTimeout(() => {
-        setIsOpen(!isOpen);
-      }, 700);
-    } else {
-      setIsOpen(!isOpen);
-    }
-  };
+  useEffect(() => {
+    const updateActiveSection = () => {
+      if (window.scrollY < 160) {
+        setActiveHref("#");
+        return;
+      }
+
+      const reachedBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 40;
+      if (reachedBottom) {
+        setActiveHref("#contact-me");
+        return;
+      }
+
+      const scrollOffset = window.scrollY + 140;
+      for (const section of SECTION_ANCHORS) {
+        const el = document.getElementById(section.id);
+        if (el && el.offsetTop <= scrollOffset) {
+          setActiveHref(section.href);
+          return;
+        }
+      }
+
+      setActiveHref("#");
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+    };
+  }, []);
 
   return (
     <>
@@ -56,16 +78,27 @@ export default function Header() {
         </div>
         <nav className="basis-1/2 max-w-5xl">
           <ul className="flex items-center h-full">
-            {links.map((link) => (
-              <li key={link.text} className="basis-1/5 text-center">
-                <a
-                  href={link.href}
-                  className="relative inline-block after:[content:''] after:absolute after:w-full after:scale-x-0 after:h-px after:bottom-0 after:left-0 after:bg-zinc-900 after:origin-bottom-right after:[transition:transform_0.25s_ease-out] hover:after:scale-x-100 hover:after:origin-bottom-left hover:after:motion-reduce:scale-x-0 hover:motion-reduce:underline dark:after:bg-zinc-500"
+            {links.map((link) => {
+              const isActive = activeHref === link.href;
+              return (
+                <li
+                  key={link.text}
+                  className="basis-1/5 text-center whitespace-nowrap"
                 >
-                  {link.text}
-                </a>
-              </li>
-            ))}
+                  <a
+                    href={link.href}
+                    aria-current={isActive ? "location" : undefined}
+                    className={`relative inline-block transition-colors after:[content:''] after:absolute after:w-full after:h-px after:bottom-0 after:left-0 after:bg-zinc-900 after:origin-bottom-right after:[transition:transform_0.25s_ease-out] hover:after:scale-x-100 hover:after:origin-bottom-left hover:after:motion-reduce:scale-x-0 hover:motion-reduce:underline dark:after:bg-primary-300 ${
+                      isActive
+                        ? "font-semibold text-primary-700 after:scale-x-100 dark:text-primary-300"
+                        : "after:scale-x-0"
+                    }`}
+                  >
+                    {link.text}
+                  </a>
+                </li>
+              );
+            })}
             <li className="basis-1/5">
               <ToggleTheme />
             </li>

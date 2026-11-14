@@ -1,31 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import useAnimatedToggle from "@/hooks/useAnimatedToggle";
 import Menu from "../UI/Menu";
 import Links from "./Links";
 
 export default function MobileNavbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [wantsToSee, setWantsToSee] = useState(false);
-
-  const handleMenu = () => {
-    setWantsToSee(!wantsToSee);
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    console.log(prefersReducedMotion);
-    if (prefersReducedMotion && isOpen) {
-      setIsOpen(!isOpen);
-      return;
-    }
-    if (isOpen) {
-      setTimeout(() => {
-        setIsOpen(!isOpen);
-      }, 700);
-    } else {
-      setIsOpen(!isOpen);
-    }
-  };
+  const { isOpen, wantsToSee, toggle: handleMenu } = useAnimatedToggle(700);
 
   return (
     <>

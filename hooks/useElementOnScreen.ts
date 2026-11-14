@@ -1,38 +1,37 @@
 "use client";
 
-import { useState, useEffect, useRef, MutableRefObject } from "react";
-import { UseElementOnScreenProps } from "../public/types";
+import { useState, useEffect, useRef, type MutableRefObject } from "react";
+import type { UseElementOnScreenProps } from "@/types";
 
 export default function useElementOnScreen(options: UseElementOnScreenProps) {
-    const containerRef = useRef(null);
-    const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const { root, rootMargin, threshold } = options;
 
-    const callback = (entries: IntersectionObserverEntry[]) => {
+  useEffect(() => {
+    const element = containerRef.current;
+    if (!element || isVisible) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
         const [entry] = entries;
-        if (entry.isIntersecting) {
-            setIsVisible(entry.isIntersecting);
+        if (entry?.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
         }
+      },
+      { root, rootMargin, threshold },
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
     };
+  }, [root, rootMargin, threshold, isVisible]);
 
-    useEffect(() => {
-        let observerRefValue = null as Element | null;
-
-        const observer = new IntersectionObserver(callback, options);
-
-        if (containerRef.current) {
-            observer.observe(containerRef.current);
-            let observerRefValue = containerRef.current;
-        }
-
-        return () => {
-            if (observerRefValue) {
-                observer.unobserve(observerRefValue);
-            }
-        };
-    }, [containerRef, options]);
-
-    return [containerRef, isVisible] as [
-        MutableRefObject<HTMLDivElement | null>,
-        boolean
-    ];
+  return [containerRef, isVisible] as [
+    MutableRefObject<HTMLDivElement | null>,
+    boolean,
+  ];
 }

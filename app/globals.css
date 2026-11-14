@@ -4,7 +4,7 @@
 
 @layer base {
   header {
-    @apply fixed bg-zinc-50 w-full h-16 z-30 shadow-custom shadow-zinc-400 dark:bg-dark-secondary-bg dark:shadow-none dark:text-zinc-200;
+    @apply fixed bg-zinc-50/80 backdrop-blur-md border-b border-zinc-200/70 w-full h-16 z-30 shadow-custom shadow-zinc-400/40 dark:bg-dark-secondary-bg/80 dark:border-zinc-700/50 dark:shadow-none dark:text-zinc-200;
   }
   h1 {
     @apply text-3xl text-center tracking-wider sm:text-4xl md:text-5xl lg:text-left lg:text-7xl;
