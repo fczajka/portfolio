@@ -13,7 +13,7 @@ export default function ProjectLinks({ links }: ProjectLinksProps) {
   const secondaryLink = links[links.length - 1];
 
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex flex-wrap justify-between items-center gap-3">
       <div className="flex gap-4">
         {primaryLinks.map((link) => (
           <Button

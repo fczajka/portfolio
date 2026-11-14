@@ -1,31 +1,30 @@
 import { BsArrowLeftShort, BsArrowRightShort } from "react-icons/bs";
-import { ButtonsProps } from "@/public/types";
+import type { ButtonsProps } from "@/types";
 
-export default function Buttons({
-  currentIndex,
-  setCurrentIndex,
-}: ButtonsProps) {
+export default function Buttons({ onPrev, onNext }: ButtonsProps) {
   return (
-    <div className="absolute flex w-full top-1/2 -translate-y-1/2 justify-between text-2xl sm:text-3xl">
+    <div className="pointer-events-none absolute inset-x-0 z-10 flex top-1/2 -translate-y-1/2 justify-between text-2xl sm:text-3xl">
       <button
         type="button"
-        className="rounded-full"
-        aria-label="Press to change to the next"
-        onClick={() => setCurrentIndex(currentIndex - 1)}
+        className="pointer-events-auto rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
+        aria-label="Previous screenshot"
+        onClick={onPrev}
       >
-        {
-          <BsArrowLeftShort className="bg-zinc-900 text-zinc-50 rounded-full transition-all hover:bg-zinc-800 motion-reduce:transition-none" />
-        }
+        <BsArrowLeftShort
+          aria-hidden="true"
+          className="bg-zinc-900 text-zinc-50 rounded-full transition-colors hover:bg-zinc-700 motion-reduce:transition-none"
+        />
       </button>
       <button
         type="button"
-        className="rounded-full"
-        aria-label="Press to change to the next"
-        onClick={() => setCurrentIndex(currentIndex + 1)}
+        className="pointer-events-auto rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
+        aria-label="Next screenshot"
+        onClick={onNext}
       >
-        {
-          <BsArrowRightShort className="bg-zinc-900 text-zinc-50 rounded-full transition-all hover:bg-zinc-800 motion-reduce:transition-none" />
-        }
+        <BsArrowRightShort
+          aria-hidden="true"
+          className="bg-zinc-900 text-zinc-50 rounded-full transition-colors hover:bg-zinc-700 motion-reduce:transition-none"
+        />
       </button>
     </div>
   );
