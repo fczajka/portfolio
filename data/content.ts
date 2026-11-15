@@ -1,6 +1,9 @@
+import type { StaticImageData } from "next/image";
 import { AiFillLinkedin, AiFillMail, AiFillGithub } from "react-icons/ai";
 import { MdArrowUpward, MdPerson, MdPhoneEnabled } from "react-icons/md";
 import { BiCodeAlt } from "react-icons/bi";
+import { projectsMeta } from "@/data/projectsMeta";
+import type { ExperienceSnapshot, MyWorkPhotos, ProjectItem } from "@/types";
 
 import Pizza from "@/public/images/compressed/pizza.webp";
 import Creme from "@/public/images/compressed/creme.webp";
@@ -30,13 +33,18 @@ import KipprLogo from "@/public/images/compressed/kippr_logo.webp";
 import StorisLogo from "@/public/images/compressed/storis_logo.webp";
 import KnoockerLogo from "@/public/images/compressed/knoocker_logo.webp";
 import PlatterifyLogo from "@/public/images/compressed/platterify_logo.webp";
+import CgiLogo from "@/public/images/compressed/cgi_logo.png";
+import ComarchLogo from "@/public/images/compressed/comarch_logo.png";
+import MuchaLogo from "@/public/images/compressed/mucha_logo.png";
+import SolvdLogo from "@/public/images/compressed/solvd_logo.png";
+import KnowlaCompanyLogo from "@/public/images/compressed/knowla_company_logo.png";
 
 export const header = {
   links: [
-    { text: "To the top", href: "#" },
-    { text: "My work", href: "#my-work" },
-    { text: "About me", href: "#about-me" },
-    { text: "Contact me", href: "#contact-me" },
+    { text: "To the top", href: "/" },
+    { text: "My work", href: "/#my-work" },
+    { text: "About me", href: "/#about-me" },
+    { text: "Contact me", href: "/#contact-me" },
   ],
 };
 
@@ -71,22 +79,22 @@ export const menu = {
   links: [
     {
       text: "TOP",
-      href: "#",
+      href: "/",
       desc: "Back to the top.",
     },
     {
       text: "WORK",
-      href: "#my-work",
+      href: "/#my-work",
       desc: "Take a look at my work.",
     },
     {
       text: "ABOUT",
-      href: "#about-me",
+      href: "/#about-me",
       desc: "A little about me.",
     },
     {
       text: "CONTACT",
-      href: "#contact-me",
+      href: "/#contact-me",
       desc: "Contact me!",
     },
   ],
@@ -110,225 +118,239 @@ export const landing = {
   ],
 };
 
-export const myWork = {
+const projectMediaBySlug: Record<
+  string,
+  { images: MyWorkPhotos; logo: StaticImageData }
+> = {
+  platterify: {
+    images: [
+      {
+        image: PlatterifyHero,
+        alt: "Platterify hero section and interactive multi-screen simulation",
+      },
+      {
+        image: PlatterifyFloorPlan,
+        alt: "Platterify Floor Plan Command with live table statuses and guest alert loop",
+      },
+      {
+        image: PlatterifyKds,
+        alt: "Platterify Hot Line Kitchen Display System (KDS) with allergen alerts",
+      },
+      {
+        image: PlatterifyMenu,
+        alt: "Platterify interactive guest digital menu preview",
+      },
+      {
+        image: PlatterifyQrDesigner,
+        alt: "Platterify visual Table QR Generator and canvas card designer",
+      },
+      {
+        image: PlatterifyAnalytics,
+        alt: "Platterify P-Mix Menu Analytics and BCG growth-share matrix",
+      },
+    ],
+    logo: PlatterifyLogo,
+  },
+  kippr: {
+    images: [
+      {
+        image: KipprHomeDark,
+        alt: "Home screen of Kippr in dark mode",
+      },
+      { image: KipprHomeLight, alt: "Home screen of Kippr in light mode" },
+      {
+        image: KipprPantryScreen,
+        alt: "Pantry screen of Kippr",
+      },
+      {
+        image: KipprRecipes,
+        alt: "Recipes screen of Kippr",
+      },
+      {
+        image: KipprGeneratedRecipe,
+        alt: "Generated recipe screen of Kippr",
+      },
+      {
+        image: KipprShoppingList,
+        alt: "Shopping list screen of Kippr",
+      },
+    ],
+    logo: KipprLogo,
+  },
+  storis: {
+    images: [
+      {
+        image: StorisHomeScreen,
+        alt: "Home screen of Storis",
+      },
+      {
+        image: StorisLibraryDark,
+        alt: "Library screen of Storis in dark mode",
+      },
+      {
+        image: StorisLibraryLight,
+        alt: "Library screen of Storis in light mode",
+      },
+      {
+        image: StorisReadingScreen,
+        alt: "Reading screen of Storis",
+      },
+      {
+        image: StorisTextSettings,
+        alt: "Text settings screen of Storis",
+      },
+    ],
+    logo: StorisLogo,
+  },
+  "knowla-web": {
+    images: [
+      { image: KnowlaWebMain, alt: "Main view of Knowla Web" },
+      { image: KnowlaWebPlanet, alt: "Planet view of Knowla Web" },
+      { image: KnowlaWebSearch, alt: "Search view of Knowla Web" },
+    ],
+    logo: KnoockerLogo,
+  },
+};
+
+export const myWork: {
+  h2: string;
+  desc: string;
+  projects: ProjectItem[];
+} = {
   h2: "Let's work together",
   desc: "My focus on building fast and aesthetically pleasing projects allows me to deliver engaging and compelling user experiences, while also ensuring that my solutions are both functional and efficient.",
-  projects: [
-    {
-      name: "Platterify",
-      category: "web" as const,
-      platform: "Live Web App",
-      shortDesc:
-        "Platterify is a real-time multiplayer hospitality platform for restaurants and bars. Guests scan table QR codes to browse digital menus, order collaboratively, and request bills in one tap, while staff manage live tables and kitchen tickets.",
-      techStack: ["Next.js", "React", "TypeScript", "Supabase", "Tailwind CSS"],
-      longDesc:
-        "Platterify is a full-stack restaurant operating system engineered with Next.js App Router, React 19, TypeScript, and Tailwind CSS on top of Supabase (PostgreSQL with Row Level Security and Realtime). Guests scan a QR code at their table with no app download required to browse allergen-aware digital menus, build shared table carts, split bills, and request table-side settlement. For operators, the platform delivers a real-time Kitchen Display System (KDS) with 86 toggles, interactive floor plan management, a live Menu CMS, a custom QR code designer, Z-reports, and bilingual EN/PL support backed by a zero-trust server architecture.",
-      images: [
-        {
-          image: PlatterifyHero,
-          alt: "Platterify hero section and interactive multi-screen simulation",
-        },
-        {
-          image: PlatterifyFloorPlan,
-          alt: "Platterify Floor Plan Command with live table statuses and guest alert loop",
-        },
-        {
-          image: PlatterifyKds,
-          alt: "Platterify Hot Line Kitchen Display System (KDS) with allergen alerts",
-        },
-        {
-          image: PlatterifyMenu,
-          alt: "Platterify interactive guest digital menu preview",
-        },
-        {
-          image: PlatterifyQrDesigner,
-          alt: "Platterify visual Table QR Generator and canvas card designer",
-        },
-        {
-          image: PlatterifyAnalytics,
-          alt: "Platterify P-Mix Menu Analytics and BCG growth-share matrix",
-        },
-      ],
-      links: [
-        {
-          disabled: false,
-          text: "Live version",
-          href: "https://platterify.com/",
-        },
-        {
-          disabled: true,
-          text: "Code on Github",
-          href: "",
-        },
-      ],
-      buttonInfo: {
-        text: "Read more",
-        aria: "Check the details of Platterify",
-        type: "button" as const,
-      },
-      logo: PlatterifyLogo,
-      imagesInFormat: "1:1" as const,
-    },
-    {
-      name: "Kippr",
-      category: "mobile" as const,
-      platform: "iOS & Android",
-      shortDesc:
-        "Kippr is an offline-first pantry tracker and inventory mobile application. It helps you easily manage your kitchen stock, reduce food waste, save money, and organize your groceries right from your phone.",
-      techStack: ["Flutter", "PowerSync", "SQLite", "Supabase", "Riverpod"],
-      longDesc:
-        "Kippr is an offline-first pantry tracking mobile application engineered with Flutter. Built on a local-first architecture using PowerSync, SQLite, and Supabase, it ensures flawless offline utility with real-time cloud synchronization. The app maximizes user efficiency by integrating Mobile Scanner, Google MLKit OCR, and the OpenFoodFacts API for smart barcode and receipt scanning. State management is handled via Riverpod, while local data uses Hive CE. Complete with RevenueCat monetization, automated expiry alerts, and Firebase analytics, Kippr delivers a scalable, production-ready SaaS product.",
-      images: [
-        {
-          image: KipprHomeDark,
-          alt: "Home screen of Kippr in dark mode",
-        },
-        { image: KipprHomeLight, alt: "Home screen of Kippr in light mode" },
-        {
-          image: KipprPantryScreen,
-          alt: "Pantry screen of Kippr",
-        },
-        {
-          image: KipprRecipes,
-          alt: "Recipes screen of Kippr",
-        },
-        {
-          image: KipprGeneratedRecipe,
-          alt: "Generated recipe screen of Kippr",
-        },
-        {
-          image: KipprShoppingList,
-          alt: "Shopping list screen of Kippr",
-        },
-      ],
-      links: [
-        {
-          disabled: false,
-          text: "Google Play",
-          href: "https://play.google.com/store/apps/details?id=com.lapwingsoftware.kippr",
-        },
-        {
-          disabled: false,
-          text: "App Store",
-          href: "https://apps.apple.com/pl/app/kippr-pantry-tracker/id6761077705",
-        },
-        {
-          disabled: true,
-          text: "Code on Github",
-          href: "https://github.com/fczajka/fan-reactjs/",
-        },
-      ],
-      buttonInfo: {
-        text: "Read more",
-        aria: "Check the details of Kippr",
-        type: "button" as const,
-      },
-      logo: KipprLogo,
-      imagesInFormat: "3:4" as const,
-    },
-    {
-      name: "Storis",
-      category: "mobile" as const,
-      platform: "iOS App • Edge AI",
-      shortDesc:
-        "Storis is a mobile platform transforming interactive storytelling via edge AI. It leverages on-device machine learning to trigger dynamic, real-time audio soundscapes as a user reads aloud.",
-      techStack: [
-        "Flutter",
-        "Sherpa ONNX",
-        "Supabase",
-        "Riverpod",
-        "RevenueCat",
-      ],
-      longDesc:
-        "Storis is an interactive mobile platform transforming digital storytelling via Flutter. I used the Sherpa ONNX engine for edge AI alongside record and audioplayers, it triggers real-time audio soundscapes as a user reads aloud. Designed for scale, the architecture pairs Riverpod for state management with Supabase for cloud data and seamless Google/Apple authentication. With RevenueCat integration for subscription monetization, Envied for asset security, and SharedPreferences caching, Storis stands as a production-ready SaaS product at the intersection of AI and edutainment.",
-      images: [
-        {
-          image: StorisHomeScreen,
-          alt: "Home screen of Storis",
-        },
-        {
-          image: StorisLibraryDark,
-          alt: "Library screen of Storis in dark mode",
-        },
-        {
-          image: StorisLibraryLight,
-          alt: "Library screen of Storis in light mode",
-        },
-        {
-          image: StorisReadingScreen,
-          alt: "Reading screen of Storis",
-        },
-        {
-          image: StorisTextSettings,
-          alt: "Text settings screen of Storis",
-        },
-      ],
-      links: [
-        {
-          disabled: true,
-          text: "Google Play",
-          href: "",
-        },
-        {
-          disabled: false,
-          text: "App Store",
-          href: "https://apps.apple.com/us/app/storis-bedtime-stories/id6773403059",
-        },
-        {
-          disabled: true,
-          text: "Code on Github",
-          href: "https://github.com/fczajka/szczesliwy-puszek-nextjs/",
-        },
-      ],
-      buttonInfo: {
-        text: "Read more",
-        aria: "Check the details of Storis",
-        type: "button" as const,
-      },
-      logo: StorisLogo,
-      imagesInFormat: "3:4" as const,
-    },
-    {
-      name: "Knowla - Web",
-      category: "web" as const,
-      platform: "Interactive Web Platform",
-      shortDesc:
-        "Knowla - Web is an interactive platform that supports children with disabilities through game-based learning. Using multimedia and gamification, it boosts cognitive skills, creativity, and problem-solving.",
-      techStack: ["Next.js", "TypeScript", "Prisma", "Tailwind CSS"],
-      longDesc:
-        "The goal of this project was to develop a fully functional and high-performance web platform that replicates the capabilities of Knoocker's desktop application. Built from the ground up using Next.js, TypeScript, Prisma, and Tailwind, this website delivers a seamless and intuitive user experience. As the only developer for most of the time, I was responsible for the development process, ensuring feature parity with the desktop application.",
-      images: [
-        { image: KnowlaWebMain, alt: "Main view of Knowla Web" },
-        { image: KnowlaWebPlanet, alt: "Planet view of Knowla Web" },
-        { image: KnowlaWebSearch, alt: "Search view of Knowla Web" },
-      ],
-      links: [
-        {
-          disabled: true,
-          text: "Live version",
-          href: "",
-        },
-        {
-          disabled: true,
-          text: "Code on Github",
-          href: "",
-        },
-      ],
-      buttonInfo: {
-        text: "Read more",
-        aria: "Check the details of Knowla Web",
-        type: "button" as const,
-      },
-      logo: KnoockerLogo,
-      imagesInFormat: "1:1" as const,
-    },
-  ],
+  projects: projectsMeta.map((meta) => {
+    const media = projectMediaBySlug[meta.slug];
+    if (!media) {
+      throw new Error(`Missing project media configuration for "${meta.slug}"`);
+    }
+
+    return {
+      ...meta,
+      images: media.images,
+      logo: media.logo,
+    };
+  }),
 };
 
 export const aboutMe = {
   h2: "Get to know me!",
   firstParagraph:
     "I'm a developer, maker and problem solver. When I'm not crafting code, I find joy in playing football or experimenting with new recipes and techniques in the kitchen.",
+  experience: {
+    badge: "Commercial Experience",
+    headline: "Commercial work history",
+    summary:
+      "Full-stack and frontend engineering across enterprise and product teams in Poznań and remotely — from building greenfield web apps with TypeScript and React to developing the enterprise SZPROT platform in Java and Vaadin.",
+    cv: {
+      label: "Request CV / Resume",
+      href: "/#contact-me",
+    },
+    coreStack: [
+      {
+        category: "Enterprise & Backend",
+        items: ["Java", "Vaadin", "TypeScript", "Prisma"],
+      },
+      {
+        category: "Frontend & Web",
+        items: [
+          "React.js",
+          "Next.js",
+          "Angular",
+          "JavaScript",
+          "HTML5 / CSS",
+          "Tailwind CSS",
+        ],
+      },
+      {
+        category: "Team & Practices",
+        items: ["Full-Stack Delivery", "Responsive Web Design", "Code Reviews"],
+      },
+    ],
+    milestones: [
+      {
+        step: "01",
+        eyebrow: "CGI • Full-time",
+        title: "Junior Fullstack Developer",
+        period: "Jan 2026 – Present",
+        location: "Poznań, Poland • Hybrid",
+        description:
+          'Transitioned to CGI via sector acquisition, continuing full-stack development on the enterprise "SZPROT" project with Java and Vaadin.',
+        highlights: ["Java", "Vaadin", "SZPROT"],
+        logo: CgiLogo,
+        logoAlt: "CGI logo",
+        icon: "enterprise",
+      },
+      {
+        step: "02",
+        eyebrow: "Comarch • Full-time",
+        title: "Junior Fullstack Developer",
+        period: "Jul 2025 – Dec 2025",
+        location: "Poznań, Poland",
+        description:
+          'Progressed from intern to full-stack developer within the enterprise "SZPROT" engineering team:',
+        roles: [
+          {
+            title: "Junior Fullstack Developer",
+            period: "Oct 2025 – Dec 2025",
+            workMode: "Hybrid",
+            description:
+              'Took on more complex full-stack responsibilities within the "SZPROT" project using Java and Vaadin, collaborating with the team on robust, scalable internal application features.',
+          },
+          {
+            title: "Fullstack Developer (Intern)",
+            period: "Jul 2025 – Sep 2025",
+            workMode: "On-site",
+            description:
+              'Fast-tracked onboarding by adapting from Angular to Vaadin and Java to support the enterprise "SZPROT" project.',
+          },
+        ],
+        highlights: ["Java", "Vaadin", "Angular", "SZPROT"],
+        logo: ComarchLogo,
+        logoAlt: "Comarch logo",
+        icon: "enterprise",
+      },
+      {
+        step: "03",
+        eyebrow: "Mucha • Part-time",
+        title: "Junior Fullstack Developer",
+        period: "Apr 2025 – Jul 2025",
+        location: "Poznań, Poland • Remote",
+        description:
+          "Co-developed a comprehensive catering application from scratch alongside a close-knit team of 3 developers.",
+        highlights: ["React.js", "Responsive Web Design", "Full-Stack"],
+        logo: MuchaLogo,
+        logoAlt: "Mucha logo",
+        icon: "web",
+      },
+      {
+        step: "04",
+        eyebrow: "Solvd, Inc. • Internship",
+        title: "Front-End Developer Trainee (React.js)",
+        period: "Jan 2025 – Mar 2025",
+        location: "Remote",
+        description:
+          "Built strong proficiency in HTML, CSS, JavaScript, and React principles while actively participating in code reviews and learning from senior developers.",
+        highlights: ["React.js", "JavaScript", "HTML5 & CSS", "Code Reviews"],
+        logo: SolvdLogo,
+        logoAlt: "Solvd, Inc. logo",
+        icon: "code",
+      },
+      {
+        step: "05",
+        eyebrow: "Knoocker • Part-time",
+        title: "Junior Fullstack Developer",
+        period: "May 2024 – Dec 2024",
+        location: "Poznań, Poland • Hybrid",
+        description:
+          "Developed a brand-new website from the ground up for KNOOCKER, focused on delivering a fast, visually appealing online experience accessible across all devices.",
+        highlights: ["TypeScript", "JavaScript", "Next.js", "Tailwind CSS"],
+        logo: KnowlaCompanyLogo,
+        logoAlt: "Knoocker / Knowla logo",
+        icon: "web",
+      },
+    ],
+  } satisfies ExperienceSnapshot,
   h3: "Cooking",
   secondParagraph:
     "From savory meals to sweet treats, my culinary interests are broad, though I tend to lean toward recipes that feature sugar or chocolate.",
@@ -347,14 +369,21 @@ export const contact = {
       htmlFor: "senderName" as const,
       type: "text",
       autoComplete: "name",
+      maxLength: 120,
     },
     {
       label: "E - mail:",
       htmlFor: "email" as const,
       type: "email",
       autoComplete: "email",
+      maxLength: 254,
     },
-    { label: "Message:", htmlFor: "message" as const, type: null },
+    {
+      label: "Message:",
+      htmlFor: "message" as const,
+      type: null,
+      maxLength: 4000,
+    },
   ],
   button: { text: "Send message!" },
   links: [
@@ -378,16 +407,16 @@ export const contact = {
 
 export const mobileNavbar = {
   links: [
-    { text: "To the top", href: "#", icon: MdArrowUpward },
-    { text: "My work", href: "#my-work", icon: BiCodeAlt },
+    { text: "To the top", href: "/", icon: MdArrowUpward },
+    { text: "My work", href: "/#my-work", icon: BiCodeAlt },
     {
       text: "About me",
-      href: "#about-me",
+      href: "/#about-me",
       icon: MdPerson,
     },
     {
       text: "Contact me",
-      href: "#contact-me",
+      href: "/#contact-me",
       icon: MdPhoneEnabled,
     },
   ],
