@@ -148,6 +148,7 @@ export default function ExperienceTimeline({
 
   const cvHref = cv.downloadUrl ?? cv.href;
   const hasDirectCv = Boolean(cv.downloadUrl);
+  const isExternalCv = /^https?:\/\//i.test(cvHref);
 
   return (
     <div className="mt-12 grid grid-cols-1 gap-10 lg:mt-16 lg:grid-cols-12 lg:gap-12">
@@ -190,8 +191,8 @@ export default function ExperienceTimeline({
         <div className="mt-6 flex flex-wrap items-center gap-3">
           <a
             href={cvHref}
-            target={hasDirectCv ? "_blank" : undefined}
-            rel={hasDirectCv ? "noopener noreferrer" : undefined}
+            target={isExternalCv ? "_blank" : undefined}
+            rel={isExternalCv ? "noopener noreferrer" : undefined}
             download={hasDirectCv ? true : undefined}
             className="inline-flex items-center gap-2 rounded-full bg-primary-200 px-5 py-2.5 font-headline text-sm sm:text-base tracking-wide text-zinc-900 transition-colors hover:bg-primary-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 motion-reduce:transition-none"
           >
@@ -200,7 +201,7 @@ export default function ExperienceTimeline({
             ) : (
               <FiFileText aria-hidden="true" className="text-base" />
             )}
-            <span>{hasDirectCv ? "Download CV" : cv.label}</span>
+            <span>{cv.label}</span>
             {!hasDirectCv && (
               <MdArrowForward aria-hidden="true" className="text-base" />
             )}

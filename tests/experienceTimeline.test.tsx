@@ -38,7 +38,11 @@ describe("ExperienceTimeline", () => {
     const cvLink = screen.getByRole("link", {
       name: new RegExp(aboutMe.experience.cv.label, "i"),
     });
-    expect(cvLink.getAttribute("href")).toBe(aboutMe.experience.cv.href);
+    expect(cvLink.getAttribute("href")).toBe(
+      aboutMe.experience.cv.downloadUrl ?? aboutMe.experience.cv.href,
+    );
+    expect(cvLink.hasAttribute("download")).toBe(true);
+    expect(cvLink.getAttribute("target")).toBeNull();
     expect(cvLink.className).not.toContain("shadow-custom");
 
     for (const milestone of aboutMe.experience.milestones) {
@@ -58,13 +62,13 @@ describe("ExperienceTimeline", () => {
     }
   });
 
-  it("renders direct download link when cv.downloadUrl is configured", () => {
+  it("renders direct download link with custom label when cv.downloadUrl is configured", () => {
     render(
       <ExperienceTimeline
         experience={{
           ...aboutMe.experience,
           cv: {
-            label: "Download CV",
+            label: "Download CV / Resume",
             href: "/#contact-me",
             downloadUrl: "/Franciszek_Czajka_CV.pdf",
           },
@@ -72,9 +76,32 @@ describe("ExperienceTimeline", () => {
       />,
     );
 
-    const downloadLink = screen.getByRole("link", { name: /Download CV/i });
+    const downloadLink = screen.getByRole("link", {
+      name: /Download CV \/ Resume/i,
+    });
     expect(downloadLink.getAttribute("href")).toBe("/Franciszek_Czajka_CV.pdf");
     expect(downloadLink.hasAttribute("download")).toBe(true);
+    expect(downloadLink.getAttribute("target")).toBeNull();
+  });
+
+  it("falls back to cv.href without download when cv.downloadUrl is omitted", () => {
+    render(
+      <ExperienceTimeline
+        experience={{
+          ...aboutMe.experience,
+          cv: {
+            label: "Request CV / Resume",
+            href: "/#contact-me",
+          },
+        }}
+      />,
+    );
+
+    const fallbackLink = screen.getByRole("link", {
+      name: /Request CV \/ Resume/i,
+    });
+    expect(fallbackLink.getAttribute("href")).toBe("/#contact-me");
+    expect(fallbackLink.hasAttribute("download")).toBe(false);
   });
 
   it("activates all checkpoints immediately when prefers-reduced-motion is enabled", () => {

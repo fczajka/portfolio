@@ -243,8 +243,9 @@ export const aboutMe = {
     summary:
       "Full-stack and frontend engineering across enterprise and product teams in Poznań and remotely — from building greenfield web apps with TypeScript and React to developing the enterprise SZPROT platform in Java and Vaadin.",
     cv: {
-      label: "Request CV / Resume",
+      label: "Download CV / Resume",
       href: "/#contact-me",
+      downloadUrl: "/Franciszek_Czajka_CV.pdf",
     },
     coreStack: [
       {
