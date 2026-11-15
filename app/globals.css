@@ -1,8 +1,250 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+
+@theme {
+  --animate-fade-in: 0.3s ease-in-out 1 both fade-in;
+  --animate-fade-out: 0.3s ease-in-out 1 both fade-out;
+  --animate-jump: 15s ease-in-out infinite jump;
+  --animate-jump-dark: 15s ease-in-out infinite jump-dark;
+  --animate-line: 0.8s ease-in-out 1 both line;
+  --animate-show-menu-desktop: 0.7s ease-in-out 1 both show-menu-desktop;
+  --animate-hide-menu-desktop: 0.7s ease-in-out 1 both hide-menu-desktop;
+  --animate-show-menu-mobile: 0.7s ease-in-out 1 show-menu-mobile;
+  --animate-hide-menu-mobile: 0.7s ease-in-out 1 both hide-menu-mobile;
+  --animate-show-up-down: 0.3s ease-out 1 both show-up-down;
+  --animate-show-down-up: 0.3s ease-out 1 both show-down-up;
+  --animate-show-project-details: 0.3s ease-in-out 0.3s 1 both
+    show-up-project-details;
+  --animate-slide-down-project-details-desktop: 0.3s ease-in-out 1 both
+    slide-down-project-details-desktop;
+  --animate-slide-down-project-details-mobile: 0.3s ease-in-out 1 both
+    slide-down-project-details-mobile;
+
+  --radius-primary: 2rem;
+
+  --shadow-mobile-navbar: 0 -5px 6px 0px rgb(228, 228, 231, 1);
+  --shadow-custom: 0px 2px 6px 0px rgba(148, 163, 184, 1);
+
+  --color-primary-50: #eff6ff;
+  --color-primary-75: #e5f0ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+  --color-primary-950: #172554;
+  --color-dark-primary-bg: #1f1f1f;
+  --color-dark-secondary-bg: #28292a;
+  --color-dark-tertiary-bg: #2d2f31;
+
+  --height-switch: 2rem;
+  --width-switch: 3.75rem;
+
+  --max-height-1\.5xl: 39rem;
+  --max-height-3xl: 48rem;
+
+  --max-width-section: 80rem;
+  --max-width-1920: 1920px;
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes jump {
+    0% {
+      translate: 0px 0px;
+      color: #18181b;
+    }
+    2.5% {
+      translate: 0px -10px;
+      color: #94a3b8;
+    }
+    5% {
+      translate: 0px 0px;
+      color: #18181b;
+    }
+    7.5% {
+      translate: 0px -10px;
+      color: #94a3b8;
+    }
+    10% {
+      translate: 0px 0px;
+      color: black;
+    }
+    100% {
+      translate: 0px 0px;
+    }
+  }
+
+  @keyframes jump-dark {
+    0% {
+      translate: 0px 0px;
+      color: #e4e4e7;
+    }
+    2.5% {
+      translate: 0px -10px;
+      color: #3f3f46;
+    }
+    5% {
+      translate: 0px 0px;
+      color: #e4e4e7;
+    }
+    7.5% {
+      translate: 0px -10px;
+      color: #3f3f46;
+    }
+    10% {
+      translate: 0px 0px;
+      color: #e4e4e7;
+    }
+    100% {
+      translate: 0px 0px;
+    }
+  }
+
+  @keyframes line {
+    0% {
+      opacity: 1;
+      transform: scale(1, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1, 1);
+    }
+  }
+
+  @keyframes show-menu-desktop {
+    from {
+      clip-path: circle(50px at 76px 10px);
+    }
+    to {
+      clip-path: circle(2560px at 50% 50%);
+    }
+  }
+
+  @keyframes hide-menu-desktop {
+    from {
+      clip-path: circle(2560px at 50% 50%);
+    }
+    to {
+      clip-path: circle(50px at 76px 10px);
+    }
+  }
+
+  @keyframes show-menu-mobile {
+    from {
+      clip-path: circle(50px at 95% 100%);
+    }
+    to {
+      clip-path: circle(1000px at 50% 50%);
+    }
+  }
+
+  @keyframes hide-menu-mobile {
+    from {
+      clip-path: circle(1000px at 50% 50%);
+    }
+    to {
+      clip-path: circle(50px at 95% 100%);
+    }
+  }
+
+  @keyframes show-down-up {
+    0% {
+      opacity: 0;
+      translate: 0px 4px;
+    }
+    100% {
+      opacity: 1;
+      translate: 0px 0px;
+    }
+  }
+
+  @keyframes show-up-down {
+    0% {
+      opacity: 0;
+      translate: 0px -4px;
+    }
+    100% {
+      opacity: 1;
+      translate: 0px 0px;
+    }
+  }
+
+  @keyframes show-up-project-details {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-down-project-details-desktop {
+    from {
+      translate: 0px 0px;
+    }
+    to {
+      translate: 0px 24px;
+    }
+  }
+
+  @keyframes slide-down-project-details-mobile {
+    from {
+      translate: 0px 0px;
+    }
+    to {
+      translate: 0px 6px;
+    }
+  }
+
+  @keyframes text {
+    0% {
+      opacity: 0;
+      translate: 0px 10px;
+    }
+    100% {
+      opacity: 1;
+      translate: 0px 0px;
+    }
+  }
+}
+
+/* Inline font tokens so utilities read the next/font CSS variables from <html> instead of self-referencing at :root. */
+@theme inline {
+  --font-headline:
+    var(--font-headline), ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-default:
+    var(--font-default), ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+@variant dark (&:where(.dark, .dark *));
 
 @layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
   header {
     @apply fixed bg-zinc-50/80 backdrop-blur-md border-b border-zinc-200/70 w-full h-16 z-30 shadow-custom shadow-zinc-400/40 dark:bg-dark-secondary-bg/80 dark:border-zinc-700/50 dark:shadow-none dark:text-zinc-200;
   }

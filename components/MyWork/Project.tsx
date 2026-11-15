@@ -42,7 +42,7 @@ export default function Project({
             </span>
           </div>
           {logo && (
-            <div className="flex-shrink-0 w-14 h-14 rounded-2xl overflow-hidden flex items-center justify-center">
+            <div className="shrink-0 w-14 h-14 rounded-2xl overflow-hidden flex items-center justify-center">
               <Image
                 ref={logoImgRef}
                 src={logo}

@@ -97,7 +97,7 @@ export default function Header() {
                   <a
                     href={link.href}
                     aria-current={isActive ? "location" : undefined}
-                    className={`relative inline-block transition-colors after:[content:''] after:absolute after:w-full after:h-px after:bottom-0 after:left-0 after:bg-zinc-900 after:origin-bottom-right after:[transition:transform_0.25s_ease-out] hover:after:scale-x-100 hover:after:origin-bottom-left hover:after:motion-reduce:scale-x-0 hover:motion-reduce:underline dark:after:bg-primary-300 ${
+                    className={`relative inline-block transition-colors after:[content:''] after:absolute after:w-full after:h-px after:bottom-0 after:left-0 after:bg-zinc-900 after:origin-bottom-right after:[transition:scale_0.25s_ease-out] hover:after:scale-x-100 hover:after:origin-bottom-left hover:after:motion-reduce:scale-x-0 hover:motion-reduce:underline dark:after:bg-primary-300 ${
                       isActive
                         ? "font-semibold text-primary-700 after:scale-x-100 dark:text-primary-300"
                         : "after:scale-x-0"

@@ -75,7 +75,7 @@ export default function Lightbox({
       role="dialog"
       aria-modal="true"
       aria-label={`${projectName ?? "Project"} screenshot lightbox`}
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/90 p-4 backdrop-blur-sm touch-pan-y outline-none sm:p-8"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/90 p-4 backdrop-blur-xs touch-pan-y outline-none sm:p-8"
       {...swipeHandlers}
       onClick={(event) => {
         if (event.target === event.currentTarget) {

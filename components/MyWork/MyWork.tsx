@@ -115,7 +115,7 @@ export default function MyWork() {
                 onClick={() => setActiveFilter(option.value)}
                 className={`inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm transition-all motion-reduce:transition-none font-headline tracking-wide ${
                   isActive
-                    ? "bg-primary-200 text-zinc-900 shadow-sm shadow-zinc-300 dark:shadow-none"
+                    ? "bg-primary-200 text-zinc-900 shadow-xs shadow-zinc-300 dark:shadow-none"
                     : "bg-zinc-100 text-zinc-700 hover:bg-primary-100 dark:bg-dark-secondary-bg dark:text-zinc-300 dark:hover:bg-dark-tertiary-bg"
                 }`}
               >

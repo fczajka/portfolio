@@ -50,7 +50,7 @@ export default function ProjectDetails({
       role="dialog"
       aria-modal="true"
       aria-labelledby="project-details-title"
-      className={`fixed top-0 left-0 w-full h-full flex justify-center items-center p-4 bg-zinc-800 bg-opacity-90 z-40 overflow-y-auto ${
+      className={`fixed top-0 left-0 w-full h-full flex justify-center items-center p-4 bg-zinc-800/90 z-40 overflow-y-auto ${
         wantsToClose ? "animate-fade-out" : "animate-fade-in"
       } motion-reduce:animate-none`}
     >

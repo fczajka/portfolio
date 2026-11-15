@@ -349,7 +349,7 @@ export default function TechStackPills({
         return (
           <li
             key={tech}
-            className="inline-flex items-center gap-2 rounded-full bg-primary-100 px-3.5 py-2 text-sm font-semibold leading-none shadow-sm shadow-zinc-200 dark:bg-dark-tertiary-bg dark:shadow-none"
+            className="inline-flex items-center gap-2 rounded-full bg-primary-100 px-3.5 py-2 text-sm font-semibold leading-none shadow-xs shadow-zinc-200 dark:bg-dark-tertiary-bg dark:shadow-none"
           >
             <RenderIcon />
             <span>{tech}</span>

@@ -30,7 +30,7 @@
 - Next.js - 13.5 (App Router)
 - React - 18.2
 - TypeScript - 4.9.5
-- Tailwind CSS - 3.4
+- Tailwind CSS - 4.3
 - React Toastify - 9.1.2
 - Vitest - 2.1
 

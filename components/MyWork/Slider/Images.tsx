@@ -44,7 +44,7 @@ export default function Images({
             />
             <span
               aria-hidden="true"
-              className="absolute top-3 right-3 rounded-full bg-zinc-900/75 p-2 text-zinc-50 opacity-75 backdrop-blur-sm transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+              className="absolute top-3 right-3 rounded-full bg-zinc-900/75 p-2 text-zinc-50 opacity-75 backdrop-blur-xs transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
             >
               <FiMaximize2 className="h-3.5 w-3.5" />
             </span>
