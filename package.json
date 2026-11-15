@@ -11,7 +11,7 @@
     "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
     "format": "prettier --write \"{app,components,data,helpers,hooks,lib,types,tests}/**/*.{js,jsx,ts,tsx}\" eslint.config.mjs next.config.js open-next.config.ts postcss.config.js vitest.config.mts",
