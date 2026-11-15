@@ -1,21 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import useAnimatedToggle from "@/hooks/useAnimatedToggle";
-import { headlineFont } from "@/lib/fonts";
 import { header, menu } from "@/data/content";
 import Menu from "../UI/Menu";
 import ToggleTheme from "../UI/ToggleTheme";
 
 const SECTION_ANCHORS = [
-  { id: "contact-me", href: "#contact-me" },
-  { id: "about-me", href: "#about-me" },
-  { id: "my-work", href: "#my-work" },
+  { id: "contact-me", href: "/#contact-me" },
+  { id: "about-me", href: "/#about-me" },
+  { id: "my-work", href: "/#my-work" },
 ];
 
 export default function Header() {
+  const pathname = usePathname();
   const { isOpen, wantsToSee, toggle: handleMenu } = useAnimatedToggle(700);
-  const [activeHref, setActiveHref] = useState("#");
+  const [activeHref, setActiveHref] = useState("/");
   const { links } = header;
   const { buttons } = menu;
 
@@ -25,9 +26,14 @@ export default function Header() {
   ];
 
   useEffect(() => {
+    if (pathname.startsWith("/projects")) {
+      setActiveHref("/#my-work");
+      return;
+    }
+
     const updateActiveSection = () => {
       if (window.scrollY < 160) {
-        setActiveHref("#");
+        setActiveHref("/");
         return;
       }
 
@@ -35,20 +41,23 @@ export default function Header() {
         window.innerHeight + window.scrollY >=
         document.documentElement.scrollHeight - 40;
       if (reachedBottom) {
-        setActiveHref("#contact-me");
+        setActiveHref("/#contact-me");
         return;
       }
 
       const scrollOffset = window.scrollY + 140;
       for (const section of SECTION_ANCHORS) {
         const el = document.getElementById(section.id);
-        if (el && el.offsetTop <= scrollOffset) {
-          setActiveHref(section.href);
-          return;
+        if (el) {
+          const sectionTop = el.getBoundingClientRect().top + window.scrollY;
+          if (sectionTop <= scrollOffset) {
+            setActiveHref(section.href);
+            return;
+          }
         }
       }
 
-      setActiveHref("#");
+      setActiveHref("/");
     };
 
     updateActiveSection();
@@ -56,7 +65,7 @@ export default function Header() {
     return () => {
       window.removeEventListener("scroll", updateActiveSection);
     };
-  }, []);
+  }, [pathname]);
 
   return (
     <>
@@ -69,7 +78,7 @@ export default function Header() {
                 onClick={handleMenu}
                 aria-label={button.aria}
                 type="button"
-                className={`text-xl pl-2 transition-all ${headlineFont.variable} font-headline tracking-wider ${buttonsStyles[index]} hover:pl-1.5 hover:tracking-widest motion-reduce:transition-none`}
+                className={`text-xl pl-2 transition-all font-headline tracking-wider ${buttonsStyles[index]} hover:pl-1.5 hover:tracking-widest motion-reduce:transition-none`}
               >
                 {button.text}
               </button>

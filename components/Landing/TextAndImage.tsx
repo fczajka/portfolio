@@ -1,6 +1,5 @@
 "use client";
 
-import { headlineFont } from "@/lib/fonts";
 import useElementOnScreen from "@/hooks/useElementOnScreen";
 import type { TextAndImageProps } from "@/types";
 import HeroPortrait from "./HeroPortrait";
@@ -25,7 +24,7 @@ export default function TextAndImage({
     >
       <div className="basis-auto lg:basis-1/2 flex flex-col items-center lg:items-start">
         <h1
-          className={`opacity-0 [animation-delay:0.1s] motion-reduce:animate-none motion-reduce:opacity-100 ${headlineFont.variable} font-headline ${revealClass}`}
+          className={`opacity-0 [animation-delay:0.1s] motion-reduce:animate-none motion-reduce:opacity-100 font-headline ${revealClass}`}
         >
           {h1}
         </h1>
@@ -41,9 +40,7 @@ export default function TextAndImage({
             <a
               key={cta.href}
               href={cta.href}
-              className={`px-5 py-2.5 rounded-full text-sm sm:text-base ${
-                headlineFont.variable
-              } font-headline tracking-wide transition-all motion-reduce:transition-none ${
+              className={`px-5 py-2.5 rounded-full text-sm sm:text-base font-headline tracking-wide transition-all motion-reduce:transition-none ${
                 cta.variant === "primary"
                   ? "bg-primary-200 text-zinc-900 shadow-custom shadow-zinc-300 hover:bg-primary-300 focus:bg-primary-300 dark:shadow-none"
                   : "border-2 border-primary-300 text-zinc-900 hover:bg-primary-100 focus:bg-primary-100 dark:border-zinc-500 dark:text-zinc-100 dark:hover:bg-dark-secondary-bg dark:focus:bg-dark-secondary-bg"

@@ -4,10 +4,6 @@ import { forwardRef, type ImgHTMLAttributes } from "react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import Project from "@/components/MyWork/Project";
 
-vi.mock("@/lib/fonts", () => ({
-  headlineFont: { variable: "font-headline-mock" },
-}));
-
 vi.mock("next/image", () => ({
   default: forwardRef<
     HTMLImageElement,

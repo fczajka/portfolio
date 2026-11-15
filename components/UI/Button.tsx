@@ -1,12 +1,9 @@
-import { headlineFont } from "@/lib/fonts";
 import type { ButtonProps } from "@/types";
 
 export default function Button(props: ButtonProps) {
   const baseClassName = `${
     props.style ?? ""
-  } text-sm px-4 py-2 rounded-full bg-primary-200 ${
-    headlineFont.variable
-  } font-headline transition-colors dark:text-zinc-900 motion-reduce:transition-none lg:text-base`;
+  } text-sm px-4 py-2 rounded-full bg-primary-200 font-headline transition-colors dark:text-zinc-900 motion-reduce:transition-none lg:text-base`;
 
   if (props.disabled) {
     return (

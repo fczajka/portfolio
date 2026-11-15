@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import useDialogAccessibility from "@/hooks/useDialogAccessibility";
 import { menu } from "@/data/content";
-import { headlineFont } from "@/lib/fonts";
 import type { MenuProps } from "@/types";
 import ToggleTheme from "./ToggleTheme";
 import { iconsDelays, linksDelays } from "./constants";
@@ -89,7 +88,7 @@ export default function Menu({ wantsToSee, handleMenu }: MenuProps) {
               <a
                 href={link.href}
                 onClick={handleMenu}
-                className={`text-xl sm:text-3xl lg:text-6xl ${headlineFont.variable} font-headline`}
+                className="text-xl sm:text-3xl lg:text-6xl font-headline"
               >
                 {link.text}
               </a>

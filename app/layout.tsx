@@ -1,6 +1,8 @@
 import Header from "@/components/Header/Header";
 import MobileNavbar from "@/components/MobileNavbar/MobileNavbar";
 import ThemeProviderWrapper from "@/components/Providers/ThemeProviderWrapper";
+import { contact, footer } from "@/data/content";
+import { defaultFont, headlineFont } from "@/lib/fonts";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
@@ -9,7 +11,10 @@ const siteUrl = "https://www.franciszekczajka.me";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Franciszek Czajka | Full-Stack Web & Mobile Developer",
+  title: {
+    default: "Franciszek Czajka | Full-Stack Web & Mobile Developer",
+    template: "%s | Franciszek Czajka",
+  },
   description:
     "I am an independent full-stack web and mobile developer from Poznań, Poland, building cross-platform Flutter apps and accessible Next.js web applications.",
   keywords: [
@@ -18,9 +23,19 @@ export const metadata: Metadata = {
     "Flutter Developer",
     "Next.js",
     "TypeScript",
+    "Supabase",
+    "Poznań",
     "Portfolio",
   ],
   authors: [{ name: "Franciszek Czajka", url: siteUrl }],
+  creator: "Franciszek Czajka",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   icons: {
     icon: "/favicon.ico",
   },
@@ -31,6 +46,7 @@ export const metadata: Metadata = {
     description:
       "Portfolio of Franciszek Czajka — cross-platform Flutter apps, edge AI products, and real-time Next.js web applications.",
     siteName: "Franciszek Czajka Portfolio",
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
@@ -40,14 +56,64 @@ export const metadata: Metadata = {
   },
 };
 
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      name: footer.name,
+      url: siteUrl,
+      jobTitle: "Full-Stack Web & Mobile Developer",
+      description:
+        "Independent full-stack web and mobile developer building cross-platform Flutter apps and Next.js web platforms.",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Poznań",
+        addressCountry: "PL",
+      },
+      email: "mailto:franekczajkaa@gmail.com",
+      sameAs: contact.links
+        .filter((link) => link.type === "link")
+        .map((link) => link.href),
+      knowsAbout: [
+        "Java",
+        "Vaadin",
+        "Next.js",
+        "React",
+        "Angular",
+        "TypeScript",
+        "Tailwind CSS",
+        "Flutter",
+        "Supabase",
+        "PostgreSQL",
+        "Prisma",
+        "SQLite",
+        "PowerSync",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "Franciszek Czajka Portfolio",
+      author: { "@id": `${siteUrl}/#person` },
+    },
+  ],
+};
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
       suppressHydrationWarning
-      className="scroll-smooth motion-reduce:scroll-auto"
+      className={`${headlineFont.variable} ${defaultFont.variable} scroll-smooth motion-reduce:scroll-auto`}
     >
-      <body>
+      <body className="font-default">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
         <ThemeProviderWrapper>
           <Header />
           {children}

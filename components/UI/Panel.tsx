@@ -1,6 +1,5 @@
 "use client";
 
-import { headlineFont } from "@/lib/fonts";
 import useElementOnScreen from "@/hooks/useElementOnScreen";
 import type { PanelProps } from "@/types";
 
@@ -16,7 +15,7 @@ export default function Panel({ headline, desc }: PanelProps) {
   return (
     <div ref={containerRef} className="w-full sm:w-4/5 md:w-3/5 xl:w-2/5">
       <h2
-        className={`opacity-0 motion-reduce:animate-none motion-reduce:opacity-100 ${headlineFont.variable} font-headline ${revealClass}`}
+        className={`opacity-0 motion-reduce:animate-none motion-reduce:opacity-100 font-headline ${revealClass}`}
       >
         {headline}
       </h2>

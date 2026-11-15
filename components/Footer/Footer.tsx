@@ -1,5 +1,4 @@
 import { footer } from "@/data/content";
-import { headlineFont } from "@/lib/fonts";
 import { MdArrowUpward } from "react-icons/md";
 
 export default function Footer() {
@@ -11,9 +10,7 @@ export default function Footer() {
       <div className="mx-auto max-w-section flex flex-col gap-8">
         <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-center">
           <div>
-            <p
-              className={`${headlineFont.variable} font-headline text-xl sm:text-2xl tracking-wide text-zinc-900 dark:text-zinc-100`}
-            >
+            <p className="font-headline text-xl sm:text-2xl tracking-wide text-zinc-900 dark:text-zinc-100">
               {name}
             </p>
             <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
