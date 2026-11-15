@@ -4,6 +4,7 @@ import RelatedProjectCard from "@/components/MyWork/RelatedProjectCard";
 import Slider from "@/components/MyWork/Slider/Slider";
 import TechStackPills from "@/components/MyWork/TechStackPills";
 import BackgroundParticles from "@/components/UI/BackgroundParticles";
+import JsonLd from "@/components/UI/JsonLd";
 import { myWork } from "@/data/content";
 import { toProjectSlug } from "@/helpers/projects";
 import type { Metadata } from "next";
@@ -93,10 +94,7 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
 
   return (
     <main>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
-      />
+      <JsonLd data={projectJsonLd} />
       <BackgroundParticles />
       <div className="relative max-w-1920 mx-auto">
         <section className="pt-10 pb-16 px-4 lg:pt-28 lg:px-12">

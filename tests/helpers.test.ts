@@ -7,6 +7,24 @@ import {
   validateForm,
   validateFormFields,
 } from "@/helpers/helpers";
+import { serializeJsonLd } from "@/helpers/jsonLd";
+
+describe("serializeJsonLd", () => {
+  it("escapes HTML-breaking characters while keeping valid JSON", () => {
+    const payload = {
+      name: "Test </script><script>alert(1)</script> & more",
+      sep: "\u2028\u2029",
+    };
+
+    const serialized = serializeJsonLd(payload);
+    expect(serialized).not.toContain("<");
+    expect(serialized).not.toContain(">");
+    expect(serialized).not.toContain("&");
+    expect(serialized).not.toContain("\u2028");
+    expect(serialized).not.toContain("\u2029");
+    expect(JSON.parse(serialized)).toEqual(payload);
+  });
+});
 
 describe("toProjectSlug", () => {
   it("normalizes project titles into URL-safe slugs", () => {

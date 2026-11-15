@@ -1,6 +1,7 @@
 import Header from "@/components/Header/Header";
 import MobileNavbar from "@/components/MobileNavbar/MobileNavbar";
 import ThemeProviderWrapper from "@/components/Providers/ThemeProviderWrapper";
+import JsonLd from "@/components/UI/JsonLd";
 import { contact, footer } from "@/data/content";
 import { defaultFont, headlineFont } from "@/lib/fonts";
 import type { Metadata } from "next";
@@ -110,10 +111,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       className={`${headlineFont.variable} ${defaultFont.variable} scroll-smooth motion-reduce:scroll-auto`}
     >
       <body className="font-default">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
+        <JsonLd data={structuredData} />
         <ThemeProviderWrapper>
           <Header />
           {children}

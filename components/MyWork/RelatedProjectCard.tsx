@@ -24,7 +24,7 @@ export default function RelatedProjectCard({
     <Link
       ref={containerRef}
       href={`/projects/${slug}`}
-      className={`group flex flex-col justify-between rounded-2xl bg-zinc-100/90 p-5 shadow-custom shadow-zinc-300/60 transition-all duration-300 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 dark:bg-dark-secondary-bg/90 dark:shadow-none motion-reduce:transition-none motion-reduce:hover:scale-100 ${logoHoverCardClasses}`}
+      className={`group flex flex-col justify-between rounded-2xl bg-zinc-100/90 p-5 shadow-custom shadow-zinc-300/60 transition-[transform,scale,outline-color] duration-300 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 dark:bg-dark-secondary-bg/90 dark:shadow-none motion-reduce:transition-none motion-reduce:hover:scale-100 ${logoHoverCardClasses}`}
     >
       <div>
         <div className="flex items-center justify-between gap-3">
@@ -48,9 +48,12 @@ export default function RelatedProjectCard({
           {project.shortDesc}
         </p>
       </div>
-      <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-primary-700 transition-all group-hover:gap-2 dark:text-primary-300">
+      <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-primary-700 dark:text-primary-300">
         <span>View case study</span>
-        <MdArrowForward aria-hidden="true" />
+        <MdArrowForward
+          aria-hidden="true"
+          className="transition-transform group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
+        />
       </span>
     </Link>
   );
