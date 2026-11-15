@@ -1,6 +1,5 @@
 "use client";
 
-import { headlineFont } from "@/lib/fonts";
 import useElementOnScreen from "@/hooks/useElementOnScreen";
 import type { FormFieldErrors, FormFieldName, FormProps } from "@/types";
 import React, { type MutableRefObject, useRef, useState } from "react";
@@ -38,10 +37,18 @@ export default function Form({ form, button }: FormProps) {
     const formEl = formRef.current;
     if (!formEl) return;
 
+    const getValue = (fieldName: FormFieldName): string => {
+      const element = formEl.elements.namedItem(fieldName) as
+        | HTMLInputElement
+        | HTMLTextAreaElement
+        | null;
+      return element?.value ?? "";
+    };
+
     const nextErrors = validateFormFields({
-      name: formEl.senderName.value,
-      mail: formEl.email.value,
-      message: formEl.message.value,
+      name: getValue("senderName"),
+      mail: getValue("email"),
+      message: getValue("message"),
     });
 
     if (Object.keys(nextErrors).length > 0) {
@@ -71,10 +78,9 @@ export default function Form({ form, button }: FormProps) {
     <div ref={containerRef} className="basis-full sm:px-32 md:px-44 lg:px-24">
       <form
         noValidate
-        action="post"
         onSubmit={handleForm}
         ref={formRef}
-        className="flex flex-col"
+        className="flex flex-col relative"
       >
         <input
           type="text"
@@ -82,7 +88,7 @@ export default function Form({ form, button }: FormProps) {
           tabIndex={-1}
           autoComplete="off"
           aria-hidden="true"
-          className="hidden"
+          className="absolute -left-[9999px] h-px w-px overflow-hidden opacity-0 pointer-events-none"
         />
         <Fields
           form={form}
@@ -95,11 +101,9 @@ export default function Form({ form, button }: FormProps) {
           disabled={isSubmitting}
           aria-busy={isSubmitting}
           aria-label={isSubmitting ? "Sending message" : "Submit form"}
-          className={`bg-primary-200 rounded-xl my-6 p-4 ${
-            headlineFont.variable
-          } font-headline opacity-0 tracking-wider text-lg transition-all duration-300 shadow-zinc-400 shadow-custom ${
+          className={`bg-primary-200 rounded-xl my-6 p-4 font-headline opacity-0 tracking-wider text-lg transition-all duration-300 ${
             isVisible ? "animate-show-down-up" : ""
-          } [animation-delay:0.8s] dark:bg-dark-secondary-bg dark:hover:bg-dark-tertiary-bg dark:focus:bg-dark-tertiary-bg dark:shadow-none dark:focus:ring-2 dark:focus:ring-zinc-500 motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:transition-none hover:bg-primary-300 focus:bg-primary-300 disabled:opacity-60 disabled:cursor-not-allowed`}
+          } [animation-delay:0.8s] dark:bg-dark-secondary-bg dark:hover:bg-dark-tertiary-bg dark:focus:bg-dark-tertiary-bg dark:focus:ring-2 dark:focus:ring-zinc-500 motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:transition-none hover:bg-primary-300 focus:bg-primary-300 disabled:opacity-60 disabled:cursor-not-allowed`}
         >
           {isSubmitting ? "Sending..." : button.text}
         </button>

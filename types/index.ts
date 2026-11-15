@@ -10,6 +10,80 @@ export type ProjectLink = {
   text: string;
   href: string;
   disabled?: boolean;
+  role?: "primary" | "secondary";
+};
+
+export type ProjectCaseStudy = {
+  challenge: string;
+  architecture: string;
+  highlights: string[];
+};
+
+export type ProjectItem = {
+  name: string;
+  category: ProjectCategory;
+  platform: string;
+  shortDesc: string;
+  techStack: string[];
+  longDesc: string;
+  caseStudy: ProjectCaseStudy;
+  images: MyWorkPhotos;
+  links: ProjectLink[];
+  buttonInfo: {
+    text: string;
+    aria?: string;
+    type: "button";
+    style?: string;
+  };
+  logo: StaticImageData;
+  imagesInFormat: ImageFormat;
+};
+
+export type TimelineIconKey =
+  | "enterprise"
+  | "code"
+  | "web"
+  | "mobile"
+  | "ai"
+  | "education";
+
+export type ExperienceSubRole = {
+  title: string;
+  period: string;
+  workMode?: string;
+  description: string;
+};
+
+export type ExperienceMilestone = {
+  step: string;
+  eyebrow: string;
+  title: string;
+  period?: string;
+  location?: string;
+  description: string;
+  roles?: ExperienceSubRole[];
+  highlights: string[];
+  logo?: StaticImageData;
+  logoAlt?: string;
+  icon?: TimelineIconKey;
+};
+
+export type CoreStackGroup = {
+  category: string;
+  items: string[];
+};
+
+export type ExperienceSnapshot = {
+  badge: string;
+  headline: string;
+  summary: string;
+  cv: {
+    label: string;
+    href: string;
+    downloadUrl?: string;
+  };
+  coreStack: CoreStackGroup[];
+  milestones: ExperienceMilestone[];
 };
 
 export type ProjectProps = {
@@ -136,6 +210,7 @@ export type SliderProps = {
   projectName?: string;
   isLightboxOpen?: boolean;
   onLightboxChange?: Dispatch<SetStateAction<boolean>>;
+  immediate?: boolean;
 };
 
 export type ImagesProps = {
@@ -187,6 +262,7 @@ export type Form = {
   htmlFor: FormFieldName;
   type: string | null;
   autoComplete?: string;
+  maxLength?: number;
 }[];
 
 type ButtonCommonProps = {

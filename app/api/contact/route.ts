@@ -1,17 +1,56 @@
-import { validateFormFields } from "@/helpers/helpers";
+import { validateFormFields } from "@/helpers/validation";
+import { checkRateLimit, getClientIp } from "@/lib/rateLimit";
 import type { ContactPayload } from "@/types";
 import { NextResponse } from "next/server";
 
 const EMAILJS_ENDPOINT = "https://api.emailjs.com/api/v1.0/email/send";
+const MAX_BODY_BYTES = 16_384;
+const EMAILJS_TIMEOUT_MS = 8000;
 
 function normalizeField(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
 }
 
 export async function POST(request: Request) {
+  const clientIp = getClientIp(request);
+  const rateLimit = checkRateLimit(clientIp);
+  if (!rateLimit.allowed) {
+    return NextResponse.json(
+      { error: "Too many messages sent. Please try again later." },
+      {
+        status: 429,
+        headers: {
+          "Retry-After": String(rateLimit.retryAfterSeconds),
+        },
+      },
+    );
+  }
+
+  const contentLength = Number(request.headers.get("content-length") ?? "0");
+  if (Number.isFinite(contentLength) && contentLength > MAX_BODY_BYTES) {
+    return NextResponse.json(
+      { error: "Request payload is too large." },
+      { status: 413 },
+    );
+  }
+
   let body: Partial<ContactPayload>;
   try {
-    body = (await request.json()) as Partial<ContactPayload>;
+    const rawBody = await request.text();
+    if (rawBody.length > MAX_BODY_BYTES) {
+      return NextResponse.json(
+        { error: "Request payload is too large." },
+        { status: 413 },
+      );
+    }
+    const parsed: unknown = JSON.parse(rawBody);
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+      return NextResponse.json(
+        { error: "Invalid request payload." },
+        { status: 400 },
+      );
+    }
+    body = parsed as Partial<ContactPayload>;
   } catch {
     return NextResponse.json(
       { error: "Invalid request payload." },
@@ -68,6 +107,7 @@ export async function POST(request: Request) {
       headers: {
         "Content-Type": "application/json",
       },
+      signal: AbortSignal.timeout(EMAILJS_TIMEOUT_MS),
       body: JSON.stringify({
         service_id: serviceId,
         template_id: templateId,
@@ -93,10 +133,17 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true }, { status: 200 });
   } catch (error) {
+    const isTimeout =
+      error instanceof Error &&
+      (error.name === "TimeoutError" || error.name === "AbortError");
     console.error("Failed to dispatch contact request:", error);
     return NextResponse.json(
-      { error: "Message was not sent!" },
-      { status: 502 },
+      {
+        error: isTimeout
+          ? "Contact request timed out. Please try again."
+          : "Message was not sent!",
+      },
+      { status: isTimeout ? 504 : 502 },
     );
   }
 }

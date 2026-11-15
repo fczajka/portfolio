@@ -1,7 +1,6 @@
 "use client";
 
 import { contact } from "@/data/content";
-import { headlineFont } from "@/lib/fonts";
 import useElementOnScreen from "@/hooks/useElementOnScreen";
 import Form from "./Form";
 import Links from "./Links";
@@ -19,9 +18,7 @@ export default function Contact() {
         <div className="w-full lg:w-1/2">
           <h3
             ref={containerRef}
-            className={`text-center ${
-              headlineFont.variable
-            } font-headline opacity-0 ${
+            className={`text-center font-headline opacity-0 ${
               isVisible ? "animate-show-down-up" : ""
             } motion-reduce:animate-none motion-reduce:opacity-100 top-0`}
           >

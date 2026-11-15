@@ -1,11 +1,16 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { POST } from "@/app/api/contact/route";
+import { CONTACT_LIMITS } from "@/helpers/helpers";
+import { resetRateLimitStore } from "@/lib/rateLimit";
 
-function createJsonRequest(payload: unknown): Request {
+function createJsonRequest(
+  payload: unknown,
+  headers: Record<string, string> = {},
+): Request {
   return new Request("http://localhost:3000/api/contact", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
+    headers: { "Content-Type": "application/json", ...headers },
+    body: typeof payload === "string" ? payload : JSON.stringify(payload),
   });
 }
 
@@ -13,6 +18,7 @@ describe("POST /api/contact", () => {
   const originalEnv = { ...process.env };
 
   beforeEach(() => {
+    resetRateLimitStore();
     process.env.SERVICE_ID = "svc_test";
     process.env.TEMPLATE_ID = "tpl_test";
     process.env.PUBLIC_KEY = "pub_test";
@@ -57,6 +63,35 @@ describe("POST /api/contact", () => {
     expect(data.errors.email).toBe("Please enter a valid email address.");
   });
 
+  it("rejects non-object JSON payloads with 400", async () => {
+    const response = await POST(createJsonRequest(["not", "an", "object"]));
+
+    expect(response.status).toBe(400);
+  });
+
+  it("rejects messages exceeding length limits with 400", async () => {
+    const response = await POST(
+      createJsonRequest({
+        senderName: "Jane",
+        email: "jane@example.com",
+        message: "a".repeat(CONTACT_LIMITS.message + 1),
+      }),
+    );
+
+    expect(response.status).toBe(400);
+  });
+
+  it("rejects oversized request bodies with 413", async () => {
+    const oversized = JSON.stringify({
+      senderName: "Jane",
+      email: "jane@example.com",
+      message: "x".repeat(17_000),
+    });
+    const response = await POST(createJsonRequest(oversized));
+
+    expect(response.status).toBe(413);
+  });
+
   it("returns 503 when server EmailJS credentials are unconfigured", async () => {
     vi.spyOn(console, "error").mockImplementation(() => {});
     delete process.env.SERVICE_ID;
@@ -92,6 +127,60 @@ describe("POST /api/contact", () => {
       expect.objectContaining({
         method: "POST",
       }),
+    );
+  });
+
+  it("returns 504 when the EmailJS upstream request times out", async () => {
+    vi.spyOn(console, "error").mockImplementation(() => {});
+    const timeoutError = new Error("The operation timed out.");
+    timeoutError.name = "TimeoutError";
+    vi.spyOn(globalThis, "fetch").mockRejectedValue(timeoutError);
+
+    const response = await POST(
+      createJsonRequest({
+        senderName: "Jane Doe",
+        email: "jane@example.com",
+        message: "Hello!",
+      }),
+    );
+
+    expect(response.status).toBe(504);
+  });
+
+  it("rate-limits repeated submissions from the same IP with 429", async () => {
+    vi.spyOn(globalThis, "fetch").mockResolvedValue(
+      new Response("OK", { status: 200 }),
+    );
+    const ipHeader = { "x-forwarded-for": "203.0.113.42" };
+
+    for (let i = 0; i < 5; i++) {
+      const okResponse = await POST(
+        createJsonRequest(
+          {
+            senderName: "Jane Doe",
+            email: "jane@example.com",
+            message: `Message ${i}`,
+          },
+          ipHeader,
+        ),
+      );
+      expect(okResponse.status).toBe(200);
+    }
+
+    const blockedResponse = await POST(
+      createJsonRequest(
+        {
+          senderName: "Jane Doe",
+          email: "jane@example.com",
+          message: "One too many",
+        },
+        ipHeader,
+      ),
+    );
+
+    expect(blockedResponse.status).toBe(429);
+    expect(Number(blockedResponse.headers.get("Retry-After"))).toBeGreaterThan(
+      0,
     );
   });
 });

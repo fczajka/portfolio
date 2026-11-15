@@ -1,59 +1,9 @@
 import { toast } from "react-toastify";
-import type {
-  ContactPayload,
-  FormFieldErrors,
-  FormValidationProps,
-  FormValidationReturn,
-} from "@/types";
+import type { ContactPayload } from "@/types";
+import { toProjectSlug } from "./projects";
+import { CONTACT_LIMITS, validateForm, validateFormFields } from "./validation";
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-export function validateFormFields(
-  values: FormValidationProps,
-): FormFieldErrors {
-  const name = values.name.trim();
-  const message = values.message.trim();
-  const mail = values.mail.trim();
-  const errors: FormFieldErrors = {};
-
-  if (!name) {
-    errors.senderName = "Please enter your name.";
-  }
-  if (!mail) {
-    errors.email = "Please enter your email address.";
-  } else if (!EMAIL_PATTERN.test(mail)) {
-    errors.email = "Please enter a valid email address.";
-  }
-  if (!message) {
-    errors.message = "Please enter a message.";
-  }
-
-  return errors;
-}
-
-export function validateForm(
-  values: FormValidationProps,
-): FormValidationReturn {
-  const errors = validateFormFields(values);
-  if (Object.keys(errors).length === 0) {
-    return {
-      status: "success",
-      message: "Everything went well!",
-    };
-  }
-
-  if (!values.name.trim() || !values.message.trim() || !values.mail.trim()) {
-    return {
-      status: "error",
-      message: "Missing form data!",
-    };
-  }
-
-  return {
-    status: "error",
-    message: "The email address is incorrect.",
-  };
-}
+export { CONTACT_LIMITS, toProjectSlug, validateForm, validateFormFields };
 
 export async function submitContactRequest(
   payload: ContactPayload,
@@ -113,7 +63,13 @@ export async function sendMail(form: HTMLFormElement | null): Promise<boolean> {
     await toast.promise(sendPromise, {
       pending: "Sending message!",
       success: "Message sent successfully!",
-      error: "Message was not sent!",
+      error: {
+        render({ data }) {
+          return data instanceof Error && data.message
+            ? data.message
+            : "Message was not sent!";
+        },
+      },
     });
     return true;
   } catch {

@@ -1,10 +1,19 @@
 import { describe, expect, it, vi, afterEach } from "vitest";
 import {
+  CONTACT_LIMITS,
   copyTextToClipboard,
   submitContactRequest,
+  toProjectSlug,
   validateForm,
   validateFormFields,
 } from "@/helpers/helpers";
+
+describe("toProjectSlug", () => {
+  it("normalizes project titles into URL-safe slugs", () => {
+    expect(toProjectSlug("Platterify")).toBe("platterify");
+    expect(toProjectSlug("Knowla - Web")).toBe("knowla-web");
+  });
+});
 
 describe("validateFormFields", () => {
   it("returns field errors when required fields are blank", () => {
@@ -37,6 +46,18 @@ describe("validateFormFields", () => {
         message: " Interested in collaborating.",
       }),
     ).toEqual({});
+  });
+
+  it("enforces maximum character lengths on all fields", () => {
+    const errors = validateFormFields({
+      name: "a".repeat(CONTACT_LIMITS.senderName + 1),
+      mail: `${"a".repeat(CONTACT_LIMITS.email)}@example.com`,
+      message: "a".repeat(CONTACT_LIMITS.message + 1),
+    });
+
+    expect(errors.senderName).toContain(`${CONTACT_LIMITS.senderName}`);
+    expect(errors.email).toContain(`${CONTACT_LIMITS.email}`);
+    expect(errors.message).toContain(`${CONTACT_LIMITS.message}`);
   });
 });
 

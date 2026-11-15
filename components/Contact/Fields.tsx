@@ -1,4 +1,3 @@
-import { headlineFont } from "@/lib/fonts";
 import type { InputsAndLabelsProps } from "@/types";
 import { delays } from "./constants";
 
@@ -9,7 +8,7 @@ export default function Fields({
   onClearError,
 }: InputsAndLabelsProps) {
   const baseFieldClass =
-    "rounded-xl border-0 bg-primary-200 transition-all motion-reduce:transition-none focus:ring-2 focus:ring-primary-400 hover:bg-primary-300 focus:bg-primary-300 outline-none dark:bg-dark-secondary-bg dark:hover:bg-dark-tertiary-bg dark:focus:bg-dark-tertiary-bg dark:focus:ring-zinc-500";
+    "rounded-xl border-0 bg-primary-200 text-zinc-900 placeholder:text-zinc-600 transition-all motion-reduce:transition-none focus:ring-2 focus:ring-primary-400 hover:bg-primary-300 focus:bg-primary-300 outline-none dark:bg-dark-secondary-bg dark:text-zinc-100 dark:placeholder:text-zinc-400 dark:hover:bg-dark-tertiary-bg dark:focus:bg-dark-tertiary-bg dark:focus:ring-zinc-500";
 
   return (
     <>
@@ -31,7 +30,7 @@ export default function Fields({
           >
             <label
               htmlFor={section.htmlFor}
-              className={`mb-1 ${headlineFont.variable} font-headline text-lg`}
+              className="mb-1 font-headline text-lg"
             >
               {section.label}
             </label>
@@ -41,6 +40,7 @@ export default function Fields({
                 id={section.htmlFor}
                 name={section.htmlFor}
                 autoComplete={section.autoComplete}
+                maxLength={section.maxLength}
                 aria-invalid={error ? true : undefined}
                 aria-describedby={error ? errorId : undefined}
                 onChange={() => {
@@ -53,13 +53,14 @@ export default function Fields({
                 id={section.htmlFor}
                 name={section.htmlFor}
                 autoComplete={section.autoComplete}
+                maxLength={section.maxLength}
                 aria-invalid={error ? true : undefined}
                 aria-describedby={error ? errorId : undefined}
                 onChange={() => {
                   if (error) onClearError(section.htmlFor);
                 }}
-                className={`resize-none ${baseFieldClass} ${errorRingClass}`}
-                rows={3}
+                className={`resize-y ${baseFieldClass} ${errorRingClass}`}
+                rows={4}
                 cols={30}
                 wrap="soft"
               ></textarea>
