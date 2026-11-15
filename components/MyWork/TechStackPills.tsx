@@ -3,6 +3,7 @@ import type { ComponentType } from "react";
 type TechStackPillsProps = {
   techStack: string[];
   className?: string;
+  immediate?: boolean;
 };
 
 function NextJsIcon() {
@@ -334,11 +335,14 @@ const TECH_ICONS: Record<string, ComponentType> = {
 export default function TechStackPills({
   techStack,
   className = "mt-4",
+  immediate = false,
 }: TechStackPillsProps) {
+  const animationClass = immediate
+    ? ""
+    : "animate-fade-in [animation-delay:1s] motion-reduce:animate-none";
+
   return (
-    <ul
-      className={`flex flex-wrap gap-2 animate-fade-in [animation-delay:1s] motion-reduce:animate-none ${className}`}
-    >
+    <ul className={`flex flex-wrap gap-2 ${animationClass} ${className}`}>
       {techStack.map((tech) => {
         const RenderIcon = TECH_ICONS[tech] ?? DefaultTechIcon;
 

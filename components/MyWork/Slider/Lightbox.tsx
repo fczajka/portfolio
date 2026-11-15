@@ -103,7 +103,7 @@ export default function Lightbox({
           <BsArrowLeftShort aria-hidden="true" />
         </button>
 
-        <div className="flex min-w-0 max-h-[78vh] max-w-full items-center justify-center overflow-hidden rounded-2xl border border-zinc-700/70 bg-zinc-950/60 p-1 shadow-2xl">
+        <div className="flex min-w-0 max-h-[78vh] max-w-full items-center justify-center overflow-hidden rounded-2xl bg-zinc-950/60 p-1 shadow-2xl">
           <Image
             src={activeImage.image}
             alt={activeImage.alt}

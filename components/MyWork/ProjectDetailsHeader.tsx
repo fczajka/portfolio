@@ -1,11 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import type { RefObject } from "react";
 import { useEffect, useRef, useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
-import { MdCheck, MdLink } from "react-icons/md";
+import { MdCheck, MdLink, MdOpenInNew } from "react-icons/md";
 import { copyTextToClipboard } from "@/helpers/helpers";
-import { headlineFont } from "@/lib/fonts";
 
 type ProjectDetailsHeaderProps = {
   name: string;
@@ -15,7 +15,7 @@ type ProjectDetailsHeaderProps = {
   onClose: () => void;
 };
 
-/** Header bar for ProjectDetails with title, platform label, share-link copy, and close button. */
+/** Header bar for ProjectDetails with title, platform label, share-link copy, full page link, and close button. */
 export default function ProjectDetailsHeader({
   name,
   slug,
@@ -35,7 +35,7 @@ export default function ProjectDetailsHeader({
   }, []);
 
   const handleCopyLink = async () => {
-    const shareUrl = `${window.location.origin}${window.location.pathname}?project=${slug}`;
+    const shareUrl = `${window.location.origin}/projects/${slug}`;
     const copied = await copyTextToClipboard(shareUrl);
     if (!copied) return;
 
@@ -52,10 +52,7 @@ export default function ProjectDetailsHeader({
   return (
     <div className="flex justify-between items-start gap-4">
       <div className="flex min-w-0 flex-wrap items-center gap-3 animate-show-down-up [animation-delay:0.4s] motion-reduce:animate-none">
-        <h3
-          id="project-details-title"
-          className={`${headlineFont.variable} font-headline`}
-        >
+        <h3 id="project-details-title" className="font-headline">
           {name}
         </h3>
         {platform && (
@@ -65,6 +62,14 @@ export default function ProjectDetailsHeader({
         )}
       </div>
       <div className="flex shrink-0 items-center gap-2 animate-show-down-up [animation-delay:0.4s] motion-reduce:animate-none">
+        <Link
+          href={`/projects/${slug}`}
+          aria-label={`Open full case study page for ${name}`}
+          className="inline-flex items-center gap-1 rounded-full bg-zinc-200/80 px-3 py-1 text-xs font-semibold text-zinc-800 transition-colors hover:bg-primary-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 dark:bg-dark-tertiary-bg dark:text-zinc-200 dark:hover:bg-primary-500/20"
+        >
+          <MdOpenInNew aria-hidden="true" className="text-sm" />
+          <span className="hidden sm:inline">Full page</span>
+        </Link>
         <button
           type="button"
           onClick={handleCopyLink}
