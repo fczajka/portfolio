@@ -1,6 +1,5 @@
 NEXTJS_ENV=development
-# Server-side EmailJS credentials for POST /api/contact (local Wrangler preview)
-# SERVICE_ID=your_emailjs_service_id
-# TEMPLATE_ID=your_emailjs_template_id
-# PUBLIC_KEY=your_emailjs_public_key
-# EMAILJS_PRIVATE_KEY=your_emailjs_private_key
+# Server-side Resend credentials for POST /api/contact (local Wrangler preview)
+# RESEND_API_KEY=re_your_resend_api_key
+# CONTACT_FROM_EMAIL="Portfolio <contact@lapwingsoftware.com>"
+# CONTACT_TO_EMAIL=franekczajkaa@gmail.com

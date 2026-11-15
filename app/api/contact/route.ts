@@ -3,12 +3,25 @@ import { checkRateLimit, getClientIp } from "@/lib/rateLimit";
 import type { ContactPayload } from "@/types";
 import { NextResponse } from "next/server";
 
-const EMAILJS_ENDPOINT = "https://api.emailjs.com/api/v1.0/email/send";
+const RESEND_ENDPOINT = "https://api.resend.com/emails";
 const MAX_BODY_BYTES = 16_384;
-const EMAILJS_TIMEOUT_MS = 8000;
+const RESEND_TIMEOUT_MS = 8000;
 
 function normalizeField(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function sanitizeHeaderText(value: string): string {
+  return value.replaceAll(/[\r\n]+/g, " ").trim();
 }
 
 export async function POST(request: Request) {
@@ -83,17 +96,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: firstError, errors }, { status: 400 });
   }
 
-  const serviceId =
-    process.env.EMAILJS_SERVICE_ID ?? process.env.SERVICE_ID ?? "";
-  const templateId =
-    process.env.EMAILJS_TEMPLATE_ID ?? process.env.TEMPLATE_ID ?? "";
-  const publicKey =
-    process.env.EMAILJS_PUBLIC_KEY ?? process.env.PUBLIC_KEY ?? "";
-  const privateKey = process.env.EMAILJS_PRIVATE_KEY ?? "";
+  const resendApiKey = process.env.RESEND_API_KEY?.trim() ?? "";
+  const fromEmail = process.env.CONTACT_FROM_EMAIL?.trim() ?? "";
+  const toEmail = process.env.CONTACT_TO_EMAIL?.trim() ?? "";
 
-  if (!serviceId || !templateId || !publicKey) {
+  if (!resendApiKey || !fromEmail || !toEmail) {
     console.error(
-      "Contact API is missing EmailJS server environment variables.",
+      "Contact API is missing Resend server environment variables.",
     );
     return NextResponse.json(
       { error: "Contact service is temporarily unavailable." },
@@ -102,28 +111,31 @@ export async function POST(request: Request) {
   }
 
   try {
-    const emailResponse = await fetch(EMAILJS_ENDPOINT, {
+    const safeName = sanitizeHeaderText(senderName);
+    const htmlMessage = escapeHtml(message).replaceAll("\n", "<br />");
+
+    const emailResponse = await fetch(RESEND_ENDPOINT, {
       method: "POST",
       headers: {
+        Authorization: `Bearer ${resendApiKey}`,
         "Content-Type": "application/json",
+        "User-Agent": "portfolio-contact/1.0",
       },
-      signal: AbortSignal.timeout(EMAILJS_TIMEOUT_MS),
+      signal: AbortSignal.timeout(RESEND_TIMEOUT_MS),
       body: JSON.stringify({
-        service_id: serviceId,
-        template_id: templateId,
-        user_id: publicKey,
-        ...(privateKey ? { accessToken: privateKey } : {}),
-        template_params: {
-          senderName,
-          email,
-          message,
-        },
+        from: fromEmail,
+        to: [toEmail],
+        reply_to: email,
+        subject: `Portfolio message from ${safeName}`,
+        text: `Name: ${senderName}\nEmail: ${email}\n\n${message}`,
+        html: `<p><strong>Name:</strong> ${escapeHtml(senderName)}</p><p><strong>Email:</strong> ${escapeHtml(email)}</p><p>${htmlMessage}</p>`,
       }),
     });
 
     if (!emailResponse.ok) {
+      const errorBody = await emailResponse.text().catch(() => "");
       console.error(
-        `EmailJS upstream error: ${emailResponse.status} ${emailResponse.statusText}`,
+        `Resend upstream error: ${emailResponse.status} ${emailResponse.statusText} ${errorBody}`.trim(),
       );
       return NextResponse.json(
         { error: "Message was not sent!" },

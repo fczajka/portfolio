@@ -23,7 +23,7 @@
 - Filterable project showcase (`All`, `Web`, `Mobile`) with interactive modals, swipeable lightbox slider, and dedicated SEO-friendly `/projects/[slug]` case study routes
 - Dynamic OpenGraph & Twitter preview cards, `sitemap.xml`, `robots.txt`, and `Person` / `SoftwareApplication` JSON-LD metadata
 - Scroll-progress professional snapshot & capabilities timeline alongside personal background
-- Server-side EmailJS contact API (`POST /api/contact`) with rate limiting, length validation, honeypot filtering, and upstream timeouts
+- Server-side Resend contact API (`POST /api/contact`) with rate limiting, length validation, honeypot filtering, and upstream timeouts
 
 ## Technologies Used
 
@@ -44,7 +44,7 @@ cd portfolio
 npm install
 ```
 
-Copy `.env.example` to `.env.local` and configure your EmailJS server credentials for `POST /api/contact`:
+Copy `.env.example` to `.env.local` and configure your Resend server credentials for `POST /api/contact`:
 
 ```bash
 cp .env.example .env.local
