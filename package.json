@@ -6,12 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "format": "prettier --write \"{app,components,data,helpers,hooks,lib,types,tests}/**/*.{js,jsx,ts,tsx}\" eslint.config.mjs next.config.js postcss.config.js vitest.config.mts",
-    "format:check": "prettier --check \"{app,components,data,helpers,hooks,lib,types,tests}/**/*.{js,jsx,ts,tsx}\" eslint.config.mjs next.config.js postcss.config.js vitest.config.mts",
+    "format": "prettier --write \"{app,components,data,helpers,hooks,lib,types,tests}/**/*.{js,jsx,ts,tsx}\" eslint.config.mjs next.config.js open-next.config.ts postcss.config.js vitest.config.mts",
+    "format:check": "prettier --check \"{app,components,data,helpers,hooks,lib,types,tests}/**/*.{js,jsx,ts,tsx}\" eslint.config.mjs next.config.js open-next.config.ts postcss.config.js vitest.config.mts",
     "doctor": "npx -y react-doctor --verbose"
   },
   "dependencies": {
@@ -29,6 +33,7 @@
     "typescript": "^6.0.3"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "^1.20.17",
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/postcss": "^4.0.0",
     "@testing-library/react": "^16.3.3",
@@ -41,6 +46,7 @@
     "tailwindcss": "^4.0.0",
     "typescript-eslint": "^8.72.2",
     "vite": "^8.3.8",
-    "vitest": "^5.1.0"
+    "vitest": "^5.1.0",
+    "wrangler": "^4.162.0"
   }
 }

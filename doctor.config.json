@@ -1,5 +1,5 @@
 {
   "ignore": {
-    "files": [".next/**"]
+    "files": [".next/**", ".open-next/**", ".wrangler/**"]
   }
 }

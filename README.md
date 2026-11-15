@@ -1,4 +1,4 @@
-# franciszekczajka.me
+# me.lapwingsoftware.com
 
 > Personal portfolio website showcasing my work across cross-platform Flutter applications, edge AI products, and full-stack Next.js web platforms.
 
@@ -14,7 +14,7 @@
 
 ## Demo
 
-> Working live site: [_franciszekczajka.me_](https://www.franciszekczajka.me/)
+> Working live site: [_me.lapwingsoftware.com_](https://me.lapwingsoftware.com/)
 
 ## Features
 

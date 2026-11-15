@@ -4,11 +4,12 @@ import ThemeProviderWrapper from "@/components/Providers/ThemeProviderWrapper";
 import JsonLd from "@/components/UI/JsonLd";
 import { contact, footer } from "@/data/content";
 import { defaultFont, headlineFont } from "@/lib/fonts";
+import { SITE_URL } from "@/lib/site";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
 
-const siteUrl = "https://www.franciszekczajka.me";
+const siteUrl = SITE_URL;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

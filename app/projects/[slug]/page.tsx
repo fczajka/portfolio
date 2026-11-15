@@ -7,6 +7,7 @@ import BackgroundParticles from "@/components/UI/BackgroundParticles";
 import JsonLd from "@/components/UI/JsonLd";
 import { myWork } from "@/data/content";
 import { toProjectSlug } from "@/helpers/projects";
+import { SITE_URL } from "@/lib/site";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -84,11 +85,11 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
       project.category === "mobile" ? "MobileApplication" : "WebApplication",
     operatingSystem: project.platform,
     description: project.longDesc,
-    url: `https://www.franciszekczajka.me/projects/${slug}`,
+    url: `${SITE_URL}/projects/${slug}`,
     author: {
       "@type": "Person",
       name: "Franciszek Czajka",
-      url: "https://www.franciszekczajka.me",
+      url: SITE_URL,
     },
   };
 

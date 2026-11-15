@@ -1,3 +1,4 @@
+import { SITE_HOST } from "@/lib/site";
 import { ImageResponse } from "next/og";
 
 export const alt =
@@ -45,7 +46,7 @@ export default function OpenGraphImage() {
             fontWeight: 600,
           }}
         >
-          franciszekczajka.me
+          {SITE_HOST}
         </div>
         <div
           style={{

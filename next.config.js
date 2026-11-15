@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    formats: ["image/avif", "image/webp"],
+    unoptimized: true,
   },
   async headers() {
     return [
@@ -18,3 +18,5 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+
+import("@opennextjs/cloudflare").then((m) => m.initOpenNextCloudflareForDev());

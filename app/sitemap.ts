@@ -1,8 +1,9 @@
 import { projectsMeta } from "@/data/projectsMeta";
+import { SITE_URL } from "@/lib/site";
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://www.franciszekczajka.me";
+  const baseUrl = SITE_URL;
   const lastModified = new Date();
 
   const projectRoutes: MetadataRoute.Sitemap = projectsMeta.map((project) => ({

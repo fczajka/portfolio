@@ -8,8 +8,11 @@ const MAX_ENTRIES = 5000;
 
 const store = new Map<string, RateLimitEntry>();
 
-/** Extracts the best-effort client IP from standard proxy headers. */
+/** Extracts the best-effort client IP from Cloudflare and standard proxy headers. */
 export function getClientIp(request: Request): string {
+  const cfConnectingIp = request.headers.get("cf-connecting-ip")?.trim();
+  if (cfConnectingIp) return cfConnectingIp;
+
   const forwardedFor = request.headers.get("x-forwarded-for");
   if (forwardedFor) {
     const firstIp = forwardedFor.split(",")[0]?.trim();

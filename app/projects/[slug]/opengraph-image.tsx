@@ -7,6 +7,12 @@ export const size = {
 };
 export const contentType = "image/png";
 
+export function generateStaticParams() {
+  return projectsMeta.map((project) => ({
+    slug: project.slug,
+  }));
+}
+
 export default async function ProjectOpenGraphImage({
   params,
 }: {

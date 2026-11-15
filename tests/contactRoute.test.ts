@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { POST } from "@/app/api/contact/route";
 import { CONTACT_LIMITS } from "@/helpers/helpers";
-import { resetRateLimitStore } from "@/lib/rateLimit";
+import { getClientIp, resetRateLimitStore } from "@/lib/rateLimit";
 
 function createJsonRequest(
   payload: unknown,
@@ -182,5 +182,18 @@ describe("POST /api/contact", () => {
     expect(Number(blockedResponse.headers.get("Retry-After"))).toBeGreaterThan(
       0,
     );
+  });
+
+  it("prefers cf-connecting-ip when extracting client IP", () => {
+    const request = createJsonRequest(
+      {},
+      {
+        "cf-connecting-ip": "198.51.100.7",
+        "x-forwarded-for": "203.0.113.42",
+        "x-real-ip": "203.0.113.99",
+      },
+    );
+
+    expect(getClientIp(request)).toBe("198.51.100.7");
   });
 });
