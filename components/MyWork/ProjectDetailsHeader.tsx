@@ -11,7 +11,7 @@ type ProjectDetailsHeaderProps = {
   name: string;
   slug: string;
   platform?: string;
-  closeButtonRef: RefObject<HTMLButtonElement>;
+  closeButtonRef: RefObject<HTMLButtonElement | null>;
   onClose: () => void;
 };
 

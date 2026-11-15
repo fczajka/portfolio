@@ -40,12 +40,7 @@ export type ProjectItem = {
 };
 
 export type TimelineIconKey =
-  | "enterprise"
-  | "code"
-  | "web"
-  | "mobile"
-  | "ai"
-  | "education";
+  "enterprise" | "code" | "web" | "mobile" | "ai" | "education";
 
 export type ExperienceSubRole = {
   title: string;

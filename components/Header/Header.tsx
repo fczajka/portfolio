@@ -16,7 +16,9 @@ const SECTION_ANCHORS = [
 export default function Header() {
   const pathname = usePathname();
   const { isOpen, wantsToSee, toggle: handleMenu } = useAnimatedToggle(700);
-  const [activeHref, setActiveHref] = useState("/");
+  const isProjectRoute = pathname.startsWith("/projects");
+  const [scrollActiveHref, setScrollActiveHref] = useState("/");
+  const activeHref = isProjectRoute ? "/#my-work" : scrollActiveHref;
   const { links } = header;
   const { buttons } = menu;
 
@@ -26,14 +28,13 @@ export default function Header() {
   ];
 
   useEffect(() => {
-    if (pathname.startsWith("/projects")) {
-      setActiveHref("/#my-work");
+    if (isProjectRoute) {
       return;
     }
 
     const updateActiveSection = () => {
       if (window.scrollY < 160) {
-        setActiveHref("/");
+        setScrollActiveHref("/");
         return;
       }
 
@@ -41,7 +42,7 @@ export default function Header() {
         window.innerHeight + window.scrollY >=
         document.documentElement.scrollHeight - 40;
       if (reachedBottom) {
-        setActiveHref("/#contact-me");
+        setScrollActiveHref("/#contact-me");
         return;
       }
 
@@ -51,21 +52,22 @@ export default function Header() {
         if (el) {
           const sectionTop = el.getBoundingClientRect().top + window.scrollY;
           if (sectionTop <= scrollOffset) {
-            setActiveHref(section.href);
+            setScrollActiveHref(section.href);
             return;
           }
         }
       }
 
-      setActiveHref("/");
+      setScrollActiveHref("/");
     };
 
-    updateActiveSection();
+    const rafId = window.requestAnimationFrame(updateActiveSection);
     window.addEventListener("scroll", updateActiveSection, { passive: true });
     return () => {
+      window.cancelAnimationFrame(rafId);
       window.removeEventListener("scroll", updateActiveSection);
     };
-  }, [pathname]);
+  }, [isProjectRoute]);
 
   return (
     <>

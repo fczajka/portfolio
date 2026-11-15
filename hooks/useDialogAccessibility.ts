@@ -13,8 +13,8 @@ const FOCUSABLE_SELECTOR = [
 
 type UseDialogAccessibilityOptions = {
   isOpen: boolean;
-  dialogRef: RefObject<HTMLElement>;
-  initialFocusRef?: RefObject<HTMLElement>;
+  dialogRef: RefObject<HTMLElement | null>;
+  initialFocusRef?: RefObject<HTMLElement | null>;
   trapFocus?: boolean;
   lockScroll?: boolean;
   restoreFocus?: boolean;

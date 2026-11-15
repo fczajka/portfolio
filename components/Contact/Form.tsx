@@ -39,9 +39,7 @@ export default function Form({ form, button }: FormProps) {
 
     const getValue = (fieldName: FormFieldName): string => {
       const element = formEl.elements.namedItem(fieldName) as
-        | HTMLInputElement
-        | HTMLTextAreaElement
-        | null;
+        HTMLInputElement | HTMLTextAreaElement | null;
       return element?.value ?? "";
     };
 
@@ -115,9 +113,8 @@ export default function Form({ form, button }: FormProps) {
         closeButton={false}
         position="bottom-center"
         toastClassName={() =>
-          "bg-primary-200 text-xs leading-relaxed sm:text-base min-[400px]:text-sm text-zinc-900 p-4 mb-4 cursor-pointer dark:bg-dark-secondary-bg dark:border-b-[1px] dark:border-zinc-500 dark:text-zinc-200 min-[481px]:dark:shadow-none min-[481px]:rounded-xl min-[481px]:shadow-custom min-[481px]:shadow-zinc-400 min-[481px]:dark:border-2 min-[481px]:dark:border-zinc-500 last:mb-12 last:min-[400px]:mb-16 lg:last:mb-4"
+          "relative flex items-center bg-primary-200 text-xs leading-relaxed sm:text-base min-[400px]:text-sm text-zinc-900 p-4 mb-4 cursor-pointer dark:bg-dark-secondary-bg dark:border-b-[1px] dark:border-zinc-500 dark:text-zinc-200 min-[481px]:dark:shadow-none min-[481px]:rounded-xl min-[481px]:shadow-custom min-[481px]:shadow-zinc-400 min-[481px]:dark:border-2 min-[481px]:dark:border-zinc-500 last:mb-12 last:min-[400px]:mb-16 lg:last:mb-4"
         }
-        bodyClassName={() => "flex"}
       />
     </div>
   );

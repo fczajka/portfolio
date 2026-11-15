@@ -4,7 +4,7 @@ import type { RefObject } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 type UseModalDismissOptions = {
-  containerRef: RefObject<HTMLElement>;
+  containerRef: RefObject<HTMLElement | null>;
   onClose: () => void;
   closeDelayMs?: number;
   isSuspended?: boolean;

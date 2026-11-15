@@ -13,7 +13,7 @@ import { notFound } from "next/navigation";
 import { MdArrowBack } from "react-icons/md";
 
 type ProjectPageParams = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 function findProject(slug: string) {
@@ -29,8 +29,11 @@ export function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }: ProjectPageParams): Metadata {
-  const project = findProject(params.slug);
+export async function generateMetadata({
+  params,
+}: ProjectPageParams): Promise<Metadata> {
+  const { slug: rawSlug } = await params;
+  const project = findProject(rawSlug);
   if (!project) {
     return {
       title: "Project Not Found",
@@ -60,8 +63,9 @@ export function generateMetadata({ params }: ProjectPageParams): Metadata {
   };
 }
 
-export default function ProjectPage({ params }: ProjectPageParams) {
-  const project = findProject(params.slug);
+export default async function ProjectPage({ params }: ProjectPageParams) {
+  const { slug: rawSlug } = await params;
+  const project = findProject(rawSlug);
   if (!project) {
     notFound();
   }

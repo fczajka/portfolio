@@ -27,12 +27,12 @@
 
 ## Technologies Used
 
-- Next.js - 13.5 (App Router)
-- React - 18.2
-- TypeScript - 4.9.5
+- Next.js - 16.4 (App Router)
+- React - 19.3
+- TypeScript - 6.0
 - Tailwind CSS - 4.3
-- React Toastify - 9.1.2
-- Vitest - 2.1
+- React Toastify - 11.2
+- Vitest - 5.1
 
 ## Setup
 

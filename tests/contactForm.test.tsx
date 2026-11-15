@@ -14,6 +14,7 @@ describe("Contact Form", () => {
     class MockIntersectionObserver implements IntersectionObserver {
       readonly root = null;
       readonly rootMargin = "0px";
+      readonly scrollMargin = "0px";
       readonly thresholds = [0.15];
       observe = vi.fn();
       disconnect = vi.fn();
@@ -36,7 +37,9 @@ describe("Contact Form", () => {
     expect(submitButton.className).not.toContain("shadow-custom");
     fireEvent.click(submitButton);
 
-    expect(screen.getByText("Please enter your name.")).toBeTruthy();
+    expect(document.getElementById("senderName-error")?.textContent).toBe(
+      "Please enter your name.",
+    );
     expect(screen.getByText("Please enter your email address.")).toBeTruthy();
     expect(screen.getByText("Please enter a message.")).toBeTruthy();
   });
