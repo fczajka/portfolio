@@ -69,7 +69,6 @@ export type CoreStackGroup = {
 };
 
 export type ExperienceSnapshot = {
-  badge: string;
   headline: string;
   summary: string;
   cv: {

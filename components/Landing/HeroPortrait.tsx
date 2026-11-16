@@ -48,7 +48,7 @@ export default function HeroPortrait({ isVisible }: HeroPortraitProps) {
         viewBox="64 12 374 466"
         role="img"
         aria-label="Animated line-art portrait of Franciszek Czajka"
-        className="w-full h-auto max-h-[44vh] sm:max-h-[48vh] lg:max-h-[78vh] overflow-visible"
+        className="w-full h-auto max-h-[35dvh] min-[400px]:max-h-[41dvh] sm:max-h-[45dvh] lg:max-h-[78dvh] overflow-visible"
       >
         <defs>
           <radialGradient id={auraGradientId} cx="50%" cy="50%" r="50%">

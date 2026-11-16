@@ -236,9 +236,8 @@ export const myWork: {
 export const aboutMe = {
   h2: "Get to know me!",
   firstParagraph:
-    "I'm a developer, maker and problem solver. When I'm not crafting code, I find joy in playing football or experimenting with new recipes and techniques in the kitchen.",
+    "I'm a full-stack web and mobile developer focused on building fast, reliable, and well-crafted products — spanning enterprise Java platforms, modern TypeScript web apps, and cross-platform Flutter apps.",
   experience: {
-    badge: "Commercial Experience",
     headline: "Commercial work history",
     summary:
       "Full-stack and frontend engineering across enterprise and product teams in Poznań and remotely — from building greenfield web apps with TypeScript and React to developing the enterprise SZPROT platform in Java and Vaadin.",
@@ -352,9 +351,9 @@ export const aboutMe = {
       },
     ],
   } satisfies ExperienceSnapshot,
-  h3: "Cooking",
+  h3: "Beyond the code",
   secondParagraph:
-    "From savory meals to sweet treats, my culinary interests are broad, though I tend to lean toward recipes that feature sugar or chocolate.",
+    "I'm a developer, maker and problem solver. When I'm not crafting code, I find joy in playing football or experimenting with new recipes and techniques in the kitchen. From savory meals to sweet treats, my culinary interests are broad, though I tend to lean toward recipes that feature sugar or chocolate.",
   foods: [
     { name: "Pizza", image: Pizza, alt: "Pizza" },
     { name: "Crème Caramel", image: Creme, alt: "Crème Caramel" },

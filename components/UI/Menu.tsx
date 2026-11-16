@@ -41,7 +41,7 @@ export default function Menu({ wantsToSee, handleMenu }: MenuProps) {
       role="dialog"
       aria-modal="true"
       aria-label="Site navigation"
-      className={`fixed w-full h-screen top-0 pt-16 bg-zinc-50 z-10 px-12 overflow-y-auto outline-none lg:pt-32 ${
+      className={`fixed w-full h-dvh top-0 pt-16 bg-zinc-50 z-10 px-12 overflow-y-auto outline-none lg:pt-32 ${
         wantsToSee
           ? "animate-show-menu-mobile lg:animate-show-menu-desktop"
           : "animate-hide-menu-mobile lg:animate-hide-menu-desktop"

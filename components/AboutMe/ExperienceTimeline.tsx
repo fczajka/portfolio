@@ -25,7 +25,7 @@ const clamp = (value: number, min: number, max: number): number =>
 export default function ExperienceTimeline({
   experience,
 }: ExperienceTimelineProps) {
-  const { badge, headline, summary, cv, coreStack, milestones } = experience;
+  const { headline, summary, cv, coreStack, milestones } = experience;
   const listRef = useRef<HTMLOListElement | null>(null);
   const checkpointRefs = useRef<(HTMLDivElement | null)[]>([]);
   const rafRef = useRef<number | null>(null);
@@ -153,17 +153,14 @@ export default function ExperienceTimeline({
   return (
     <div className="mt-12 grid grid-cols-1 gap-10 lg:mt-16 lg:grid-cols-12 lg:gap-12">
       <div className="lg:col-span-5 lg:sticky lg:top-24 lg:self-start">
-        <span className="inline-flex items-center rounded-full bg-primary-100/80 px-3.5 py-1 text-xs font-semibold tracking-wide text-primary-800 dark:bg-primary-500/15 dark:text-primary-200">
-          {badge}
-        </span>
-        <h3 className="mt-4 font-headline text-2xl sm:text-3xl lg:text-4xl tracking-tight text-zinc-900 dark:text-zinc-100">
+        <h3 className="font-headline text-2xl sm:text-3xl lg:text-4xl tracking-tight text-zinc-900 dark:text-zinc-100">
           {headline}
         </h3>
         <p className="mt-3 text-sm sm:text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
           {summary}
         </p>
 
-        <div className="mt-6 space-y-3 rounded-2xl bg-zinc-100/80 p-4 dark:bg-dark-secondary-bg/80">
+        <div className="hidden lg:block mt-6 space-y-3 rounded-2xl bg-zinc-100/80 p-4 dark:bg-dark-secondary-bg/80">
           <p className="text-xs font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400">
             Core Stack
           </p>

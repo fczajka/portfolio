@@ -26,11 +26,15 @@ describe("ExperienceTimeline", () => {
     vi.restoreAllMocks();
   });
 
-  it("renders sticky commercial snapshot, core stack groups, CV CTA, and all milestones", () => {
+  it("renders sticky commercial snapshot, desktop-only core stack groups, CV CTA, and all milestones", () => {
     render(<ExperienceTimeline experience={aboutMe.experience} />);
 
-    expect(screen.getByText(aboutMe.experience.badge)).toBeTruthy();
+    expect(screen.queryByText("Commercial Experience")).toBeNull();
     expect(screen.getByText(aboutMe.experience.headline)).toBeTruthy();
+
+    const coreStackHeading = screen.getByText("Core Stack");
+    expect(coreStackHeading.parentElement?.className).toContain("hidden");
+    expect(coreStackHeading.parentElement?.className).toContain("lg:block");
     expect(screen.getByText("Enterprise & Backend")).toBeTruthy();
     expect(screen.getByText("Frontend & Web")).toBeTruthy();
     expect(screen.getByText("Team & Practices")).toBeTruthy();
