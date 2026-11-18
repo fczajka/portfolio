@@ -12,19 +12,25 @@ type PortraitFeaturesProps = {
   leftEyeClipId: string;
   rightEyeClipId: string;
   classes: PortraitClasses;
+  isGreeting?: boolean;
 };
 
-/** Renders eyebrows, blinking eyes, nose, and smile inside the facial features parallax layer. */
+/** Renders eyebrows, blinking/winking eyes, nose, and smile inside the facial features parallax layer. */
 export default function PortraitFeatures({
   leftEyeClipId,
   rightEyeClipId,
   classes,
+  isGreeting = false,
 }: PortraitFeaturesProps) {
   const { strokeClass } = classes;
 
   return (
     <g className="hero-layer-features">
-      <g className="transition-transform duration-300 ease-out group-hover:-translate-y-0.5 motion-reduce:transition-none">
+      <g
+        className={`transition-transform duration-300 ease-out motion-reduce:transition-none ${
+          isGreeting ? "-translate-y-1.5" : "group-hover:-translate-y-0.5"
+        }`}
+      >
         {EYEBROW_PATHS.map((brow) => (
           <path
             key={brow.id}
@@ -44,6 +50,8 @@ export default function PortraitFeatures({
         clipId={leftEyeClipId}
         eyePath={EYE_LEFT_PATH}
         lidPath="M 191 217 Q 207 223 223 217"
+        winkPath="M 190 218 Q 207 205 224 218"
+        isWinking={isGreeting}
         transformOrigin="207px 216px"
         pupilCx="207"
         pupilCy="216"
@@ -77,7 +85,13 @@ export default function PortraitFeatures({
         })}
       />
 
-      <g className="transition-transform duration-300 ease-out origin-[251px_310px] group-hover:scale-x-105 group-hover:-translate-y-px motion-reduce:transition-none">
+      <g
+        className={`transition-transform duration-300 ease-out origin-[251px_310px] motion-reduce:transition-none ${
+          isGreeting
+            ? "scale-x-110 scale-y-125 -translate-y-0.5"
+            : "group-hover:scale-x-105 group-hover:-translate-y-px"
+        }`}
+      >
         <path
           d="M 218 305 Q 251 319 284 305"
           pathLength={1}

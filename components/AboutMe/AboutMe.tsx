@@ -1,12 +1,16 @@
-import { aboutMe } from "@/data/content";
+"use client";
+
+import { useLocale } from "@/components/Providers/LocaleProvider";
+import { getContent } from "@/data/content";
 import Panel from "../UI/Panel";
 import ExperienceTimeline from "./ExperienceTimeline";
 import Foods from "./Foods";
 import SubPanel from "./SubPanel";
 
 export default function AboutMe() {
+  const { locale } = useLocale();
   const { h2, h3, firstParagraph, secondParagraph, foods, experience } =
-    aboutMe;
+    getContent(locale).aboutMe;
 
   return (
     <section id="about-me">

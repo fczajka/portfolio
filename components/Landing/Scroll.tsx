@@ -1,11 +1,13 @@
 "use client";
 
+import { useLocale } from "@/components/Providers/LocaleProvider";
 import useElementOnScreen from "@/hooks/useElementOnScreen";
-import { landing } from "@/data/content";
+import { getContent } from "@/data/content";
 import { delays } from "./constants";
 
 export default function Scroll() {
-  const { letters } = landing;
+  const { locale } = useLocale();
+  const { letters } = getContent(locale).landing;
   const [containerRef, isVisible] = useElementOnScreen({
     root: null,
     rootMargin: "0px",
@@ -22,7 +24,7 @@ export default function Scroll() {
           <span
             key={letter.id}
             className={`animate-jump dark:animate-jump-dark ${
-              delays[Number(letter.id)]
+              delays[Number(letter.id) % delays.length]
             } motion-reduce:animate-none`}
           >
             {letter.letter}

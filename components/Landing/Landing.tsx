@@ -1,9 +1,13 @@
-import { landing } from "@/data/content";
+"use client";
+
+import { useLocale } from "@/components/Providers/LocaleProvider";
+import { getContent } from "@/data/content";
 import Scroll from "./Scroll";
 import TextAndImage from "./TextAndImage";
 
 export default function Landing() {
-  const { h1, paragraph, ctas } = landing;
+  const { locale } = useLocale();
+  const { h1, paragraph, ctas } = getContent(locale).landing;
 
   return (
     <section

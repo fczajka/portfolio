@@ -1,5 +1,8 @@
 import { useTheme } from "next-themes";
 import { useId, useSyncExternalStore, type ChangeEvent } from "react";
+import { useLocale } from "@/components/Providers/LocaleProvider";
+import { useThemeTransition } from "@/components/Providers/ThemeTransitionProvider";
+import { getUiCopy } from "@/data/content";
 
 const emptySubscribe = () => () => {};
 
@@ -14,10 +17,13 @@ function useIsHydrated() {
 export default function ToggleTheme(props: { style?: string }) {
   const toggleId = useId();
   const isHydrated = useIsHydrated();
-  const { resolvedTheme, setTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
+  const { toggleThemeWithTransition } = useThemeTransition();
+  const { locale } = useLocale();
+  const { themeToggleAria } = getUiCopy(locale);
 
   const handleTheme = (event: ChangeEvent<HTMLInputElement>) => {
-    setTheme(event.currentTarget.checked ? "light" : "dark");
+    toggleThemeWithTransition(event.currentTarget.checked ? "light" : "dark");
   };
 
   const isLight = isHydrated && resolvedTheme === "light";
@@ -31,7 +37,7 @@ export default function ToggleTheme(props: { style?: string }) {
       <label
         htmlFor={toggleId}
         className="cursor-pointer"
-        aria-label="Toggle theme"
+        aria-label={themeToggleAria}
       >
         <input
           id={toggleId}

@@ -1,5 +1,8 @@
 import Image from "next/image";
 import { FiMaximize2 } from "react-icons/fi";
+import { useLocale } from "@/components/Providers/LocaleProvider";
+import { getUiCopy } from "@/data/content";
+import { getStaticImageKey } from "@/helpers/helpers";
 import type { ImagesProps } from "@/types";
 
 export default function Images({
@@ -8,6 +11,8 @@ export default function Images({
   imagesInFormat,
   onExpand,
 }: ImagesProps) {
+  const { locale } = useLocale();
+  const uiCopy = getUiCopy(locale).slider;
   const imageCount = images.length;
 
   return (
@@ -20,14 +25,14 @@ export default function Images({
     >
       {images.map((image) => (
         <div
-          key={image.alt}
+          key={getStaticImageKey(image.image, image.alt)}
           className="relative h-full"
           style={{ flex: `0 0 ${100 / imageCount}%` }}
         >
           <button
             type="button"
             onClick={onExpand}
-            aria-label={`Expand screenshot: ${image.alt}`}
+            aria-label={uiCopy.expandAria(image.alt)}
             className="group relative block w-full h-full cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-400"
           >
             <Image

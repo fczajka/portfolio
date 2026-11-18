@@ -457,6 +457,59 @@
   will-change: transform;
 }
 
+@keyframes hero-wave {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) rotate(-18deg) scale(0.9);
+  }
+  16% {
+    opacity: 1;
+    transform: translateY(0px) rotate(12deg) scale(1);
+  }
+  34% {
+    transform: translateY(0px) rotate(-14deg) scale(1);
+  }
+  52% {
+    transform: translateY(0px) rotate(12deg) scale(1);
+  }
+  70% {
+    transform: translateY(0px) rotate(-12deg) scale(1);
+  }
+  86% {
+    opacity: 1;
+    transform: translateY(0px) rotate(6deg) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes hero-bubble-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.88);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
+}
+
+.hero-wave-active {
+  transform-origin: 120px 374px;
+  animation: hero-wave 1.15s cubic-bezier(0.22, 1, 0.36, 1) 1 both;
+}
+
+.hero-bubble-pop {
+  transform-origin: bottom left;
+  animation: hero-bubble-pop 0.32s cubic-bezier(0.22, 1, 0.36, 1) 1 both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-stroke,
   .hero-stroke-active {
@@ -475,8 +528,16 @@
   .hero-float-active,
   .hero-aura-active,
   .hero-blink-open-active,
-  .hero-blink-lid-active {
+  .hero-blink-lid-active,
+  .hero-wave-active,
+  .hero-bubble-pop {
     animation: none;
+  }
+
+  .hero-wave-active,
+  .hero-bubble-pop {
+    opacity: 1;
+    transform: none;
   }
 
   .hero-blink-open,
@@ -497,4 +558,26 @@
     transform: none;
     will-change: auto;
   }
+}
+
+html[data-theme-transition]::view-transition-old(root),
+html[data-theme-transition]::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+html[data-theme-transition]::view-transition-old(root) {
+  z-index: 1;
+}
+
+html[data-theme-transition]::view-transition-new(root) {
+  z-index: 2;
+}
+
+html[data-theme-transition="locale"]::view-transition {
+  background-color: #fafafa;
+}
+
+html.dark[data-theme-transition="locale"]::view-transition {
+  background-color: #1f1f1f;
 }

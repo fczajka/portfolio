@@ -1,11 +1,16 @@
-import type { IndicatorsProps } from "@/types";
 import { BsDot } from "react-icons/bs";
+import { useLocale } from "@/components/Providers/LocaleProvider";
+import { getUiCopy } from "@/data/content";
+import type { IndicatorsProps } from "@/types";
 
 export default function Indicators({
   indexes,
   currentIndex,
   setCurrentIndex,
 }: IndicatorsProps) {
+  const { locale } = useLocale();
+  const uiCopy = getUiCopy(locale).slider;
+
   return (
     <div className="w-full pt-1">
       <ul className="flex justify-center text-3xl text-zinc-900 dark:text-zinc-200">
@@ -16,7 +21,7 @@ export default function Indicators({
               <button
                 type="button"
                 onClick={() => setCurrentIndex(index)}
-                aria-label={`View screenshot ${index + 1}`}
+                aria-label={uiCopy.indicatorAria(index + 1)}
                 aria-current={isCurrent ? "true" : undefined}
                 className={`flex items-center justify-center rounded-full transition-transform motion-reduce:transition-none focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 ${
                   isCurrent

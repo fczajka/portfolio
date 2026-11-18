@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { myWork } from "@/data/content";
+import { useLocale } from "@/components/Providers/LocaleProvider";
+import { getContent, getUiCopy } from "@/data/content";
 import { toProjectSlug } from "@/helpers/projects";
 import type { ProjectCategory } from "@/types";
 import Panel from "../UI/Panel";
@@ -12,7 +13,9 @@ import { delays } from "./constants";
 type FilterValue = "all" | ProjectCategory;
 
 export default function MyWork() {
-  const { h2, desc, projects } = myWork;
+  const { locale } = useLocale();
+  const { h2, desc, projects } = getContent(locale).myWork;
+  const uiCopy = getUiCopy(locale).myWork;
   const [activeFilter, setActiveFilter] = useState<FilterValue>("all");
   const [openSlug, setOpenSlug] = useState<string | null>(null);
   const openedViaPushRef = useRef(false);
@@ -83,9 +86,9 @@ export default function MyWork() {
 
   const filterOptions: { value: FilterValue; label: string; count: number }[] =
     [
-      { value: "all", label: "All", count: projects.length },
-      { value: "web", label: "Web", count: webCount },
-      { value: "mobile", label: "Mobile", count: mobileCount },
+      { value: "all", label: uiCopy.filters.all, count: projects.length },
+      { value: "web", label: uiCopy.filters.web, count: webCount },
+      { value: "mobile", label: uiCopy.filters.mobile, count: mobileCount },
     ];
 
   const filteredProjects =
@@ -102,7 +105,7 @@ export default function MyWork() {
 
         <div
           role="group"
-          aria-label="Filter projects by platform"
+          aria-label={uiCopy.filterAria}
           className="flex flex-wrap items-center gap-2.5 mt-6 lg:mt-10"
         >
           {filterOptions.map((option) => {
@@ -115,8 +118,8 @@ export default function MyWork() {
                 onClick={() => setActiveFilter(option.value)}
                 className={`inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm transition-all motion-reduce:transition-none font-headline tracking-wide ${
                   isActive
-                    ? "bg-primary-200 text-zinc-900 shadow-xs shadow-zinc-300 dark:shadow-none"
-                    : "bg-zinc-100 text-zinc-700 hover:bg-primary-100 dark:bg-dark-secondary-bg dark:text-zinc-300 dark:hover:bg-dark-tertiary-bg"
+                    ? "bg-primary-200 text-zinc-900"
+                    : "bg-zinc-200/80 text-zinc-700 hover:bg-primary-100 dark:bg-dark-secondary-bg dark:text-zinc-300 dark:hover:bg-dark-tertiary-bg"
                 }`}
               >
                 <span>{option.label}</span>
@@ -124,7 +127,7 @@ export default function MyWork() {
                   className={`rounded-full px-2 py-0.5 text-xs font-default font-semibold ${
                     isActive
                       ? "bg-zinc-900/10 text-zinc-900"
-                      : "bg-zinc-200/80 text-zinc-700 dark:bg-dark-tertiary-bg dark:text-zinc-300"
+                      : "bg-zinc-300/65 text-zinc-700 dark:bg-dark-tertiary-bg dark:text-zinc-300"
                   }`}
                 >
                   {option.count}

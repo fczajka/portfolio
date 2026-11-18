@@ -1,6 +1,13 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import {
+  act,
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+} from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import HeroPortrait from "@/components/Landing/HeroPortrait";
+import { LocaleProvider } from "@/components/Providers/LocaleProvider";
 
 function mockMatchMedia(reducedMotion: boolean, finePointer: boolean) {
   Object.defineProperty(window, "matchMedia", {
@@ -25,6 +32,8 @@ describe("HeroPortrait", () => {
   });
 
   afterEach(() => {
+    cleanup();
+    vi.useRealTimers();
     vi.restoreAllMocks();
   });
 
@@ -114,5 +123,59 @@ describe("HeroPortrait", () => {
     expect(wrapper.style.getPropertyValue("--px")).toBe("0");
     expect(wrapper.style.getPropertyValue("--py")).toBe("0");
     expect(rafSpy).not.toHaveBeenCalled();
+  });
+
+  it("waves, winks, and says hi in a speech bubble when clicked, then hides after timeout", () => {
+    vi.useFakeTimers();
+    const { container } = render(<HeroPortrait isVisible />);
+
+    const greetButton = screen.getByRole("button", {
+      name: "Say hi to Franciszek",
+    });
+
+    expect(screen.queryByRole("status")).toBeNull();
+    expect(container.querySelector(".hero-wave-active")).toBeNull();
+
+    fireEvent.click(greetButton);
+
+    const status = screen.getByRole("status");
+    expect(status.textContent).toContain("Hi there!");
+    expect(status.className).toContain("bg-zinc-200");
+    expect(status.className).toContain("dark:bg-dark-secondary-bg");
+    expect(status.className).not.toContain("border-2");
+    expect(status.className).not.toContain("shadow-custom");
+    expect(container.querySelector(".hero-wave-active")).not.toBeNull();
+
+    fireEvent.click(greetButton);
+    expect(screen.getByRole("status").textContent).toContain(
+      "Nice to meet you!",
+    );
+
+    act(() => {
+      vi.advanceTimersByTime(3200);
+    });
+
+    expect(screen.queryByRole("status")).toBeNull();
+    expect(container.querySelector(".hero-wave-active")).toBeNull();
+  });
+
+  it("speaks Polish greetings when LocaleProvider is set to pl", () => {
+    render(
+      <LocaleProvider initialLocale="pl">
+        <HeroPortrait isVisible />
+      </LocaleProvider>,
+    );
+
+    expect(
+      screen.getByRole("img", {
+        name: "Animowany portret liniowy Franciszka Czajki",
+      }),
+    ).toBeTruthy();
+
+    fireEvent.click(
+      screen.getByRole("button", { name: "Przywitaj się z Franciszkiem" }),
+    );
+
+    expect(screen.getByRole("status").textContent).toContain("Cześć!");
   });
 });

@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { useLocale } from "@/components/Providers/LocaleProvider";
 import useAnimatedToggle from "@/hooks/useAnimatedToggle";
-import { header, menu } from "@/data/content";
+import { getContent } from "@/data/content";
 import Menu from "../UI/Menu";
+import ToggleLocale from "../UI/ToggleLocale";
 import ToggleTheme from "../UI/ToggleTheme";
 
 const SECTION_ANCHORS = [
@@ -15,10 +17,12 @@ const SECTION_ANCHORS = [
 
 export default function Header() {
   const pathname = usePathname();
+  const { locale } = useLocale();
   const { isOpen, wantsToSee, toggle: handleMenu } = useAnimatedToggle(700);
   const isProjectRoute = pathname.startsWith("/projects");
   const [scrollActiveHref, setScrollActiveHref] = useState("/");
   const activeHref = isProjectRoute ? "/#my-work" : scrollActiveHref;
+  const { header, menu } = getContent(locale);
   const { links } = header;
   const { buttons } = menu;
 
@@ -71,8 +75,11 @@ export default function Header() {
 
   return (
     <>
+      <div className="fixed top-3 right-3 z-20 lg:hidden">
+        <ToggleLocale className="bg-zinc-100/90 backdrop-blur-md dark:bg-dark-secondary-bg/90" />
+      </div>
       <header className="hidden lg:flex lg:justify-between">
-        <div className="flex basis-1/2 h-full pl-10 items-center">
+        <div className="flex basis-1/3 lg:basis-2/5 h-full pl-10 items-center">
           <div className="relative overflow-y-hidden pr-2">
             {buttons.map((button, index) => (
               <button
@@ -87,15 +94,12 @@ export default function Header() {
             ))}
           </div>
         </div>
-        <nav className="basis-1/2 max-w-5xl">
-          <ul className="flex items-center h-full">
+        <nav className="basis-2/3 lg:basis-3/5 max-w-5xl pr-6 xl:pr-10">
+          <ul className="flex items-center justify-end gap-5 xl:gap-8 h-full">
             {links.map((link) => {
               const isActive = activeHref === link.href;
               return (
-                <li
-                  key={link.text}
-                  className="basis-1/5 text-center whitespace-nowrap"
-                >
+                <li key={link.href} className="text-center whitespace-nowrap">
                   <a
                     href={link.href}
                     aria-current={isActive ? "location" : undefined}
@@ -110,7 +114,10 @@ export default function Header() {
                 </li>
               );
             })}
-            <li className="basis-1/5">
+            <li className="shrink-0">
+              <ToggleLocale />
+            </li>
+            <li className="shrink-0">
               <ToggleTheme />
             </li>
           </ul>

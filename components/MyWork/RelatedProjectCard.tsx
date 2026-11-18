@@ -3,7 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MdArrowForward } from "react-icons/md";
+import { useLocale } from "@/components/Providers/LocaleProvider";
 import { logoHoverCardClasses } from "@/components/UI/constants";
+import { getUiCopy } from "@/data/content";
 import { useLogoBorderColors } from "@/hooks/useLogoBorderColors";
 import type { ProjectItem } from "@/types";
 
@@ -17,6 +19,8 @@ export default function RelatedProjectCard({
   project,
   slug,
 }: RelatedProjectCardProps) {
+  const { locale } = useLocale();
+  const uiCopy = getUiCopy(locale).projectPage;
   const { containerRef, logoImgRef, applyLogoBorderColor } =
     useLogoBorderColors<HTMLAnchorElement>();
 
@@ -24,7 +28,7 @@ export default function RelatedProjectCard({
     <Link
       ref={containerRef}
       href={`/projects/${slug}`}
-      className={`group flex flex-col justify-between rounded-2xl bg-zinc-100/90 p-5 shadow-custom shadow-zinc-300/60 transition-[transform,scale,outline-color] duration-300 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 dark:bg-dark-secondary-bg/90 dark:shadow-none motion-reduce:transition-none motion-reduce:hover:scale-100 ${logoHoverCardClasses}`}
+      className={`group flex flex-col justify-between rounded-2xl bg-zinc-200/80 p-5 transition-[transform,scale,outline-color] duration-300 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 dark:bg-dark-secondary-bg/90 motion-reduce:transition-none motion-reduce:hover:scale-100 ${logoHoverCardClasses}`}
     >
       <div>
         <div className="flex items-center justify-between gap-3">
@@ -49,7 +53,7 @@ export default function RelatedProjectCard({
         </p>
       </div>
       <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-primary-700 dark:text-primary-300">
-        <span>View case study</span>
+        <span>{uiCopy.viewCaseStudy}</span>
         <MdArrowForward
           aria-hidden="true"
           className="transition-transform group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"

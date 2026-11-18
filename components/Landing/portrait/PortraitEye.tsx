@@ -9,6 +9,8 @@ type PortraitEyeProps = {
   clipId: string;
   eyePath: string;
   lidPath: string;
+  winkPath?: string;
+  isWinking?: boolean;
   transformOrigin: string;
   pupilCx: string;
   pupilCy: string;
@@ -18,11 +20,13 @@ type PortraitEyeProps = {
   classes: PortraitClasses;
 };
 
-/** Renders an animated eye with clipped pupil parallax and a blinking eyelid path. */
+/** Renders an animated eye with clipped pupil parallax, automatic blink, and optional cheerful wink. */
 export default function PortraitEye({
   clipId,
   eyePath,
   lidPath,
+  winkPath,
+  isWinking = false,
   transformOrigin,
   pupilCx,
   pupilCy,
@@ -35,7 +39,10 @@ export default function PortraitEye({
 
   return (
     <>
-      <g className={blinkOpenClass} style={{ transformOrigin }}>
+      <g
+        className={isWinking ? "opacity-0" : blinkOpenClass}
+        style={{ transformOrigin }}
+      >
         <path
           d={eyePath}
           className={`${SKIN_FILL} ${fillClass}`}
@@ -70,11 +77,19 @@ export default function PortraitEye({
           })}
         />
       </g>
-      <path
-        d={lidPath}
-        strokeWidth="6.2"
-        className={`${INK_STROKE} ${blinkLidClass}`}
-      />
+      {isWinking ? (
+        <path
+          d={winkPath ?? lidPath}
+          strokeWidth="6.5"
+          className={INK_STROKE}
+        />
+      ) : (
+        <path
+          d={lidPath}
+          strokeWidth="6.2"
+          className={`${INK_STROKE} ${blinkLidClass}`}
+        />
+      )}
     </>
   );
 }

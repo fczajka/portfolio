@@ -26,7 +26,7 @@ export default function Fields({
             } ${
               delays[index]
             } motion-reduce:animate-none motion-reduce:opacity-100`}
-            key={section.label}
+            key={section.htmlFor}
           >
             <label
               htmlFor={section.htmlFor}

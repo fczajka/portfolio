@@ -1,9 +1,13 @@
-import { mobileNavbar } from "@/data/content";
+"use client";
+
+import { useLocale } from "@/components/Providers/LocaleProvider";
+import { getContent } from "@/data/content";
 import type { MobileMenuProps } from "@/types";
 import { MdMenu } from "react-icons/md";
 
 export default function MenuButton({ isOpen, handleMenu }: MobileMenuProps) {
-  const { buttons } = mobileNavbar;
+  const { locale } = useLocale();
+  const { buttons } = getContent(locale).mobileNavbar;
 
   const buttonsStyles = [
     `absolute ${isOpen ? "translate-y-10" : "translate-y-0"}`,
@@ -17,7 +21,7 @@ export default function MenuButton({ isOpen, handleMenu }: MobileMenuProps) {
         <div className="overflow-y-hidden flex flex-col">
           {buttons.map((button, index) => (
             <button
-              key={button.text}
+              key={button.aria}
               onClick={handleMenu}
               aria-label={button.aria}
               type="button"

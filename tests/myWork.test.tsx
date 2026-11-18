@@ -172,6 +172,8 @@ describe("MyWork", () => {
     render(<RelatedProjectCard project={knowla} slug="knowla-web" />);
 
     const cardLink = screen.getByRole("link", { name: /Knowla - Web/i });
+    expect(cardLink.className).toContain("bg-zinc-200/80");
+    expect(cardLink.className).not.toContain("shadow-custom");
     expect(cardLink.className).toContain(
       "hover:outline-[color:var(--project-border-light,#60a5fa)]",
     );

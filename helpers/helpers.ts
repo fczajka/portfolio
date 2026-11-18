@@ -1,9 +1,19 @@
+import type { StaticImageData } from "next/image";
 import { toast } from "react-toastify";
-import type { ContactPayload } from "@/types";
+import type { ContactPayload, Locale } from "@/types";
+import { getUiCopy } from "@/data/content";
 import { toProjectSlug } from "./projects";
 import { CONTACT_LIMITS, validateForm, validateFormFields } from "./validation";
 
 export { CONTACT_LIMITS, toProjectSlug, validateForm, validateFormFields };
+
+/** Returns a stable React key for static image imports in both Next.js and Vitest. */
+export function getStaticImageKey(
+  image: StaticImageData | string,
+  fallback: string,
+): string {
+  return typeof image === "string" ? image : image.src || fallback;
+}
 
 export async function submitContactRequest(
   payload: ContactPayload,
@@ -24,7 +34,10 @@ export async function submitContactRequest(
   }
 }
 
-export async function sendMail(form: HTMLFormElement | null): Promise<boolean> {
+export async function sendMail(
+  form: HTMLFormElement | null,
+  locale: Locale = "en",
+): Promise<boolean> {
   if (!form) return false;
 
   const senderName =
@@ -39,16 +52,21 @@ export async function sendMail(form: HTMLFormElement | null): Promise<boolean> {
     (form.elements.namedItem("company") as HTMLInputElement | null)?.value ??
     "";
 
-  const validatedForm = validateForm({
-    name: senderName,
-    mail: email,
-    message,
-  });
+  const validatedForm = validateForm(
+    {
+      name: senderName,
+      mail: email,
+      message,
+    },
+    locale,
+  );
 
   if (validatedForm.status !== "success") {
     toast.error(validatedForm.message);
     return false;
   }
+
+  const toastCopy = getUiCopy(locale).contactForm;
 
   const sendPromise = submitContactRequest({
     senderName,
@@ -61,13 +79,13 @@ export async function sendMail(form: HTMLFormElement | null): Promise<boolean> {
 
   try {
     await toast.promise(sendPromise, {
-      pending: "Sending message!",
-      success: "Message sent successfully!",
+      pending: toastCopy.toastPending,
+      success: toastCopy.toastSuccess,
       error: {
         render({ data }) {
           return data instanceof Error && data.message
             ? data.message
-            : "Message was not sent!";
+            : toastCopy.toastErrorFallback;
         },
       },
     });

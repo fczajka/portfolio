@@ -120,6 +120,8 @@ describe("ExperienceTimeline", () => {
     listItems.forEach((item) => {
       const article = item.querySelector("article");
       expect(article?.getAttribute("data-active")).toBe("true");
+      expect(article?.className).not.toContain("shadow-custom");
+      expect(article?.className).toContain("bg-zinc-200/80");
       expect(article?.className).toContain(
         "hover:outline-[color:var(--project-border-light,#60a5fa)]",
       );

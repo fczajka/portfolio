@@ -57,7 +57,7 @@ export default function ProjectDetails({
       <div
         ref={elRef}
         tabIndex={-1}
-        className={`basis-full max-h-[92dvh] overflow-y-auto bg-zinc-50 p-4 flex flex-col rounded-primary shadow-lg shadow-zinc-800 max-w-sm outline-none dark:bg-dark-secondary-bg dark:text-zinc-200 ${
+        className={`basis-full max-h-[92dvh] overflow-y-auto bg-zinc-200 p-4 flex flex-col rounded-primary max-w-sm outline-none dark:bg-dark-secondary-bg dark:text-zinc-200 ${
           wantsToClose
             ? "animate-slide-down-project-details-mobile lg:animate-slide-down-project-details-desktop"
             : "animate-show-project-details"

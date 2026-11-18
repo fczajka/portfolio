@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type RefObject } from "react";
+import { useEffect, useLayoutEffect, useRef, type RefObject } from "react";
 import { createParticleRenderer } from "@/components/UI/particlesRenderer";
 import {
   BURST_SECONDS,
@@ -62,6 +62,9 @@ function stepSimulation(params: {
     state.reveal = Math.min(1, state.reveal + dt / INTRO_SECONDS);
   }
 }
+
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 /** Runs the WebGL2 particle simulation loop, observers, and pointer/scroll listeners. */
 export function useParticlesWebGL(
@@ -277,7 +280,7 @@ export function useParticlesWebGL(
         resize();
         return;
       }
-      if (!raf) renderScene();
+      renderScene();
       wake();
     };
 
@@ -304,7 +307,7 @@ export function useParticlesWebGL(
     };
   }, [containerRef, canvasRef]);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     settingsRef.current = settings;
     wakeRef.current?.();
   });

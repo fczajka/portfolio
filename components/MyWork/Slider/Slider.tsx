@@ -69,7 +69,7 @@ export default function Slider({
   return (
     <div className="w-full min-w-0 h-full flex flex-col">
       <div
-        className={`rounded-[1.25rem] shadow-custom shadow-zinc-400 overflow-hidden dark:shadow-none ${imageAnim} ${
+        className={`rounded-[1.25rem] overflow-hidden ${imageAnim} ${
           imagesInFormat === "3:4"
             ? "aspect-[3/4] max-w-[260px] w-full mx-auto shrink-0 lg:max-w-none"
             : "aspect-square w-full shrink-0"

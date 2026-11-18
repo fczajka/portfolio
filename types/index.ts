@@ -2,6 +2,8 @@ import type { StaticImageData } from "next/image";
 import type { Dispatch, SetStateAction } from "react";
 import type { IconType } from "react-icons";
 
+export type Locale = "en" | "pl";
+
 export type ImageFormat = "3:4" | "1:1";
 
 export type ProjectCategory = "web" | "mobile";

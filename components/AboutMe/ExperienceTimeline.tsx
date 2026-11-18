@@ -4,6 +4,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AiFillLinkedin } from "react-icons/ai";
 import { FiFileText } from "react-icons/fi";
 import { MdArrowForward, MdDownload } from "react-icons/md";
+import { useLocale } from "@/components/Providers/LocaleProvider";
+import { getUiCopy } from "@/data/content";
 import type { ExperienceSnapshot } from "@/types";
 import TimelineMilestoneItem from "./TimelineMilestoneItem";
 
@@ -25,6 +27,8 @@ const clamp = (value: number, min: number, max: number): number =>
 export default function ExperienceTimeline({
   experience,
 }: ExperienceTimelineProps) {
+  const { locale } = useLocale();
+  const { coreStackTitle } = getUiCopy(locale).experience;
   const { headline, summary, cv, coreStack, milestones } = experience;
   const listRef = useRef<HTMLOListElement | null>(null);
   const checkpointRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -160,9 +164,9 @@ export default function ExperienceTimeline({
           {summary}
         </p>
 
-        <div className="hidden lg:block mt-6 space-y-3 rounded-2xl bg-zinc-100/80 p-4 dark:bg-dark-secondary-bg/80">
+        <div className="hidden lg:block mt-6 space-y-3 rounded-2xl bg-zinc-200/80 p-4 dark:bg-dark-secondary-bg/80">
           <p className="text-xs font-semibold uppercase tracking-wider text-zinc-600 dark:text-zinc-400">
-            Core Stack
+            {coreStackTitle}
           </p>
           <div className="space-y-3">
             {coreStack.map((group) => (
@@ -174,7 +178,7 @@ export default function ExperienceTimeline({
                   {group.items.map((item) => (
                     <li
                       key={item}
-                      className="rounded-full bg-zinc-200/80 px-2.5 py-1 text-xs font-medium text-zinc-800 dark:bg-dark-tertiary-bg dark:text-zinc-200"
+                      className="rounded-full bg-zinc-300/65 px-2.5 py-1 text-xs font-medium text-zinc-800 dark:bg-dark-tertiary-bg dark:text-zinc-200"
                     >
                       {item}
                     </li>

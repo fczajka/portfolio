@@ -27,7 +27,7 @@ export default function Project({
   return (
     <div
       ref={containerRef}
-      className={`w-full flex flex-col justify-between p-4 rounded-primary opacity-0 transition-all duration-300 bg-zinc-100 hover:scale-[1.02] hover:opacity-100 hover:[animation-fill-mode:backwards] dark:bg-dark-secondary-bg dark:shadow-none ${logoHoverCardClasses} ${
+      className={`w-full flex flex-col justify-between p-4 rounded-primary opacity-0 transition-all duration-300 bg-zinc-200/80 hover:scale-[1.02] hover:opacity-100 hover:[animation-fill-mode:backwards] dark:bg-dark-secondary-bg ${logoHoverCardClasses} ${
         isVisible ? "animate-show-down-up" : ""
       } ${animationDelay} motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:transition-none sm:p-6`}
     >

@@ -111,7 +111,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       suppressHydrationWarning
       className={`${headlineFont.variable} ${defaultFont.variable} scroll-smooth motion-reduce:scroll-auto`}
     >
-      <body className="font-default">
+      <body className="font-default bg-zinc-50 text-zinc-900 dark:bg-dark-primary-bg dark:text-zinc-200">
         <JsonLd data={structuredData} />
         <ThemeProviderWrapper>
           <Header />

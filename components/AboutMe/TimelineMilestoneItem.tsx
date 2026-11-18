@@ -62,8 +62,8 @@ export default function TimelineMilestoneItem({
         data-active={isActive ? "true" : "false"}
         className={`flex-1 origin-left rounded-2xl p-5 transition-all duration-300 hover:scale-[1.01] hover:opacity-100 sm:p-6 motion-reduce:transition-none motion-reduce:hover:scale-100 ${logoHoverCardClasses} ${
           isActive
-            ? "bg-zinc-100/95 shadow-custom shadow-zinc-300/60 dark:bg-dark-secondary-bg/95 dark:shadow-none"
-            : "bg-zinc-100/60 opacity-80 dark:bg-dark-secondary-bg/60"
+            ? "bg-zinc-200/80 dark:bg-dark-secondary-bg/95"
+            : "bg-zinc-200/50 opacity-80 dark:bg-dark-secondary-bg/60"
         }`}
       >
         <div className="flex flex-wrap items-center justify-between gap-2">
@@ -86,7 +86,7 @@ export default function TimelineMilestoneItem({
                   className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-colors duration-300 motion-reduce:transition-none ${
                     isActive
                       ? "bg-primary-200/80 text-primary-800 dark:bg-primary-400/20 dark:text-primary-200"
-                      : "bg-zinc-200/80 text-zinc-600 dark:bg-dark-tertiary-bg dark:text-zinc-400"
+                      : "bg-zinc-300/65 text-zinc-600 dark:bg-dark-tertiary-bg dark:text-zinc-400"
                   }`}
                 >
                   <FallbackIcon aria-hidden="true" className="text-lg" />
@@ -98,7 +98,7 @@ export default function TimelineMilestoneItem({
             </p>
           </div>
           {milestone.period && (
-            <span className="rounded-full bg-zinc-200/80 px-2.5 py-0.5 text-xs font-medium text-zinc-700 dark:bg-dark-tertiary-bg dark:text-zinc-300">
+            <span className="rounded-full bg-zinc-300/65 px-2.5 py-0.5 text-xs font-medium text-zinc-700 dark:bg-dark-tertiary-bg dark:text-zinc-300">
               {milestone.period}
             </span>
           )}
@@ -145,7 +145,7 @@ export default function TimelineMilestoneItem({
           {milestone.highlights.map((tag) => (
             <li
               key={tag}
-              className="rounded-full bg-zinc-200/80 px-3 py-1 text-xs font-semibold text-zinc-800 dark:bg-dark-tertiary-bg dark:text-zinc-200"
+              className="rounded-full bg-zinc-300/65 px-3 py-1 text-xs font-semibold text-zinc-800 dark:bg-dark-tertiary-bg dark:text-zinc-200"
             >
               {tag}
             </li>

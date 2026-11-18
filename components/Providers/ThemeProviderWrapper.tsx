@@ -2,6 +2,8 @@
 
 import { ThemeProvider } from "next-themes";
 import type { ReactNode } from "react";
+import { LocaleProvider } from "./LocaleProvider";
+import { ThemeTransitionProvider } from "./ThemeTransitionProvider";
 
 /** Wraps client-only UI context providers while keeping RootLayout a Server Component. */
 export default function ThemeProviderWrapper({
@@ -16,7 +18,9 @@ export default function ThemeProviderWrapper({
       enableSystem
       disableTransitionOnChange
     >
-      {children}
+      <ThemeTransitionProvider>
+        <LocaleProvider>{children}</LocaleProvider>
+      </ThemeTransitionProvider>
     </ThemeProvider>
   );
 }

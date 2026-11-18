@@ -1,13 +1,18 @@
 import { BsArrowLeftShort, BsArrowRightShort } from "react-icons/bs";
+import { useLocale } from "@/components/Providers/LocaleProvider";
+import { getUiCopy } from "@/data/content";
 import type { ButtonsProps } from "@/types";
 
 export default function Buttons({ onPrev, onNext }: ButtonsProps) {
+  const { locale } = useLocale();
+  const uiCopy = getUiCopy(locale).slider;
+
   return (
     <div className="pointer-events-none absolute inset-x-0 z-10 flex top-1/2 -translate-y-1/2 justify-between text-2xl sm:text-3xl">
       <button
         type="button"
         className="pointer-events-auto rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
-        aria-label="Previous screenshot"
+        aria-label={uiCopy.prevAria}
         onClick={onPrev}
       >
         <BsArrowLeftShort
@@ -18,7 +23,7 @@ export default function Buttons({ onPrev, onNext }: ButtonsProps) {
       <button
         type="button"
         className="pointer-events-auto rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
-        aria-label="Next screenshot"
+        aria-label={uiCopy.nextAria}
         onClick={onNext}
       >
         <BsArrowRightShort

@@ -1,8 +1,13 @@
-import { footer } from "@/data/content";
+"use client";
+
+import { useLocale } from "@/components/Providers/LocaleProvider";
+import { getContent, getUiCopy } from "@/data/content";
 import { MdArrowUpward } from "react-icons/md";
 
 export default function Footer() {
-  const { name, tagline, links, socials } = footer;
+  const { locale } = useLocale();
+  const { name, tagline, links, socials } = getContent(locale).footer;
+  const uiCopy = getUiCopy(locale).footer;
   const currentYear = new Date().getFullYear();
 
   return (
@@ -18,7 +23,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <nav aria-label="Footer navigation">
+          <nav aria-label={uiCopy.navAria}>
             <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
               {links.map((link) => (
                 <li key={link.href}>
@@ -37,7 +42,7 @@ export default function Footer() {
             {socials.map((social) => {
               const SocialIcon = social.icon;
               return (
-                <li key={social.label}>
+                <li key={social.href}>
                   <a
                     href={social.href}
                     aria-label={social.label}
@@ -55,13 +60,13 @@ export default function Footer() {
 
         <div className="flex flex-col items-center justify-between gap-3 border-t border-zinc-200/80 pt-6 text-xs text-zinc-600 dark:border-zinc-700/60 dark:text-zinc-400 sm:flex-row">
           <p className="text-xs sm:text-sm">
-            © {currentYear} {name}. All rights reserved.
+            © {currentYear} {name}. {uiCopy.rightsReserved}
           </p>
           <a
             href="#"
             className="inline-flex items-center gap-1.5 font-semibold text-zinc-800 transition-colors hover:text-primary-700 dark:text-zinc-200 dark:hover:text-primary-300"
           >
-            <span>Back to top</span>
+            <span>{uiCopy.backToTop}</span>
             <MdArrowUpward aria-hidden="true" />
           </a>
         </div>

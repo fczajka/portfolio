@@ -5,6 +5,8 @@ import type { RefObject } from "react";
 import { useEffect, useRef, useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { MdCheck, MdLink, MdOpenInNew } from "react-icons/md";
+import { useLocale } from "@/components/Providers/LocaleProvider";
+import { getUiCopy } from "@/data/content";
 import { copyTextToClipboard } from "@/helpers/helpers";
 
 type ProjectDetailsHeaderProps = {
@@ -23,6 +25,8 @@ export default function ProjectDetailsHeader({
   closeButtonRef,
   onClose,
 }: ProjectDetailsHeaderProps) {
+  const { locale } = useLocale();
+  const uiCopy = getUiCopy(locale).projectModal;
   const copyTimerRef = useRef<number | null>(null);
   const [copiedLink, setCopiedLink] = useState(false);
 
@@ -64,29 +68,29 @@ export default function ProjectDetailsHeader({
       <div className="flex shrink-0 items-center gap-2 animate-show-down-up [animation-delay:0.4s] motion-reduce:animate-none">
         <Link
           href={`/projects/${slug}`}
-          aria-label={`Open full case study page for ${name}`}
-          className="inline-flex items-center gap-1 rounded-full bg-zinc-200/80 px-3 py-1 text-xs font-semibold text-zinc-800 transition-colors hover:bg-primary-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 dark:bg-dark-tertiary-bg dark:text-zinc-200 dark:hover:bg-primary-500/20"
+          aria-label={uiCopy.fullPageAria(name)}
+          className="inline-flex items-center gap-1 rounded-full bg-zinc-300/65 px-3 py-1 text-xs font-semibold text-zinc-800 transition-colors hover:bg-primary-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 dark:bg-dark-tertiary-bg dark:text-zinc-200 dark:hover:bg-primary-500/20"
         >
           <MdOpenInNew aria-hidden="true" className="text-sm" />
-          <span className="hidden sm:inline">Full page</span>
+          <span className="hidden sm:inline">{uiCopy.fullPage}</span>
         </Link>
         <button
           type="button"
           onClick={handleCopyLink}
           aria-label={
-            copiedLink ? `Copied link to ${name}` : `Copy link to ${name}`
+            copiedLink ? uiCopy.copiedLinkAria(name) : uiCopy.copyLinkAria(name)
           }
-          className="inline-flex items-center gap-1 rounded-full bg-zinc-200/80 px-3 py-1 text-xs font-semibold text-zinc-800 transition-colors hover:bg-primary-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 dark:bg-dark-tertiary-bg dark:text-zinc-200 dark:hover:bg-primary-500/20"
+          className="inline-flex items-center gap-1 rounded-full bg-zinc-300/65 px-3 py-1 text-xs font-semibold text-zinc-800 transition-colors hover:bg-primary-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 dark:bg-dark-tertiary-bg dark:text-zinc-200 dark:hover:bg-primary-500/20"
         >
           {copiedLink ? (
             <>
               <MdCheck aria-hidden="true" className="text-sm" />
-              <span>Copied!</span>
+              <span>{uiCopy.copied}</span>
             </>
           ) : (
             <>
               <MdLink aria-hidden="true" className="text-sm" />
-              <span>Copy link</span>
+              <span>{uiCopy.copyLink}</span>
             </>
           )}
         </button>
@@ -94,7 +98,7 @@ export default function ProjectDetailsHeader({
           ref={closeButtonRef}
           type="button"
           onClick={onClose}
-          aria-label={`Close details of ${name}`}
+          aria-label={uiCopy.closeAria(name)}
           className="text-xl rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 sm:text-3xl"
         >
           <AiFillCloseCircle aria-hidden="true" />

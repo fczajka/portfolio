@@ -1,5 +1,7 @@
 "use client";
 
+import { useLocale } from "@/components/Providers/LocaleProvider";
+import { getUiCopy } from "@/data/content";
 import useElementOnScreen from "@/hooks/useElementOnScreen";
 import type { FormFieldErrors, FormFieldName, FormProps } from "@/types";
 import React, { type MutableRefObject, useRef, useState } from "react";
@@ -11,6 +13,8 @@ import Fields from "./Fields";
 const FIELD_ORDER: FormFieldName[] = ["senderName", "email", "message"];
 
 export default function Form({ form, button }: FormProps) {
+  const { locale } = useLocale();
+  const uiCopy = getUiCopy(locale).contactForm;
   const formRef: MutableRefObject<HTMLFormElement | null> = useRef(null);
   const [errors, setErrors] = useState<FormFieldErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -43,11 +47,14 @@ export default function Form({ form, button }: FormProps) {
       return element?.value ?? "";
     };
 
-    const nextErrors = validateFormFields({
-      name: getValue("senderName"),
-      mail: getValue("email"),
-      message: getValue("message"),
-    });
+    const nextErrors = validateFormFields(
+      {
+        name: getValue("senderName"),
+        mail: getValue("email"),
+        message: getValue("message"),
+      },
+      locale,
+    );
 
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
@@ -66,7 +73,7 @@ export default function Form({ form, button }: FormProps) {
     setErrors({});
     setIsSubmitting(true);
     try {
-      await sendMail(formEl);
+      await sendMail(formEl, locale);
     } finally {
       setIsSubmitting(false);
     }
@@ -98,12 +105,12 @@ export default function Form({ form, button }: FormProps) {
           type="submit"
           disabled={isSubmitting}
           aria-busy={isSubmitting}
-          aria-label={isSubmitting ? "Sending message" : "Submit form"}
+          aria-label={isSubmitting ? uiCopy.sendingAria : uiCopy.submitAria}
           className={`bg-primary-200 rounded-xl my-6 p-4 font-headline opacity-0 tracking-wider text-lg transition-all duration-300 ${
             isVisible ? "animate-show-down-up" : ""
           } [animation-delay:0.8s] dark:bg-dark-secondary-bg dark:hover:bg-dark-tertiary-bg dark:focus:bg-dark-tertiary-bg dark:focus:ring-2 dark:focus:ring-zinc-500 motion-reduce:animate-none motion-reduce:opacity-100 motion-reduce:transition-none hover:bg-primary-300 focus:bg-primary-300 disabled:opacity-60 disabled:cursor-not-allowed`}
         >
-          {isSubmitting ? "Sending..." : button.text}
+          {isSubmitting ? uiCopy.sendingLabel : button.text}
         </button>
       </form>
       <ToastContainer

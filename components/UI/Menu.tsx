@@ -1,14 +1,18 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useLocale } from "@/components/Providers/LocaleProvider";
 import useDialogAccessibility from "@/hooks/useDialogAccessibility";
-import { menu } from "@/data/content";
+import { getContent, getUiCopy } from "@/data/content";
 import type { MenuProps } from "@/types";
+import ToggleLocale from "./ToggleLocale";
 import ToggleTheme from "./ToggleTheme";
 import { iconsDelays, linksDelays } from "./constants";
 
 export default function Menu({ wantsToSee, handleMenu }: MenuProps) {
-  const { icons, links } = menu;
+  const { locale } = useLocale();
+  const { icons, links } = getContent(locale).menu;
+  const uiCopy = getUiCopy(locale).menu;
   const menuRef = useRef<HTMLDivElement>(null);
 
   useDialogAccessibility({
@@ -40,7 +44,7 @@ export default function Menu({ wantsToSee, handleMenu }: MenuProps) {
       tabIndex={-1}
       role="dialog"
       aria-modal="true"
-      aria-label="Site navigation"
+      aria-label={uiCopy.navAria}
       className={`fixed w-full h-dvh top-0 pt-16 bg-zinc-50 z-10 px-12 overflow-y-auto outline-none lg:pt-32 ${
         wantsToSee
           ? "animate-show-menu-mobile lg:animate-show-menu-desktop"
@@ -74,13 +78,16 @@ export default function Menu({ wantsToSee, handleMenu }: MenuProps) {
           <li>
             <ToggleTheme style="animate-show-down-up [animation-delay:1s] motion-reduce:animate-none lg:hidden" />
           </li>
+          <li className="ml-3 animate-show-down-up [animation-delay:1.05s] motion-reduce:animate-none lg:hidden">
+            <ToggleLocale />
+          </li>
         </ul>
       </div>
       <div className="w-full h-full py-8 pb-24 lg:py-16">
         <ul className="w-full h-full flex flex-col justify-between max-h-96 sm:w-3/5 lg:w-1/2 lg:max-h-112 xl:w-2/5 2xl:w-1/3">
           {links.map((link, index) => (
             <li
-              key={link.text}
+              key={link.href}
               className={`flex flex-col items-start justify-between animate-show-up-down ${
                 linksDelays[index % linksDelays.length]
               } motion-reduce:animate-none sm:flex-row sm:items-end`}

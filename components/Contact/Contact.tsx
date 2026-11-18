@@ -1,17 +1,19 @@
 "use client";
 
-import { contact } from "@/data/content";
+import { useLocale } from "@/components/Providers/LocaleProvider";
+import { getContent } from "@/data/content";
 import useElementOnScreen from "@/hooks/useElementOnScreen";
 import Form from "./Form";
 import Links from "./Links";
 
 export default function Contact() {
+  const { locale } = useLocale();
   const [containerRef, isVisible] = useElementOnScreen({
     root: null,
     rootMargin: "0px",
     threshold: 0.2,
   });
-  const { h3, links, form, button } = contact;
+  const { h3, links, form, button } = getContent(locale).contact;
   return (
     <section id="contact-me">
       <div className="mx-auto max-w-section">
