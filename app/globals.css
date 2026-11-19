@@ -9,7 +9,7 @@
   --animate-line: 0.8s ease-in-out 1 both line;
   --animate-show-menu-desktop: 0.7s ease-in-out 1 both show-menu-desktop;
   --animate-hide-menu-desktop: 0.7s ease-in-out 1 both hide-menu-desktop;
-  --animate-show-menu-mobile: 0.7s ease-in-out 1 show-menu-mobile;
+  --animate-show-menu-mobile: 0.7s ease-in-out 1 both show-menu-mobile;
   --animate-hide-menu-mobile: 0.7s ease-in-out 1 both hide-menu-mobile;
   --animate-show-up-down: 0.3s ease-out 1 both show-up-down;
   --animate-show-down-up: 0.3s ease-out 1 both show-down-up;
@@ -151,19 +151,19 @@
 
   @keyframes show-menu-mobile {
     from {
-      clip-path: circle(50px at 95% 100%);
+      clip-path: circle(28px at 90% 100%);
     }
     to {
-      clip-path: circle(1000px at 50% 50%);
+      clip-path: circle(150vmax at 50% 50%);
     }
   }
 
   @keyframes hide-menu-mobile {
     from {
-      clip-path: circle(1000px at 50% 50%);
+      clip-path: circle(150vmax at 50% 50%);
     }
     to {
-      clip-path: circle(50px at 95% 100%);
+      clip-path: circle(28px at 90% 100%);
     }
   }
 
@@ -510,6 +510,57 @@
   animation: hero-bubble-pop 0.32s cubic-bezier(0.22, 1, 0.36, 1) 1 both;
 }
 
+@keyframes hero-chef-hat-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(-28px) rotate(-18deg) scale(0.72);
+  }
+  55% {
+    opacity: 1;
+    transform: translateY(4px) rotate(4deg) scale(1.06);
+  }
+  78% {
+    transform: translateY(-3px) rotate(-7deg) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) rotate(-5deg) scale(1);
+  }
+}
+
+@keyframes hero-chef-hat-wiggle {
+  0% {
+    transform: rotate(-5deg) translateY(0px);
+  }
+  25% {
+    transform: rotate(3deg) translateY(-6px);
+  }
+  55% {
+    transform: rotate(-9deg) translateY(-2px);
+  }
+  80% {
+    transform: rotate(-3deg) translateY(-1px);
+  }
+  100% {
+    transform: rotate(-5deg) translateY(0px);
+  }
+}
+
+.hero-chef-hat-pop {
+  transform-origin: 251px 38px;
+  animation: hero-chef-hat-pop 0.56s cubic-bezier(0.22, 1, 0.36, 1) 1 both;
+}
+
+.hero-chef-hat-wiggle {
+  transform-origin: 251px 38px;
+  animation: hero-chef-hat-wiggle 0.52s cubic-bezier(0.22, 1, 0.36, 1) 1 both;
+}
+
+.hero-chef-hat-settled {
+  transform-origin: 251px 38px;
+  transform: rotate(-5deg);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-stroke,
   .hero-stroke-active {
@@ -530,7 +581,9 @@
   .hero-blink-open-active,
   .hero-blink-lid-active,
   .hero-wave-active,
-  .hero-bubble-pop {
+  .hero-bubble-pop,
+  .hero-chef-hat-pop,
+  .hero-chef-hat-wiggle {
     animation: none;
   }
 
@@ -538,6 +591,12 @@
   .hero-bubble-pop {
     opacity: 1;
     transform: none;
+  }
+
+  .hero-chef-hat-pop,
+  .hero-chef-hat-wiggle {
+    opacity: 1;
+    transform: rotate(-5deg);
   }
 
   .hero-blink-open,

@@ -6,6 +6,7 @@ import { MdArrowForward } from "react-icons/md";
 import { useLocale } from "@/components/Providers/LocaleProvider";
 import { logoHoverCardClasses } from "@/components/UI/constants";
 import { getUiCopy } from "@/data/content";
+import { localizePath } from "@/helpers/locale";
 import { useLogoBorderColors } from "@/hooks/useLogoBorderColors";
 import type { ProjectItem } from "@/types";
 
@@ -27,7 +28,7 @@ export default function RelatedProjectCard({
   return (
     <Link
       ref={containerRef}
-      href={`/projects/${slug}`}
+      href={localizePath(`/projects/${slug}`, locale)}
       className={`group flex flex-col justify-between rounded-2xl bg-zinc-200/80 p-5 transition-[transform,scale,outline-color] duration-300 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 dark:bg-dark-secondary-bg/90 motion-reduce:transition-none motion-reduce:hover:scale-100 ${logoHoverCardClasses}`}
     >
       <div>

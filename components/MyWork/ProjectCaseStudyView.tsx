@@ -9,6 +9,7 @@ import Slider from "@/components/MyWork/Slider/Slider";
 import TechStackPills from "@/components/MyWork/TechStackPills";
 import { useLocale } from "@/components/Providers/LocaleProvider";
 import { getContent, getUiCopy } from "@/data/content";
+import { localizePath } from "@/helpers/locale";
 import { toProjectSlug } from "@/helpers/projects";
 
 type ProjectCaseStudyViewProps = {
@@ -34,7 +35,7 @@ export default function ProjectCaseStudyView({
     <section className="pt-10 pb-16 px-4 lg:pt-28 lg:px-12">
       <div className="mx-auto max-w-section">
         <Link
-          href="/#my-work"
+          href={localizePath("/#my-work", locale)}
           className="inline-flex items-center gap-2 rounded-full bg-zinc-200/70 px-4 py-1.5 text-sm font-semibold text-zinc-800 transition-colors hover:bg-primary-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 dark:bg-dark-secondary-bg dark:text-zinc-200 dark:hover:bg-dark-tertiary-bg"
         >
           <MdArrowBack aria-hidden="true" />

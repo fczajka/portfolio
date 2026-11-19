@@ -5,6 +5,7 @@ import { BiCodeAlt } from "react-icons/bi";
 import { getProjectsMeta } from "@/data/projectsMeta";
 import type {
   ExperienceSnapshot,
+  FoodItem,
   Locale,
   MyWorkPhotos,
   ProjectItem,
@@ -189,10 +190,10 @@ const HEADER_TRANSLATIONS: Record<
   },
   pl: {
     links: [
-      { text: "Na górę", href: "/" },
-      { text: "Projekty", href: "/#my-work" },
-      { text: "O mnie", href: "/#about-me" },
-      { text: "Kontakt", href: "/#contact-me" },
+      { text: "Na górę", href: "/pl" },
+      { text: "Projekty", href: "/pl#my-work" },
+      { text: "O mnie", href: "/pl#about-me" },
+      { text: "Kontakt", href: "/pl#contact-me" },
     ],
   },
 };
@@ -233,14 +234,14 @@ const MENU_TRANSLATIONS: Record<
       linkedin: "Profil LinkedIn",
     },
     links: [
-      { text: "START", href: "/", desc: "Wróć na górę strony." },
+      { text: "START", href: "/pl", desc: "Wróć na górę strony." },
       {
         text: "PROJEKTY",
-        href: "/#my-work",
+        href: "/pl#my-work",
         desc: "Zobacz wybrane realizacje.",
       },
-      { text: "O MNIE", href: "/#about-me", desc: "Kilka słów o mnie." },
-      { text: "KONTAKT", href: "/#contact-me", desc: "Napisz do mnie!" },
+      { text: "O MNIE", href: "/pl#about-me", desc: "Kilka słów o mnie." },
+      { text: "KONTAKT", href: "/pl#contact-me", desc: "Napisz do mnie!" },
     ],
   },
 };
@@ -310,7 +311,7 @@ const ABOUT_ME_TRANSLATIONS: Record<
     experience: ExperienceSnapshot;
     h3: string;
     secondParagraph: string;
-    foods: { name: string; image: StaticImageData; alt: string }[];
+    foods: FoodItem[];
   }
 > = {
   en: {
@@ -439,9 +440,51 @@ const ABOUT_ME_TRANSLATIONS: Record<
     secondParagraph:
       "I'm a developer, maker and problem solver. When I'm not crafting code, I find joy in playing football or experimenting with new recipes and techniques in the kitchen. From savory meals to sweet treats, my culinary interests are broad, though I tend to lean toward recipes that feature sugar or chocolate.",
     foods: [
-      { name: "Pizza", image: Pizza, alt: "Pizza" },
-      { name: "Crème Caramel", image: Creme, alt: "Crème Caramel" },
-      { name: "Beef", image: Beef, alt: "Beef" },
+      {
+        id: "pizza",
+        name: "Pizza",
+        image: Pizza,
+        alt: "Pizza",
+        tagline: "Slow-fermented homemade dough",
+        story:
+          "A favorite weekend experiment: high-hydration dough cold-fermented in the fridge for a light, blistered crust, finished simply with crushed tomatoes, melted mozzarella, and sliced ham at maximum oven heat.",
+        prepNote: "24–72h cold fermentation · max-heat bake",
+        highlights: [
+          "High-hydration dough",
+          "Airy blistered crust",
+          "Simple classic toppings",
+        ],
+      },
+      {
+        id: "creme-caramel",
+        name: "Crème Caramel",
+        image: Creme,
+        alt: "Crème Caramel",
+        tagline: "Silky vanilla custard & amber caramel",
+        story:
+          "Where sugar meets patience — caramel pulled right as it turns deep amber, baked gently with egg custard in a Bain-marie and chilled overnight for a clean flip onto the plate.",
+        prepNote: "Bain-marie bake · chilled overnight",
+        highlights: [
+          "Deep amber caramel",
+          "Gentle Bain-marie bake",
+          "Bubble-free silky custard",
+        ],
+      },
+      {
+        id: "steak",
+        name: "Steak",
+        image: Beef,
+        alt: "Steak",
+        tagline: "Pan-seared medium-rare beef steak",
+        story:
+          "Dry-brined ahead of time and seared hard in a hot pan for a deep crust, basted with butter, thyme, rosemary, and garlic, then rested patiently so every slice stays rosy and juicy from edge to edge.",
+        prepNote: "High-heat sear · butter & herb baste · 8 min rest",
+        highlights: [
+          "Deep Maillard crust",
+          "Thyme, rosemary & garlic butter",
+          "Rested medium-rare center",
+        ],
+      },
     ],
   },
   pl: {
@@ -454,7 +497,7 @@ const ABOUT_ME_TRANSLATIONS: Record<
         "Rozwój oprogramowania full-stack i frontend w zespołach produktowych i enterprise w Poznaniu oraz zdalnie — od budowania aplikacji webowych od zera w TypeScript i React po rozwój korporacyjnej platformy SZPROT w Javie i Vaadin.",
       cv: {
         label: "Pobierz CV",
-        href: "/#contact-me",
+        href: "/pl#contact-me",
         downloadUrl: "/Franciszek_Czajka_CV.pdf",
       },
       coreStack: [
@@ -570,9 +613,51 @@ const ABOUT_ME_TRANSLATIONS: Record<
     secondParagraph:
       "Jestem programistą, twórcą i osobą, która lubi rozwiązywać złożone problemy. Kiedy nie piszę kodu, chętnie gram w piłkę nożną albo eksperymentuję w kuchni z nowymi przepisami i technikami. Od dań wytrawnych po słodkie wypieki — moje kulinarne zainteresowania są szerokie, choć najczęściej wygrywają przepisy z cukrem lub czekoladą.",
     foods: [
-      { name: "Pizza", image: Pizza, alt: "Domowa pizza" },
-      { name: "Crème Caramel", image: Creme, alt: "Deser Crème Caramel" },
-      { name: "Wołowina", image: Beef, alt: "Danie z wołowiną" },
+      {
+        id: "pizza",
+        name: "Pizza",
+        image: Pizza,
+        alt: "Domowa pizza",
+        tagline: "Ciasto z długą zimną fermentacją",
+        story:
+          "Ulubiony weekendowy eksperyment: mocno nawodnione ciasto dojrzewające powoli w lodówce dla lekkich, chrupiących brzegów, z prostym sosem pomidorowym, mozzarellą i cienkimi plastrami szynki pieczone w maksymalnej temperaturze piekarnika.",
+        prepNote: "24–72 h zimnej fermentacji · maksymalne grzanie",
+        highlights: [
+          "Wysoka hydracja ciasta",
+          "Lekkie, puszyste brzegi",
+          "Klasyczne proste składniki",
+        ],
+      },
+      {
+        id: "creme-caramel",
+        name: "Crème Caramel",
+        image: Creme,
+        alt: "Deser Crème Caramel",
+        tagline: "Aksamitny krem waniliowy i bursztynowy karmel",
+        story:
+          "Połączenie cukru i cierpliwości — karmel zdjęty z ognia dokładnie w momencie głębokiego bursztynowego koloru, delikatnie zapieczony z kremem jajecznym w Bain-marie i schłodzony przez noc przed przewróceniem na talerz.",
+        prepNote: "Pieczenie w Bain-marie · chłodzenie przez noc",
+        highlights: [
+          "Głęboki bursztynowy karmel",
+          "Delikatne Bain-marie",
+          "Idealnie gładka konsystencja",
+        ],
+      },
+      {
+        id: "steak",
+        name: "Stek",
+        image: Beef,
+        alt: "Stek wołowy",
+        tagline: "Stek wołowy medium-rare z patelni",
+        story:
+          "Wcześniej posolony i osuszony, wrzucony na mocno rozgrzaną patelnię dla wyrazistej skórki, podlewany masłem z tymiankiem, rozmarynem i czosnkiem, a potem odpoczywający przed krojeniem, żeby każdy plaster był soczysty i równomiernie różowy.",
+        prepNote: "Mocne obsmażenie · masłowanie z ziołami · 8 min odpoczynku",
+        highlights: [
+          "Wyrazista skórka Maillarda",
+          "Masło, tymianek, rozmaryn i czosnek",
+          "Soczyste wnętrze medium-rare",
+        ],
+      },
     ],
   },
 };
@@ -626,10 +711,10 @@ const MOBILE_NAVBAR_TRANSLATIONS: Record<
   },
   pl: {
     links: [
-      { text: "Start", href: "/" },
-      { text: "Projekty", href: "/#my-work" },
-      { text: "O mnie", href: "/#about-me" },
-      { text: "Kontakt", href: "/#contact-me" },
+      { text: "Start", href: "/pl" },
+      { text: "Projekty", href: "/pl#my-work" },
+      { text: "O mnie", href: "/pl#about-me" },
+      { text: "Kontakt", href: "/pl#contact-me" },
     ],
     buttons: [
       { text: "Menu", aria: "Otwórz menu" },
@@ -653,6 +738,9 @@ export type UiCopy = {
     buttonAria: string;
     hoverHint: string;
     greetings: string[];
+    chefUnlockGreeting: string;
+    chefGreetings: string[];
+    chefHatLabel: string;
   };
   myWork: {
     filterAria: string;
@@ -689,6 +777,20 @@ export type UiCopy = {
   experience: {
     coreStackTitle: string;
   };
+  foods: {
+    viewNotes: string;
+    openAria: (name: string) => string;
+    closeAria: (name: string) => string;
+    storyLabel: string;
+    prepLabel: string;
+    highlightsLabel: string;
+  };
+  notFound: {
+    heading: string;
+    description: string;
+    homeCta: string;
+    projectsCta: string;
+  };
   contactForm: {
     sendingLabel: string;
     sendingAria: string;
@@ -720,6 +822,13 @@ const UI_COPY: Record<Locale, UiCopy> = {
         "Let's build something cool!",
         "Coffee & code?",
       ],
+      chefUnlockGreeting: "Chef mode unlocked! 👨‍🍳",
+      chefGreetings: [
+        "Cooking up clean code! 👨‍🍳",
+        "Order up — pizza or software?",
+        "Extra spice in the stack! 🌶️",
+      ],
+      chefHatLabel: "Chef hat",
     },
     myWork: {
       filterAria: "Filter projects by platform",
@@ -757,6 +866,21 @@ const UI_COPY: Record<Locale, UiCopy> = {
     experience: {
       coreStackTitle: "Core Stack",
     },
+    foods: {
+      viewNotes: "Notes",
+      openAria: (name) => `Read kitchen notes for ${name}`,
+      closeAria: (name) => `Close kitchen notes for ${name}`,
+      storyLabel: "Kitchen notes",
+      prepLabel: "Method",
+      highlightsLabel: "What makes it work",
+    },
+    notFound: {
+      heading: "Page not found",
+      description:
+        "Looks like this route doesn't exist — or it moved somewhere else. Head back home or explore my featured projects.",
+      homeCta: "Back to home",
+      projectsCta: "View my work",
+    },
     contactForm: {
       sendingLabel: "Sending...",
       sendingAria: "Sending message",
@@ -786,6 +910,13 @@ const UI_COPY: Record<Locale, UiCopy> = {
         "Zbudujmy coś świetnego!",
         "Kawa i kod?",
       ],
+      chefUnlockGreeting: "Tryb szefa kuchni odblokowany! 👨‍🍳",
+      chefGreetings: [
+        "Gotuję czysty kod! 👨‍🍳",
+        "Zamówienie — pizza czy projekt?",
+        "Szczypta pasji do kodu! 🌶️",
+      ],
+      chefHatLabel: "Czapka szefa kuchni",
     },
     myWork: {
       filterAria: "Filtruj projekty według platformy",
@@ -822,6 +953,21 @@ const UI_COPY: Record<Locale, UiCopy> = {
     },
     experience: {
       coreStackTitle: "Główny stack",
+    },
+    foods: {
+      viewNotes: "Notatki",
+      openAria: (name) => `Zobacz notatki kulinarne: ${name}`,
+      closeAria: (name) => `Zamknij notatki kulinarne: ${name}`,
+      storyLabel: "Z mojej kuchni",
+      prepLabel: "Technika",
+      highlightsLabel: "Kluczowe detale",
+    },
+    notFound: {
+      heading: "Nie znaleziono strony",
+      description:
+        "Wygląda na to, że ta strona nie istnieje lub zmieniła adres. Wróć na stronę główną albo zobacz wybrane projekty.",
+      homeCta: "Wróć na stronę główną",
+      projectsCta: "Zobacz projekty",
     },
     contactForm: {
       sendingLabel: "Wysyłanie...",

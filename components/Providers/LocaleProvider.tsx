@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import {
   createContext,
   useCallback,
@@ -11,10 +12,17 @@ import {
   type ReactNode,
 } from "react";
 import {
+  getLocaleFromPathname,
+  isLocale,
+  localizePath,
+} from "@/helpers/locale";
+import {
   resetActiveViewTransition,
   runCircularViewTransition,
   type TransitionOrigin,
 } from "@/helpers/viewTransition";
+import { getRouteDocumentMeta } from "@/lib/metadata";
+import { SITE_URL } from "@/lib/site";
 import type { Locale } from "@/types";
 
 export const LOCALE_STORAGE_KEY = "portfolio-locale";
@@ -36,10 +44,6 @@ const LocaleContext = createContext<LocaleContextValue>({
 
 const listeners = new Set<() => void>();
 let fallbackLocale: Locale | null = null;
-
-function isLocale(value: string | null): value is Locale {
-  return value === "en" || value === "pl";
-}
 
 function subscribeLocaleStore(listener: () => void): () => void {
   listeners.add(listener);
@@ -88,27 +92,69 @@ function persistLocale(nextLocale: Locale): void {
   listeners.forEach((listener) => listener());
 }
 
+function syncDocumentMetadata(pathname: string, nextLocale: Locale): void {
+  if (typeof document === "undefined") return;
+
+  document.documentElement.lang = nextLocale;
+
+  const { title, description } = getRouteDocumentMeta(pathname, nextLocale);
+  document.title = title;
+
+  const descriptionMeta = document.querySelector('meta[name="description"]');
+  if (descriptionMeta) {
+    descriptionMeta.setAttribute("content", description);
+  }
+
+  const canonicalLink = document.querySelector('link[rel="canonical"]');
+  if (canonicalLink) {
+    const canonicalHref =
+      pathname === "/" ? `${SITE_URL}/` : `${SITE_URL}${pathname}`;
+    canonicalLink.setAttribute("href", canonicalHref);
+  }
+}
+
 type LocaleProviderProps = {
   children: ReactNode;
   initialLocale?: Locale;
 };
 
-/** Provides persisted EN/PL language state, `<html lang>` sync, and circular View Transition sweep. */
+type PendingRouteLocale = {
+  locale: Locale;
+  forPathname: string;
+};
+
+/** Provides URL-aware EN/PL language state, `<html lang>` + metadata sync, and circular View Transition sweep. */
 export function LocaleProvider({
   children,
   initialLocale,
 }: LocaleProviderProps) {
+  const pathname = usePathname();
+  const isRouterMounted = pathname !== null;
+  const routeLocale = getLocaleFromPathname(pathname);
+
   const isControlledForTest = initialLocale !== undefined;
   const [controlledLocale, setControlledLocale] = useState<Locale>(
     initialLocale ?? "en",
   );
+  const [pendingRouteLocale, setPendingRouteLocale] =
+    useState<PendingRouteLocale | null>(null);
+
   const storedLocale = useSyncExternalStore(
     subscribeLocaleStore,
     getLocaleSnapshot,
     getServerLocaleSnapshot,
   );
 
-  const locale = isControlledForTest ? controlledLocale : storedLocale;
+  const locale: Locale = (() => {
+    if (isControlledForTest) return controlledLocale;
+    if (isRouterMounted) {
+      if (pendingRouteLocale && pendingRouteLocale.forPathname === pathname) {
+        return pendingRouteLocale.locale;
+      }
+      return routeLocale;
+    }
+    return storedLocale;
+  })();
 
   useEffect(() => {
     if (typeof document !== "undefined") {
@@ -131,9 +177,25 @@ export function LocaleProvider({
         setControlledLocale(nextLocale);
         return;
       }
+
+      if (isRouterMounted && typeof window !== "undefined") {
+        const currentPathname = window.location.pathname || pathname || "/";
+        const localizedPathname = localizePath(currentPathname, nextLocale);
+        const nextUrl = `${localizedPathname}${window.location.search}${window.location.hash}`;
+
+        try {
+          window.history.replaceState(null, "", nextUrl);
+        } catch {
+          // Ignore History API failures in restricted contexts.
+        }
+
+        syncDocumentMetadata(localizedPathname, nextLocale);
+        setPendingRouteLocale({ locale: nextLocale, forPathname: pathname });
+      }
+
       persistLocale(nextLocale);
     },
-    [isControlledForTest],
+    [isControlledForTest, isRouterMounted, pathname],
   );
 
   const setLocale = useCallback(

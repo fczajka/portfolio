@@ -13,6 +13,14 @@ const nextConfig = {
           { key: "X-Frame-Options", value: "SAMEORIGIN" },
         ],
       },
+      {
+        source: "/pl",
+        headers: [{ key: "Content-Language", value: "pl" }],
+      },
+      {
+        source: "/pl/:path*",
+        headers: [{ key: "Content-Language", value: "pl" }],
+      },
     ];
   },
 };

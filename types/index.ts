@@ -149,21 +149,25 @@ export type PanelProps = {
   desc: string;
 };
 
+export type FoodItem = {
+  id: string;
+  name: string;
+  image: StaticImageData;
+  alt: string;
+  tagline: string;
+  story: string;
+  prepNote: string;
+  highlights: string[];
+};
+
 export type FoodsProps = {
-  foods: {
-    name: string;
-    image: StaticImageData;
-    alt: string;
-  }[];
+  foods: FoodItem[];
 };
 
 export type FoodProps = {
-  food: {
-    name: string;
-    image: StaticImageData;
-    alt: string;
-  };
+  food: FoodItem;
   delay: string;
+  onOpen?: (food: FoodItem) => void;
 };
 
 export type LinksProps = {
@@ -186,6 +190,7 @@ export type MobileNavbarLinkProps = {
   text: string;
   href: string;
   icon: IconType;
+  onClick?: () => void;
 };
 
 export type FormProps = {

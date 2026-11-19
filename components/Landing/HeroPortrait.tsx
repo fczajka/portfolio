@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { useLocale } from "@/components/Providers/LocaleProvider";
 import { getUiCopy } from "@/data/content";
 import { usePortraitParallax } from "@/hooks/usePortraitParallax";
+import PortraitChefHat from "./portrait/PortraitChefHat";
 import PortraitFeatures from "./portrait/PortraitFeatures";
 import PortraitHeadBase from "./portrait/PortraitHeadBase";
 import PortraitTorso from "./portrait/PortraitTorso";
@@ -17,12 +18,17 @@ import {
 
 type HeroPortraitProps = {
   isVisible: boolean;
+  className?: string;
 };
 
 const GREETING_DURATION_MS = 3200;
+export const CHEF_HAT_UNLOCK_CLICKS = 5;
 
-/** Interactive animated line-art portrait with parallax, blinking, and click-to-greet animation. */
-export default function HeroPortrait({ isVisible }: HeroPortraitProps) {
+/** Interactive animated line-art portrait with parallax, blinking, click-to-greet animation, and a 5-click chef hat easter egg. */
+export default function HeroPortrait({
+  isVisible,
+  className = "",
+}: HeroPortraitProps) {
   const { locale } = useLocale();
   const { portrait: copy } = getUiCopy(locale);
 
@@ -34,7 +40,6 @@ export default function HeroPortrait({ isVisible }: HeroPortraitProps) {
   const auraGradientId = `hero-aura-${rawId}`;
 
   const [isGreeting, setIsGreeting] = useState(false);
-  const [greetingIndex, setGreetingIndex] = useState(0);
   const [greetingCount, setGreetingCount] = useState(0);
 
   usePortraitParallax(containerRef, isVisible);
@@ -48,9 +53,6 @@ export default function HeroPortrait({ isVisible }: HeroPortraitProps) {
   }, []);
 
   const handleSayHi = () => {
-    setGreetingIndex((prev) =>
-      greetingCount === 0 ? 0 : (prev + 1) % copy.greetings.length,
-    );
     setGreetingCount((prev) => prev + 1);
     setIsGreeting(true);
 
@@ -63,8 +65,19 @@ export default function HeroPortrait({ isVisible }: HeroPortraitProps) {
     }, GREETING_DURATION_MS);
   };
 
-  const activeGreeting =
-    copy.greetings[greetingIndex % copy.greetings.length] ?? copy.greetings[0];
+  const isChefMode = greetingCount >= CHEF_HAT_UNLOCK_CLICKS;
+  const activeGreeting = (() => {
+    if (greetingCount === CHEF_HAT_UNLOCK_CLICKS) {
+      return copy.chefUnlockGreeting;
+    }
+    if (greetingCount > CHEF_HAT_UNLOCK_CLICKS) {
+      const chefPool = [...copy.chefGreetings, ...copy.greetings];
+      const offset = greetingCount - CHEF_HAT_UNLOCK_CLICKS - 1;
+      return chefPool[offset % chefPool.length] ?? copy.chefUnlockGreeting;
+    }
+    const index = Math.max(0, greetingCount - 1);
+    return copy.greetings[index % copy.greetings.length] ?? copy.greetings[0];
+  })();
 
   const classes: PortraitClasses = {
     strokeClass: isVisible ? "hero-stroke hero-stroke-active" : "hero-stroke",
@@ -82,7 +95,7 @@ export default function HeroPortrait({ isVisible }: HeroPortraitProps) {
   return (
     <div
       ref={containerRef}
-      className="group relative w-full max-w-[19rem] sm:max-w-[23rem] md:max-w-[27rem] lg:max-w-[34rem] xl:max-w-[37rem] mx-auto flex items-center justify-center select-none"
+      className={`group relative w-full max-w-[19rem] sm:max-w-[23rem] md:max-w-[27rem] lg:max-w-[34rem] xl:max-w-[37rem] mx-auto flex items-center justify-center select-none ${className}`}
     >
       {isGreeting && (
         <div
@@ -143,6 +156,23 @@ export default function HeroPortrait({ isVisible }: HeroPortraitProps) {
             <PortraitTorso classes={classes} />
             <g className="hero-layer-head">
               <PortraitHeadBase classes={classes} />
+              {isChefMode && (
+                <PortraitChefHat
+                  key={
+                    greetingCount > CHEF_HAT_UNLOCK_CLICKS && isGreeting
+                      ? `wiggle-${greetingCount}`
+                      : "chef-hat"
+                  }
+                  motion={
+                    greetingCount === CHEF_HAT_UNLOCK_CLICKS
+                      ? "pop"
+                      : isGreeting
+                        ? "wiggle"
+                        : "settled"
+                  }
+                  label={copy.chefHatLabel}
+                />
+              )}
               <PortraitFeatures
                 leftEyeClipId={leftEyeClipId}
                 rightEyeClipId={rightEyeClipId}

@@ -6,7 +6,9 @@ import {
   screen,
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import HeroPortrait from "@/components/Landing/HeroPortrait";
+import HeroPortrait, {
+  CHEF_HAT_UNLOCK_CLICKS,
+} from "@/components/Landing/HeroPortrait";
 import { LocaleProvider } from "@/components/Providers/LocaleProvider";
 
 function mockMatchMedia(reducedMotion: boolean, finePointer: boolean) {
@@ -177,5 +179,76 @@ describe("HeroPortrait", () => {
     );
 
     expect(screen.getByRole("status").textContent).toContain("Cześć!");
+  });
+
+  it("unlocks the chef hat easter egg on the 5th click and keeps it on across greetings", () => {
+    vi.useFakeTimers();
+    render(<HeroPortrait isVisible />);
+
+    const greetButton = screen.getByRole("button", {
+      name: "Say hi to Franciszek",
+    });
+
+    for (let i = 1; i < CHEF_HAT_UNLOCK_CLICKS; i++) {
+      fireEvent.click(greetButton);
+      expect(screen.queryByTestId("portrait-chef-hat")).toBeNull();
+    }
+
+    // 5th click unlocks chef mode
+    fireEvent.click(greetButton);
+
+    const chefHat = screen.getByTestId("portrait-chef-hat");
+    expect(chefHat).toBeTruthy();
+    expect(chefHat.getAttribute("aria-label")).toBe("Chef hat");
+    expect(chefHat.getAttribute("class")).toContain("hero-chef-hat-pop");
+    expect(screen.getByRole("status").textContent).toContain(
+      "Chef mode unlocked!",
+    );
+
+    // Chef hat stays on after speech bubble expires
+    act(() => {
+      vi.advanceTimersByTime(3200);
+    });
+    expect(screen.queryByRole("status")).toBeNull();
+    expect(screen.getByTestId("portrait-chef-hat")).toBeTruthy();
+
+    // 6th click triggers wiggle animation & chef-themed greeting
+    fireEvent.click(greetButton);
+    expect(
+      screen.getByTestId("portrait-chef-hat").getAttribute("class"),
+    ).toContain("hero-chef-hat-wiggle");
+    expect(screen.getByRole("status").textContent).toContain(
+      "Cooking up clean code!",
+    );
+
+    // Settles cleanly after timer without replaying pop-in
+    act(() => {
+      vi.advanceTimersByTime(3200);
+    });
+    expect(
+      screen.getByTestId("portrait-chef-hat").getAttribute("class"),
+    ).toContain("hero-chef-hat-settled");
+  });
+
+  it("shows localized Polish chef unlock message and aria-label on the 5th click", () => {
+    render(
+      <LocaleProvider initialLocale="pl">
+        <HeroPortrait isVisible />
+      </LocaleProvider>,
+    );
+
+    const greetButton = screen.getByRole("button", {
+      name: "Przywitaj się z Franciszkiem",
+    });
+
+    for (let i = 0; i < CHEF_HAT_UNLOCK_CLICKS; i++) {
+      fireEvent.click(greetButton);
+    }
+
+    const chefHat = screen.getByTestId("portrait-chef-hat");
+    expect(chefHat.getAttribute("aria-label")).toBe("Czapka szefa kuchni");
+    expect(screen.getByRole("status").textContent).toContain(
+      "Tryb szefa kuchni odblokowany!",
+    );
   });
 });

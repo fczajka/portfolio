@@ -36,7 +36,7 @@ export default function ToggleTheme(props: { style?: string }) {
     >
       <label
         htmlFor={toggleId}
-        className="cursor-pointer"
+        className="block h-full w-full cursor-pointer"
         aria-label={themeToggleAria}
       >
         <input

@@ -1,5 +1,9 @@
 "use client";
 
+import {
+  modalCardSurfaceClasses,
+  modalOverlayClasses,
+} from "@/components/UI/constants";
 import useDialogAccessibility from "@/hooks/useDialogAccessibility";
 import useModalDismiss from "@/hooks/useModalDismiss";
 import type { ProjectDetailsProps } from "@/types";
@@ -50,14 +54,14 @@ export default function ProjectDetails({
       role="dialog"
       aria-modal="true"
       aria-labelledby="project-details-title"
-      className={`fixed top-0 left-0 w-full h-full flex justify-center items-center p-4 bg-zinc-800/90 z-40 overflow-y-auto ${
+      className={`fixed top-0 left-0 w-full h-full flex justify-center items-center p-4 z-40 overflow-y-auto ${modalOverlayClasses} ${
         wantsToClose ? "animate-fade-out" : "animate-fade-in"
       } motion-reduce:animate-none`}
     >
       <div
         ref={elRef}
         tabIndex={-1}
-        className={`basis-full max-h-[92dvh] overflow-y-auto bg-zinc-200 p-4 flex flex-col rounded-primary max-w-sm outline-none dark:bg-dark-secondary-bg dark:text-zinc-200 ${
+        className={`basis-full max-h-[92dvh] overflow-y-auto p-4 flex flex-col rounded-primary max-w-sm outline-none ${modalCardSurfaceClasses} ${
           wantsToClose
             ? "animate-slide-down-project-details-mobile lg:animate-slide-down-project-details-desktop"
             : "animate-show-project-details"

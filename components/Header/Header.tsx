@@ -3,25 +3,44 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useLocale } from "@/components/Providers/LocaleProvider";
+import { isProjectPath, localizePath } from "@/helpers/locale";
 import useAnimatedToggle from "@/hooks/useAnimatedToggle";
 import { getContent } from "@/data/content";
 import Menu from "../UI/Menu";
 import ToggleLocale from "../UI/ToggleLocale";
 import ToggleTheme from "../UI/ToggleTheme";
 
-const SECTION_ANCHORS = [
-  { id: "contact-me", href: "/#contact-me" },
-  { id: "about-me", href: "/#about-me" },
-  { id: "my-work", href: "/#my-work" },
+type SectionKey = "top" | "my-work" | "about-me" | "contact-me";
+
+const SECTION_ANCHORS: { id: Exclude<SectionKey, "top">; path: string }[] = [
+  { id: "contact-me", path: "/#contact-me" },
+  { id: "about-me", path: "/#about-me" },
+  { id: "my-work", path: "/#my-work" },
 ];
+
+const SECTION_PATH_BY_KEY: Record<SectionKey, string> = {
+  top: "/",
+  "my-work": "/#my-work",
+  "about-me": "/#about-me",
+  "contact-me": "/#contact-me",
+};
 
 export default function Header() {
   const pathname = usePathname();
   const { locale } = useLocale();
-  const { isOpen, wantsToSee, toggle: handleMenu } = useAnimatedToggle(700);
-  const isProjectRoute = pathname.startsWith("/projects");
-  const [scrollActiveHref, setScrollActiveHref] = useState("/");
-  const activeHref = isProjectRoute ? "/#my-work" : scrollActiveHref;
+  const {
+    isOpen,
+    wantsToSee,
+    toggle: handleMenu,
+    close: closeMenu,
+  } = useAnimatedToggle(700);
+  const isProjectRoute = isProjectPath(pathname);
+  const [scrollActiveSection, setScrollActiveSection] =
+    useState<SectionKey>("top");
+  const activeHref = localizePath(
+    SECTION_PATH_BY_KEY[isProjectRoute ? "my-work" : scrollActiveSection],
+    locale,
+  );
   const { header, menu } = getContent(locale);
   const { links } = header;
   const { buttons } = menu;
@@ -32,13 +51,27 @@ export default function Header() {
   ];
 
   useEffect(() => {
+    if (!isOpen || typeof window === "undefined") return;
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+    const handleViewportChange = (event: MediaQueryListEvent) => {
+      if (!event.matches) {
+        closeMenu();
+      }
+    };
+    mediaQuery.addEventListener("change", handleViewportChange);
+    return () => {
+      mediaQuery.removeEventListener("change", handleViewportChange);
+    };
+  }, [isOpen, closeMenu]);
+
+  useEffect(() => {
     if (isProjectRoute) {
       return;
     }
 
     const updateActiveSection = () => {
       if (window.scrollY < 160) {
-        setScrollActiveHref("/");
+        setScrollActiveSection("top");
         return;
       }
 
@@ -46,7 +79,7 @@ export default function Header() {
         window.innerHeight + window.scrollY >=
         document.documentElement.scrollHeight - 40;
       if (reachedBottom) {
-        setScrollActiveHref("/#contact-me");
+        setScrollActiveSection("contact-me");
         return;
       }
 
@@ -56,13 +89,13 @@ export default function Header() {
         if (el) {
           const sectionTop = el.getBoundingClientRect().top + window.scrollY;
           if (sectionTop <= scrollOffset) {
-            setScrollActiveHref(section.href);
+            setScrollActiveSection(section.id);
             return;
           }
         }
       }
 
-      setScrollActiveHref("/");
+      setScrollActiveSection("top");
     };
 
     const rafId = window.requestAnimationFrame(updateActiveSection);
@@ -75,9 +108,6 @@ export default function Header() {
 
   return (
     <>
-      <div className="fixed top-3 right-3 z-20 lg:hidden">
-        <ToggleLocale className="bg-zinc-100/90 backdrop-blur-md dark:bg-dark-secondary-bg/90" />
-      </div>
       <header className="hidden lg:flex lg:justify-between">
         <div className="flex basis-1/3 lg:basis-2/5 h-full pl-10 items-center">
           <div className="relative overflow-y-hidden pr-2">

@@ -8,30 +8,38 @@ import { MdMenu } from "react-icons/md";
 export default function MenuButton({ isOpen, handleMenu }: MobileMenuProps) {
   const { locale } = useLocale();
   const { buttons } = getContent(locale).mobileNavbar;
-
-  const buttonsStyles = [
-    `absolute ${isOpen ? "translate-y-10" : "translate-y-0"}`,
-    `${isOpen ? "translate-y-0" : "translate-y-10"}`,
-  ];
+  const activeButton = isOpen ? buttons[1] : buttons[0];
 
   return (
-    <li className="basis-1/5">
-      <div className="flex h-full flex-col justify-center items-center text-xs min-[400px]:text-sm">
-        <MdMenu />
-        <div className="overflow-y-hidden flex flex-col">
-          {buttons.map((button, index) => (
-            <button
-              key={button.aria}
-              onClick={handleMenu}
-              aria-label={button.aria}
-              type="button"
-              className={`transition-transform ${buttonsStyles[index]}`}
-            >
-              {button.text}
-            </button>
-          ))}
-        </div>
-      </div>
+    <li className="basis-1/5 flex justify-center items-center">
+      <button
+        onClick={handleMenu}
+        aria-label={activeButton.aria}
+        aria-expanded={isOpen}
+        type="button"
+        className="flex h-full w-full flex-col justify-center items-center text-xs min-[400px]:text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-400"
+      >
+        <MdMenu aria-hidden="true" />
+        <span className="relative grid place-items-center overflow-hidden">
+          {buttons.map((button, index) => {
+            const isActive = isOpen ? index === 1 : index === 0;
+            const hiddenTranslate =
+              index === 0 ? "-translate-y-full" : "translate-y-full";
+
+            return (
+              <span
+                key={button.aria}
+                aria-hidden={!isActive}
+                className={`col-start-1 row-start-1 whitespace-nowrap transition-transform duration-200 motion-reduce:transition-none ${
+                  isActive ? "translate-y-0" : hiddenTranslate
+                }`}
+              >
+                {button.text}
+              </span>
+            );
+          })}
+        </span>
+      </button>
     </li>
   );
 }

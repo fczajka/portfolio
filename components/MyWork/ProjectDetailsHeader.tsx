@@ -8,6 +8,7 @@ import { MdCheck, MdLink, MdOpenInNew } from "react-icons/md";
 import { useLocale } from "@/components/Providers/LocaleProvider";
 import { getUiCopy } from "@/data/content";
 import { copyTextToClipboard } from "@/helpers/helpers";
+import { localizePath } from "@/helpers/locale";
 
 type ProjectDetailsHeaderProps = {
   name: string;
@@ -38,8 +39,10 @@ export default function ProjectDetailsHeader({
     };
   }, []);
 
+  const projectPath = localizePath(`/projects/${slug}`, locale);
+
   const handleCopyLink = async () => {
-    const shareUrl = `${window.location.origin}/projects/${slug}`;
+    const shareUrl = `${window.location.origin}${projectPath}`;
     const copied = await copyTextToClipboard(shareUrl);
     if (!copied) return;
 
@@ -67,7 +70,7 @@ export default function ProjectDetailsHeader({
       </div>
       <div className="flex shrink-0 items-center gap-2 animate-show-down-up [animation-delay:0.4s] motion-reduce:animate-none">
         <Link
-          href={`/projects/${slug}`}
+          href={projectPath}
           aria-label={uiCopy.fullPageAria(name)}
           className="inline-flex items-center gap-1 rounded-full bg-zinc-300/65 px-3 py-1 text-xs font-semibold text-zinc-800 transition-colors hover:bg-primary-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 dark:bg-dark-tertiary-bg dark:text-zinc-200 dark:hover:bg-primary-500/20"
         >

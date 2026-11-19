@@ -3,8 +3,10 @@
 import { useState, useEffect, useRef, type MutableRefObject } from "react";
 import type { UseElementOnScreenProps } from "@/types";
 
-export default function useElementOnScreen(options: UseElementOnScreenProps) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
+export default function useElementOnScreen<
+  T extends HTMLElement = HTMLDivElement,
+>(options: UseElementOnScreenProps) {
+  const containerRef = useRef<T | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const { root, rootMargin, threshold } = options;
 
@@ -30,8 +32,5 @@ export default function useElementOnScreen(options: UseElementOnScreenProps) {
     };
   }, [root, rootMargin, threshold, isVisible]);
 
-  return [containerRef, isVisible] as [
-    MutableRefObject<HTMLDivElement | null>,
-    boolean,
-  ];
+  return [containerRef, isVisible] as [MutableRefObject<T | null>, boolean];
 }

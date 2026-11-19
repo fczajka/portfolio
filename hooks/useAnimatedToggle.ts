@@ -47,5 +47,16 @@ export default function useAnimatedToggle(delayMs = 700) {
     setIsOpen(true);
   }, [delayMs]);
 
-  return { isOpen, wantsToSee, toggle };
+  const close = useCallback(() => {
+    if (timerRef.current !== null) {
+      window.clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+
+    isVisibleRef.current = false;
+    setWantsToSee(false);
+    setIsOpen(false);
+  }, []);
+
+  return { isOpen, wantsToSee, toggle, close };
 }

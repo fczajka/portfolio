@@ -18,6 +18,7 @@ export default function Links({ isOpen, handleMenu }: MobileMenuProps) {
           text={link.text}
           href={link.href}
           icon={link.icon}
+          onClick={isOpen ? handleMenu : undefined}
         />
       ))}
       <MenuButton isOpen={isOpen} handleMenu={handleMenu} />

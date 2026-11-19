@@ -1,11 +1,31 @@
 "use client";
 
+import { useEffect } from "react";
 import useAnimatedToggle from "@/hooks/useAnimatedToggle";
 import Menu from "../UI/Menu";
 import Links from "./Links";
 
 export default function MobileNavbar() {
-  const { isOpen, wantsToSee, toggle: handleMenu } = useAnimatedToggle(700);
+  const {
+    isOpen,
+    wantsToSee,
+    toggle: handleMenu,
+    close,
+  } = useAnimatedToggle(700);
+
+  useEffect(() => {
+    if (!isOpen || typeof window === "undefined") return;
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+    const handleViewportChange = (event: MediaQueryListEvent) => {
+      if (event.matches) {
+        close();
+      }
+    };
+    mediaQuery.addEventListener("change", handleViewportChange);
+    return () => {
+      mediaQuery.removeEventListener("change", handleViewportChange);
+    };
+  }, [isOpen, close]);
 
   return (
     <>

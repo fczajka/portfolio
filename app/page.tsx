@@ -1,23 +1,9 @@
-import AboutMe from "@/components/AboutMe/AboutMe";
-import Contact from "@/components/Contact/Contact";
-import Footer from "@/components/Footer/Footer";
-import Landing from "@/components/Landing/Landing";
-import Separator from "@/components/Landing/Separator";
-import MyWork from "@/components/MyWork/MyWork";
-import BackgroundParticles from "@/components/UI/BackgroundParticles";
+import type { Metadata } from "next";
+import HomePage from "@/components/Pages/HomePage";
+import { getSiteMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = getSiteMetadata("en");
 
 export default function Home() {
-  return (
-    <main>
-      <BackgroundParticles />
-      <div className="relative max-w-1920 mx-auto">
-        <Landing />
-        <Separator />
-        <MyWork />
-        <AboutMe />
-        <Contact />
-        <Footer />
-      </div>
-    </main>
-  );
+  return <HomePage locale="en" />;
 }

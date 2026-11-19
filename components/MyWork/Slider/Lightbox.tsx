@@ -79,7 +79,7 @@ export default function Lightbox({
       role="dialog"
       aria-modal="true"
       aria-label={uiCopy.lightboxAria(projectName)}
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/90 p-4 backdrop-blur-xs touch-pan-y outline-none sm:p-8"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-zinc-950/85 p-4 backdrop-blur-xs touch-pan-y outline-none sm:p-8"
       {...swipeHandlers}
       onClick={(event) => {
         if (event.target === event.currentTarget) {
@@ -107,7 +107,7 @@ export default function Lightbox({
           <BsArrowLeftShort aria-hidden="true" />
         </button>
 
-        <div className="flex min-w-0 max-h-[78dvh] max-w-full items-center justify-center overflow-hidden rounded-2xl bg-zinc-950/60 p-1 shadow-2xl">
+        <div className="flex min-w-0 max-h-[78dvh] max-w-full items-center justify-center overflow-hidden rounded-2xl bg-zinc-950/60 p-1">
           <Image
             src={activeImage.image}
             alt={activeImage.alt}
